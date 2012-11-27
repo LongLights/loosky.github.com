@@ -429,3 +429,8 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 	
 	#add-comment input[type='submit'] {float: right; margin: 0 .5em;}
 	#add-comment * {margin-bottom: .5em;}
+
+/*向上滑动*/
+a#go-top{width:49px;height:35px;text-decoration:none;opacity:0.5;background:url(../images/sprite.png) no-repeat 0 -324px;}
+a#go-top:hover{background-position:-49px -324px;}
+/*向上滑动结束*
