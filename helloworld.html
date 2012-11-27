@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Loosky's Blog</title>
+        <title>Hello World!</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
         
@@ -34,7 +34,7 @@
                 <nav><ul>
                 
                 
-                    <li ><a href="./category/blog.html">Blog</a></li>
+                    <li class="active"><a href="./category/blog.html">Blog</a></li>
                 
                     <li ><a href="./category/technology.html">Technology</a></li>
                 
@@ -48,17 +48,49 @@
         </header><!-- /#banner -->
         
 <section id="content" class="body">
-<h1>Archives for Loosky's Blog</h1>
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="helloworld.html" rel="bookmark"
+           title="Permalink to Hello World!">Hello World!</a></h1>
+      
+    </header>
 
-<dl>
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-11-26T00:00:00">
+                Mon 26 November 2012
+        </abbr>
 
-    <dt>Tue 27 November 2012</dt>
-    <dd><a href="./github.html">GitHub使用</a></dd>
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">Blog</a>. </p>
+<p>tags: <a href="./tag/loosky.html">Loosky</a><a href="./tag/python.html">Python</a><a href="./tag/github.html">github</a><a href="./tag/pelican.html">Pelican</a></p>
 
-    <dt>Mon 26 November 2012</dt>
-    <dd><a href="./helloworld.html">Hello World!</a></dd>
 
-</dl>
+</footer><!-- /.post-info -->
+      <p>这是Loosky的个人博客，网站基于<a href="http://getpelican.com/">Pelican</a> &amp; <a href="https://github.com">GitHub</a>搭建，使用了<a href="http://www.python.org/">Python</a>技术。一切从零开始。</p>
+<p>您可以访问我的<a href="http://loosky.net">另外一个博客</a>,那里记录了从2003年以来的所有文章，包含技术、情感、生活等方面。</p>
+    </div><!-- /.entry-content -->
+    
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "helloworld.html";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://looskyblog.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+    
+
+  </article>
 </section>
 
         <section id="extras" class="body">
