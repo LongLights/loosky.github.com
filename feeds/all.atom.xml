@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/all.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-11-26T00:00:00+08:00</updated><entry><title>About</title><link href="http://loosky.com/about.html" rel="alternate"></link><updated>2012-11-26T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-26:about.html</id><summary type="html">&lt;p&gt;hello world!!!
-ok!
-test!&lt;/p&gt;</summary><category term="loosky"></category><category term="github"></category></entry><entry><title>Github</title><link href="http://loosky.com/github.html" rel="alternate"></link><updated>2012-11-26T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-26:github.html</id><summary type="html">&lt;p&gt;1.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/all.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-11-26T00:00:00+08:00</updated><entry><title>About</title><link href="http://loosky.com/about.html" rel="alternate"></link><updated>2012-11-26T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-26:about.html</id><summary type="html">&lt;h2&gt;关于&lt;/h2&gt;
+&lt;p&gt;这是Loosky的个人博客，网站基于&lt;a href="http://getpelican.com/"&gt;Pelican&lt;/a&gt; &amp;amp; &lt;a href="https://github.com"&gt;GitHub&lt;/a&gt;搭建。一切从零开始。&lt;/p&gt;
+&lt;p&gt;您可以访问我的&lt;a href="http://loosky.net"&gt;另外一个博客&lt;/a&gt;,那里记录了从2003年以来的所有文章，包含技术、情感、生活等方面。&lt;/p&gt;
+&lt;h2&gt;一些兴趣/爱好&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;技术方面：Linux，编程（Python &amp;amp; .net &amp;amp; C）,网络编程(PHP &amp;amp; ASP)&lt;/li&gt;
+&lt;li&gt;研究方向：计算机网络，无线网络(WMN)，嵌入式开发&lt;/li&gt;
+&lt;li&gt;平时爱好：看电影，数码产品...&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="loosky"></category><category term="github"></category></entry><entry><title>Github</title><link href="http://loosky.com/github.html" rel="alternate"></link><updated>2012-11-26T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-26:github.html</id><summary type="html">&lt;p&gt;1.
 Git config --global user.name "loosky"
 git config --global user.email zhuquan168@gmail.com&lt;/p&gt;
 &lt;ol&gt;
