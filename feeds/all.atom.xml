@@ -7,27 +7,78 @@
 &lt;li&gt;技术方面：Linux，编程（Python &amp;amp; .net &amp;amp; C）,网络编程(PHP &amp;amp; ASP)&lt;/li&gt;
 &lt;li&gt;研究方向：计算机网络，无线网络(WMN)，嵌入式开发&lt;/li&gt;
 &lt;li&gt;平时爱好：看电影，数码产品...&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="loosky"></category><category term="github"></category></entry><entry><title>Github</title><link href="http://loosky.com/github.html" rel="alternate"></link><updated>2012-11-26T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-26:github.html</id><summary type="html">&lt;p&gt;1.
-Git config --global user.name "loosky"
-git config --global user.email zhuquan168@gmail.com&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="loosky"></category><category term="github"></category></entry><entry><title>GitHub使用</title><link href="http://loosky.com/github.html" rel="alternate"></link><updated>2012-11-26T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-26:github.html</id><summary type="html">&lt;h3&gt;一、创建github账号&lt;/h3&gt;
+&lt;p&gt;github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：&lt;a href="https://github.com"&gt;https://github.com&lt;/a&gt;
+帐号注册成功后，点击&lt;strong&gt;New Repository&lt;/strong&gt;，开始创建新版本库。用户可以创建类似于 &lt;code&gt;your_userid.github.com&lt;/code&gt; 的版本库，这样就可以通过&lt;code&gt;http://your_userid.github.com&lt;/code&gt;进行访问了。&lt;/p&gt;
+&lt;h3&gt;二、建立本地git仓库&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git config --global user.name &amp;quot;your_userid&amp;quot;   //提供使用者自己的身份标识&lt;/span&gt;
+&lt;span class="c"&gt;#git config --global user.email &amp;quot;your_email&amp;quot;    &lt;/span&gt;
+&lt;span class="c"&gt;#mkdir -p /home/work/your_userid.github.com   //建立项目&lt;/span&gt;
+&lt;span class="c"&gt;#cd /home/work/your_userid.github.com&lt;/span&gt;
+&lt;span class="c"&gt;#git init                                     //初始化git仓库&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;三、创建项目文件&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#touch README&lt;/span&gt;
+&lt;span class="c"&gt;#git add README&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果添加项目目录下面所有的文件则用 &lt;strong&gt;git add .&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;四、将项目提交到github管理&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;touch README&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建SSH密钥&lt;/p&gt;
+&lt;p&gt;ssh-keygen -C 'your_email' -t rsa&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;找到刚才生成的密钥（默认为&lt;strong&gt;/root/.ssh/id_rsa.pub&lt;/strong&gt;）文件并用文本编辑器打开，然后复制里面的内容。接着转到github站点，进入&lt;strong&gt;Account Setting--SSH Keys&lt;/strong&gt; 选项后，点击&lt;strong&gt;add ssh key&lt;/strong&gt; 并将刚才复制的内容粘贴保存。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;测试SSH连接。在git bash中执行以下命令：&lt;/p&gt;
+&lt;p&gt;ssh -v git@github.com&lt;/p&gt;
+&lt;p&gt;如果出现类似 &lt;code&gt;Hi loosky! You've successfully authenticated, but GitHub does not provide shell access.&lt;/code&gt; 的提示，则证明SSH连接工作正常了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提交项目&lt;/p&gt;
+&lt;p&gt;git commit -m 'first commit'&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加远程仓库&lt;/p&gt;
+&lt;p&gt;git remote add origin https://github.com/your_userid/your_userid.github.com.git&lt;/p&gt;
+&lt;p&gt;这个只是第一次操作的时候需要，后面再次进行项目提交时，并不需要重复这个操作。&lt;/p&gt;
+&lt;p&gt;如果出现：error: The requested URL returned error: 403 while accessing ... 的错误，可以编辑.git/config&lt;/p&gt;
+&lt;p&gt;将url=https://github.com/your_userid/your_userid.github.com.git 改为 url=ssh://git@github.com/your_userid/your_userid.github.com.git&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;push 到 GitCafe 仓库&lt;/p&gt;
+&lt;p&gt;git push origin master&lt;/p&gt;
+&lt;p&gt;如果出现：error: failed to push some refs to 'ssh://git@github.com/your_userid/your_userid.github.com.git' To prevent you from losing history, non-fast-forward updates were rejected Merge the remote changes before pushing again.  See the 'Note about fast-forwards' section of 'git push --help' for details.&lt;/p&gt;
+&lt;p&gt;解决办法：git push origin +master&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;3.git add README
-git add .&lt;/p&gt;
-&lt;p&gt;4.
-ssh-keygen -C 'zhuquan168@gmail.com' -t rsa&lt;/p&gt;
-&lt;p&gt;5.
-git commit -m 'first commit'&lt;/p&gt;
-&lt;p&gt;6.
-git remote add origin https://github.com/loosky/loosky.git&lt;/p&gt;
-&lt;p&gt;error: The requested URL returned error: 403 while accessing https://github.com/loosky/loosky.git&lt;/p&gt;
-&lt;p&gt;http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed
-Edit: .git/config
-url=https://github.com/loosky/loosky.git to url=ssh://git@github.com/loosky/loosky.git&lt;/p&gt;
-&lt;p&gt;7.git push origin master&lt;/p&gt;
-&lt;p&gt;error: failed to push some refs to 'ssh://git@github.com/loosky/loosky.git'
-To prevent you from losing history, non-fast-forward updates were rejected
-Merge the remote changes before pushing again.  See the 'Note about
-fast-forwards' section of 'git push --help' for details.
-git push origin +master&lt;/p&gt;</summary><category term="github"></category></entry><entry><title>My super title</title><link href="http://loosky.com/my-super-title.html" rel="alternate"></link><updated>2012-11-26T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-26:my-super-title.html</id><summary type="html">&lt;p&gt;This is the content of my super blog post.&lt;/p&gt;</summary></entry></feed>
+&lt;p&gt;push 完成以后就可以在访问 GitCafe Pages 地址了。&lt;a href="http://your_userid.github.com"&gt;http://your_userid.github.com&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;自动发布&lt;/h3&gt;
+&lt;p&gt;为了方便下次发布，可以创建了自动发布的脚本publish&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#cd /home/work&lt;/span&gt;
+&lt;span class="c"&gt;#vi publish&lt;/span&gt;
+
+&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;your_userid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; 
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Update&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;./&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;参考&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;https://help.github.com/articles/set-up-git#platform-linux&lt;/li&gt;
+&lt;li&gt;https://help.github.com/articles/create-a-repo&lt;/li&gt;
+&lt;li&gt;http://artori.us/git-github-usage/&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://hi.baidu.com/mcspring/item/198f1e977f8f98bccd80e5b3"&gt;windows下使用git管理github项目&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;http://www.yangzhiping.com/tech/github.html&lt;/li&gt;
+&lt;li&gt;http://www.worldhello.net/gotgithub/index.html
+http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="git"></category><category term="github"></category></entry></feed>
