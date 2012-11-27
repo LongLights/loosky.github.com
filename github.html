@@ -94,30 +94,45 @@
 <ol>
 <li>
 <p>创建SSH密钥</p>
-<p>ssh-keygen -C 'your_email' -t rsa</p>
+<div class="codehilite"><pre><span class="c">#ssh-keygen -C &#39;your_email&#39; -t rsa</span>
+</pre></div>
+
+
 </li>
 <li>
 <p>找到刚才生成的密钥（默认为<strong>/root/.ssh/id_rsa.pub</strong>）文件并用文本编辑器打开，然后复制里面的内容。接着转到github站点，进入<strong>Account Setting--SSH Keys</strong> 选项后，点击<strong>add ssh key</strong> 并将刚才复制的内容粘贴保存。</p>
 </li>
 <li>
 <p>测试SSH连接。在git bash中执行以下命令：</p>
-<p>ssh -v git@github.com</p>
+<div class="codehilite"><pre><span class="c">#ssh -v git@github.com</span>
+</pre></div>
+
+
 <p>如果出现类似 <code>Hi loosky! You've successfully authenticated, but GitHub does not provide shell access.</code> 的提示，则证明SSH连接工作正常了</p>
 </li>
 <li>
 <p>提交项目</p>
-<p>git commit -m 'first commit'</p>
+<div class="codehilite"><pre><span class="c">#git commit -m &#39;first commit&#39;</span>
+</pre></div>
+
+
 </li>
 <li>
 <p>添加远程仓库</p>
-<p>git remote add origin https://github.com/your_userid/your_userid.github.com.git</p>
+<div class="codehilite"><pre><span class="c">#git remote add origin https://github.com/your_userid/your_userid.github.com.git</span>
+</pre></div>
+
+
 <p>这个只是第一次操作的时候需要，后面再次进行项目提交时，并不需要重复这个操作。</p>
 <p>如果出现：error: The requested URL returned error: 403 while accessing ... 的错误，可以编辑.git/config</p>
 <p>将url=https://github.com/your_userid/your_userid.github.com.git 改为 url=ssh://git@github.com/your_userid/your_userid.github.com.git</p>
 </li>
 <li>
 <p>push 到 GitCafe 仓库</p>
-<p>git push origin master</p>
+<div class="codehilite"><pre><span class="c">#git push origin master</span>
+</pre></div>
+
+
 <p>如果出现：error: failed to push some refs to 'ssh://git@github.com/your_userid/your_userid.github.com.git' To prevent you from losing history, non-fast-forward updates were rejected Merge the remote changes before pushing again.  See the 'Note about fast-forwards' section of 'git push --help' for details.</p>
 <p>解决办法：git push origin +master</p>
 </li>
@@ -171,14 +186,14 @@
                         <ul>
                         
 <li>
-    <a href="./tag/git.html">
-       git
+    <a href="./tag/loosky.html">
+       loosky
     </a>
 </li>
 
 <li>
-    <a href="./tag/loosky.html">
-       loosky
+    <a href="./tag/git.html">
+       git
     </a>
 </li>
 
