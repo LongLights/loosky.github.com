@@ -283,10 +283,18 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	/* Blogroll */
 	#extras .blogroll {
 		float: left;
-		width: 615px;
+		width: 300px;
 	}
 	
-	#extras .blogroll li {float: left; margin: 0 20px 0 0; width: 185px;}
+	#extras .blogroll li {float: left; margin: 0 20px 0 0; width: 150px;}
+	
+	/* Blogroll */
+	#extras .tags {
+		float: left;
+		width: 310px;
+	}
+	
+	#extras .tags li {float: left; margin: 0 20px 0 0; width: 150px;}
 	
 	/* Social */
 	#extras .social {
