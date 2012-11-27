@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/git.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-11-26T00:00:00+08:00</updated><entry><title>GitHub使用</title><link href="http://loosky.com/github.html" rel="alternate"></link><updated>2012-11-26T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-26:github.html</id><summary type="html">&lt;h3&gt;一、创建github账号&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/git.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-11-27T00:00:00+08:00</updated><entry><title>GitHub使用</title><link href="http://loosky.com/github.html" rel="alternate"></link><updated>2012-11-27T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-27:github.html</id><summary type="html">&lt;h3&gt;一、创建github账号&lt;/h3&gt;
 &lt;p&gt;github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：&lt;a href="https://github.com"&gt;https://github.com&lt;/a&gt;
 帐号注册成功后，点击&lt;strong&gt;New Repository&lt;/strong&gt;，开始创建新版本库。用户可以创建类似于 &lt;code&gt;your_userid.github.com&lt;/code&gt; 的版本库，这样就可以通过&lt;code&gt;http://your_userid.github.com&lt;/code&gt;进行访问了。&lt;/p&gt;
 &lt;h3&gt;二、建立本地git仓库&lt;/h3&gt;
@@ -66,11 +66,11 @@
 
 &lt;h3&gt;参考&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;https://help.github.com/articles/set-up-git#platform-linux&lt;/li&gt;
-&lt;li&gt;https://help.github.com/articles/create-a-repo&lt;/li&gt;
-&lt;li&gt;http://artori.us/git-github-usage/&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://help.github.com/articles/set-up-git#platform-linux"&gt;Set Up Git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://help.github.com/articles/create-a-repo"&gt;Create A Repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://artori.us/git-github-usage/"&gt;Git/Github使用方法小记&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://hi.baidu.com/mcspring/item/198f1e977f8f98bccd80e5b3"&gt;windows下使用git管理github项目&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;http://www.yangzhiping.com/tech/github.html&lt;/li&gt;
-&lt;li&gt;http://www.worldhello.net/gotgithub/index.html
-http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.yangzhiping.com/tech/github.html"&gt;如何高效利用GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.worldhello.net/gotgithub/index.html"&gt;GotGitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed"&gt;Pushing to Git returning Error Code 403 fatal: HTTP request failed&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</summary><category term="git"></category><category term="github"></category></entry></feed>
