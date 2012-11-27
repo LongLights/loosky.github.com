@@ -178,14 +178,14 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 		margin: 0 auto 2em auto;
 		padding: 0;
 		text-align: center;
-		width: 800px;
+		width: 960px;
 		
 		border-radius: 5px;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
 	}
 	
-	#banner nav ul {list-style: none; margin: 0 auto; width: 800px;}
+	#banner nav ul {list-style: none; margin: 0 auto; width: 960px;}
 	#banner nav li {float: left; display: inline; margin: 0;}
 	
 	#banner nav a:link, #banner nav a:visited {
@@ -220,7 +220,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	margin-bottom: 2em;
 	overflow: hidden;
 	padding: 20px;
-	width: 760px;
+	width: 920px;
 	
 	border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -249,7 +249,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	margin-bottom: 2em;
 	overflow: hidden;
 	padding: 20px 20px;
-	width: 760px;
+	width: 920px;
 	
 	border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -310,6 +310,9 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 		.social a[href*='linkedin.com'] {background-image: url('../images/icons/linkedin.png');}
 		.social a[href*='gitorious.org'] {background-image: url('../images/icons/gitorious.png');}
         .social a[href*='gittip.com'] {background-image: url('../images/icons/gittip.png');}
+		.social a[href*='weibo.com'] {background-image: url('../images/icons/weibo.png');}
+		.social a[href*='douban.com'] {background-image: url('../images/icons/douban.png');}
+		.social a[href*='github.com'] {background-image: url('../images/icons/github.png');}
 
 /*
 	About
@@ -321,7 +324,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	overflow: hidden;
 	padding: 20px;
 	text-align: left;
-	width: 760px;
+	width: 920px;
 	
 	border-radius: 10px;
 	-moz-border-radius: 10px;
