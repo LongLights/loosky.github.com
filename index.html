@@ -54,8 +54,52 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./github.html">GitHub使用</a></h1> 
+                    <h1 class="entry-title"><a href="./wordpress-markdown.html">在WordPress中使用Markdown语法</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-11-28T00:00:00">
+                Wed 28 November 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">Blog</a>. </p>
+<p>tags: <a href="./tag/wordpress.html">WordPress</a><a href="./tag/markdown.html">Markdown</a><a href="./tag/python.html">Python</a></p>
+
+
+</footer><!-- /.post-info --><p>最近接触了一下Python，顺带接触了一下<a href="http://daringfireball.net/projects/markdown/">Markdown</a>，感觉还是挺好用的。于是基于<a href="http://getpelican.com/">Pelican</a> &amp; <a href="https://github.com/">GitHub</a> 搭建了一个<a href="http://loosky.com/">博客</a>。</p>
+<p>个人感觉Markdown语法要比码html代码写东西强多了，不用再过多的去关注html排版等，英雄所见略同的<a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html">大有人在</a>。</p>
+<p>可惜的是WordPress 官方目前没有提供 Markdown 支持，不过 WordPress 扩展性很强，有很多插件可以使用。我目前安装的是<a href="http://wordpress.org/extend/plugins/wp-markdown/">WP-Markdown</a> ,安装后就可以设置通过Markdown进行写作了，支持在文章、页面和评论中使用Markdown。</p>
+<p><img alt="WP-Markdown" src="http://loosky.net/Upload/2012/11/WP-Markdown.png" /></p>
+<p>目前使用的编辑器主要是<a href="http://markdownpad.com/">MarkdownPad</a>，推荐一试。</p>
+<p>附：<a href="http://wowubuntu.com/markdown/">Markdown语法</a></p><p>There are <a href="./wordpress-markdown.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./github.html" rel="bookmark"
+                           title="Permalink to GitHub使用">GitHub使用</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-11-27T00:00:00">
                 Tue 27 November 2012
         </abbr>
@@ -69,7 +113,8 @@
 <p>tags: <a href="./tag/git.html">git</a><a href="./tag/github.html">github</a></p>
 
 
-</footer><!-- /.post-info --><h3>一、创建github账号</h3>
+</footer><!-- /.post-info -->
+                <h3>一、创建github账号</h3>
 <p>github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：<a href="https://github.com">https://github.com</a>
 帐号注册成功后，点击<strong>New Repository</strong>，开始创建新版本库。用户可以创建类似于 <code>your_userid.github.com</code> 的版本库，这样就可以通过<code>http://your_userid.github.com</code>进行访问了。</p>
 <h3>二、建立本地git仓库</h3>
@@ -102,73 +147,11 @@
 </li>
 <li>
 <p>测试SSH连接。在git bash中执行以下命令：</p>
-<div class="codehilite"><pre><span class="c">#ssh -v git@github.com</span>
-</pre></div>
-
-
-<p>如果出现类似 <code>Hi loosky! You've successfully authenticated, but GitHub does not provide shell access.</code> 的提示，则证明SSH连接工作正常了</p>
-</li>
-<li>
-<p>提交项目</p>
-<div class="codehilite"><pre><span class="c">#git commit -m &#39;first commit&#39;</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>添加远程仓库</p>
-<div class="codehilite"><pre><span class="c">#git remote add origin https://github.com/your_userid/your_userid.github.com.git</span>
-</pre></div>
-
-
-<p>这个只是第一次操作的时候需要，后面再次进行项目提交时，并不需要重复这个操作。</p>
-<p>如果出现：error: The requested URL returned error: 403 while accessing ... 的错误，可以编辑.git/config</p>
-<p>将url=https://github.com/your_userid/your_userid.github.com.git 改为 url=ssh://git@github.com/your_userid/your_userid.github.com.git</p>
-</li>
-<li>
-<p>push 到 GitCafe 仓库</p>
-<div class="codehilite"><pre><span class="c">#git push origin master</span>
-</pre></div>
-
-
-<p>如果出现：error: failed to push some refs to 'ssh://git@github.com/your_userid/your_userid.github.com.git' To prevent you from losing history, non-fast-forward updates were rejected Merge the remote changes before pushing again.  See the 'Note about fast-forwards' section of 'git push --help' for details.</p>
-<p>解决办法：git push origin +master</p>
-</li>
-</ol>
-<p>push 完成以后就可以在访问 GitCafe Pages 地址了。<a href="http://your_userid.github.com">http://your_userid.github.com</a></p>
-<h3>自动发布</h3>
-<p>为了方便下次发布，可以创建了自动发布的脚本publish</p>
-<div class="codehilite"><pre><span class="c">#cd /home/work</span>
-<span class="c">#vi publish</span>
-
-<span class="n">cd</span> <span class="n">your_userid</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">.</span> 
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">&quot;Update&quot;</span>
-<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
-<span class="n">cd</span> <span class="p">.</span><span class="o">./</span>
-</pre></div>
-
-
-<h3>参考</h3>
-<ol>
-<li><a href="https://help.github.com/articles/set-up-git#platform-linux">Set Up Git</a></li>
-<li><a href="https://help.github.com/articles/create-a-repo">Create A Repo</a></li>
-<li><a href="http://artori.us/git-github-usage/">Git/Github使用方法小记</a></li>
-<li><a href="http://hi.baidu.com/mcspring/item/198f1e977f8f98bccd80e5b3">windows下使用git管理github项目</a></li>
-<li><a href="http://www.yangzhiping.com/tech/github.html">如何高效利用GitHub</a></li>
-<li><a href="http://www.worldhello.net/gotgithub/index.html">GotGitHub</a></li>
-<li><a href="http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed">Pushing to Git returning Error Code 403 fatal: HTTP request failed</a></li>
-</ol><p>There are <a href="./github.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
+<div class="codehilite"><pre><span class="c">#ssh -v git ...</span></pre></div></li></ol>
+                <a class="readmore" href="./github.html">read more</a>
+                <p>There are <a href="./github.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
             
@@ -227,8 +210,32 @@
                         <ul>
                         
 <li>
+    <a href="./tag/git.html">
+       git
+    </a>
+</li>
+
+<li>
+    <a href="./tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+
+<li>
     <a href="./tag/Pelican.html">
        Pelican
+    </a>
+</li>
+
+<li>
+    <a href="./tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+
+<li>
+    <a href="./tag/Markdown.html">
+       Markdown
     </a>
 </li>
 
@@ -241,18 +248,6 @@
 <li>
     <a href="./tag/github.html">
        github
-    </a>
-</li>
-
-<li>
-    <a href="./tag/git.html">
-       git
-    </a>
-</li>
-
-<li>
-    <a href="./tag/Loosky.html">
-       Loosky
     </a>
 </li>
 
