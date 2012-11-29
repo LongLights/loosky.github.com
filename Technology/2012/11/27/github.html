@@ -141,6 +141,29 @@
 </li>
 </ol>
 <p>push 完成以后就可以在访问 GitCafe Pages 地址了。<a href="http://your_userid.github.com">http://your_userid.github.com</a></p>
+<h3>删除git文件</h3>
+<p>项目中，在本地删除了一些文件后，如果也删除远程服务器上的文件？</p>
+<ol>
+<li>
+<p>查看本地已经删除的文件</p>
+<div class="codehilite"><pre><span class="c"># git status   //可以看到我们删除的哪些文件</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>从当前的工作目录中和索引中删除文件</p>
+<div class="codehilite"><pre><span class="c">#git rm –r * （进入某个目录中，执行此语句，会删除该目录下的所有文件和子目录） </span>
+<span class="c">#git rm f1    (删除文件f1，包含本地目录和index中的此文件记录) </span>
+<span class="c">#git rm --ached f1 (删除文件f1，不会删除本地目录文件，只删除index中的文件记录；将已经git add的文件remove到cache中,这样commit的时候不会提交这个文件, 适用于一下子添加了很多文件, 却又想排除其中个别几个文件的情况.)</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>按照上面的方法重新提交。</p>
+</li>
+</ol>
 <h3>自动发布</h3>
 <p>为了方便下次发布，可以创建了自动发布的脚本publish</p>
 <div class="codehilite"><pre><span class="c">#cd /home/work</span>
@@ -189,20 +212,20 @@
                         <ul>
                         
 <li>
-    <a href="../../../.././tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-
-<li>
     <a href="../../../.././tag/Loosky.html">
        Loosky
     </a>
 </li>
 
 <li>
-    <a href="../../../.././tag/Markdown.html">
-       Markdown
+    <a href="../../../.././tag/Python.html">
+       Python
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Pelican.html">
+       Pelican
     </a>
 </li>
 
@@ -219,14 +242,14 @@
 </li>
 
 <li>
-    <a href="../../../.././tag/Python.html">
-       Python
+    <a href="../../../.././tag/WordPress.html">
+       WordPress
     </a>
 </li>
 
 <li>
-    <a href="../../../.././tag/WordPress.html">
-       WordPress
+    <a href="../../../.././tag/Markdown.html">
+       Markdown
     </a>
 </li>
 
