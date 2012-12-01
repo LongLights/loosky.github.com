@@ -1,5 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/all-zh_cn.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-12-01T00:00:00+08:00</updated><entry><title>Mysql入门操作</title><link href="http://loosky.com/Technology/2012/12/01/mysql-tuition.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/mysql-tuition.html</id><summary type="html">&lt;h3&gt;一、连接MySQL&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/all-zh_cn.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-12-01T00:00:00+08:00</updated><entry><title>CentOS配置</title><link href="http://loosky.com/Technology/2012/12/01/CentOS-Configuration.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/CentOS-Configuration.html</id><summary type="html">&lt;p&gt;推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）&lt;/p&gt;
+&lt;h3&gt;1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;DEVICE&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;eth0&lt;/span&gt;&amp;quot;
+    &lt;span class="n"&gt;NM_CONTROLLED&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;yes&lt;/span&gt;&amp;quot;
+    &lt;span class="n"&gt;ONBOOT&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt;
+    &lt;span class="n"&gt;TYPE&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Ethernet&lt;/span&gt;
+    &lt;span class="n"&gt;BOOTPROTO&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;none&lt;/span&gt;
+    &lt;span class="n"&gt;IPADDR&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;XXX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;XXX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;XXX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;XXX&lt;/span&gt;
+    &lt;span class="n"&gt;PREFIX&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;24
+    &lt;span class="n"&gt;GATEWAY&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;XXX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;XXX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;XXX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;XXX&lt;/span&gt;
+    &lt;span class="n"&gt;DNS1&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;59&lt;span class="p"&gt;.&lt;/span&gt;77&lt;span class="p"&gt;.&lt;/span&gt;139&lt;span class="p"&gt;.&lt;/span&gt;1
+    &lt;span class="n"&gt;DNS2&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;218&lt;span class="p"&gt;.&lt;/span&gt;85&lt;span class="p"&gt;.&lt;/span&gt;157&lt;span class="p"&gt;.&lt;/span&gt;99
+    &lt;span class="n"&gt;DEFROUTE&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt;
+    &lt;span class="n"&gt;IPV4_FAILURE_FATAL&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt;
+    &lt;span class="n"&gt;IPV6INIT&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;
+    &lt;span class="n"&gt;NAME&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;System&lt;/span&gt; &lt;span class="n"&gt;eth0&lt;/span&gt;&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;2、配置DNS： vi /etc/resolv.conf&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;nameserver&lt;/span&gt; 59&lt;span class="p"&gt;.&lt;/span&gt;77&lt;span class="p"&gt;.&lt;/span&gt;139&lt;span class="p"&gt;.&lt;/span&gt;1
+    &lt;span class="n"&gt;search&lt;/span&gt; &lt;span class="n"&gt;localdomain&lt;/span&gt;
+
+配置好以后重启服务：
+
+    &lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="n"&gt;network&lt;/span&gt; &lt;span class="n"&gt;restart&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;3、解决中文乱码：vi /etc/sysconfig/i18n ：&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;LANG&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GB18030&lt;/span&gt;&amp;quot;
+    &lt;span class="n"&gt;LANGUAGE&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GB18030&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GB2312&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&amp;quot;
+    &lt;span class="n"&gt;SUPPORTED&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GB18030&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;zh_CN&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;zh&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;en_US&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UTF&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;8&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;en_US&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&amp;quot;
+    &lt;span class="n"&gt;SYSFONT&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;lat0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sun16&lt;/span&gt;&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;4、修改启动级别，默认为图形启动，改为字符界面： vi /etc/inittab&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;5&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;initdefault&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  改为 &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;3&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;initdefault&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;5、VNCServer启动&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;VNCServer&lt;/span&gt;是一个远程连接工具，相当于&lt;span class="n"&gt;Windows&lt;/span&gt;下面的远程桌面，很不错，推荐使用。试过很多方法，好像都不能自启动，只好开机后手动启动一下。在自己的电脑上可以使用&lt;span class="n"&gt;VNCViewer&lt;/span&gt;进行连接。
+
+手动启动&lt;span class="n"&gt;VNCServer&lt;/span&gt;：
+    &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vncserver&lt;/span&gt;
+    或者：&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;vncserver&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;6、开启防火墙，允许SSH和VNCServer的端口（5801和5901）：vi /etc/sysconfig/iptables&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="c"&gt;# Firewall configuration written by system-config-securitylevel&lt;/span&gt;
+    &lt;span class="c"&gt;# Manual customization of this file is not recommended.&lt;/span&gt;
+    &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nb"&gt;filter&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;0&lt;span class="p"&gt;:&lt;/span&gt;0&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;FORWARD&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;0&lt;span class="p"&gt;:&lt;/span&gt;0&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;OUTPUT&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;0&lt;span class="p"&gt;:&lt;/span&gt;0&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;0&lt;span class="p"&gt;:&lt;/span&gt;0&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;FORWARD&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;icmp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;icmp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt; &lt;span class="nb"&gt;any&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; 50 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; 51 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;udp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt; 5353 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; 224&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;251 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;udp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;udp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt; 631 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt; 631 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="n"&gt;ESTABLISHED&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;RELATED&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="n"&gt;NEW&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt; 22 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="n"&gt;NEW&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt; 5801 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="n"&gt;NEW&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;dport&lt;/span&gt; 5901 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;ACCEPT&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;RH&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Firewall&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INPUT&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;REJECT&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;reject&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;icmp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;prohibited&lt;/span&gt;
+    &lt;span class="n"&gt;COMMIT&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;7、对Vi的一些配置：&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;cp&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vimrc&lt;/span&gt;
+    &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vimrc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+添加如下一些内容：
+
+    &amp;quot;显示行号
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt;
+
+    &amp;quot;记录历史的行数
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;history&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;1000
+
+    &amp;quot;语法高亮度显示
+    &lt;span class="n"&gt;syntax&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt;
+
+    &amp;quot;背景使用黑色
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;background&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dark&lt;/span&gt;
+
+    &amp;quot;使用自动对齐，也就是把当前行的对起格式应用到下一行；
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;autoindent&lt;/span&gt;
+
+    &amp;quot;依据上面的对齐格式，智能的选择对齐方式，对于类似&lt;span class="n"&gt;C&lt;/span&gt;语言编
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;smartindent&lt;/span&gt;
+
+    &amp;quot;设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;showmatch&lt;/span&gt;
+
+    &amp;quot;第一行设置&lt;span class="n"&gt;tab&lt;/span&gt;键为4个空格，第二行设置当行之间交错时使用4个空格
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;tabstop&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;4
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;shiftwidth&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;4
+
+    &amp;quot;在编辑过程中，在右下角显示光标位置的状态行
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;ruler&lt;/span&gt;
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;incsearch&lt;/span&gt;
+    &amp;quot;高亮当前行
+    &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;cursorline&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;安全方面的一些设置：&lt;/h2&gt;
+&lt;h3&gt;1、关闭一些不必要的服务。&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;以下仅列出需要启动的服务，未列出的服务可以关闭：
+
+#&lt;span class="n"&gt;setup&lt;/span&gt;
+&lt;span class="n"&gt;acpid&lt;/span&gt;
+&lt;span class="n"&gt;anacron&lt;/span&gt;
+&lt;span class="n"&gt;cpuspeed&lt;/span&gt;
+&lt;span class="n"&gt;crond&lt;/span&gt;
+&lt;span class="n"&gt;irqbalance&lt;/span&gt; &lt;span class="o"&gt;\\&lt;/span&gt;仅当服务器&lt;span class="n"&gt;CPU&lt;/span&gt;为&lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt;架构或支持双核心、&lt;span class="n"&gt;HT&lt;/span&gt;技术时，才需开启，否则关闭。
+&lt;span class="n"&gt;microcode_ctl&lt;/span&gt;
+&lt;span class="n"&gt;network&lt;/span&gt;
+&lt;span class="n"&gt;random&lt;/span&gt;
+&lt;span class="n"&gt;sendmail&lt;/span&gt;
+&lt;span class="n"&gt;sshd&lt;/span&gt;
+&lt;span class="n"&gt;syslog&lt;/span&gt;
+&lt;span class="n"&gt;yum&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;updatesd&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;2、查看系统用户：/etc/passwd：&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;删除系统臃肿多余的账号：
+
+&lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;adm&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;lp&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;sync&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;shutdown&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;halt&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;news&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;uucp&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;games&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;gopher&lt;/span&gt; &lt;span class="n"&gt;userdel&lt;/span&gt; &lt;span class="n"&gt;ftp&lt;/span&gt; 如果你不允许匿名&lt;span class="n"&gt;FTP&lt;/span&gt;，就删掉这个用户帐号
+
+&lt;span class="n"&gt;groupdel&lt;/span&gt; &lt;span class="n"&gt;adm&lt;/span&gt; &lt;span class="n"&gt;groupdel&lt;/span&gt; &lt;span class="n"&gt;lp&lt;/span&gt; &lt;span class="n"&gt;groupdel&lt;/span&gt; &lt;span class="n"&gt;news&lt;/span&gt; &lt;span class="n"&gt;groupdel&lt;/span&gt; &lt;span class="n"&gt;uucp&lt;/span&gt; &lt;span class="n"&gt;groupdel&lt;/span&gt; &lt;span class="n"&gt;games&lt;/span&gt; &lt;span class="n"&gt;groupdel&lt;/span&gt; &lt;span class="n"&gt;dip&lt;/span&gt; &lt;span class="n"&gt;groupdel&lt;/span&gt; &lt;span class="n"&gt;pppusers&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;3、修改权限&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;chmod&lt;/span&gt; 600 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;xinetd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;4、禁PING&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;rc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;rc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;   中增加一行
+    &lt;span class="n"&gt;echo&lt;/span&gt; 1 &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ipv4&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;icmp_echo_ignore_all&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;0表示允许 1表示禁止&lt;/p&gt;
+&lt;h3&gt;5、口令文件&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;chattr&lt;/span&gt;命令给下面的文件加上不可更改属性，从而防止非授权用户获得权限。
+    # &lt;span class="n"&gt;chattr&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nb"&gt;i&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;passwd&lt;/span&gt;
+    # &lt;span class="n"&gt;chattr&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nb"&gt;i&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;shadow&lt;/span&gt;
+    # &lt;span class="n"&gt;chattr&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nb"&gt;i&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;
+    # &lt;span class="n"&gt;chattr&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nb"&gt;i&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gshadow&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;6、禁止Ctrl Alt Delete重新启动机器命令&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;修改&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;inittab&lt;/span&gt;文件，将”&lt;span class="n"&gt;ca&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;ctrlaltdel&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sbin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;shutdown&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t3&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;now&lt;/span&gt;”一行注释掉。然后重新设置&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;rc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;目录下所有文件的许可权限，运行如下命令：
+
+    # &lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; 700 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;rc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;
+
+这样便仅有&lt;span class="n"&gt;root&lt;/span&gt;可以读、写或执行上述所有脚本文件。
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;7、更改SSH端口，最好改为10000以上，别人扫描到端口的机率也会下降&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;不允许使用低版本的&lt;span class="n"&gt;SSH&lt;/span&gt;协议
+
+    &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sshd_config&lt;/span&gt;
+将#&lt;span class="n"&gt;protocol&lt;/span&gt; 2&lt;span class="p"&gt;,&lt;/span&gt;1改为
+    &lt;span class="n"&gt;protocol&lt;/span&gt; 2
+
+将&lt;span class="n"&gt;PORT&lt;/span&gt;改为1000以上端口
+
+    &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sshd_config&lt;/span&gt;
+    &lt;span class="n"&gt;Port&lt;/span&gt; 10086
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="CentOS"></category><category term="Linux"></category></entry><entry><title>Linux系统之间拷贝文件</title><link href="http://loosky.com/Technology/2012/12/01/Linux-scp.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/Linux-scp.html</id><summary type="html">&lt;p&gt;Linux系统之间拷贝文件常用有3种方法：&lt;/p&gt;
+&lt;p&gt;第一种就是ftp，也就是其中一台Linux安装ftp Server，这样另外一台可以使用ftp来进行文件的拷贝。&lt;/p&gt;
+&lt;p&gt;第二种方法就是采用samba服务，类似Windows文件复制的方式来操作，比较简洁方便。&lt;/p&gt;
+&lt;p&gt;第三种就是利用scp命令来进行文件拷贝。&lt;/p&gt;
+&lt;p&gt;相对来说，个人觉得scp比较快捷、方便一点。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;scp复制文件或目录命令：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;复制文件：&lt;/p&gt;
+&lt;p&gt;（1）将本地文件拷贝到远程&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; 文件名 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;远程路径
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;（2）从远程将文件拷回本地&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;文件名 本地路径
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;复制目录：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;（1）将本地目录拷贝到远程&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; 目录名 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;远程路径
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;（2）从远程将目录拷回本地&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;目录名 本地路径
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="scp"></category></entry><entry><title>参考文献字母含义</title><link href="http://loosky.com/Research/2012/12/01/References-format.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Research/2012/12/01/References-format.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;根据GB3469 规定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;①期刊［J］&lt;/p&gt;
+&lt;p&gt;②专著［M］&lt;/p&gt;
+&lt;p&gt;③论文集［C］&lt;/p&gt;
+&lt;p&gt;④学位论文［D］&lt;/p&gt;
+&lt;p&gt;⑤专利［P］&lt;/p&gt;
+&lt;p&gt;⑥标准［S］&lt;/p&gt;
+&lt;p&gt;⑦报纸［N］&lt;/p&gt;
+&lt;p&gt;⑧技术报告［R］&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;电子文献载体类型用双字母标识，例如：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;①磁带［MT］&lt;/p&gt;
+&lt;p&gt;②磁盘［DK］&lt;/p&gt;
+&lt;p&gt;③光盘［CD］&lt;/p&gt;
+&lt;p&gt;④联机网络［OL］&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;电子文献载体类型的参考文献类型标识方法为：［文献类型标识/载体类型标识］。例如：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;①联机网上数据库［DB/OL］&lt;/p&gt;
+&lt;p&gt;②磁带数据库［DB/MT］&lt;/p&gt;
+&lt;p&gt;③光盘图书［M/CD］&lt;/p&gt;
+&lt;p&gt;④磁盘软件［CP/DK］&lt;/p&gt;
+&lt;p&gt;⑤网上期刊［J/OL］&lt;/p&gt;
+&lt;p&gt;⑥网上电子公告&lt;/p&gt;</summary><category term="参考文献"></category></entry><entry><title>Mysql入门操作</title><link href="http://loosky.com/Technology/2012/12/01/mysql-tuition.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/mysql-tuition.html</id><summary type="html">&lt;h3&gt;一、连接MySQL&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;格式： &lt;span class="n"&gt;mysql&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;主机地址 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;用户名 －&lt;span class="n"&gt;p&lt;/span&gt;用户密码
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -138,7 +379,46 @@
 &lt;p&gt;注释:将数据库school备份到school.bbb文件，school.bbb是一个文本文件，文件名任取，打开看看你会有新发现。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3&gt;五、“host is not allowed to connect to this mysql server”错误&lt;/h3&gt;
+&lt;h3&gt;五、MySQL导入导出命令&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;导出整个数据库&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;mysqldump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; 用户名 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; 数据库名 &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; 导出的文件名
+&lt;span class="n"&gt;mysqldump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;wcnc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;smgp_apps_wcnc&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;wcnc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sql&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;导出一个表&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;mysqldump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; 用户名 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; 数据库名 表名&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; 导出的文件名
+&lt;span class="n"&gt;mysqldump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;wcnc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;smgp_apps_wcnc&lt;/span&gt; &lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;wcnc_users&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sql&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;导出一个数据库结构&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;mysqldump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;wcnc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt; &lt;span class="n"&gt;smgp_apps_wcnc&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;wcnc_db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sql&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;-d 没有数据 --add-drop-table 在每个create语句之前增加一个drop table&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;导入数据库&lt;/p&gt;
+&lt;p&gt;常用source 命令&lt;/p&gt;
+&lt;p&gt;进入mysql数据库控制台，&lt;/p&gt;
+&lt;p&gt;如mysql -u root -p
+　　
+    mysql&amp;gt;use 数据库
+　　
+然后使用source命令，后面参数为脚本文件(如这里用到的.sql)
+　　
+    mysql&amp;gt;source d:wcnc_db.sql （注：如果写成source d:\wcnc_db.sql，就会报语法错误）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;六、“host is not allowed to connect to this mysql server”错误&lt;/h3&gt;
 &lt;p&gt;在本地连本地的mysql server，一般都不会碰到"host is not allowed to connect to this mysql server"这样的错误，当远程连接mysql数据库时，就很可能出现这样的错误了。&lt;/p&gt;
 &lt;p&gt;解决方法：&lt;/p&gt;
 &lt;p&gt;mysql是有权限限制的。查看到底用什么主机名，可以在MySQL Command Line中这样查看：&lt;/p&gt;
@@ -166,7 +446,58 @@ password：用户密码&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;update&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;%&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;ngi&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;mysqladmin&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;uroot&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p123&lt;/span&gt; &lt;span class="n"&gt;reload&lt;/span&gt;
 &lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;mysqladmin&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;uroot&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p123&lt;/span&gt; &lt;span class="n"&gt;shutdown&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Mysql"></category><category term="SQL"></category></entry><entry><title>在WordPress中使用Markdown语法</title><link href="http://loosky.com/Blog/2012/11/28/wordpress-markdown.html" rel="alternate"></link><updated>2012-11-28T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-28:Blog/2012/11/28/wordpress-markdown.html</id><summary type="html">&lt;p&gt;最近接触了一下Python，顺带接触了一下&lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;，感觉还是挺好用的。于是基于&lt;a href="http://getpelican.com/"&gt;Pelican&lt;/a&gt; &amp;amp; &lt;a href="https://github.com/"&gt;GitHub&lt;/a&gt; 搭建了一个&lt;a href="http://loosky.com/"&gt;博客&lt;/a&gt;。&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Mysql"></category><category term="SQL"></category></entry><entry><title>升级CentOS系统的Python</title><link href="http://loosky.com/Technology/2012/12/01/python-upgrade.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/python-upgrade.html</id><summary type="html">&lt;h3&gt;1、下载Python最新版本&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;2、解压&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;jxvf&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;3、编译安装&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;6&lt;span class="p"&gt;.&lt;/span&gt;6
+&lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Python 默认安装目录在/usr/local/lib/python2.7
+查看一下刚才安装的版本 /usr/local/lib/python2.7 -V，看到了2.7.3吧&lt;/p&gt;
+&lt;h3&gt;4、更改系统默认版本&lt;/h3&gt;
+&lt;p&gt;之前查看版本使用 /usr/local/lib/python2.7 -V，现在来把系统默认的Python指向刚才安装的Python2.7.3。(如果有人问为什么不把之前的版本卸载呢？呃，貌似网上有讲yum是基于系统默认老版本的，所以我也就没那样折腾)&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;mv&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bak&lt;/span&gt;
+&lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;6 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;敲入 python -V 查看是否成功。&lt;/p&gt;
+&lt;h3&gt;5、修复不能正常工作的yum&lt;/h3&gt;
+&lt;p&gt;在完成了上面4步之后，如果有使用yum的话会发现出错，这是因为yum 依赖2.4.3而现在默认的 Python 版本是2.6.6。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;yum&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;将首行显示的 !#/usr/bin/python 修改为 !#/usr/bin/python2.4
+保存搞定。&lt;/p&gt;</summary><category term="CentOS"></category><category term="Linux"></category><category term="Python"></category></entry><entry><title>ROBIN-Open Source Wireless Mesh Networking</title><link href="http://loosky.com/Research/2012/12/01/robin-WMN.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Research/2012/12/01/robin-WMN.html</id><summary type="html">&lt;p&gt;The ROBIN project
+R.O.B.IN (Routing Olsr and Batman INside) is an Open Source &lt;a href="http://en.wikipedia.org/wiki/Wireless_mesh_network"&gt;mesh network&lt;/a&gt; project, deployed on top of &lt;a href="http://openwrt.org/"&gt;OpenWRT&lt;/a&gt; Kamikaze, running on any Atheros AP51 routers such as &lt;a href="http://open-mesh.com/store/"&gt;Accton MR3201A&lt;/a&gt;, &lt;a href="http://meraki.com/"&gt;Meraki Mini*&lt;/a&gt; or &lt;a href="http://www.fon.com/en/"&gt;La Fonera*&lt;/a&gt; and using the &lt;a href="http://www.open-mesh.org/"&gt;B.A.T.M.A.N.&lt;/a&gt; or &lt;a href="http://www.olsr.org/"&gt;OLSR&lt;/a&gt; routing algorithm as cited in &lt;a href="http://www.rushessay.com/"&gt;custom essays&lt;/a&gt;. ROBIN spreads a wired internet connection such as a DSL throughout an apartment complex, neighborhood, village or school, and works on a variety of commonly available, low-cost hardware. ROBIN is being developed by &lt;a href="http://www.blogin.it/"&gt;Antonio Anselmi&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Features
+• builded on top of &lt;a href="http://www.openwrt.org/"&gt;OpenWRT kamikaze&lt;/a&gt;
+• auto-configuration (plug &amp;amp; play)
+• routing algorithm choice (&lt;a href="https://www.olsr.org/"&gt;OLSR&lt;/a&gt; or &lt;a href="https://www.open-mesh.net/batman"&gt;BATMAN&lt;/a&gt;)
+• Public Access Point with captive portal + WPA-PSK Private Access Point
+• &lt;a href="http://kokoro.ucsd.edu/nodogsplash"&gt;nodogsplash&lt;/a&gt; , &lt;a href="http://coova.org/"&gt;CoovaAAA&lt;/a&gt;, &lt;a href="http://worldspot.net/"&gt;worldspot&lt;/a&gt;, &lt;a href="http://www.wifi-cpa.com/"&gt;wifi-cpa&lt;/a&gt; or your own RADIUS server as Captive Portal solution
+• strict-mesh, LAN block, on-the-air update and upgrade, versions management, channel switch,...
+• support to several Dashboard Management Systems
+Robin is free software; you can redistribute it and/or modify it under the terms of the GNU General
+Public License version 2 as published by the Free Software Foundation. See COPYING for more details.&lt;/p&gt;
+&lt;p&gt;Resources&lt;/p&gt;
+&lt;p&gt;• Wiki &lt;a href="http://robin-mesh.wik.is/"&gt;http://robin-mesh.wik.is/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;• subversion (svn) repository &lt;a href="http://svn6.assembla.com/svn/RobinMesh/"&gt;http://svn6.assembla.com/svn/RobinMesh/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;• trac system &lt;a href="http://trac6.assembla.com/RobinMesh/browser"&gt;http://trac6.assembla.com/RobinMesh/browser&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;• users forum &lt;a href="http://robin.forumup.it/"&gt;http://robin.forumup.it/&lt;/a&gt;&lt;/p&gt;</summary><category term="mesh"></category><category term="open-mesh"></category><category term="OpenWRT"></category><category term="ROBIN"></category></entry><entry><title>吞吐量计算</title><link href="http://loosky.com/Technology/2012/12/01/throughput-computing.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/throughput-computing.html</id><summary type="html">&lt;p&gt;理论值 = [局域网的网络速率(Mbps)×帧长度(byte)×8] / [帧长度(byte)×8 + 帧间隔(bit)]
+测量值 = [发送帧的数量×帧长度(byte)×8] / [测试时间(s)×106]&lt;/p&gt;</summary><category term="网络"></category><category term="吞吐量"></category></entry><entry><title>在WordPress中使用Markdown语法</title><link href="http://loosky.com/Blog/2012/11/28/wordpress-markdown.html" rel="alternate"></link><updated>2012-11-28T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-28:Blog/2012/11/28/wordpress-markdown.html</id><summary type="html">&lt;p&gt;最近接触了一下Python，顺带接触了一下&lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;，感觉还是挺好用的。于是基于&lt;a href="http://getpelican.com/"&gt;Pelican&lt;/a&gt; &amp;amp; &lt;a href="https://github.com/"&gt;GitHub&lt;/a&gt; 搭建了一个&lt;a href="http://loosky.com/"&gt;博客&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;个人感觉Markdown语法要比码html代码写东西强多了，不用再过多的去关注html排版等，英雄所见略同的&lt;a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html"&gt;大有人在&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;可惜的是WordPress 官方目前没有提供 Markdown 支持，不过 WordPress 扩展性很强，有很多插件可以使用。我目前安装的是&lt;a href="http://wordpress.org/extend/plugins/wp-markdown/"&gt;WP-Markdown&lt;/a&gt; ,安装后就可以设置通过Markdown进行写作了，支持在文章、页面和评论中使用Markdown。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="WP-Markdown" src="http://loosky.net/Upload/2012/11/WP-Markdown.png" /&gt;&lt;/p&gt;

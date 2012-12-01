@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Loosky's Blog - Technology</title>
+        <title>Loosky's Blog - CentOS</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
         
@@ -38,7 +38,7 @@
                 
                     <li ><a href=".././category/research.html">Research</a></li>
                 
-                    <li class="active"><a href=".././category/technology.html">Technology</a></li>
+                    <li ><a href=".././category/technology.html">Technology</a></li>
                 
                 <li><a href=".././archives.html">Archives</a></li>
                 
@@ -279,138 +279,6 @@
             
             <li><article class="hentry">    
                 <header>
-                    <h1><a href=".././Technology/2012/12/01/Linux-scp.html" rel="bookmark"
-                           title="Permalink to Linux系统之间拷贝文件">Linux系统之间拷贝文件</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
-        </address>
-        
-<p>In <a href=".././category/technology.html">Technology</a>. </p>
-<p>tags: <a href=".././tag/linux.html">Linux</a><a href=".././tag/scp.html">scp</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>Linux系统之间拷贝文件常用有3种方法：</p>
-<p>第一种就是ftp，也就是其中一台Linux安装ftp Server，这样另外一台可以使用ftp来进行文件的拷贝。</p>
-<p>第二种方法就是采用samba服务，类似Windows文件复制的方式来操作，比较简洁方便。</p>
-<p>第三种就是利用scp命令来进行文件拷贝。</p>
-<p>相对来说，个人觉得scp比较快捷、方便一点。</p>
-<ol>
-<li>scp复制文件或目录命令：</li>
-</ol>
-<p>复制文件：</p>
-<p>（1）将本地文件拷贝到远程</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> 文件名 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>远程路径
-</pre></div>
-
-
-<p>（2）从远程将文件拷回本地</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>文件名 本地路径
-</pre></div>
-
-
-<ol>
-<li>复制目录：</li>
-</ol>
-<p>（1）将本地目录拷贝到远程</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> <span class="o">-</span><span class="n">r</span> 目录名 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>远程路径
-</pre></div>
-
-
-<p>（2）从远程将目录拷回本地</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> <span class="o">-</span><span class="n">r</span> 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>目录名 本地路径
-</pre></div>
-                <a class="readmore" href=".././Technology/2012/12/01/Linux-scp.html">read more</a>
-                <p>There are <a href=".././Technology/2012/12/01/Linux-scp.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href=".././Technology/2012/12/01/mysql-tuition.html" rel="bookmark"
-                           title="Permalink to Mysql入门操作">Mysql入门操作</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
-        </address>
-        
-<p>In <a href=".././category/technology.html">Technology</a>. </p>
-<p>tags: <a href=".././tag/mysql.html">Mysql</a><a href=".././tag/sql.html">SQL</a></p>
-
-
-</footer><!-- /.post-info -->
-                <h3>一、连接MySQL</h3>
-<div class="codehilite"><pre>格式： <span class="n">mysql</span> <span class="o">-</span><span class="n">h</span>主机地址 <span class="o">-</span><span class="n">u</span>用户名 －<span class="n">p</span>用户密码
-</pre></div>
-
-
-<ol>
-<li>例1：连接到本机上的MySQL。 
-   首先打开DOS窗口，然后进入mysql安装目录下的bin文件夹，再键入命令mysql -uroot -p，回车后提示你输密码，如果刚安装好MySQL，超级用户root是没有密码的，故直接回车即可进入到MYSQL中了，MYSQL的提示符是：MySQL&gt; </li>
-<li>例2：连接到远程主机上的MySQL。假设远程主机的IP为：110.110.110.110，用户名为root,密码为123。则键入以下命令:mysql -h110.110.110.110 -uroot -p123 （注:u与root可以不用加空格，其它也一样） </li>
-<li>退出MySQL命令： exit （回车）</li>
-</ol>
-<h3>二、修改密码。</h3>
-<div class="codehilite"><pre>格式：<span class="n">mysqladmin</span> <span class="o">-</span><span class="n">u</span>用户名 <span class="o">-</span><span class="n">p</span>旧密码  <span class="n">password</span> 新密码
-</pre></div>
-
-
-<ol>
-<li>例1：给root加个密码ab12。首先在DOS下进入mysql安装目录下的bin文件夹，然后键入以下命令  mysqladmin -uroot -password 123  // 注：因为开始时root没有密码，所以-p旧密码一项就可以省略了。 </li>
-<li>
-<p>例2：再将root的密码改为345</p>
-<div class="codehilite"><pre><span class="n">mysqladmin</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p123</span> <span class="n">password</span> 345
-</pre></div>
-
-
-</li>
-</ol>
-<h3>三、增加新用户。（注意：和上面不同，下面的因为是MySQL环境中的命令，所以后面都带一个分号作为命令结束符）</h3>
-<div class="codehilite"><pre>格式：<span class="n">grant</span> <span class="n">select</span> <span class="n">on</span> 数据库<span class="o">.*</span> <span class="n">to</span> 用户名<span class="p">@</span>登录主机 <span class="n">identified</span> <span class="n">by</span> &quot;密码&quot;
-</pre></div>
-
-
-<ol>
-<li>
-<p>例1、增加一个用户test1密码为abc，让他可以在任何主机上登录，并对所有数据库有查询、插入、修改、删除的权限。
-首先用以root用户连入MySQL:</p>
-<div class="codehilite"><pre><span class="n">mysql ...</span></pre></div></li></ol>
-                <a class="readmore" href=".././Technology/2012/12/01/mysql-tuition.html">read more</a>
-                <p>There are <a href=".././Technology/2012/12/01/mysql-tuition.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
                     <h1><a href=".././Technology/2012/12/01/python-upgrade.html" rel="bookmark"
                            title="Permalink to 升级CentOS系统的Python">升级CentOS系统的Python</a></h1>
                 </header>
@@ -471,9 +339,7 @@
                 
 <p class="paginator">
     
-    Page 1 / 2
-    
-        <a href=".././category/Technology2.html">&raquo;</a>
+    Page 1 / 1
     
 </p>
 

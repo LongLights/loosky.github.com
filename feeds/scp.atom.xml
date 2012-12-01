@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/scp.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-12-01T00:00:00+08:00</updated><entry><title>Linux系统之间拷贝文件</title><link href="http://loosky.com/Technology/2012/12/01/Linux-scp.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/Linux-scp.html</id><summary type="html">&lt;p&gt;Linux系统之间拷贝文件常用有3种方法：&lt;/p&gt;
+&lt;p&gt;第一种就是ftp，也就是其中一台Linux安装ftp Server，这样另外一台可以使用ftp来进行文件的拷贝。&lt;/p&gt;
+&lt;p&gt;第二种方法就是采用samba服务，类似Windows文件复制的方式来操作，比较简洁方便。&lt;/p&gt;
+&lt;p&gt;第三种就是利用scp命令来进行文件拷贝。&lt;/p&gt;
+&lt;p&gt;相对来说，个人觉得scp比较快捷、方便一点。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;scp复制文件或目录命令：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;复制文件：&lt;/p&gt;
+&lt;p&gt;（1）将本地文件拷贝到远程&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; 文件名 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;远程路径
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;（2）从远程将文件拷回本地&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;文件名 本地路径
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;复制目录：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;（1）将本地目录拷贝到远程&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; 目录名 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;远程路径
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;（2）从远程将目录拷回本地&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;目录名 本地路径
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="scp"></category></entry></feed>

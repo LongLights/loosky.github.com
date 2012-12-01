@@ -36,6 +36,8 @@
                 
                     <li ><a href=".././category/blog.html">Blog</a></li>
                 
+                    <li ><a href=".././category/research.html">Research</a></li>
+                
                     <li ><a href=".././category/technology.html">Technology</a></li>
                 
                 <li><a href=".././archives.html">Archives</a></li>
@@ -210,7 +212,46 @@
 <p>注释:将数据库school备份到school.bbb文件，school.bbb是一个文本文件，文件名任取，打开看看你会有新发现。</p>
 </li>
 </ol>
-<h3>五、“host is not allowed to connect to this mysql server”错误</h3>
+<h3>五、MySQL导入导出命令</h3>
+<ol>
+<li>
+<p>导出整个数据库</p>
+<div class="codehilite"><pre><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> 用户名 <span class="o">-</span><span class="n">p</span> 数据库名 <span class="o">&gt;</span> 导出的文件名
+<span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="n">wcnc</span> <span class="o">-</span><span class="n">p</span> <span class="n">smgp_apps_wcnc</span> <span class="o">&gt;</span> <span class="n">wcnc</span><span class="p">.</span><span class="n">sql</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>导出一个表</p>
+<div class="codehilite"><pre><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> 用户名 <span class="o">-</span><span class="n">p</span> 数据库名 表名<span class="o">&gt;</span> 导出的文件名
+<span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="n">wcnc</span> <span class="o">-</span><span class="n">p</span> <span class="n">smgp_apps_wcnc</span> <span class="n">users</span><span class="o">&gt;</span> <span class="n">wcnc_users</span><span class="p">.</span><span class="n">sql</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>导出一个数据库结构</p>
+<div class="codehilite"><pre><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="n">wcnc</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">drop</span><span class="o">-</span><span class="n">table</span> <span class="n">smgp_apps_wcnc</span> <span class="o">&gt;</span><span class="n">d</span><span class="p">:</span><span class="n">wcnc_db</span><span class="p">.</span><span class="n">sql</span>
+</pre></div>
+
+
+<p>-d 没有数据 --add-drop-table 在每个create语句之前增加一个drop table</p>
+</li>
+<li>
+<p>导入数据库</p>
+<p>常用source 命令</p>
+<p>进入mysql数据库控制台，</p>
+<p>如mysql -u root -p
+　　
+    mysql&gt;use 数据库
+　　
+然后使用source命令，后面参数为脚本文件(如这里用到的.sql)
+　　
+    mysql&gt;source d:wcnc_db.sql （注：如果写成source d:\wcnc_db.sql，就会报语法错误）</p>
+</li>
+</ol>
+<h3>六、“host is not allowed to connect to this mysql server”错误</h3>
 <p>在本地连本地的mysql server，一般都不会碰到"host is not allowed to connect to this mysql server"这样的错误，当远程连接mysql数据库时，就很可能出现这样的错误了。</p>
 <p>解决方法：</p>
 <p>mysql是有权限限制的。查看到底用什么主机名，可以在MySQL Command Line中这样查看：</p>
@@ -267,32 +308,14 @@ password：用户密码</p>
                         <ul>
                         
 <li>
-    <a href=".././tag/Pelican.html">
-       Pelican
+    <a href=".././tag/Markdown.html">
+       Markdown
     </a>
 </li>
 
 <li>
-    <a href=".././tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Python.html">
-       Python
+    <a href=".././tag/open-mesh.html">
+       open-mesh
     </a>
 </li>
 
@@ -303,20 +326,98 @@ password：用户密码</p>
 </li>
 
 <li>
-    <a href=".././tag/github.html">
-       github
+    <a href=".././tag/mesh.html">
+       mesh
     </a>
 </li>
 
 <li>
-    <a href=".././tag/Markdown.html">
-       Markdown
+    <a href=".././tag/Linux.html">
+       Linux
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/Mysql.html">
+       Mysql
     </a>
 </li>
 
 <li>
     <a href=".././tag/git.html">
        git
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/github.html">
+       github
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/Python.html">
+       Python
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/网络.html">
+       网络
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/scp.html">
+       scp
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/吞吐量.html">
+       吞吐量
     </a>
 </li>
 

@@ -36,6 +36,8 @@
                 
                     <li ><a href="./category/blog.html">Blog</a></li>
                 
+                    <li ><a href="./category/research.html">Research</a></li>
+                
                     <li ><a href="./category/technology.html">Technology</a></li>
                 
                 <li><a href="./archives.html">Archives</a></li>
@@ -56,8 +58,356 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./Technology/2012/12/01/mysql-tuition.html">Mysql入门操作</a></h1> 
+                    <h1 class="entry-title"><a href="./Technology/2012/12/01/CentOS-Configuration.html">CentOS配置</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-12-01T00:00:00">
+                Sat 01 December 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href="./category/technology.html">Technology</a>. </p>
+<p>tags: <a href="./tag/centos.html">CentOS</a><a href="./tag/linux.html">Linux</a></p>
+
+
+</footer><!-- /.post-info --><p>推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）</p>
+<h3>1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0</h3>
+<div class="codehilite"><pre>    <span class="n">DEVICE</span><span class="p">=</span>&quot;<span class="n">eth0</span>&quot;
+    <span class="n">NM_CONTROLLED</span><span class="p">=</span>&quot;<span class="n">yes</span>&quot;
+    <span class="n">ONBOOT</span><span class="p">=</span><span class="n">yes</span>
+    <span class="n">TYPE</span><span class="p">=</span><span class="n">Ethernet</span>
+    <span class="n">BOOTPROTO</span><span class="p">=</span><span class="n">none</span>
+    <span class="n">IPADDR</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
+    <span class="n">PREFIX</span><span class="p">=</span>24
+    <span class="n">GATEWAY</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
+    <span class="n">DNS1</span><span class="p">=</span>59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
+    <span class="n">DNS2</span><span class="p">=</span>218<span class="p">.</span>85<span class="p">.</span>157<span class="p">.</span>99
+    <span class="n">DEFROUTE</span><span class="p">=</span><span class="n">yes</span>
+    <span class="n">IPV4_FAILURE_FATAL</span><span class="p">=</span><span class="n">yes</span>
+    <span class="n">IPV6INIT</span><span class="p">=</span><span class="n">no</span>
+    <span class="n">NAME</span><span class="p">=</span>&quot;<span class="n">System</span> <span class="n">eth0</span>&quot;
+</pre></div>
+
+
+<h3>2、配置DNS： vi /etc/resolv.conf</h3>
+<div class="codehilite"><pre>    <span class="n">nameserver</span> 59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
+    <span class="n">search</span> <span class="n">localdomain</span>
+
+配置好以后重启服务：
+
+    <span class="n">service</span> <span class="n">network</span> <span class="n">restart</span>
+</pre></div>
+
+
+<h3>3、解决中文乱码：vi /etc/sysconfig/i18n ：</h3>
+<div class="codehilite"><pre>    <span class="n">LANG</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span>&quot;
+    <span class="n">LANGUAGE</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">GB2312</span><span class="p">:</span><span class="n">zh_CN</span>&quot;
+    <span class="n">SUPPORTED</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN</span><span class="p">:</span><span class="n">zh</span><span class="p">:</span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span>8<span class="p">:</span><span class="n">en_US</span><span class="p">:</span><span class="n">en</span>&quot;
+    <span class="n">SYSFONT</span><span class="p">=</span>&quot;<span class="n">lat0</span><span class="o">-</span><span class="n">sun16</span>&quot;
+</pre></div>
+
+
+<h3>4、修改启动级别，默认为图形启动，改为字符界面： vi /etc/inittab</h3>
+<div class="codehilite"><pre>    <span class="n">id</span><span class="p">:</span>5<span class="p">:</span><span class="n">initdefault</span><span class="p">:</span>  改为 <span class="n">id</span><span class="p">:</span>3<span class="p">:</span><span class="n">initdefault</span><span class="p">:</span>
+</pre></div>
+
+
+<h3>5、VNCServer启动</h3>
+<div class="codehilite"><pre><span class="n">VNCServer</span>是一个远程连接工具，相当于<span class="n">Windows</span>下面的远程桌面，很不错，推荐使用。试过很多方法，好像都不能自启动，只好开机后手动启动一下。在自己的电脑上可以使用<span class="n">VNCViewer</span>进行连接。
+
+手动启动<span class="n">VNCServer</span>：
+    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">vncserver</span>
+    或者：<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vncserver</span> <span class="n">start</span>
+</pre></div>
+
+
+<h3>6、开启防火墙，允许SSH和VNCServer的端口（5801和5901）：vi /etc/sysconfig/iptables</h3>
+<div class="codehilite"><pre>    <span class="c"># Firewall configuration written by system-config-securitylevel</span>
+    <span class="c"># Manual customization of this file is not recommended.</span>
+    <span class="o">*</span><span class="nb">filter</span>
+    <span class="p">:</span><span class="n">INPUT</span> <span class="n">ACCEPT</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
+    <span class="p">:</span><span class="n">FORWARD</span> <span class="n">ACCEPT</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
+    <span class="p">:</span><span class="n">OUTPUT</span> <span class="n">ACCEPT</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
+    <span class="p">:</span><span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">FORWARD</span> <span class="o">-</span><span class="n">j</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">i</span> <span class="n">lo</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">icmp</span> <span class="o">--</span><span class="n">icmp</span><span class="o">-</span><span class="nb">type</span> <span class="nb">any</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> 50 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> 51 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> 5353 <span class="o">-</span><span class="n">d</span> 224<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>251 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">-</span><span class="n">m</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> 631 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 631 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">ESTABLISHED</span><span class="p">,</span><span class="n">RELATED</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 22 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 5801 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 5901 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">REJECT</span> <span class="o">--</span><span class="n">reject</span><span class="o">-</span><span class="n">with</span> <span class="n">icmp</span><span class="o">-</span><span class="n">host</span><span class="o">-</span><span class="n">prohibited</span>
+    <span class="n">COMMIT</span>
+</pre></div>
+
+
+<h3>7、对Vi的一些配置：</h3>
+<div class="codehilite"><pre>    <span class="n">cp</span> <span class="o">/</span><span class="n">etc</span> <span class="o">~/</span><span class="p">.</span><span class="n">vimrc</span>
+    <span class="n">vi</span> <span class="o">~/</span><span class="p">.</span><span class="n">vimrc</span><span class="p">:</span>
+
+添加如下一些内容：
+
+    &quot;显示行号
+    <span class="n">set</span> <span class="n">number</span>
+
+    &quot;记录历史的行数
+    <span class="n">set</span> <span class="n">history</span><span class="p">=</span>1000
+
+    &quot;语法高亮度显示
+    <span class="n">syntax</span> <span class="n">on</span>
+
+    &quot;背景使用黑色
+    <span class="n">set</span> <span class="n">background</span><span class="p">=</span><span class="n">dark</span>
+
+    &quot;使用自动对齐，也就是把当前行的对起格式应用到下一行；
+    <span class="n">set</span> <span class="n">autoindent</span>
+
+    &quot;依据上面的对齐格式，智能的选择对齐方式，对于类似<span class="n">C</span>语言编
+    <span class="n">set</span> <span class="n">smartindent</span>
+
+    &quot;设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
+    <span class="n">set</span> <span class="n">showmatch</span>
+
+    &quot;第一行设置<span class="n">tab</span>键为4个空格，第二行设置当行之间交错时使用4个空格
+    <span class="n">set</span> <span class="n">tabstop</span><span class="p">=</span>4
+    <span class="n">set</span> <span class="n">shiftwidth</span><span class="p">=</span>4
+
+    &quot;在编辑过程中，在右下角显示光标位置的状态行
+    <span class="n">set</span> <span class="n">ruler</span>
+    <span class="n">set</span> <span class="n">incsearch</span>
+    &quot;高亮当前行
+    <span class="n">set</span> <span class="n">cursorline</span>
+</pre></div>
+
+
+<h2>安全方面的一些设置：</h2>
+<h3>1、关闭一些不必要的服务。</h3>
+<div class="codehilite"><pre>以下仅列出需要启动的服务，未列出的服务可以关闭：
+
+#<span class="n">setup</span>
+<span class="n">acpid</span>
+<span class="n">anacron</span>
+<span class="n">cpuspeed</span>
+<span class="n">crond</span>
+<span class="n">irqbalance</span> <span class="o">\\</span>仅当服务器<span class="n">CPU</span>为<span class="n">S</span><span class="p">.</span><span class="n">M</span><span class="p">.</span><span class="n">P</span>架构或支持双核心、<span class="n">HT</span>技术时，才需开启，否则关闭。
+<span class="n">microcode_ctl</span>
+<span class="n">network</span>
+<span class="n">random</span>
+<span class="n">sendmail</span>
+<span class="n">sshd</span>
+<span class="n">syslog</span>
+<span class="n">yum</span><span class="o">-</span><span class="n">updatesd</span>
+</pre></div>
+
+
+<h3>2、查看系统用户：/etc/passwd：</h3>
+<div class="codehilite"><pre>删除系统臃肿多余的账号：
+
+<span class="n">userdel</span> <span class="n">adm</span> <span class="n">userdel</span> <span class="n">lp</span> <span class="n">userdel</span> <span class="n">sync</span> <span class="n">userdel</span> <span class="n">shutdown</span> <span class="n">userdel</span> <span class="n">halt</span> <span class="n">userdel</span> <span class="n">news</span> <span class="n">userdel</span> <span class="n">uucp</span> <span class="n">userdel</span> <span class="n">operator</span> <span class="n">userdel</span> <span class="n">games</span> <span class="n">userdel</span> <span class="n">gopher</span> <span class="n">userdel</span> <span class="n">ftp</span> 如果你不允许匿名<span class="n">FTP</span>，就删掉这个用户帐号
+
+<span class="n">groupdel</span> <span class="n">adm</span> <span class="n">groupdel</span> <span class="n">lp</span> <span class="n">groupdel</span> <span class="n">news</span> <span class="n">groupdel</span> <span class="n">uucp</span> <span class="n">groupdel</span> <span class="n">games</span> <span class="n">groupdel</span> <span class="n">dip</span> <span class="n">groupdel</span> <span class="n">pppusers</span>
+</pre></div>
+
+
+<h3>3、修改权限</h3>
+<div class="codehilite"><pre>    <span class="n">chmod</span> 600 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">xinetd</span><span class="p">.</span><span class="n">conf</span>
+</pre></div>
+
+
+<h3>4、禁PING</h3>
+<div class="codehilite"><pre>    <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">local</span>   中增加一行
+    <span class="n">echo</span> 1 <span class="o">&gt;</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">net</span><span class="o">/</span><span class="n">ipv4</span><span class="o">/</span><span class="n">icmp_echo_ignore_all</span>
+</pre></div>
+
+
+<p>0表示允许 1表示禁止</p>
+<h3>5、口令文件</h3>
+<div class="codehilite"><pre><span class="n">chattr</span>命令给下面的文件加上不可更改属性，从而防止非授权用户获得权限。
+    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span>
+    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">shadow</span>
+    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">group</span>
+    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">gshadow</span>
+</pre></div>
+
+
+<h3>6、禁止Ctrl Alt Delete重新启动机器命令</h3>
+<div class="codehilite"><pre>修改<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">inittab</span>文件，将”<span class="n">ca</span><span class="p">::</span><span class="n">ctrlaltdel</span><span class="p">:</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">shutdown</span> <span class="o">-</span><span class="n">t3</span> <span class="o">-</span><span class="n">r</span> <span class="n">now</span>”一行注释掉。然后重新设置<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span>目录下所有文件的许可权限，运行如下命令：
+
+    # <span class="n">chmod</span> <span class="o">-</span><span class="n">R</span> 700 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/*</span>
+
+这样便仅有<span class="n">root</span>可以读、写或执行上述所有脚本文件。
+</pre></div>
+
+
+<h3>7、更改SSH端口，最好改为10000以上，别人扫描到端口的机率也会下降</h3>
+<div class="codehilite"><pre>不允许使用低版本的<span class="n">SSH</span>协议
+
+    <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
+将#<span class="n">protocol</span> 2<span class="p">,</span>1改为
+    <span class="n">protocol</span> 2
+
+将<span class="n">PORT</span>改为1000以上端口
+
+    <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
+    <span class="n">Port</span> 10086
+</pre></div><p>There are <a href="./Technology/2012/12/01/CentOS-Configuration.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./Technology/2012/12/01/Linux-scp.html" rel="bookmark"
+                           title="Permalink to Linux系统之间拷贝文件">Linux系统之间拷贝文件</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-12-01T00:00:00">
+                Sat 01 December 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href="./category/technology.html">Technology</a>. </p>
+<p>tags: <a href="./tag/linux.html">Linux</a><a href="./tag/scp.html">scp</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>Linux系统之间拷贝文件常用有3种方法：</p>
+<p>第一种就是ftp，也就是其中一台Linux安装ftp Server，这样另外一台可以使用ftp来进行文件的拷贝。</p>
+<p>第二种方法就是采用samba服务，类似Windows文件复制的方式来操作，比较简洁方便。</p>
+<p>第三种就是利用scp命令来进行文件拷贝。</p>
+<p>相对来说，个人觉得scp比较快捷、方便一点。</p>
+<ol>
+<li>scp复制文件或目录命令：</li>
+</ol>
+<p>复制文件：</p>
+<p>（1）将本地文件拷贝到远程</p>
+<div class="codehilite"><pre>    <span class="n">scp</span> 文件名 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>远程路径
+</pre></div>
+
+
+<p>（2）从远程将文件拷回本地</p>
+<div class="codehilite"><pre>    <span class="n">scp</span> 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>文件名 本地路径
+</pre></div>
+
+
+<ol>
+<li>复制目录：</li>
+</ol>
+<p>（1）将本地目录拷贝到远程</p>
+<div class="codehilite"><pre>    <span class="n">scp</span> <span class="o">-</span><span class="n">r</span> 目录名 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>远程路径
+</pre></div>
+
+
+<p>（2）从远程将目录拷回本地</p>
+<div class="codehilite"><pre>    <span class="n">scp</span> <span class="o">-</span><span class="n">r</span> 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>目录名 本地路径
+</pre></div>
+                <a class="readmore" href="./Technology/2012/12/01/Linux-scp.html">read more</a>
+                <p>There are <a href="./Technology/2012/12/01/Linux-scp.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./Research/2012/12/01/References-format.html" rel="bookmark"
+                           title="Permalink to 参考文献字母含义">参考文献字母含义</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-12-01T00:00:00">
+                Sat 01 December 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href="./category/research.html">Research</a>. </p>
+<p>tags: <a href="./tag/can-kao-wen-xian.html">参考文献</a></p>
+
+
+</footer><!-- /.post-info -->
+                <ul>
+<li>根据GB3469 规定</li>
+</ul>
+<p>①期刊［J］</p>
+<p>②专著［M］</p>
+<p>③论文集［C］</p>
+<p>④学位论文［D］</p>
+<p>⑤专利［P］</p>
+<p>⑥标准［S］</p>
+<p>⑦报纸［N］</p>
+<p>⑧技术报告［R］</p>
+<ul>
+<li>电子文献载体类型用双字母标识，例如：</li>
+</ul>
+<p>①磁带［MT］</p>
+<p>②磁盘［DK］</p>
+<p>③光盘［CD］</p>
+<p>④联机网络［OL］</p>
+<ul>
+<li>电子文献载体类型的参考文献类型标识方法为：［文献类型标识/载体类型标识］。例如：</li>
+</ul>
+<p>①联机网上数据库［DB/OL］</p>
+<p>②磁带数据库［DB/MT］</p>
+<p>③光盘图书［M/CD］</p>
+<p>④磁盘软件［CP/DK］</p>
+<p>⑤网上期刊［J/OL］</p>
+<p>⑥网上电子公告</p>
+                <a class="readmore" href="./Research/2012/12/01/References-format.html">read more</a>
+                <p>There are <a href="./Research/2012/12/01/References-format.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./Technology/2012/12/01/mysql-tuition.html" rel="bookmark"
+                           title="Permalink to Mysql入门操作">Mysql入门操作</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-12-01T00:00:00">
                 Sat 01 December 2012
         </abbr>
@@ -71,7 +421,8 @@
 <p>tags: <a href="./tag/mysql.html">Mysql</a><a href="./tag/sql.html">SQL</a></p>
 
 
-</footer><!-- /.post-info --><h3>一、连接MySQL</h3>
+</footer><!-- /.post-info -->
+                <h3>一、连接MySQL</h3>
 <div class="codehilite"><pre>格式： <span class="n">mysql</span> <span class="o">-</span><span class="n">h</span>主机地址 <span class="o">-</span><span class="n">u</span>用户名 －<span class="n">p</span>用户密码
 </pre></div>
 
@@ -106,288 +457,9 @@
 <li>
 <p>例1、增加一个用户test1密码为abc，让他可以在任何主机上登录，并对所有数据库有查询、插入、修改、删除的权限。
 首先用以root用户连入MySQL:</p>
-<div class="codehilite"><pre><span class="n">mysql</span><span class="o">&gt;</span><span class="n">use</span> <span class="n">mysql</span><span class="p">;</span>
-</pre></div>
-
-
-<p>然后键入以下命令： 
-    grant select,insert,update,delete on <em>.</em> to test1@"%" Identified by "abc"; </p>
-<p>但例1增加的用户是十分危险的，你想如某个人知道test1的密码，那么他就可以在internet上的任何一台电脑上登录你的MySQL数据库并对你的数据可以为所欲为了，解决办法见例2。 
-2. 例2、增加一个用户test2密码为abc,让他只可以在localhost上登录，并可以对数据库mydb进行查询、插入、修改、删除的操作（localhost指本地主机，即MYSQL数据库所在的那台主机），这样用户即使用知道test2的密码，他也无法从internet上直接访问数据库，只能通过MySQL主机上的web页来访问了。
-    grant select,insert,update,delete on mydb.<em> to test2@localhost identified by "abc"; 
-如果你不想test2有密码，可以再打一个命令将密码消掉。 
-    grant select,insert,update,delete on mydb.</em> to test2@localhost identified by "";  </p>
-</li>
-</ol>
-<h3>四、MYSQL中有关数据库方面的操作</h3>
-<p>（注意：你必须首先登录到MYSQL中，以下操作都是在MySQL的提示符下进行的，而且每个命令以分号结束。）</p>
-<ol>
-<li>
-<p>操作技巧 </p>
-<p>(1)、如果你打命令时，回车后发现忘记加分号，你无须重打一遍命令，只要打个分号回车就可以了。也就是说你可以把一个完整的命令分成几行来打，完后用分号作结束标志就OK。 </p>
-<p>(2)、你可以使用光标上下键调出以前的命令。这个以前的旧版本可能不支持。 
-2. 显示命令 </p>
-<p>(1)显示数据库列表。 </p>
-<div class="codehilite"><pre><span class="n">show</span> <span class="n">databases</span><span class="p">;</span>
-</pre></div>
-
-
-<p>刚开始时才两个数据库：mysql和test。mysql库很重要它里面有MySQL的系统信息，我们改密码和新增用户，实际上就是用这个库进行操作。 
-(2)显示库中的数据表： 
-    use mysql；   ／／打开库 
-    show tables; </p>
-<p>(3)显示数据表的结构： </p>
-<div class="codehilite"><pre><span class="n">describe</span> 表名<span class="p">;</span>
-</pre></div>
-
-
-<p>(4)建库： </p>
-<div class="codehilite"><pre><span class="n">create</span> <span class="n">database</span> 库名<span class="p">;</span>
-</pre></div>
-
-
-<p>(5)建表： </p>
-<div class="codehilite"><pre><span class="n">use</span> 库名； 
-<span class="n">create</span> <span class="n">table</span> 表名 <span class="p">(</span>字段设定列表<span class="p">)</span>；
-</pre></div>
-
-
-<p>(6)删库和删表: </p>
-<div class="codehilite"><pre><span class="n">drop</span> <span class="n">database</span>  库名<span class="p">;</span> 
-<span class="n">drop</span> <span class="n">table</span>  表名；
-</pre></div>
-
-
-<p>(7)将表中记录清空： </p>
-<div class="codehilite"><pre><span class="n">delete</span> <span class="n">from</span> 表名<span class="p">;</span>
-</pre></div>
-
-
-<p>(8)显示表中的记录： </p>
-<p>select * from 表名; </p>
-</li>
-<li>
-<p>一个建库和建表以及插入数据的实例 </p>
-<div class="codehilite"><pre><span class="n">drop</span> <span class="n">database</span> <span class="k">if</span> <span class="n">exists</span> <span class="n">school</span><span class="p">;</span> <span class="o">//</span>如果存在<span class="n">SCHOOL</span>则删除 
-<span class="n">create</span> <span class="n">database</span> <span class="n">school</span><span class="p">;</span>   <span class="o">//</span>建立库<span class="n">SCHOOL</span> 
-<span class="n">use</span> <span class="n">school</span><span class="p">;</span>        <span class="o">//</span>打开库<span class="n">SCHOOL</span> 
-<span class="n">create</span> <span class="n">table</span> <span class="n">teacher</span>   <span class="o">//</span>建立表<span class="n">TEACHER</span> 
-<span class="p">(</span> 
-    <span class="n">id</span> <span class="n">int</span><span class="p">(</span>3<span class="p">)</span> <span class="n">auto_increment</span> <span class="n">not</span> <span class="n">null</span> <span class="n">primary</span> <span class="n">key</span><span class="p">,</span> 
-    <span class="n">name</span> <span class="n">char</span><span class="p">(</span>10<span class="p">)</span> <span class="n">not</span> <span class="n">null</span><span class="p">,</span> 
-    <span class="n">address</span> <span class="n">varchar</span><span class="p">(</span>50<span class="p">)</span> <span class="n">default</span> <span class="s">&#39;深圳&#39;</span><span class="p">,</span> 
-    <span class="n">year</span> <span class="n">date</span> 
-<span class="p">);</span>            <span class="o">//</span>建表结束 
-<span class="o">//</span>以下为插入字段   
-<span class="n">insert</span> <span class="n">into</span> <span class="n">teacher</span> <span class="n">values</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;loosky&#39;</span><span class="p">,</span><span class="s">&#39;CSU&#39;</span><span class="p">,</span><span class="s">&#39;1976-10-10&#39;</span><span class="p">);</span> 
-<span class="n">insert</span> <span class="n">into</span> <span class="n">teacher</span> <span class="n">values</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;jack&#39;</span><span class="p">,</span><span class="s">&#39;CSU&#39;</span><span class="p">,</span><span class="s">&#39;1975-12-23&#39;</span><span class="p">);</span>
-</pre></div>
-
-
-<p>注：在建表中 </p>
-<p>（1）将ID设为长度为3的数字字段:int(3)并让它每个记录自动加一:auto_increment并不能为空:not null而且让他成为主字段primary key</p>
-<p>（2）将NAME设为长度为10的字符字段 </p>
-<p>（3）将ADDRESS设为长度50的字符字段，而且缺省值为深圳。varchar和char有什么区别呢，只有等以后的文章再说了。 </p>
-<p>（4）将YEAR设为日期字段。 </p>
-<p>如果你在mysql提示符键入上面的命令也可以，但不方便调试。你可以将以上命令原样写入一个文本文件中假设为school.sql，然后复制到c:/下，并在DOS状态进入目录MySQLbin，然后键入以下命令： 
-    mysql -uroot -p密码 &lt; c:school.sql </p>
-<p>如果成功，空出一行无任何显示；如有错误，会有提示。</p>
-</li>
-<li>
-<p>将文本数据转到数据库中 
-    (1)文本数据应符合的格式：字段数据之间用tab键隔开，null值用n来代替. </p>
-<p>例：3 rose CSU 1976-10-10 </p>
-<p>4 mike CSU 1975-12-23 </p>
-<p>(2)数据传入命令 load data local infile "文件名" into table 表名; </p>
-<p>注意：你最好将文件复制到MySQL/bin目录下，并且要先用use命令打表所在的库。</p>
-</li>
-<li>
-<p>备份数据库：（命令在DOS的MySQL/bin目录下执行） </p>
-<div class="codehilite"><pre><span class="n">mysqldump</span> <span class="o">--</span><span class="n">opt</span> <span class="n">school</span><span class="o">&gt;</span><span class="n">school</span><span class="p">.</span><span class="n">bbb</span>
-</pre></div>
-
-
-<p>注释:将数据库school备份到school.bbb文件，school.bbb是一个文本文件，文件名任取，打开看看你会有新发现。</p>
-</li>
-</ol>
-<h3>五、“host is not allowed to connect to this mysql server”错误</h3>
-<p>在本地连本地的mysql server，一般都不会碰到"host is not allowed to connect to this mysql server"这样的错误，当远程连接mysql数据库时，就很可能出现这样的错误了。</p>
-<p>解决方法：</p>
-<p>mysql是有权限限制的。查看到底用什么主机名，可以在MySQL Command Line中这样查看：</p>
-<div class="codehilite"><pre><span class="n">mysql</span><span class="o">&gt;</span><span class="n">use</span> <span class="n">mysql</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="n">select</span> <span class="n">host</span><span class="p">,</span><span class="n">user</span><span class="p">,</span><span class="n">password</span> <span class="n">from</span> <span class="n">user</span><span class="p">;</span>   <span class="o">//</span>这样会列出数据库的用户及所使用的主机名
-<span class="n">mysql</span><span class="o">&gt;</span><span class="n">GRANT</span> <span class="n">SELECT</span><span class="p">,</span><span class="n">INSERT</span><span class="p">,</span><span class="n">UPDATE</span><span class="p">,</span><span class="n">DELETE</span> <span class="n">ON</span> <span class="p">[</span><span class="n">db_name</span><span class="p">]</span><span class="o">.*</span> <span class="n">TO</span> <span class="p">[</span><span class="n">username</span><span class="p">]@[</span><span class="n">ipadd</span><span class="p">]</span> <span class="n">identified</span> <span class="n">by</span> <span class="s">&#39;[password]&#39;</span><span class="p">;</span>
-</pre></div>
-
-
-<p>db_name：要开发远程连接权限数据库名,不限制的话可为* </p>
-<p>username：连接所使用的用户名 </p>
-<p>ipadd：客户端所在主机的IP地址，如果要开放多个网段的链接，可以使用%作为通配符，例如，开一个一个C类网段的连接，可以使用'192.168.0.%'，地址两边的单引号是必须的。 
-password：用户密码</p>
-<div class="codehilite"><pre><span class="n">mysql</span><span class="o">&gt;</span><span class="n">grant</span> <span class="n">select</span><span class="p">,</span><span class="n">update</span><span class="p">,</span><span class="n">insert</span><span class="p">,</span><span class="n">delete</span><span class="p">,</span><span class="n">drop</span><span class="p">,</span><span class="n">create</span> <span class="n">on</span> <span class="o">*.*</span> <span class="n">to</span> <span class="n">root</span><span class="p">@</span><span class="s">&#39;ngi&#39;</span> <span class="n">identified</span> <span class="n">by</span> <span class="s">&#39;123&#39;</span><span class="p">;</span>
-</pre></div>
-
-
-<p>查看结果，执行：</p>
-<div class="codehilite"><pre><span class="n">use</span> <span class="n">mysql</span><span class="p">;</span>
-<span class="n">select</span> <span class="n">host</span><span class="p">,</span><span class="n">user</span><span class="p">,</span><span class="n">password</span> <span class="n">from</span> <span class="n">user</span><span class="p">;</span>
-</pre></div>
-
-
-<p>可以看到在user表中已有刚才创建的ngi用户。host字段表示登录的主机，其值可以用IP，也可用主机名，将host字段的值改为%就表示在任何客户端机器上能以ngi用户登录到mysql服务器，建议在开发时设为%。</p>
-<div class="codehilite"><pre><span class="n">update</span> <span class="n">user</span> <span class="n">set</span> <span class="n">host</span> <span class="p">=</span> <span class="s">&#39;%&#39;</span> <span class="n">where</span> <span class="n">user</span> <span class="p">=</span> <span class="s">&#39;ngi&#39;</span><span class="p">;</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="n">mysqladmin</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p123</span> <span class="n">reload</span>
-<span class="n">mysql</span><span class="o">&gt;</span><span class="n">mysqladmin</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p123</span> <span class="n">shutdown</span>
-</pre></div><p>There are <a href="./Technology/2012/12/01/mysql-tuition.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Blog/2012/11/28/wordpress-markdown.html" rel="bookmark"
-                           title="Permalink to 在WordPress中使用Markdown语法">在WordPress中使用Markdown语法</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-11-28T00:00:00">
-                Wed 28 November 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        
-<p>In <a href="./category/blog.html">Blog</a>. </p>
-<p>tags: <a href="./tag/wordpress.html">WordPress</a><a href="./tag/markdown.html">Markdown</a><a href="./tag/python.html">Python</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>最近接触了一下Python，顺带接触了一下<a href="http://daringfireball.net/projects/markdown/">Markdown</a>，感觉还是挺好用的。于是基于<a href="http://getpelican.com/">Pelican</a> &amp; <a href="https://github.com/">GitHub</a> 搭建了一个<a href="http://loosky.com/">博客</a>。</p>
-<p>个人感觉Markdown语法要比码html代码写东西强多了，不用再过多的去关注html排版等，英雄所见略同的<a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html">大有人在</a>。</p>
-<p>可惜的是WordPress 官方目前没有提供 Markdown 支持，不过 WordPress 扩展性很强，有很多插件可以使用。我目前安装的是<a href="http://wordpress.org/extend/plugins/wp-markdown/">WP-Markdown</a> ,安装后就可以设置通过Markdown进行写作了，支持在文章、页面和评论中使用Markdown。</p>
-<p><img alt="WP-Markdown" src="http://loosky.net/Upload/2012/11/WP-Markdown.png" /></p>
-<p>目前使用的编辑器主要是<a href="http://markdownpad.com/">MarkdownPad</a>，推荐一试。</p>
-<p>附：<a href="http://wowubuntu.com/markdown/">Markdown语法</a></p>
-                <a class="readmore" href="./Blog/2012/11/28/wordpress-markdown.html">read more</a>
-                <p>There are <a href="./Blog/2012/11/28/wordpress-markdown.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Technology/2012/11/27/github.html" rel="bookmark"
-                           title="Permalink to GitHub使用">GitHub使用</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-11-27T00:00:00">
-                Tue 27 November 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        
-<p>In <a href="./category/technology.html">Technology</a>. </p>
-<p>tags: <a href="./tag/git.html">git</a><a href="./tag/github.html">github</a></p>
-
-
-</footer><!-- /.post-info -->
-                <h3>一、创建github账号</h3>
-<p>github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：<a href="https://github.com">https://github.com</a>
-帐号注册成功后，点击<strong>New Repository</strong>，开始创建新版本库。用户可以创建类似于 <code>your_userid.github.com</code> 的版本库，这样就可以通过<code>http://your_userid.github.com</code>进行访问了。</p>
-<h3>二、建立本地git仓库</h3>
-<div class="codehilite"><pre><span class="c">#git config --global user.name &quot;your_userid&quot;   //提供使用者自己的身份标识</span>
-<span class="c">#git config --global user.email &quot;your_email&quot;    </span>
-<span class="c">#mkdir -p /home/work/your_userid.github.com   //建立项目</span>
-<span class="c">#cd /home/work/your_userid.github.com</span>
-<span class="c">#git init                                     //初始化git仓库</span>
-</pre></div>
-
-
-<h3>三、创建项目文件</h3>
-<div class="codehilite"><pre><span class="c">#touch README</span>
-<span class="c">#git add README</span>
-</pre></div>
-
-
-<p>如果添加项目目录下面所有的文件则用 <strong>git add .</strong></p>
-<h3>四、将项目提交到github管理</h3>
-<ol>
-<li>
-<p>创建SSH密钥</p>
-<div class="codehilite"><pre><span class="c">#ssh-keygen -C &#39;your_email&#39; -t rsa</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>找到刚才生成的密钥（默认为<strong>/root/.ssh/id_rsa.pub</strong>）文件并用文本编辑器打开，然后复制里面的内容。接着转到github站点，进入<strong>Account Setting--SSH Keys</strong> 选项后，点击<strong>add ssh key</strong> 并将刚才复制的内容粘贴保存。</p>
-</li>
-<li>
-<p>测试SSH连接。在git bash中执行以下命令：</p>
-<div class="codehilite"><pre><span class="c">#ssh -v git ...</span></pre></div></li></ol>
-                <a class="readmore" href="./Technology/2012/11/27/github.html">read more</a>
-                <p>There are <a href="./Technology/2012/11/27/github.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Blog/2012/11/26/helloworld.html" rel="bookmark"
-                           title="Permalink to Hello World!">Hello World!</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-11-26T00:00:00">
-                Mon 26 November 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        
-<p>In <a href="./category/blog.html">Blog</a>. </p>
-<p>tags: <a href="./tag/loosky.html">Loosky</a><a href="./tag/python.html">Python</a><a href="./tag/github.html">github</a><a href="./tag/pelican.html">Pelican</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>这是Loosky的个人博客，网站基于<a href="http://getpelican.com/">Pelican</a> &amp; <a href="https://github.com">GitHub</a>搭建，使用了<a href="http://www.python.org/">Python</a>技术。一切从零开始。</p>
-<p>您可以访问我的<a href="http://loosky.net">另外一个博客</a>,那里记录了从2003年以来的所有文章，包含技术、情感、生活等方面。</p>
-                <a class="readmore" href="./Blog/2012/11/26/helloworld.html">read more</a>
-                <p>There are <a href="./Blog/2012/11/26/helloworld.html#disqus_thread">comments</a>.</p>
+<div class="codehilite"><pre><span class="n">mysql ...</span></pre></div></li></ol>
+                <a class="readmore" href="./Technology/2012/12/01/mysql-tuition.html">read more</a>
+                <p>There are <a href="./Technology/2012/12/01/mysql-tuition.html#disqus_thread">comments</a>.</p>
                 </div><!-- /.entry-content -->
             </article></li>
         
@@ -397,7 +469,9 @@ password：用户密码</p>
                 
 <p class="paginator">
     
-    Page 1 / 1
+    Page 1 / 3
+    
+        <a href="./index2.html">&raquo;</a>
     
 </p>
 
@@ -413,32 +487,14 @@ password：用户密码</p>
                         <ul>
                         
 <li>
-    <a href="./tag/Pelican.html">
-       Pelican
+    <a href="./tag/Markdown.html">
+       Markdown
     </a>
 </li>
 
 <li>
-    <a href="./tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-
-<li>
-    <a href="./tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-
-<li>
-    <a href="./tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-
-<li>
-    <a href="./tag/Python.html">
-       Python
+    <a href="./tag/open-mesh.html">
+       open-mesh
     </a>
 </li>
 
@@ -449,20 +505,98 @@ password：用户密码</p>
 </li>
 
 <li>
-    <a href="./tag/github.html">
-       github
+    <a href="./tag/mesh.html">
+       mesh
     </a>
 </li>
 
 <li>
-    <a href="./tag/Markdown.html">
-       Markdown
+    <a href="./tag/Linux.html">
+       Linux
+    </a>
+</li>
+
+<li>
+    <a href="./tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+
+<li>
+    <a href="./tag/Mysql.html">
+       Mysql
     </a>
 </li>
 
 <li>
     <a href="./tag/git.html">
        git
+    </a>
+</li>
+
+<li>
+    <a href="./tag/github.html">
+       github
+    </a>
+</li>
+
+<li>
+    <a href="./tag/Python.html">
+       Python
+    </a>
+</li>
+
+<li>
+    <a href="./tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+
+<li>
+    <a href="./tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+
+<li>
+    <a href="./tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+
+<li>
+    <a href="./tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+
+<li>
+    <a href="./tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+
+<li>
+    <a href="./tag/网络.html">
+       网络
+    </a>
+</li>
+
+<li>
+    <a href="./tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+
+<li>
+    <a href="./tag/scp.html">
+       scp
+    </a>
+</li>
+
+<li>
+    <a href="./tag/吞吐量.html">
+       吞吐量
     </a>
 </li>
 

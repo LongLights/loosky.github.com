@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/Python.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-11-28T00:00:00+08:00</updated><entry><title>在WordPress中使用Markdown语法</title><link href="http://loosky.com/Blog/2012/11/28/wordpress-markdown.html" rel="alternate"></link><updated>2012-11-28T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-28:Blog/2012/11/28/wordpress-markdown.html</id><summary type="html">&lt;p&gt;最近接触了一下Python，顺带接触了一下&lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;，感觉还是挺好用的。于是基于&lt;a href="http://getpelican.com/"&gt;Pelican&lt;/a&gt; &amp;amp; &lt;a href="https://github.com/"&gt;GitHub&lt;/a&gt; 搭建了一个&lt;a href="http://loosky.com/"&gt;博客&lt;/a&gt;。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/Python.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-12-01T00:00:00+08:00</updated><entry><title>升级CentOS系统的Python</title><link href="http://loosky.com/Technology/2012/12/01/python-upgrade.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/python-upgrade.html</id><summary type="html">&lt;h3&gt;1、下载Python最新版本&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;2、解压&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;jxvf&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;3、编译安装&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;6&lt;span class="p"&gt;.&lt;/span&gt;6
+&lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Python 默认安装目录在/usr/local/lib/python2.7
+查看一下刚才安装的版本 /usr/local/lib/python2.7 -V，看到了2.7.3吧&lt;/p&gt;
+&lt;h3&gt;4、更改系统默认版本&lt;/h3&gt;
+&lt;p&gt;之前查看版本使用 /usr/local/lib/python2.7 -V，现在来把系统默认的Python指向刚才安装的Python2.7.3。(如果有人问为什么不把之前的版本卸载呢？呃，貌似网上有讲yum是基于系统默认老版本的，所以我也就没那样折腾)&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;mv&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bak&lt;/span&gt;
+&lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;6 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;敲入 python -V 查看是否成功。&lt;/p&gt;
+&lt;h3&gt;5、修复不能正常工作的yum&lt;/h3&gt;
+&lt;p&gt;在完成了上面4步之后，如果有使用yum的话会发现出错，这是因为yum 依赖2.4.3而现在默认的 Python 版本是2.6.6。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;yum&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;将首行显示的 !#/usr/bin/python 修改为 !#/usr/bin/python2.4
+保存搞定。&lt;/p&gt;</summary><category term="CentOS"></category><category term="Linux"></category><category term="Python"></category></entry><entry><title>在WordPress中使用Markdown语法</title><link href="http://loosky.com/Blog/2012/11/28/wordpress-markdown.html" rel="alternate"></link><updated>2012-11-28T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-28:Blog/2012/11/28/wordpress-markdown.html</id><summary type="html">&lt;p&gt;最近接触了一下Python，顺带接触了一下&lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;，感觉还是挺好用的。于是基于&lt;a href="http://getpelican.com/"&gt;Pelican&lt;/a&gt; &amp;amp; &lt;a href="https://github.com/"&gt;GitHub&lt;/a&gt; 搭建了一个&lt;a href="http://loosky.com/"&gt;博客&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;个人感觉Markdown语法要比码html代码写东西强多了，不用再过多的去关注html排版等，英雄所见略同的&lt;a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html"&gt;大有人在&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;可惜的是WordPress 官方目前没有提供 Markdown 支持，不过 WordPress 扩展性很强，有很多插件可以使用。我目前安装的是&lt;a href="http://wordpress.org/extend/plugins/wp-markdown/"&gt;WP-Markdown&lt;/a&gt; ,安装后就可以设置通过Markdown进行写作了，支持在文章、页面和评论中使用Markdown。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="WP-Markdown" src="http://loosky.net/Upload/2012/11/WP-Markdown.png" /&gt;&lt;/p&gt;

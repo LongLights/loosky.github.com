@@ -50,16 +50,131 @@
                 
                 </ul></nav>
         </header><!-- /#banner -->
+                
+
+            
+
         
-<ul>
+         
+            
+                <section id="content" class="body">
+                    <ol id="posts-list" class="hfeed" start="3">
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./Technology/2012/11/27/github.html" rel="bookmark"
+                           title="Permalink to GitHub使用">GitHub使用</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-11-27T00:00:00">
+                Tue 27 November 2012
+        </abbr>
 
-    <li><a href="./category/blog.html">Blog</a></li>
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href="./category/technology.html">Technology</a>. </p>
+<p>tags: <a href="./tag/git.html">git</a><a href="./tag/github.html">github</a></p>
 
-    <li><a href="./category/research.html">Research</a></li>
 
-    <li><a href="./category/technology.html">Technology</a></li>
+</footer><!-- /.post-info -->
+                <h3>一、创建github账号</h3>
+<p>github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：<a href="https://github.com">https://github.com</a>
+帐号注册成功后，点击<strong>New Repository</strong>，开始创建新版本库。用户可以创建类似于 <code>your_userid.github.com</code> 的版本库，这样就可以通过<code>http://your_userid.github.com</code>进行访问了。</p>
+<h3>二、建立本地git仓库</h3>
+<div class="codehilite"><pre><span class="c">#git config --global user.name &quot;your_userid&quot;   //提供使用者自己的身份标识</span>
+<span class="c">#git config --global user.email &quot;your_email&quot;    </span>
+<span class="c">#mkdir -p /home/work/your_userid.github.com   //建立项目</span>
+<span class="c">#cd /home/work/your_userid.github.com</span>
+<span class="c">#git init                                     //初始化git仓库</span>
+</pre></div>
 
-</ul>
+
+<h3>三、创建项目文件</h3>
+<div class="codehilite"><pre><span class="c">#touch README</span>
+<span class="c">#git add README</span>
+</pre></div>
+
+
+<p>如果添加项目目录下面所有的文件则用 <strong>git add .</strong></p>
+<h3>四、将项目提交到github管理</h3>
+<ol>
+<li>
+<p>创建SSH密钥</p>
+<div class="codehilite"><pre><span class="c">#ssh-keygen -C &#39;your_email&#39; -t rsa</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>找到刚才生成的密钥（默认为<strong>/root/.ssh/id_rsa.pub</strong>）文件并用文本编辑器打开，然后复制里面的内容。接着转到github站点，进入<strong>Account Setting--SSH Keys</strong> 选项后，点击<strong>add ssh key</strong> 并将刚才复制的内容粘贴保存。</p>
+</li>
+<li>
+<p>测试SSH连接。在git bash中执行以下命令：</p>
+<div class="codehilite"><pre><span class="c">#ssh -v git ...</span></pre></div></li></ol>
+                <a class="readmore" href="./Technology/2012/11/27/github.html">read more</a>
+                <p>There are <a href="./Technology/2012/11/27/github.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./Blog/2012/11/26/helloworld.html" rel="bookmark"
+                           title="Permalink to Hello World!">Hello World!</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-11-26T00:00:00">
+                Mon 26 November 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href="./category/blog.html">Blog</a>. </p>
+<p>tags: <a href="./tag/loosky.html">Loosky</a><a href="./tag/python.html">Python</a><a href="./tag/github.html">github</a><a href="./tag/pelican.html">Pelican</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>这是Loosky的个人博客，网站基于<a href="http://getpelican.com/">Pelican</a> &amp; <a href="https://github.com">GitHub</a>搭建，使用了<a href="http://www.python.org/">Python</a>技术。一切从零开始。</p>
+<p>您可以访问我的<a href="http://loosky.net">另外一个博客</a>,那里记录了从2003年以来的所有文章，包含技术、情感、生活等方面。</p>
+                <a class="readmore" href="./Blog/2012/11/26/helloworld.html">read more</a>
+                <p>There are <a href="./Blog/2012/11/26/helloworld.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            </ol><!-- /#posts-list -->
+            
+                
+<p class="paginator">
+    
+        
+            <a href="./index2.html">&laquo;</a>
+        
+    
+    Page 3 / 3
+    
+</p>
+
+            
+            </section><!-- /#content -->
+        
+    
+
 
         <section id="extras" class="body">
         <div class="tags">

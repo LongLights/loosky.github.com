@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/Research.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-12-01T00:00:00+08:00</updated><entry><title>参考文献字母含义</title><link href="http://loosky.com/Research/2012/12/01/References-format.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Research/2012/12/01/References-format.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;根据GB3469 规定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;①期刊［J］&lt;/p&gt;
+&lt;p&gt;②专著［M］&lt;/p&gt;
+&lt;p&gt;③论文集［C］&lt;/p&gt;
+&lt;p&gt;④学位论文［D］&lt;/p&gt;
+&lt;p&gt;⑤专利［P］&lt;/p&gt;
+&lt;p&gt;⑥标准［S］&lt;/p&gt;
+&lt;p&gt;⑦报纸［N］&lt;/p&gt;
+&lt;p&gt;⑧技术报告［R］&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;电子文献载体类型用双字母标识，例如：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;①磁带［MT］&lt;/p&gt;
+&lt;p&gt;②磁盘［DK］&lt;/p&gt;
+&lt;p&gt;③光盘［CD］&lt;/p&gt;
+&lt;p&gt;④联机网络［OL］&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;电子文献载体类型的参考文献类型标识方法为：［文献类型标识/载体类型标识］。例如：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;①联机网上数据库［DB/OL］&lt;/p&gt;
+&lt;p&gt;②磁带数据库［DB/MT］&lt;/p&gt;
+&lt;p&gt;③光盘图书［M/CD］&lt;/p&gt;
+&lt;p&gt;④磁盘软件［CP/DK］&lt;/p&gt;
+&lt;p&gt;⑤网上期刊［J/OL］&lt;/p&gt;
+&lt;p&gt;⑥网上电子公告&lt;/p&gt;</summary><category term="参考文献"></category></entry><entry><title>ROBIN-Open Source Wireless Mesh Networking</title><link href="http://loosky.com/Research/2012/12/01/robin-WMN.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Research/2012/12/01/robin-WMN.html</id><summary type="html">&lt;p&gt;The ROBIN project
+R.O.B.IN (Routing Olsr and Batman INside) is an Open Source &lt;a href="http://en.wikipedia.org/wiki/Wireless_mesh_network"&gt;mesh network&lt;/a&gt; project, deployed on top of &lt;a href="http://openwrt.org/"&gt;OpenWRT&lt;/a&gt; Kamikaze, running on any Atheros AP51 routers such as &lt;a href="http://open-mesh.com/store/"&gt;Accton MR3201A&lt;/a&gt;, &lt;a href="http://meraki.com/"&gt;Meraki Mini*&lt;/a&gt; or &lt;a href="http://www.fon.com/en/"&gt;La Fonera*&lt;/a&gt; and using the &lt;a href="http://www.open-mesh.org/"&gt;B.A.T.M.A.N.&lt;/a&gt; or &lt;a href="http://www.olsr.org/"&gt;OLSR&lt;/a&gt; routing algorithm as cited in &lt;a href="http://www.rushessay.com/"&gt;custom essays&lt;/a&gt;. ROBIN spreads a wired internet connection such as a DSL throughout an apartment complex, neighborhood, village or school, and works on a variety of commonly available, low-cost hardware. ROBIN is being developed by &lt;a href="http://www.blogin.it/"&gt;Antonio Anselmi&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Features
+• builded on top of &lt;a href="http://www.openwrt.org/"&gt;OpenWRT kamikaze&lt;/a&gt;
+• auto-configuration (plug &amp;amp; play)
+• routing algorithm choice (&lt;a href="https://www.olsr.org/"&gt;OLSR&lt;/a&gt; or &lt;a href="https://www.open-mesh.net/batman"&gt;BATMAN&lt;/a&gt;)
+• Public Access Point with captive portal + WPA-PSK Private Access Point
+• &lt;a href="http://kokoro.ucsd.edu/nodogsplash"&gt;nodogsplash&lt;/a&gt; , &lt;a href="http://coova.org/"&gt;CoovaAAA&lt;/a&gt;, &lt;a href="http://worldspot.net/"&gt;worldspot&lt;/a&gt;, &lt;a href="http://www.wifi-cpa.com/"&gt;wifi-cpa&lt;/a&gt; or your own RADIUS server as Captive Portal solution
+• strict-mesh, LAN block, on-the-air update and upgrade, versions management, channel switch,...
+• support to several Dashboard Management Systems
+Robin is free software; you can redistribute it and/or modify it under the terms of the GNU General
+Public License version 2 as published by the Free Software Foundation. See COPYING for more details.&lt;/p&gt;
+&lt;p&gt;Resources&lt;/p&gt;
+&lt;p&gt;• Wiki &lt;a href="http://robin-mesh.wik.is/"&gt;http://robin-mesh.wik.is/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;• subversion (svn) repository &lt;a href="http://svn6.assembla.com/svn/RobinMesh/"&gt;http://svn6.assembla.com/svn/RobinMesh/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;• trac system &lt;a href="http://trac6.assembla.com/RobinMesh/browser"&gt;http://trac6.assembla.com/RobinMesh/browser&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;• users forum &lt;a href="http://robin.forumup.it/"&gt;http://robin.forumup.it/&lt;/a&gt;&lt;/p&gt;</summary><category term="mesh"></category><category term="open-mesh"></category><category term="OpenWRT"></category><category term="ROBIN"></category></entry></feed>
