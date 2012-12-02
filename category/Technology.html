@@ -58,8 +58,142 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././Technology/2012/12/01/CentOS-Configuration.html">CentOS配置</a></h1> 
+                    <h1 class="entry-title"><a href=".././Technology/2012/12/02/harddisk.html">Linux（CentOS）挂载硬盘</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-12-02T00:00:00">
+                Sun 02 December 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href=".././category/Technology.html">Technology</a>. </p>
+<p>tags: <a href=".././tag/CentOS.html">CentOS</a><a href=".././tag/Linux.html">Linux</a><a href=".././tag/分区.html">分区</a><a href=".././tag/挂载.html">挂载</a></p>
+
+
+Translations: 
+    
+        <a href=".././Technology/2012/12/02/harddisk.html">zhs</a>
+    
+
+</footer><!-- /.post-info --><p>在虚拟机中经常会碰到系统分区空间不够的问题，比如对于各种Web系统，我们可以通过挂载一个新的分区，把Web系统的目录迁移到新的分区中以扩展其空间，本文假定Web根目录位于/usr/local/webapps。</p>
+<blockquote>
+<p>在进行下面的操作之前，切记先把web服务停掉：/usr/local/tomcat/bin/shutdown.sh<br />
+操作完成后，再开启web服务： /usr/local/tomcat/bin/startup.sh</p>
+</blockquote>
+<p>在虚拟机中新建磁盘后，需要对其进行格式化并挂载到操作系统中，具体步骤如下：</p>
+<h3>第一步：列出所有磁盘</h3>
+<div class="codehilite"><pre><span class="n">ll</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">disk</span><span class="o">/</span><span class="n">by</span><span class="o">-</span><span class="n">path</span>
+</pre></div>
+
+
+<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount1.jpg" /></p>
+<p>要进行分区就必须针对每一个硬件设备进行操作，这就有可能是一块IDE硬盘或是一块SCSI硬盘。对于每一个硬盘（IDE或SCSI）设备，Linux分配了一个1到16的序列号码，这就代表了这块硬盘上面的分区号码。例如，第一个IDE硬盘的第一个分区，在Linux下面映射的就是hda1，第二个分区就称作是hda2。对于SCSI硬盘则是sda1、sdb1等。  </p>
+<p>如果无法确认数据盘设备名称，请使用df命令来确认系统盘的名称，从而排除挂错盘的情况。</p>
+<h3>第二步：格式化硬盘</h3>
+<div class="codehilite"><pre><span class="n">fdisk</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb</span>
+</pre></div>
+
+
+<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount2.jpg" /></p>
+<p><strong><em>注意：图中箭头标注处续手动键入</em></strong></p>
+<h3>第三步：创建分区</h3>
+<div class="codehilite"><pre><span class="n">mkfs</span><span class="p">.</span><span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span>
+</pre></div>
+
+
+<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount3.jpg" /></p>
+<h3>第四步：将/usr/local/webapps目录重命名为/usr/local/webapps2</h3>
+<div class="codehilite"><pre><span class="n">mv</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps2</span>
+</pre></div>
+
+
+<h3>第五步：挂载分区</h3>
+<div class="codehilite"><pre><span class="n">mkdir</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>
+<span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>   # 将<span class="n">sdb</span>这个硬盘挂载成为<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>
+<span class="n">cp</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps2</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>  #并将<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps2</span> 目录下的内容复制到<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>目录下。
+</pre></div>
+
+
+<h3>第六步：将信息写入fstab,让系统开启自动挂载。</h3>
+<div class="codehilite"><pre><span class="n">echo</span> &quot;<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span>               <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>                   <span class="n">ext4</span>    <span class="n">defaults</span>        0 0&quot; <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fstab</span>
+</pre></div>
+
+
+<p>参考：<a href="http://sudu.cn/service/detail.php?id=11831">http://sudu.cn/service/detail.php?id=11831</a></p><p>There are <a href=".././Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href=".././Technology/2012/12/02/harddisk.html" rel="bookmark"
+                           title="Permalink to 硬盘类型介绍">硬盘类型介绍</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-12-02T00:00:00">
+                Sun 02 December 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href=".././category/Technology.html">Technology</a>. </p>
+<p>tags: <a href=".././tag/.html"></a></p>
+
+
+Translations: 
+    
+        <a href=".././Technology/2012/12/02/harddisk.html">zhs</a>
+    
+
+</footer><!-- /.post-info -->
+                <blockquote>
+<p>本文内容有些旧，但基本概念在。摘自：<a href="http://blog.csdn.net/tianlesoftware/article/details/6009110">http://blog.csdn.net/tianlesoftware/article/details/6009110</a></p>
+</blockquote>
+<p>目前所能见到的硬盘接口类型主要有IDE、SATA、SCSI、SAS、FC等等。IDE是俗称的并口，SATA是俗称的串口，这两种硬盘是个人电脑和低端服务器常见的硬盘。SCSI是"小型计算机系统专用接口"的简称，SCSI硬盘就是采用这种接口的硬盘。SAS就是串口的SCSI接口。一般服务器硬盘采用这两类接口，其性能比上述两种硬盘要高，稳定性更强，但是价格高，容量小，噪音大。FC是光纤通道，和SCIS接口一样光纤通道最初也不是为硬盘设计开发的接口技术，是专门为网络系统设计的，但随着存储系统对速度的需求，才逐渐应用到硬盘系统中。SSD也称作电子硬盘或者固态电子盘，是由控制单元和固态存储单元（DRAM或FLASH芯片）组成的硬盘。固态硬盘的接口规范和定义、功能及使用方法上与普通硬盘的相同，在产品外形和尺寸上也与普通硬盘一致。新一代的固态硬盘普遍采用SATA-2接口，但其成本较高。</p>
+<h3>一. IDE</h3>
+<p>IDE（Integrated Drive Electronics集成驱动器电子）的缩写，它的本意是指把控制器与盘体集成在一起的硬盘驱动器，是一种硬盘的传输接口，它有另一个名称叫做ATA（Advanced Technology Attachment），这两个名词都有厂商在用，指的是相同的东西。
+IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名称，而这个规格同时又被称为Fast ATA。所不同的是Fast ATA是专指硬盘接口，而EIDE还制定了连接光盘等非硬盘产品的标准。而这个连接非硬盘类的IDE标准，又称为ATAPI接口。而之后再推出更快的接口，名称都只剩下ATA的字样，像是Ultra ATA、ATA/66、ATA/100等。</p>
+<p>早期的IDE接口有两种传输模式，一个是PIO（Programming I/O）模式，另一个是DMA（Direct Memory Access）。虽然DMA模式系统资源占用少，但需要额外的驱动程序或设置，因此被接受的程度比较低。后来在对速度要求愈来愈高的情况下，DMA模式由于执行效率较好，操作系统开始直接支持，而且厂商更推出了愈来愈快的DMA模式传输速度标准。而从英特尔的430TX芯片组开始，就提供了对Ultra DMA 33的支持 ...</p>
+                <a class="readmore" href=".././Technology/2012/12/02/harddisk.html">read more</a>
+                <p>There are <a href=".././Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href=".././Technology/2012/12/01/CentOS-Configuration.html" rel="bookmark"
+                           title="Permalink to CentOS配置">CentOS配置</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-12-01T00:00:00">
                 Sat 01 December 2012
         </abbr>
@@ -73,7 +207,8 @@
 <p>tags: <a href=".././tag/CentOS.html">CentOS</a><a href=".././tag/Linux.html">Linux</a></p>
 
 
-</footer><!-- /.post-info --><p>推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）</p>
+</footer><!-- /.post-info -->
+                <p>推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）</p>
 <h3>1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0</h3>
 <div class="codehilite"><pre>    <span class="n">DEVICE</span><span class="p">=</span>&quot;<span class="n">eth0</span>&quot;
     <span class="n">NM_CONTROLLED</span><span class="p">=</span>&quot;<span class="n">yes</span>&quot;
@@ -105,171 +240,11 @@
 <h3>3、解决中文乱码：vi /etc/sysconfig/i18n ：</h3>
 <div class="codehilite"><pre>    <span class="n">LANG</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span>&quot;
     <span class="n">LANGUAGE</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">GB2312</span><span class="p">:</span><span class="n">zh_CN</span>&quot;
-    <span class="n">SUPPORTED</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN</span><span class="p">:</span><span class="n">zh</span><span class="p">:</span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span>8<span class="p">:</span><span class="n">en_US</span><span class="p">:</span><span class="n">en</span>&quot;
-    <span class="n">SYSFONT</span><span class="p">=</span>&quot;<span class="n">lat0</span><span class="o">-</span><span class="n">sun16</span>&quot;
-</pre></div>
-
-
-<h3>4、修改启动级别，默认为图形启动，改为字符界面： vi /etc/inittab</h3>
-<div class="codehilite"><pre>    <span class="n">id</span><span class="p">:</span>5<span class="p">:</span><span class="n">initdefault</span><span class="p">:</span>  改为 <span class="n">id</span><span class="p">:</span>3<span class="p">:</span><span class="n">initdefault</span><span class="p">:</span>
-</pre></div>
-
-
-<h3>5、VNCServer启动</h3>
-<div class="codehilite"><pre><span class="n">VNCServer</span>是一个远程连接工具，相当于<span class="n">Windows</span>下面的远程桌面，很不错，推荐使用。试过很多方法，好像都不能自启动，只好开机后手动启动一下。在自己的电脑上可以使用<span class="n">VNCViewer</span>进行连接。
-
-手动启动<span class="n">VNCServer</span>：
-    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">vncserver</span>
-    或者：<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vncserver</span> <span class="n">start</span>
-</pre></div>
-
-
-<h3>6、开启防火墙，允许SSH和VNCServer的端口（5801和5901）：vi /etc/sysconfig/iptables</h3>
-<div class="codehilite"><pre>    <span class="c"># Firewall configuration written by system-config-securitylevel</span>
-    <span class="c"># Manual customization of this file is not recommended.</span>
-    <span class="o">*</span><span class="nb">filter</span>
-    <span class="p">:</span><span class="n">INPUT</span> <span class="n">ACCEPT</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
-    <span class="p">:</span><span class="n">FORWARD</span> <span class="n">ACCEPT</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
-    <span class="p">:</span><span class="n">OUTPUT</span> <span class="n">ACCEPT</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
-    <span class="p">:</span><span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">FORWARD</span> <span class="o">-</span><span class="n">j</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">i</span> <span class="n">lo</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">icmp</span> <span class="o">--</span><span class="n">icmp</span><span class="o">-</span><span class="nb">type</span> <span class="nb">any</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> 50 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> 51 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> 5353 <span class="o">-</span><span class="n">d</span> 224<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>251 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">-</span><span class="n">m</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> 631 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 631 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">ESTABLISHED</span><span class="p">,</span><span class="n">RELATED</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 22 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 5801 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 5901 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
-    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">REJECT</span> <span class="o">--</span><span class="n">reject</span><span class="o">-</span><span class="n">with</span> <span class="n">icmp</span><span class="o">-</span><span class="n">host</span><span class="o">-</span><span class="n">prohibited</span>
-    <span class="n">COMMIT</span>
-</pre></div>
-
-
-<h3>7、对Vi的一些配置：</h3>
-<div class="codehilite"><pre>    <span class="n">cp</span> <span class="o">/</span><span class="n">etc</span> <span class="o">~/</span><span class="p">.</span><span class="n">vimrc</span>
-    <span class="n">vi</span> <span class="o">~/</span><span class="p">.</span><span class="n">vimrc</span><span class="p">:</span>
-
-添加如下一些内容：
-
-    &quot;显示行号
-    <span class="n">set</span> <span class="n">number</span>
-
-    &quot;记录历史的行数
-    <span class="n">set</span> <span class="n">history</span><span class="p">=</span>1000
-
-    &quot;语法高亮度显示
-    <span class="n">syntax</span> <span class="n">on</span>
-
-    &quot;背景使用黑色
-    <span class="n">set</span> <span class="n">background</span><span class="p">=</span><span class="n">dark</span>
-
-    &quot;使用自动对齐，也就是把当前行的对起格式应用到下一行；
-    <span class="n">set</span> <span class="n">autoindent</span>
-
-    &quot;依据上面的对齐格式，智能的选择对齐方式，对于类似<span class="n">C</span>语言编
-    <span class="n">set</span> <span class="n">smartindent</span>
-
-    &quot;设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
-    <span class="n">set</span> <span class="n">showmatch</span>
-
-    &quot;第一行设置<span class="n">tab</span>键为4个空格，第二行设置当行之间交错时使用4个空格
-    <span class="n">set</span> <span class="n">tabstop</span><span class="p">=</span>4
-    <span class="n">set</span> <span class="n">shiftwidth</span><span class="p">=</span>4
-
-    &quot;在编辑过程中，在右下角显示光标位置的状态行
-    <span class="n">set</span> <span class="n">ruler</span>
-    <span class="n">set</span> <span class="n">incsearch</span>
-    &quot;高亮当前行
-    <span class="n">set</span> <span class="n">cursorline</span>
-</pre></div>
-
-
-<h2>安全方面的一些设置：</h2>
-<h3>1、关闭一些不必要的服务。</h3>
-<div class="codehilite"><pre>以下仅列出需要启动的服务，未列出的服务可以关闭：
-
-#<span class="n">setup</span>
-<span class="n">acpid</span>
-<span class="n">anacron</span>
-<span class="n">cpuspeed</span>
-<span class="n">crond</span>
-<span class="n">irqbalance</span> <span class="o">\\</span>仅当服务器<span class="n">CPU</span>为<span class="n">S</span><span class="p">.</span><span class="n">M</span><span class="p">.</span><span class="n">P</span>架构或支持双核心、<span class="n">HT</span>技术时，才需开启，否则关闭。
-<span class="n">microcode_ctl</span>
-<span class="n">network</span>
-<span class="n">random</span>
-<span class="n">sendmail</span>
-<span class="n">sshd</span>
-<span class="n">syslog</span>
-<span class="n">yum</span><span class="o">-</span><span class="n">updatesd</span>
-</pre></div>
-
-
-<h3>2、查看系统用户：/etc/passwd：</h3>
-<div class="codehilite"><pre>删除系统臃肿多余的账号：
-
-<span class="n">userdel</span> <span class="n">adm</span> <span class="n">userdel</span> <span class="n">lp</span> <span class="n">userdel</span> <span class="n">sync</span> <span class="n">userdel</span> <span class="n">shutdown</span> <span class="n">userdel</span> <span class="n">halt</span> <span class="n">userdel</span> <span class="n">news</span> <span class="n">userdel</span> <span class="n">uucp</span> <span class="n">userdel</span> <span class="n">operator</span> <span class="n">userdel</span> <span class="n">games</span> <span class="n">userdel</span> <span class="n">gopher</span> <span class="n">userdel</span> <span class="n">ftp</span> 如果你不允许匿名<span class="n">FTP</span>，就删掉这个用户帐号
-
-<span class="n">groupdel</span> <span class="n">adm</span> <span class="n">groupdel</span> <span class="n">lp</span> <span class="n">groupdel</span> <span class="n">news</span> <span class="n">groupdel</span> <span class="n">uucp</span> <span class="n">groupdel</span> <span class="n">games</span> <span class="n">groupdel</span> <span class="n">dip</span> <span class="n">groupdel</span> <span class="n">pppusers</span>
-</pre></div>
-
-
-<h3>3、修改权限</h3>
-<div class="codehilite"><pre>    <span class="n">chmod</span> 600 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">xinetd</span><span class="p">.</span><span class="n">conf</span>
-</pre></div>
-
-
-<h3>4、禁PING</h3>
-<div class="codehilite"><pre>    <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">local</span>   中增加一行
-    <span class="n">echo</span> 1 <span class="o">&gt;</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">net</span><span class="o">/</span><span class="n">ipv4</span><span class="o">/</span><span class="n">icmp_echo_ignore_all</span>
-</pre></div>
-
-
-<p>0表示允许 1表示禁止</p>
-<h3>5、口令文件</h3>
-<div class="codehilite"><pre><span class="n">chattr</span>命令给下面的文件加上不可更改属性，从而防止非授权用户获得权限。
-    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span>
-    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">shadow</span>
-    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">group</span>
-    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">gshadow</span>
-</pre></div>
-
-
-<h3>6、禁止Ctrl Alt Delete重新启动机器命令</h3>
-<div class="codehilite"><pre>修改<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">inittab</span>文件，将”<span class="n">ca</span><span class="p">::</span><span class="n">ctrlaltdel</span><span class="p">:</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">shutdown</span> <span class="o">-</span><span class="n">t3</span> <span class="o">-</span><span class="n">r</span> <span class="n">now</span>”一行注释掉。然后重新设置<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span>目录下所有文件的许可权限，运行如下命令：
-
-    # <span class="n">chmod</span> <span class="o">-</span><span class="n">R</span> 700 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/*</span>
-
-这样便仅有<span class="n">root</span>可以读、写或执行上述所有脚本文件。
-</pre></div>
-
-
-<h3>7、更改SSH端口，最好改为10000以上，别人扫描到端口的机率也会下降</h3>
-<div class="codehilite"><pre>不允许使用低版本的<span class="n">SSH</span>协议
-
-    <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
-将#<span class="n">protocol</span> 2<span class="p">,</span>1改为
-    <span class="n">protocol</span> 2
-
-将<span class="n">PORT</span>改为1000以上端口
-
-    <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
-    <span class="n">Port</span> 10086
-</pre></div><p>There are <a href=".././Technology/2012/12/01/CentOS-Configuration.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
+    <span class="n">SUPPORTED</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN ...</span></pre></div>
+                <a class="readmore" href=".././Technology/2012/12/01/CentOS-Configuration.html">read more</a>
+                <p>There are <a href=".././Technology/2012/12/01/CentOS-Configuration.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
             
@@ -335,137 +310,6 @@
             </article></li>
         
         
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href=".././Technology/2012/12/01/mysql-tuition.html" rel="bookmark"
-                           title="Permalink to Mysql入门操作">Mysql入门操作</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
-        </address>
-        
-<p>In <a href=".././category/Technology.html">Technology</a>. </p>
-<p>tags: <a href=".././tag/Mysql.html">Mysql</a><a href=".././tag/SQL.html">SQL</a></p>
-
-
-</footer><!-- /.post-info -->
-                <h3>一、连接MySQL</h3>
-<div class="codehilite"><pre>格式： <span class="n">mysql</span> <span class="o">-</span><span class="n">h</span>主机地址 <span class="o">-</span><span class="n">u</span>用户名 －<span class="n">p</span>用户密码
-</pre></div>
-
-
-<ol>
-<li>例1：连接到本机上的MySQL。 
-   首先打开DOS窗口，然后进入mysql安装目录下的bin文件夹，再键入命令mysql -uroot -p，回车后提示你输密码，如果刚安装好MySQL，超级用户root是没有密码的，故直接回车即可进入到MYSQL中了，MYSQL的提示符是：MySQL&gt; </li>
-<li>例2：连接到远程主机上的MySQL。假设远程主机的IP为：110.110.110.110，用户名为root,密码为123。则键入以下命令:mysql -h110.110.110.110 -uroot -p123 （注:u与root可以不用加空格，其它也一样） </li>
-<li>退出MySQL命令： exit （回车）</li>
-</ol>
-<h3>二、修改密码。</h3>
-<div class="codehilite"><pre>格式：<span class="n">mysqladmin</span> <span class="o">-</span><span class="n">u</span>用户名 <span class="o">-</span><span class="n">p</span>旧密码  <span class="n">password</span> 新密码
-</pre></div>
-
-
-<ol>
-<li>例1：给root加个密码ab12。首先在DOS下进入mysql安装目录下的bin文件夹，然后键入以下命令  mysqladmin -uroot -password 123  // 注：因为开始时root没有密码，所以-p旧密码一项就可以省略了。 </li>
-<li>
-<p>例2：再将root的密码改为345</p>
-<div class="codehilite"><pre><span class="n">mysqladmin</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p123</span> <span class="n">password</span> 345
-</pre></div>
-
-
-</li>
-</ol>
-<h3>三、增加新用户。（注意：和上面不同，下面的因为是MySQL环境中的命令，所以后面都带一个分号作为命令结束符）</h3>
-<div class="codehilite"><pre>格式：<span class="n">grant</span> <span class="n">select</span> <span class="n">on</span> 数据库<span class="o">.*</span> <span class="n">to</span> 用户名<span class="p">@</span>登录主机 <span class="n">identified</span> <span class="n">by</span> &quot;密码&quot;
-</pre></div>
-
-
-<ol>
-<li>
-<p>例1、增加一个用户test1密码为abc，让他可以在任何主机上登录，并对所有数据库有查询、插入、修改、删除的权限。
-首先用以root用户连入MySQL:</p>
-<div class="codehilite"><pre><span class="n">mysql ...</span></pre></div></li></ol>
-                <a class="readmore" href=".././Technology/2012/12/01/mysql-tuition.html">read more</a>
-                <p>There are <a href=".././Technology/2012/12/01/mysql-tuition.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href=".././Technology/2012/12/01/python-upgrade.html" rel="bookmark"
-                           title="Permalink to 升级CentOS系统的Python">升级CentOS系统的Python</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
-        </address>
-        
-<p>In <a href=".././category/Technology.html">Technology</a>. </p>
-<p>tags: <a href=".././tag/CentOS.html">CentOS</a><a href=".././tag/Linux.html">Linux</a><a href=".././tag/Python.html">Python</a></p>
-
-
-</footer><!-- /.post-info -->
-                <h3>1、下载Python最新版本</h3>
-<div class="codehilite"><pre><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">python</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">ftp</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="o">/</span><span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">bz2</span>
-</pre></div>
-
-
-<h3>2、解压</h3>
-<div class="codehilite"><pre><span class="n">tar</span> <span class="n">jxvf</span> <span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">bz2</span>
-</pre></div>
-
-
-<h3>3、编译安装</h3>
-<div class="codehilite"><pre><span class="n">cd</span> <span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>6<span class="p">.</span>6
-<span class="o">./</span><span class="n">configure</span>
-<span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span>
-</pre></div>
-
-
-<p>Python 默认安装目录在/usr/local/lib/python2.7
-查看一下刚才安装的版本 /usr/local/lib/python2.7 -V，看到了2.7.3吧</p>
-<h3>4、更改系统默认版本</h3>
-<p>之前查看版本使用 /usr/local/lib/python2.7 -V，现在来把系统默认的Python指向刚才安装的Python2.7.3。(如果有人问为什么不把之前的版本卸载呢？呃，貌似网上有讲yum是基于系统默认老版本的，所以我也就没那样折腾)</p>
-<div class="codehilite"><pre><span class="n">mv</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span><span class="p">.</span><span class="n">bak</span>
-<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span>6 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span>
-</pre></div>
-
-
-<p>敲入 python -V 查看是否成功。</p>
-<h3>5、修复不能正常工作的yum</h3>
-<p>在完成了上面4步之后，如果有使用yum的话会发现出错，这是因为yum 依赖2 ...</p>
-                <a class="readmore" href=".././Technology/2012/12/01/python-upgrade.html">read more</a>
-                <p>There are <a href=".././Technology/2012/12/01/python-upgrade.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
             </ol><!-- /#posts-list -->
             
                 
@@ -495,32 +339,8 @@
 </li>
 
 <li>
-    <a href=".././tag/github.html">
-       github
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/git.html">
-       git
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/mesh.html">
-       mesh
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/MESH.html">
-       MESH
+    <a href=".././tag/scp.html">
+       scp
     </a>
 </li>
 
@@ -531,38 +351,8 @@
 </li>
 
 <li>
-    <a href=".././tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/参考文献.html">
-       参考文献
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Linux.html">
-       Linux
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/SQL.html">
-       SQL
+    <a href=".././tag/WMN.html">
+       WMN
     </a>
 </li>
 
@@ -573,32 +363,26 @@
 </li>
 
 <li>
-    <a href=".././tag/Loosky.html">
-       Loosky
+    <a href=".././tag/分区.html">
+       分区
     </a>
 </li>
 
 <li>
-    <a href=".././tag/WordPress.html">
-       WordPress
+    <a href=".././tag/mesh.html">
+       mesh
     </a>
 </li>
 
 <li>
-    <a href=".././tag/WMN.html">
-       WMN
+    <a href=".././tag/github.html">
+       github
     </a>
 </li>
 
 <li>
-    <a href=".././tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/网络.html">
-       网络
+    <a href=".././tag/Markdown.html">
+       Markdown
     </a>
 </li>
 
@@ -609,8 +393,86 @@
 </li>
 
 <li>
-    <a href=".././tag/scp.html">
-       scp
+    <a href=".././tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/.html">
+       
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/Linux.html">
+       Linux
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/MESH.html">
+       MESH
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/挂载.html">
+       挂载
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/网络.html">
+       网络
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/git.html">
+       git
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/SQL.html">
+       SQL
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/Loosky.html">
+       Loosky
     </a>
 </li>
                   

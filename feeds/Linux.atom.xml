@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/Linux.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-12-01T00:00:00+08:00</updated><entry><title>CentOS配置</title><link href="http://loosky.com/Technology/2012/12/01/CentOS-Configuration.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/CentOS-Configuration.html</id><summary type="html">&lt;p&gt;推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/Linux.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-12-02T00:00:00+08:00</updated><entry><title>Linux（CentOS）挂载硬盘</title><link href="http://loosky.com/Technology/2012/12/02/harddisk.html" rel="alternate"></link><updated>2012-12-02T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-02:Technology/2012/12/02/harddisk.html</id><summary type="html">&lt;p&gt;在虚拟机中经常会碰到系统分区空间不够的问题，比如对于各种Web系统，我们可以通过挂载一个新的分区，把Web系统的目录迁移到新的分区中以扩展其空间，本文假定Web根目录位于/usr/local/webapps。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在进行下面的操作之前，切记先把web服务停掉：/usr/local/tomcat/bin/shutdown.sh&lt;br /&gt;
+操作完成后，再开启web服务： /usr/local/tomcat/bin/startup.sh&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在虚拟机中新建磁盘后，需要对其进行格式化并挂载到操作系统中，具体步骤如下：&lt;/p&gt;
+&lt;h3&gt;第一步：列出所有磁盘&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;ll&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;disk&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;要进行分区就必须针对每一个硬件设备进行操作，这就有可能是一块IDE硬盘或是一块SCSI硬盘。对于每一个硬盘（IDE或SCSI）设备，Linux分配了一个1到16的序列号码，这就代表了这块硬盘上面的分区号码。例如，第一个IDE硬盘的第一个分区，在Linux下面映射的就是hda1，第二个分区就称作是hda2。对于SCSI硬盘则是sda1、sdb1等。  &lt;/p&gt;
+&lt;p&gt;如果无法确认数据盘设备名称，请使用df命令来确认系统盘的名称，从而排除挂错盘的情况。&lt;/p&gt;
+&lt;h3&gt;第二步：格式化硬盘&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;fdisk&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sdb&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;注意：图中箭头标注处续手动键入&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;第三步：创建分区&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;mkfs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ext4&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sdb1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount3.jpg" /&gt;&lt;/p&gt;
+&lt;h3&gt;第四步：将/usr/local/webapps目录重命名为/usr/local/webapps2&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;mv&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webapps&lt;/span&gt;  &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webapps2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;第五步：挂载分区&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webapps&lt;/span&gt;
+&lt;span class="n"&gt;mount&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sdb1&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webapps&lt;/span&gt;   # 将&lt;span class="n"&gt;sdb&lt;/span&gt;这个硬盘挂载成为&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webapps&lt;/span&gt;
+&lt;span class="n"&gt;cp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rf&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webapps2&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webapps&lt;/span&gt;  #并将&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webapps2&lt;/span&gt; 目录下的内容复制到&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webapps&lt;/span&gt;目录下。
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;第六步：将信息写入fstab,让系统开启自动挂载。&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &amp;quot;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sdb1&lt;/span&gt;               &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webapps&lt;/span&gt;                   &lt;span class="n"&gt;ext4&lt;/span&gt;    &lt;span class="n"&gt;defaults&lt;/span&gt;        0 0&amp;quot; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;fstab&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;参考：&lt;a href="http://sudu.cn/service/detail.php?id=11831"&gt;http://sudu.cn/service/detail.php?id=11831&lt;/a&gt;&lt;/p&gt;</summary><category term="CentOS"></category><category term="Linux"></category><category term="分区"></category><category term="挂载"></category></entry><entry><title>CentOS配置</title><link href="http://loosky.com/Technology/2012/12/01/CentOS-Configuration.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/CentOS-Configuration.html</id><summary type="html">&lt;p&gt;推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）&lt;/p&gt;
 &lt;h3&gt;1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;DEVICE&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;eth0&lt;/span&gt;&amp;quot;
     &lt;span class="n"&gt;NM_CONTROLLED&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;yes&lt;/span&gt;&amp;quot;
