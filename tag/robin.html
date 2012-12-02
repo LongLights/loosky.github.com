@@ -58,8 +58,68 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././Research/2012/12/01/robin-WMN.html">ROBIN-Open Source Wireless Mesh Networking</a></h1> 
+                    <h1 class="entry-title"><a href=".././Research/2012/12/02/wmn-opensource-project.html">WMN方面的开源项目</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-12-02T00:00:00">
+                Sun 02 December 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href=".././category/research.html">Research</a>. </p>
+<p>tags: <a href=".././tag/mesh.html">MESH</a><a href=".././tag/openwrt.html">OpenWRT</a><a href=".././tag/robin.html">ROBIN</a><a href=".././tag/wmn.html">WMN</a></p>
+
+
+</footer><!-- /.post-info --><p>无线Mesh网络（WMN）方面的研究比较多，也有一些相关的开源项目，目前我有关注的如下：</p>
+<h3>开发环境：</h3>
+<ol>
+<li>OpenWRT（<a href="http://openwrt.org/">http://openwrt.org/</a>），这个不是针对WMN的，但是很多项目都是基于OpenWRT进行开发的。做网络方面的嵌入式开发，基本上都可以使用这个开发环境。</li>
+<li>ROBIN（<a href="http://robin.forumup.it">http://robin.forumup.it</a>）：基于OpenWRT的WMN解决方案，目前已经可以支持802.11n（ROBIN V2），但是方案不太完美。
+ROBIN Mesh：<a href="http://www.robin-mesh.net/">http://www.robin-mesh.net/</a></li>
+<li>Meraki（<a href="http://meraki.com/">http://meraki.com/</a>）</li>
+<li>Gargoyle：<a href="http://www.gargoyle-router.com/">http://www.gargoyle-router.com/</a></li>
+</ol>
+<h3>路由协议：</h3>
+<ol>
+<li>OLSRD：<a href="http://www.olsr.org/">http://www.olsr.org/</a></li>
+<li>BATMAN：<a href="http://www.open-mesh.org/">http://www.open-mesh.org/</a></li>
+<li>BATMAN adv（基于二层）：<a href="http://www.open-mesh.org/wiki/batman-adv/Wiki">http://www.open-mesh.org/wiki/batman-adv/Wiki</a></li>
+</ol>
+<h3>Dashboard：</h3>
+<ol>
+<li>Open-Mesh：<a href="http://dashboard.open-mesh.com">http://dashboard.open-mesh.com</a></li>
+<li>Meraki：<a href="http://dashboard.meraki.com/">http://dashboard.meraki.com/</a></li>
+<li>Meshconnect：<a href="http://wifimesh.trigmax.com/en/">http://wifimesh.trigmax.com/en/</a></li>
+<li>OrangeMesh:<a href="http://orangemesh.sourceforge.net/">http://orangemesh.sourceforge.net/</a></li>
+</ol><p>There are <a href=".././Research/2012/12/02/wmn-opensource-project.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href=".././Research/2012/12/01/robin-WMN.html" rel="bookmark"
+                           title="Permalink to ROBIN-Open Source Wireless Mesh Networking">ROBIN-Open Source Wireless Mesh Networking</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-12-01T00:00:00">
                 Sat 01 December 2012
         </abbr>
@@ -73,39 +133,26 @@
 <p>tags: <a href=".././tag/mesh.html">mesh</a><a href=".././tag/open-mesh.html">open-mesh</a><a href=".././tag/openwrt.html">OpenWRT</a><a href=".././tag/robin.html">ROBIN</a></p>
 
 
-</footer><!-- /.post-info --><p>The ROBIN project
+</footer><!-- /.post-info -->
+                <p>The ROBIN project
 R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.wikipedia.org/wiki/Wireless_mesh_network">mesh network</a> project, deployed on top of <a href="http://openwrt.org/">OpenWRT</a> Kamikaze, running on any Atheros AP51 routers such as <a href="http://open-mesh.com/store/">Accton MR3201A</a>, <a href="http://meraki.com/">Meraki Mini*</a> or <a href="http://www.fon.com/en/">La Fonera*</a> and using the <a href="http://www.open-mesh.org/">B.A.T.M.A.N.</a> or <a href="http://www.olsr.org/">OLSR</a> routing algorithm as cited in <a href="http://www.rushessay.com/">custom essays</a>. ROBIN spreads a wired internet connection such as a DSL throughout an apartment complex, neighborhood, village or school, and works on a variety of commonly available, low-cost hardware. ROBIN is being developed by <a href="http://www.blogin.it/">Antonio Anselmi</a></p>
 <p>Features
-• builded on top of <a href="http://www.openwrt.org/">OpenWRT kamikaze</a>
-• auto-configuration (plug &amp; play)
-• routing algorithm choice (<a href="https://www.olsr.org/">OLSR</a> or <a href="https://www.open-mesh.net/batman">BATMAN</a>)
-• Public Access Point with captive portal + WPA-PSK Private Access Point
-• <a href="http://kokoro.ucsd.edu/nodogsplash">nodogsplash</a> , <a href="http://coova.org/">CoovaAAA</a>, <a href="http://worldspot.net/">worldspot</a>, <a href="http://www.wifi-cpa.com/">wifi-cpa</a> or your own RADIUS server as Captive Portal solution
-• strict-mesh, LAN block, on-the-air update and upgrade, versions management, channel switch,...
-• support to several Dashboard Management Systems
-Robin is free software; you can redistribute it and/or modify it under the terms of the GNU General
-Public License version 2 as published by the Free Software Foundation. See COPYING for more details.</p>
-<p>Resources</p>
-<p>• Wiki <a href="http://robin-mesh.wik.is/">http://robin-mesh.wik.is/</a></p>
-<p>• subversion (svn) repository <a href="http://svn6.assembla.com/svn/RobinMesh/">http://svn6.assembla.com/svn/RobinMesh/</a></p>
-<p>• trac system <a href="http://trac6.assembla.com/RobinMesh/browser">http://trac6.assembla.com/RobinMesh/browser</a></p>
-<p>• users forum <a href="http://robin.forumup.it/">http://robin.forumup.it/</a></p><p>There are <a href=".././Research/2012/12/01/robin-WMN.html#disqus_thread">comments</a>.</p>
-                </article>
+• builded on top of <a href="http://www.openwrt.org/">OpenWRT kamikaze ...</a></p>
+                <a class="readmore" href=".././Research/2012/12/01/robin-WMN.html">read more</a>
+                <p>There are <a href=".././Research/2012/12/01/robin-WMN.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            </ol><!-- /#posts-list -->
+            
                 
-                    
 <p class="paginator">
     
     Page 1 / 1
     
 </p>
 
-                
-            </aside><!-- /#featured -->
-            
-        
-        
-        
-            </ol><!-- /#posts-list -->
             
             </section><!-- /#content -->
         
@@ -118,92 +165,8 @@ Public License version 2 as published by the Free Software Foundation. See COPYI
                         <ul>
                         
 <li>
-    <a href=".././tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/网络.html">
-       网络
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/github.html">
-       github
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Python.html">
-       Python
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/git.html">
-       git
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Linux.html">
+    <a href=".././tag/linux.html">
        Linux
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/mesh.html">
-       mesh
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/参考文献.html">
-       参考文献
     </a>
 </li>
 
@@ -214,8 +177,62 @@ Public License version 2 as published by the Free Software Foundation. See COPYI
 </li>
 
 <li>
-    <a href=".././tag/SQL.html">
-       SQL
+    <a href=".././tag/git.html">
+       git
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/github.html">
+       github
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/pelican.html">
+       Pelican
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/loosky.html">
+       Loosky
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/mesh.html">
+       mesh
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/wmn.html">
+       WMN
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/wordpress.html">
+       WordPress
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/markdown.html">
+       Markdown
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/mysql.html">
+       Mysql
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/centos.html">
+       CentOS
     </a>
 </li>
 
@@ -226,11 +243,53 @@ Public License version 2 as published by the Free Software Foundation. See COPYI
 </li>
 
 <li>
-    <a href=".././tag/WordPress.html">
-       WordPress
+    <a href=".././tag/mesh.html">
+       MESH
     </a>
 </li>
 
+<li>
+    <a href=".././tag/openwrt.html">
+       OpenWRT
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/robin.html">
+       ROBIN
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/网络.html">
+       网络
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/sql.html">
+       SQL
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/python.html">
+       Python
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+
+<li>
+    <a href=".././tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+                  
                         </ul>
         </div><!-- /.tags -->
         

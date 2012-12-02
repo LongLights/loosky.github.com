@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/WMN.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-12-02T00:00:00+08:00</updated><entry><title>WMN方面的开源项目</title><link href="http://loosky.com/Research/2012/12/02/wmn-opensource-project.html" rel="alternate"></link><updated>2012-12-02T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-02:Research/2012/12/02/wmn-opensource-project.html</id><summary type="html">&lt;p&gt;无线Mesh网络（WMN）方面的研究比较多，也有一些相关的开源项目，目前我有关注的如下：&lt;/p&gt;
+&lt;h3&gt;开发环境：&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;OpenWRT（&lt;a href="http://openwrt.org/"&gt;http://openwrt.org/&lt;/a&gt;），这个不是针对WMN的，但是很多项目都是基于OpenWRT进行开发的。做网络方面的嵌入式开发，基本上都可以使用这个开发环境。&lt;/li&gt;
+&lt;li&gt;ROBIN（&lt;a href="http://robin.forumup.it"&gt;http://robin.forumup.it&lt;/a&gt;）：基于OpenWRT的WMN解决方案，目前已经可以支持802.11n（ROBIN V2），但是方案不太完美。
+ROBIN Mesh：&lt;a href="http://www.robin-mesh.net/"&gt;http://www.robin-mesh.net/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Meraki（&lt;a href="http://meraki.com/"&gt;http://meraki.com/&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;Gargoyle：&lt;a href="http://www.gargoyle-router.com/"&gt;http://www.gargoyle-router.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;路由协议：&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;OLSRD：&lt;a href="http://www.olsr.org/"&gt;http://www.olsr.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;BATMAN：&lt;a href="http://www.open-mesh.org/"&gt;http://www.open-mesh.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;BATMAN adv（基于二层）：&lt;a href="http://www.open-mesh.org/wiki/batman-adv/Wiki"&gt;http://www.open-mesh.org/wiki/batman-adv/Wiki&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Dashboard：&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Open-Mesh：&lt;a href="http://dashboard.open-mesh.com"&gt;http://dashboard.open-mesh.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Meraki：&lt;a href="http://dashboard.meraki.com/"&gt;http://dashboard.meraki.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Meshconnect：&lt;a href="http://wifimesh.trigmax.com/en/"&gt;http://wifimesh.trigmax.com/en/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;OrangeMesh:&lt;a href="http://orangemesh.sourceforge.net/"&gt;http://orangemesh.sourceforge.net/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="MESH"></category><category term="OpenWRT"></category><category term="ROBIN"></category><category term="WMN"></category></entry></feed>
