@@ -59,6 +59,210 @@
            title="Permalink to CentOS配置">CentOS配置</a></h1>
       
     </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-12-01T00:00:00">
+                Sat 01 December 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="../../../.././author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href="../../../.././category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../../../.././tag/CentOS.html">CentOS</a><a href="../../../.././tag/Linux.html">Linux</a></p>
+
+
+</footer><!-- /.post-info -->
+      <p>推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）</p>
+<h3>1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0</h3>
+<div class="codehilite"><pre>    <span class="n">DEVICE</span><span class="p">=</span>&quot;<span class="n">eth0</span>&quot;
+    <span class="n">NM_CONTROLLED</span><span class="p">=</span>&quot;<span class="n">yes</span>&quot;
+    <span class="n">ONBOOT</span><span class="p">=</span><span class="n">yes</span>
+    <span class="n">TYPE</span><span class="p">=</span><span class="n">Ethernet</span>
+    <span class="n">BOOTPROTO</span><span class="p">=</span><span class="n">none</span>
+    <span class="n">IPADDR</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
+    <span class="n">PREFIX</span><span class="p">=</span>24
+    <span class="n">GATEWAY</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
+    <span class="n">DNS1</span><span class="p">=</span>59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
+    <span class="n">DNS2</span><span class="p">=</span>218<span class="p">.</span>85<span class="p">.</span>157<span class="p">.</span>99
+    <span class="n">DEFROUTE</span><span class="p">=</span><span class="n">yes</span>
+    <span class="n">IPV4_FAILURE_FATAL</span><span class="p">=</span><span class="n">yes</span>
+    <span class="n">IPV6INIT</span><span class="p">=</span><span class="n">no</span>
+    <span class="n">NAME</span><span class="p">=</span>&quot;<span class="n">System</span> <span class="n">eth0</span>&quot;
+</pre></div>
+
+
+<h3>2、配置DNS： vi /etc/resolv.conf</h3>
+<div class="codehilite"><pre>    <span class="n">nameserver</span> 59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
+    <span class="n">search</span> <span class="n">localdomain</span>
+
+配置好以后重启服务：
+
+    <span class="n">service</span> <span class="n">network</span> <span class="n">restart</span>
+</pre></div>
+
+
+<h3>3、解决中文乱码：vi /etc/sysconfig/i18n ：</h3>
+<div class="codehilite"><pre>    <span class="n">LANG</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span>&quot;
+    <span class="n">LANGUAGE</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">GB2312</span><span class="p">:</span><span class="n">zh_CN</span>&quot;
+    <span class="n">SUPPORTED</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN</span><span class="p">:</span><span class="n">zh</span><span class="p">:</span><span class="n">en_US</span><span class="p">.</span><span class="n">UTF</span><span class="o">-</span>8<span class="p">:</span><span class="n">en_US</span><span class="p">:</span><span class="n">en</span>&quot;
+    <span class="n">SYSFONT</span><span class="p">=</span>&quot;<span class="n">lat0</span><span class="o">-</span><span class="n">sun16</span>&quot;
+</pre></div>
+
+
+<h3>4、修改启动级别，默认为图形启动，改为字符界面： vi /etc/inittab</h3>
+<div class="codehilite"><pre>    <span class="n">id</span><span class="p">:</span>5<span class="p">:</span><span class="n">initdefault</span><span class="p">:</span>  改为 <span class="n">id</span><span class="p">:</span>3<span class="p">:</span><span class="n">initdefault</span><span class="p">:</span>
+</pre></div>
+
+
+<h3>5、VNCServer启动</h3>
+<div class="codehilite"><pre><span class="n">VNCServer</span>是一个远程连接工具，相当于<span class="n">Windows</span>下面的远程桌面，很不错，推荐使用。试过很多方法，好像都不能自启动，只好开机后手动启动一下。在自己的电脑上可以使用<span class="n">VNCViewer</span>进行连接。
+
+手动启动<span class="n">VNCServer</span>：
+    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">vncserver</span>
+    或者：<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">vncserver</span> <span class="n">start</span>
+</pre></div>
+
+
+<h3>6、开启防火墙，允许SSH和VNCServer的端口（5801和5901）：vi /etc/sysconfig/iptables</h3>
+<div class="codehilite"><pre>    <span class="c"># Firewall configuration written by system-config-securitylevel</span>
+    <span class="c"># Manual customization of this file is not recommended.</span>
+    <span class="o">*</span><span class="nb">filter</span>
+    <span class="p">:</span><span class="n">INPUT</span> <span class="n">ACCEPT</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
+    <span class="p">:</span><span class="n">FORWARD</span> <span class="n">ACCEPT</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
+    <span class="p">:</span><span class="n">OUTPUT</span> <span class="n">ACCEPT</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
+    <span class="p">:</span><span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span> <span class="p">[</span>0<span class="p">:</span>0<span class="p">]</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">FORWARD</span> <span class="o">-</span><span class="n">j</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">i</span> <span class="n">lo</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">icmp</span> <span class="o">--</span><span class="n">icmp</span><span class="o">-</span><span class="nb">type</span> <span class="nb">any</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> 50 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> 51 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> 5353 <span class="o">-</span><span class="n">d</span> 224<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>251 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">-</span><span class="n">m</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> 631 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 631 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">ESTABLISHED</span><span class="p">,</span><span class="n">RELATED</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 22 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 5801 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">NEW</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> 5901 <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+    <span class="o">-</span><span class="n">A</span> <span class="n">RH</span><span class="o">-</span><span class="n">Firewall</span><span class="o">-</span>1<span class="o">-</span><span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">REJECT</span> <span class="o">--</span><span class="n">reject</span><span class="o">-</span><span class="n">with</span> <span class="n">icmp</span><span class="o">-</span><span class="n">host</span><span class="o">-</span><span class="n">prohibited</span>
+    <span class="n">COMMIT</span>
+</pre></div>
+
+
+<h3>7、对Vi的一些配置：</h3>
+<div class="codehilite"><pre>    <span class="n">cp</span> <span class="o">/</span><span class="n">etc</span> <span class="o">~/</span><span class="p">.</span><span class="n">vimrc</span>
+    <span class="n">vi</span> <span class="o">~/</span><span class="p">.</span><span class="n">vimrc</span><span class="p">:</span>
+
+添加如下一些内容：
+
+    &quot;显示行号
+    <span class="n">set</span> <span class="n">number</span>
+
+    &quot;记录历史的行数
+    <span class="n">set</span> <span class="n">history</span><span class="p">=</span>1000
+
+    &quot;语法高亮度显示
+    <span class="n">syntax</span> <span class="n">on</span>
+
+    &quot;背景使用黑色
+    <span class="n">set</span> <span class="n">background</span><span class="p">=</span><span class="n">dark</span>
+
+    &quot;使用自动对齐，也就是把当前行的对起格式应用到下一行；
+    <span class="n">set</span> <span class="n">autoindent</span>
+
+    &quot;依据上面的对齐格式，智能的选择对齐方式，对于类似<span class="n">C</span>语言编
+    <span class="n">set</span> <span class="n">smartindent</span>
+
+    &quot;设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
+    <span class="n">set</span> <span class="n">showmatch</span>
+
+    &quot;第一行设置<span class="n">tab</span>键为4个空格，第二行设置当行之间交错时使用4个空格
+    <span class="n">set</span> <span class="n">tabstop</span><span class="p">=</span>4
+    <span class="n">set</span> <span class="n">shiftwidth</span><span class="p">=</span>4
+
+    &quot;在编辑过程中，在右下角显示光标位置的状态行
+    <span class="n">set</span> <span class="n">ruler</span>
+    <span class="n">set</span> <span class="n">incsearch</span>
+    &quot;高亮当前行
+    <span class="n">set</span> <span class="n">cursorline</span>
+</pre></div>
+
+
+<h2>安全方面的一些设置：</h2>
+<h3>1、关闭一些不必要的服务。</h3>
+<div class="codehilite"><pre>以下仅列出需要启动的服务，未列出的服务可以关闭：
+
+#<span class="n">setup</span>
+<span class="n">acpid</span>
+<span class="n">anacron</span>
+<span class="n">cpuspeed</span>
+<span class="n">crond</span>
+<span class="n">irqbalance</span> <span class="o">\\</span>仅当服务器<span class="n">CPU</span>为<span class="n">S</span><span class="p">.</span><span class="n">M</span><span class="p">.</span><span class="n">P</span>架构或支持双核心、<span class="n">HT</span>技术时，才需开启，否则关闭。
+<span class="n">microcode_ctl</span>
+<span class="n">network</span>
+<span class="n">random</span>
+<span class="n">sendmail</span>
+<span class="n">sshd</span>
+<span class="n">syslog</span>
+<span class="n">yum</span><span class="o">-</span><span class="n">updatesd</span>
+</pre></div>
+
+
+<h3>2、查看系统用户：/etc/passwd：</h3>
+<div class="codehilite"><pre>删除系统臃肿多余的账号：
+
+<span class="n">userdel</span> <span class="n">adm</span> <span class="n">userdel</span> <span class="n">lp</span> <span class="n">userdel</span> <span class="n">sync</span> <span class="n">userdel</span> <span class="n">shutdown</span> <span class="n">userdel</span> <span class="n">halt</span> <span class="n">userdel</span> <span class="n">news</span> <span class="n">userdel</span> <span class="n">uucp</span> <span class="n">userdel</span> <span class="n">operator</span> <span class="n">userdel</span> <span class="n">games</span> <span class="n">userdel</span> <span class="n">gopher</span> <span class="n">userdel</span> <span class="n">ftp</span> 如果你不允许匿名<span class="n">FTP</span>，就删掉这个用户帐号
+
+<span class="n">groupdel</span> <span class="n">adm</span> <span class="n">groupdel</span> <span class="n">lp</span> <span class="n">groupdel</span> <span class="n">news</span> <span class="n">groupdel</span> <span class="n">uucp</span> <span class="n">groupdel</span> <span class="n">games</span> <span class="n">groupdel</span> <span class="n">dip</span> <span class="n">groupdel</span> <span class="n">pppusers</span>
+</pre></div>
+
+
+<h3>3、修改权限</h3>
+<div class="codehilite"><pre>    <span class="n">chmod</span> 600 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">xinetd</span><span class="p">.</span><span class="n">conf</span>
+</pre></div>
+
+
+<h3>4、禁PING</h3>
+<div class="codehilite"><pre>    <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">local</span>   中增加一行
+    <span class="n">echo</span> 1 <span class="o">&gt;</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">net</span><span class="o">/</span><span class="n">ipv4</span><span class="o">/</span><span class="n">icmp_echo_ignore_all</span>
+</pre></div>
+
+
+<p>0表示允许 1表示禁止</p>
+<h3>5、口令文件</h3>
+<div class="codehilite"><pre><span class="n">chattr</span>命令给下面的文件加上不可更改属性，从而防止非授权用户获得权限。
+    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span>
+    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">shadow</span>
+    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">group</span>
+    # <span class="n">chattr</span> <span class="o">+</span><span class="nb">i</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">gshadow</span>
+</pre></div>
+
+
+<h3>6、禁止Ctrl Alt Delete重新启动机器命令</h3>
+<div class="codehilite"><pre>修改<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">inittab</span>文件，将”<span class="n">ca</span><span class="p">::</span><span class="n">ctrlaltdel</span><span class="p">:</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">shutdown</span> <span class="o">-</span><span class="n">t3</span> <span class="o">-</span><span class="n">r</span> <span class="n">now</span>”一行注释掉。然后重新设置<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span>目录下所有文件的许可权限，运行如下命令：
+
+    # <span class="n">chmod</span> <span class="o">-</span><span class="n">R</span> 700 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/*</span>
+
+这样便仅有<span class="n">root</span>可以读、写或执行上述所有脚本文件。
+</pre></div>
+
+
+<h3>7、更改SSH端口，最好改为10000以上，别人扫描到端口的机率也会下降</h3>
+<div class="codehilite"><pre>不允许使用低版本的<span class="n">SSH</span>协议
+
+    <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
+将#<span class="n">protocol</span> 2<span class="p">,</span>1改为
+    <span class="n">protocol</span> 2
+
+将<span class="n">PORT</span>改为1000以上端口
+
+    <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
+    <span class="n">Port</span> 10086
+</pre></div>
     </div><!-- /.entry-content -->
     
     <div class="comments">
@@ -84,110 +288,8 @@
                         <ul>
                         
 <li>
-    <a href="../../../.././tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/参考文献.html">
-       参考文献
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/scp.html">
-       scp
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Linux.html">
-       Linux
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/github.html">
-       github
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/SQL.html">
-       SQL
-    </a>
-</li>
-
-<li>
     <a href="../../../.././tag/git.html">
        git
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/mesh.html">
-       mesh
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Python.html">
-       Python
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/MESH.html">
-       MESH
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Mysql.html">
-       Mysql
     </a>
 </li>
 
@@ -198,8 +300,110 @@
 </li>
 
 <li>
+    <a href="../../../.././tag/github.html">
+       github
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/SQL.html">
+       SQL
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/scp.html">
+       scp
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Linux.html">
+       Linux
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Python.html">
+       Python
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+
+<li>
     <a href="../../../.././tag/网络.html">
        网络
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/mesh.html">
+       mesh
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/MESH.html">
+       MESH
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/WordPress.html">
+       WordPress
     </a>
 </li>
 

@@ -59,6 +59,230 @@
            title="Permalink to Mysql入门操作">Mysql入门操作</a></h1>
       
     </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-12-01T00:00:00">
+                Sat 01 December 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="../../../.././author/loosky.html">Loosky</a>
+        </address>
+        
+<p>In <a href="../../../.././category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../../../.././tag/Mysql.html">Mysql</a><a href="../../../.././tag/SQL.html">SQL</a></p>
+
+
+</footer><!-- /.post-info -->
+      <h3>一、连接MySQL</h3>
+<div class="codehilite"><pre>格式： <span class="n">mysql</span> <span class="o">-</span><span class="n">h</span>主机地址 <span class="o">-</span><span class="n">u</span>用户名 －<span class="n">p</span>用户密码
+</pre></div>
+
+
+<ol>
+<li>例1：连接到本机上的MySQL。 
+   首先打开DOS窗口，然后进入mysql安装目录下的bin文件夹，再键入命令mysql -uroot -p，回车后提示你输密码，如果刚安装好MySQL，超级用户root是没有密码的，故直接回车即可进入到MYSQL中了，MYSQL的提示符是：MySQL&gt; </li>
+<li>例2：连接到远程主机上的MySQL。假设远程主机的IP为：110.110.110.110，用户名为root,密码为123。则键入以下命令:mysql -h110.110.110.110 -uroot -p123 （注:u与root可以不用加空格，其它也一样） </li>
+<li>退出MySQL命令： exit （回车）</li>
+</ol>
+<h3>二、修改密码。</h3>
+<div class="codehilite"><pre>格式：<span class="n">mysqladmin</span> <span class="o">-</span><span class="n">u</span>用户名 <span class="o">-</span><span class="n">p</span>旧密码  <span class="n">password</span> 新密码
+</pre></div>
+
+
+<ol>
+<li>例1：给root加个密码ab12。首先在DOS下进入mysql安装目录下的bin文件夹，然后键入以下命令  mysqladmin -uroot -password 123  // 注：因为开始时root没有密码，所以-p旧密码一项就可以省略了。 </li>
+<li>
+<p>例2：再将root的密码改为345</p>
+<div class="codehilite"><pre><span class="n">mysqladmin</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p123</span> <span class="n">password</span> 345
+</pre></div>
+
+
+</li>
+</ol>
+<h3>三、增加新用户。（注意：和上面不同，下面的因为是MySQL环境中的命令，所以后面都带一个分号作为命令结束符）</h3>
+<div class="codehilite"><pre>格式：<span class="n">grant</span> <span class="n">select</span> <span class="n">on</span> 数据库<span class="o">.*</span> <span class="n">to</span> 用户名<span class="p">@</span>登录主机 <span class="n">identified</span> <span class="n">by</span> &quot;密码&quot;
+</pre></div>
+
+
+<ol>
+<li>
+<p>例1、增加一个用户test1密码为abc，让他可以在任何主机上登录，并对所有数据库有查询、插入、修改、删除的权限。
+首先用以root用户连入MySQL:</p>
+<div class="codehilite"><pre><span class="n">mysql</span><span class="o">&gt;</span><span class="n">use</span> <span class="n">mysql</span><span class="p">;</span>
+</pre></div>
+
+
+<p>然后键入以下命令： 
+    grant select,insert,update,delete on <em>.</em> to test1@"%" Identified by "abc"; </p>
+<p>但例1增加的用户是十分危险的，你想如某个人知道test1的密码，那么他就可以在internet上的任何一台电脑上登录你的MySQL数据库并对你的数据可以为所欲为了，解决办法见例2。 
+2. 例2、增加一个用户test2密码为abc,让他只可以在localhost上登录，并可以对数据库mydb进行查询、插入、修改、删除的操作（localhost指本地主机，即MYSQL数据库所在的那台主机），这样用户即使用知道test2的密码，他也无法从internet上直接访问数据库，只能通过MySQL主机上的web页来访问了。
+    grant select,insert,update,delete on mydb.<em> to test2@localhost identified by "abc"; 
+如果你不想test2有密码，可以再打一个命令将密码消掉。 
+    grant select,insert,update,delete on mydb.</em> to test2@localhost identified by "";  </p>
+</li>
+</ol>
+<h3>四、MYSQL中有关数据库方面的操作</h3>
+<p>（注意：你必须首先登录到MYSQL中，以下操作都是在MySQL的提示符下进行的，而且每个命令以分号结束。）</p>
+<ol>
+<li>
+<p>操作技巧 </p>
+<p>(1)、如果你打命令时，回车后发现忘记加分号，你无须重打一遍命令，只要打个分号回车就可以了。也就是说你可以把一个完整的命令分成几行来打，完后用分号作结束标志就OK。 </p>
+<p>(2)、你可以使用光标上下键调出以前的命令。这个以前的旧版本可能不支持。 
+2. 显示命令 </p>
+<p>(1)显示数据库列表。 </p>
+<div class="codehilite"><pre><span class="n">show</span> <span class="n">databases</span><span class="p">;</span>
+</pre></div>
+
+
+<p>刚开始时才两个数据库：mysql和test。mysql库很重要它里面有MySQL的系统信息，我们改密码和新增用户，实际上就是用这个库进行操作。 
+(2)显示库中的数据表： 
+    use mysql；   ／／打开库 
+    show tables; </p>
+<p>(3)显示数据表的结构： </p>
+<div class="codehilite"><pre><span class="n">describe</span> 表名<span class="p">;</span>
+</pre></div>
+
+
+<p>(4)建库： </p>
+<div class="codehilite"><pre><span class="n">create</span> <span class="n">database</span> 库名<span class="p">;</span>
+</pre></div>
+
+
+<p>(5)建表： </p>
+<div class="codehilite"><pre><span class="n">use</span> 库名； 
+<span class="n">create</span> <span class="n">table</span> 表名 <span class="p">(</span>字段设定列表<span class="p">)</span>；
+</pre></div>
+
+
+<p>(6)删库和删表: </p>
+<div class="codehilite"><pre><span class="n">drop</span> <span class="n">database</span>  库名<span class="p">;</span> 
+<span class="n">drop</span> <span class="n">table</span>  表名；
+</pre></div>
+
+
+<p>(7)将表中记录清空： </p>
+<div class="codehilite"><pre><span class="n">delete</span> <span class="n">from</span> 表名<span class="p">;</span>
+</pre></div>
+
+
+<p>(8)显示表中的记录： </p>
+<p>select * from 表名; </p>
+</li>
+<li>
+<p>一个建库和建表以及插入数据的实例 </p>
+<div class="codehilite"><pre><span class="n">drop</span> <span class="n">database</span> <span class="k">if</span> <span class="n">exists</span> <span class="n">school</span><span class="p">;</span> <span class="o">//</span>如果存在<span class="n">SCHOOL</span>则删除 
+<span class="n">create</span> <span class="n">database</span> <span class="n">school</span><span class="p">;</span>   <span class="o">//</span>建立库<span class="n">SCHOOL</span> 
+<span class="n">use</span> <span class="n">school</span><span class="p">;</span>        <span class="o">//</span>打开库<span class="n">SCHOOL</span> 
+<span class="n">create</span> <span class="n">table</span> <span class="n">teacher</span>   <span class="o">//</span>建立表<span class="n">TEACHER</span> 
+<span class="p">(</span> 
+    <span class="n">id</span> <span class="n">int</span><span class="p">(</span>3<span class="p">)</span> <span class="n">auto_increment</span> <span class="n">not</span> <span class="n">null</span> <span class="n">primary</span> <span class="n">key</span><span class="p">,</span> 
+    <span class="n">name</span> <span class="n">char</span><span class="p">(</span>10<span class="p">)</span> <span class="n">not</span> <span class="n">null</span><span class="p">,</span> 
+    <span class="n">address</span> <span class="n">varchar</span><span class="p">(</span>50<span class="p">)</span> <span class="n">default</span> <span class="s">&#39;深圳&#39;</span><span class="p">,</span> 
+    <span class="n">year</span> <span class="n">date</span> 
+<span class="p">);</span>            <span class="o">//</span>建表结束 
+<span class="o">//</span>以下为插入字段   
+<span class="n">insert</span> <span class="n">into</span> <span class="n">teacher</span> <span class="n">values</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;loosky&#39;</span><span class="p">,</span><span class="s">&#39;CSU&#39;</span><span class="p">,</span><span class="s">&#39;1976-10-10&#39;</span><span class="p">);</span> 
+<span class="n">insert</span> <span class="n">into</span> <span class="n">teacher</span> <span class="n">values</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;jack&#39;</span><span class="p">,</span><span class="s">&#39;CSU&#39;</span><span class="p">,</span><span class="s">&#39;1975-12-23&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>注：在建表中 </p>
+<p>（1）将ID设为长度为3的数字字段:int(3)并让它每个记录自动加一:auto_increment并不能为空:not null而且让他成为主字段primary key</p>
+<p>（2）将NAME设为长度为10的字符字段 </p>
+<p>（3）将ADDRESS设为长度50的字符字段，而且缺省值为深圳。varchar和char有什么区别呢，只有等以后的文章再说了。 </p>
+<p>（4）将YEAR设为日期字段。 </p>
+<p>如果你在mysql提示符键入上面的命令也可以，但不方便调试。你可以将以上命令原样写入一个文本文件中假设为school.sql，然后复制到c:/下，并在DOS状态进入目录MySQLbin，然后键入以下命令： 
+    mysql -uroot -p密码 &lt; c:school.sql </p>
+<p>如果成功，空出一行无任何显示；如有错误，会有提示。</p>
+</li>
+<li>
+<p>将文本数据转到数据库中 
+    (1)文本数据应符合的格式：字段数据之间用tab键隔开，null值用n来代替. </p>
+<p>例：3 rose CSU 1976-10-10 </p>
+<p>4 mike CSU 1975-12-23 </p>
+<p>(2)数据传入命令 load data local infile "文件名" into table 表名; </p>
+<p>注意：你最好将文件复制到MySQL/bin目录下，并且要先用use命令打表所在的库。</p>
+</li>
+<li>
+<p>备份数据库：（命令在DOS的MySQL/bin目录下执行） </p>
+<div class="codehilite"><pre><span class="n">mysqldump</span> <span class="o">--</span><span class="n">opt</span> <span class="n">school</span><span class="o">&gt;</span><span class="n">school</span><span class="p">.</span><span class="n">bbb</span>
+</pre></div>
+
+
+<p>注释:将数据库school备份到school.bbb文件，school.bbb是一个文本文件，文件名任取，打开看看你会有新发现。</p>
+</li>
+</ol>
+<h3>五、MySQL导入导出命令</h3>
+<ol>
+<li>
+<p>导出整个数据库</p>
+<div class="codehilite"><pre><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> 用户名 <span class="o">-</span><span class="n">p</span> 数据库名 <span class="o">&gt;</span> 导出的文件名
+<span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="n">wcnc</span> <span class="o">-</span><span class="n">p</span> <span class="n">smgp_apps_wcnc</span> <span class="o">&gt;</span> <span class="n">wcnc</span><span class="p">.</span><span class="n">sql</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>导出一个表</p>
+<div class="codehilite"><pre><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> 用户名 <span class="o">-</span><span class="n">p</span> 数据库名 表名<span class="o">&gt;</span> 导出的文件名
+<span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="n">wcnc</span> <span class="o">-</span><span class="n">p</span> <span class="n">smgp_apps_wcnc</span> <span class="n">users</span><span class="o">&gt;</span> <span class="n">wcnc_users</span><span class="p">.</span><span class="n">sql</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>导出一个数据库结构</p>
+<div class="codehilite"><pre><span class="n">mysqldump</span> <span class="o">-</span><span class="n">u</span> <span class="n">wcnc</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">drop</span><span class="o">-</span><span class="n">table</span> <span class="n">smgp_apps_wcnc</span> <span class="o">&gt;</span><span class="n">d</span><span class="p">:</span><span class="n">wcnc_db</span><span class="p">.</span><span class="n">sql</span>
+</pre></div>
+
+
+<p>-d 没有数据 --add-drop-table 在每个create语句之前增加一个drop table</p>
+</li>
+<li>
+<p>导入数据库</p>
+<p>常用source 命令</p>
+<p>进入mysql数据库控制台，</p>
+<p>如mysql -u root -p
+　　
+    mysql&gt;use 数据库
+　　
+然后使用source命令，后面参数为脚本文件(如这里用到的.sql)
+　　
+    mysql&gt;source d:wcnc_db.sql （注：如果写成source d:\wcnc_db.sql，就会报语法错误）</p>
+</li>
+</ol>
+<h3>六、“host is not allowed to connect to this mysql server”错误</h3>
+<p>在本地连本地的mysql server，一般都不会碰到"host is not allowed to connect to this mysql server"这样的错误，当远程连接mysql数据库时，就很可能出现这样的错误了。</p>
+<p>解决方法：</p>
+<p>mysql是有权限限制的。查看到底用什么主机名，可以在MySQL Command Line中这样查看：</p>
+<div class="codehilite"><pre><span class="n">mysql</span><span class="o">&gt;</span><span class="n">use</span> <span class="n">mysql</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="n">select</span> <span class="n">host</span><span class="p">,</span><span class="n">user</span><span class="p">,</span><span class="n">password</span> <span class="n">from</span> <span class="n">user</span><span class="p">;</span>   <span class="o">//</span>这样会列出数据库的用户及所使用的主机名
+<span class="n">mysql</span><span class="o">&gt;</span><span class="n">GRANT</span> <span class="n">SELECT</span><span class="p">,</span><span class="n">INSERT</span><span class="p">,</span><span class="n">UPDATE</span><span class="p">,</span><span class="n">DELETE</span> <span class="n">ON</span> <span class="p">[</span><span class="n">db_name</span><span class="p">]</span><span class="o">.*</span> <span class="n">TO</span> <span class="p">[</span><span class="n">username</span><span class="p">]@[</span><span class="n">ipadd</span><span class="p">]</span> <span class="n">identified</span> <span class="n">by</span> <span class="s">&#39;[password]&#39;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>db_name：要开发远程连接权限数据库名,不限制的话可为* </p>
+<p>username：连接所使用的用户名 </p>
+<p>ipadd：客户端所在主机的IP地址，如果要开放多个网段的链接，可以使用%作为通配符，例如，开一个一个C类网段的连接，可以使用'192.168.0.%'，地址两边的单引号是必须的。 
+password：用户密码</p>
+<div class="codehilite"><pre><span class="n">mysql</span><span class="o">&gt;</span><span class="n">grant</span> <span class="n">select</span><span class="p">,</span><span class="n">update</span><span class="p">,</span><span class="n">insert</span><span class="p">,</span><span class="n">delete</span><span class="p">,</span><span class="n">drop</span><span class="p">,</span><span class="n">create</span> <span class="n">on</span> <span class="o">*.*</span> <span class="n">to</span> <span class="n">root</span><span class="p">@</span><span class="s">&#39;ngi&#39;</span> <span class="n">identified</span> <span class="n">by</span> <span class="s">&#39;123&#39;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>查看结果，执行：</p>
+<div class="codehilite"><pre><span class="n">use</span> <span class="n">mysql</span><span class="p">;</span>
+<span class="n">select</span> <span class="n">host</span><span class="p">,</span><span class="n">user</span><span class="p">,</span><span class="n">password</span> <span class="n">from</span> <span class="n">user</span><span class="p">;</span>
+</pre></div>
+
+
+<p>可以看到在user表中已有刚才创建的ngi用户。host字段表示登录的主机，其值可以用IP，也可用主机名，将host字段的值改为%就表示在任何客户端机器上能以ngi用户登录到mysql服务器，建议在开发时设为%。</p>
+<div class="codehilite"><pre><span class="n">update</span> <span class="n">user</span> <span class="n">set</span> <span class="n">host</span> <span class="p">=</span> <span class="s">&#39;%&#39;</span> <span class="n">where</span> <span class="n">user</span> <span class="p">=</span> <span class="s">&#39;ngi&#39;</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="n">mysqladmin</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p123</span> <span class="n">reload</span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="n">mysqladmin</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p123</span> <span class="n">shutdown</span>
+</pre></div>
     </div><!-- /.entry-content -->
     
     <div class="comments">
@@ -84,110 +308,8 @@
                         <ul>
                         
 <li>
-    <a href="../../../.././tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/参考文献.html">
-       参考文献
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/scp.html">
-       scp
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Linux.html">
-       Linux
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/github.html">
-       github
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/SQL.html">
-       SQL
-    </a>
-</li>
-
-<li>
     <a href="../../../.././tag/git.html">
        git
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/mesh.html">
-       mesh
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Python.html">
-       Python
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/MESH.html">
-       MESH
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Mysql.html">
-       Mysql
     </a>
 </li>
 
@@ -198,8 +320,110 @@
 </li>
 
 <li>
+    <a href="../../../.././tag/github.html">
+       github
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/SQL.html">
+       SQL
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/scp.html">
+       scp
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Linux.html">
+       Linux
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Python.html">
+       Python
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+
+<li>
     <a href="../../../.././tag/网络.html">
        网络
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/mesh.html">
+       mesh
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/MESH.html">
+       MESH
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/WordPress.html">
+       WordPress
     </a>
 </li>
 
