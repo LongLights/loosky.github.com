@@ -59,68 +59,6 @@
            title="Permalink to 升级CentOS系统的Python">升级CentOS系统的Python</a></h1>
       
     </header>
-
-    <div class="entry-content">
-      <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href="../../../.././author/loosky.html">Loosky</a>
-        </address>
-        
-<p>In <a href="../../../.././category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../../../.././tag/centos.html">CentOS</a><a href="../../../.././tag/linux.html">Linux</a><a href="../../../.././tag/python.html">Python</a></p>
-
-
-</footer><!-- /.post-info -->
-      <h3>1、下载Python最新版本</h3>
-<div class="codehilite"><pre><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">python</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">ftp</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="o">/</span><span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">bz2</span>
-</pre></div>
-
-
-<h3>2、解压</h3>
-<div class="codehilite"><pre><span class="n">tar</span> <span class="n">jxvf</span> <span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">bz2</span>
-</pre></div>
-
-
-<h3>3、编译安装</h3>
-<div class="codehilite"><pre><span class="n">cd</span> <span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>6<span class="p">.</span>6
-<span class="o">./</span><span class="n">configure</span>
-<span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span>
-</pre></div>
-
-
-<p>Python 默认安装目录在/usr/local/lib/python2.7
-查看一下刚才安装的版本 /usr/local/lib/python2.7 -V，看到了2.7.3吧</p>
-<h3>4、更改系统默认版本</h3>
-<p>之前查看版本使用 /usr/local/lib/python2.7 -V，现在来把系统默认的Python指向刚才安装的Python2.7.3。(如果有人问为什么不把之前的版本卸载呢？呃，貌似网上有讲yum是基于系统默认老版本的，所以我也就没那样折腾)</p>
-<div class="codehilite"><pre><span class="n">mv</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span><span class="p">.</span><span class="n">bak</span>
-<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span>6 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span>
-</pre></div>
-
-
-<p>敲入 python -V 查看是否成功。</p>
-<h3>5、修复不能正常工作的yum</h3>
-<p>在完成了上面4步之后，如果有使用yum的话会发现出错，这是因为yum 依赖2.4.3而现在默认的 Python 版本是2.6.6。</p>
-<div class="codehilite"><pre><span class="n">vim</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">yum</span>
-</pre></div>
-
-
-<p>将首行显示的 !#/usr/bin/python 修改为 !#/usr/bin/python2.4
-保存搞定。</p>
-      
-      
-        <ul>
-        
-            <li><pelican.contents.Article object at 0x9bdde2c></li>
-        
-            <li><pelican.contents.Article object at 0x9b68fec></li>
-        
-        </ul>
-    
     </div><!-- /.entry-content -->
     
     <div class="comments">
@@ -146,8 +84,14 @@
                         <ul>
                         
 <li>
-    <a href="../../../.././tag/OpenWRT.html">
-       OpenWRT
+    <a href="../../../.././tag/scp.html">
+       scp
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Linux.html">
+       Linux
     </a>
 </li>
 
@@ -164,20 +108,8 @@
 </li>
 
 <li>
-    <a href="../../../.././tag/MESH.html">
-       MESH
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/scp.html">
-       scp
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/WMN.html">
-       WMN
+    <a href="../../../.././tag/WordPress.html">
+       WordPress
     </a>
 </li>
 
@@ -188,26 +120,14 @@
 </li>
 
 <li>
-    <a href="../../../.././tag/github.html">
-       github
-    </a>
-</li>
-
-<li>
     <a href="../../../.././tag/CentOS.html">
        CentOS
     </a>
 </li>
 
 <li>
-    <a href="../../../.././tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Mysql.html">
-       Mysql
+    <a href="../../../.././tag/WMN.html">
+       WMN
     </a>
 </li>
 
@@ -218,44 +138,14 @@
 </li>
 
 <li>
-    <a href="../../../.././tag/SQL.html">
-       SQL
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-
-<li>
     <a href="../../../.././tag/Markdown.html">
        Markdown
     </a>
 </li>
 
 <li>
-    <a href="../../../.././tag/mesh.html">
-       mesh
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-
-<li>
-    <a href="../../../.././tag/Python.html">
-       Python
+    <a href="../../../.././tag/OpenWRT.html">
+       OpenWRT
     </a>
 </li>
 
@@ -266,8 +156,56 @@
 </li>
 
 <li>
-    <a href="../../../.././tag/Linux.html">
-       Linux
+    <a href="../../../.././tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/MESH.html">
+       MESH
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/Python.html">
+       Python
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/mesh.html">
+       mesh
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/github.html">
+       github
+    </a>
+</li>
+
+<li>
+    <a href="../../../.././tag/SQL.html">
+       SQL
     </a>
 </li>
                   
