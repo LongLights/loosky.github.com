@@ -3,140 +3,100 @@
 <head>
         <title>Loosky's Blog - Loosky</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
-        
-        <link href="http://loosky.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Loosky's Blog Atom Feed" />
-        
-        
-
+        <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
+                
         <!--[if IE]>
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
         <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie.css"/>
-                <script src=".././js/IE8.js" type="text/javascript"></script><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="../css/ie.css"/>
+                <script src="../js/IE8.js" type="text/javascript"></script><![endif]-->
 
         <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie6.css"/><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css"/><![endif]-->
        <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
 </head>
 
 <body id="index" class="home">
-
 <a href="http://loosky.net">
-
 <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://loosky.com/theme/images/forkme_right_red.png" alt="To Loosky.net" />
-
 </a>
-
         <header id="banner" class="body">
-                <h1><a href="../.">Loosky's Blog </a></h1>
+                <h1><a href="..">Loosky's Blog </a></h1>
                 <nav><ul>
-                
-                
-                    <li ><a href=".././category/Blog.html">Blog</a></li>
-                
-                    <li ><a href=".././category/Research.html">Research</a></li>
-                
-                    <li ><a href=".././category/Technology.html">Technology</a></li>
-                
-                <li><a href=".././archives.html">Archives</a></li>
-                
-                
-                    <li><a href=".././pages/about.html">About</a></li>
-                
-                    <li><a href=".././pages/search.html">Search</a></li>
-                
-                
-                </ul></nav>
+                                                    <li ><a href="../category/Blog.html">Blog</a></li>
+                                    <li ><a href="../category/Research.html">Research</a></li>
+                                    <li ><a href="../category/Technology.html">Technology</a></li>
+                                <li><a href="../archives.html">Archives</a></li>
+                                                    <li><a href="../pages/about.html">About</a></li>
+                                    <li><a href="../pages/search.html">Search</a></li>
+                                                </ul></nav>
         </header><!-- /#banner -->
                 
-
             
 
-        
-         
-            
-                <section id="content" class="body">
+                 
+                            <section id="content" class="body">
                     <ol id="posts-list" class="hfeed" start="3">
-            
-            <li><article class="hentry">    
+                        <li><article class="hentry">    
                 <header>
-                    <h1><a href=".././Technology/2012/12/02/harddisk.html" rel="bookmark"
-                           title="Permalink to Linux（CentOS）挂载硬盘">Linux（CentOS）挂载硬盘</a></h1>
+                    <h1><a href="../Technology/2012/11/27/github.html" rel="bookmark"
+                           title="Permalink to GitHub使用">GitHub使用</a></h1>
                 </header>
                 
                 <div class="entry-content">
                 <footer class="post-info">
-        <abbr class="published" title="2012-12-02T00:00:00">
-                Sun 02 December 2012
+        <abbr class="published" title="2012-11-27T00:00:00">
+                Tue 27 November 2012
         </abbr>
 
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
+                <address class="vcard author">
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
-        
-<p>In <a href=".././category/Technology.html">Technology</a>. </p>
-<p>tags: <a href=".././tag/CentOS.html">CentOS</a><a href=".././tag/Linux.html">Linux</a><a href=".././tag/分区.html">分区</a><a href=".././tag/挂载.html">挂载</a></p>
-
-
-Translations: 
-    
-        <a href=".././Technology/2012/12/02/harddisk.html">zhs</a>
-    
-
-</footer><!-- /.post-info -->
-                <p>在虚拟机中经常会碰到系统分区空间不够的问题，比如对于各种Web系统，我们可以通过挂载一个新的分区，把Web系统的目录迁移到新的分区中以扩展其空间，本文假定Web根目录位于/usr/local/webapps。</p>
-<blockquote>
-<p>在进行下面的操作之前，切记先把web服务停掉：/usr/local/tomcat/bin/shutdown.sh<br />
-操作完成后，再开启web服务： /usr/local/tomcat/bin/startup.sh</p>
-</blockquote>
-<p>在虚拟机中新建磁盘后，需要对其进行格式化并挂载到操作系统中，具体步骤如下：</p>
-<h3>第一步：列出所有磁盘</h3>
-<div class="codehilite"><pre><span class="n">ll</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">disk</span><span class="o">/</span><span class="n">by</span><span class="o">-</span><span class="n">path</span>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/git.html">git</a><a href="../tag/github.html">github</a></p></footer><!-- /.post-info -->                <h3>一、创建github账号</h3>
+<p>github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：<a href="https://github.com">https://github.com</a>
+帐号注册成功后，点击<strong>New Repository</strong>，开始创建新版本库。用户可以创建类似于 <code>your_userid.github.com</code> 的版本库，这样就可以通过<code>http://your_userid.github.com</code>进行访问了。</p>
+<h3>二、建立本地git仓库</h3>
+<div class="codehilite"><pre><span class="c">#git config --global user.name &quot;your_userid&quot;   //提供使用者自己的身份标识</span>
+<span class="c">#git config --global user.email &quot;your_email&quot;    </span>
+<span class="c">#mkdir -p /home/work/your_userid.github.com   //建立项目</span>
+<span class="c">#cd /home/work/your_userid.github.com</span>
+<span class="c">#git init                                     //初始化git仓库</span>
 </pre></div>
 
 
-<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount1.jpg" /></p>
-<p>要进行分区就必须针对每一个硬件设备进行操作，这就有可能是一块IDE硬盘或是一块SCSI硬盘。对于每一个硬盘（IDE或SCSI）设备，Linux分配了一个1到16的序列号码，这就代表了这块硬盘上面的分区号码。例如，第一个IDE硬盘的第一个分区，在Linux下面映射的就是hda1，第二个分区就称作是hda2。对于SCSI硬盘则是sda1、sdb1等。  </p>
-<p>如果无法确认数据盘设备名称，请使用df命令来确认系统盘的名称，从而排除挂错盘的情况。</p>
-<h3>第二步：格式化硬盘</h3>
-<div class="codehilite"><pre><span class="n">fdisk</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb</span>
+<h3>三、创建项目文件</h3>
+<div class="codehilite"><pre><span class="c">#touch README</span>
+<span class="c">#git add README</span>
 </pre></div>
 
 
-<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount2.jpg" /></p>
-<p><strong><em>注意：图中箭头标注处续手动键入</em></strong></p>
-<h3>第三步：创建分区</h3>
-<div class="codehilite"><pre><span class="n">mkfs</span><span class="p">.</span><span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span>
+<p>如果添加项目目录下面所有的文件则用 <strong>git add .</strong></p>
+<h3>四、将项目提交到github管理</h3>
+<ol>
+<li>
+<p>创建SSH密钥</p>
+<div class="codehilite"><pre><span class="c">#ssh-keygen -C &#39;your_email&#39; -t rsa</span>
 </pre></div>
 
 
-<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount3.jpg" /></p>
-<h3>第四步：将/usr/local/webapps目录重命名为/usr/local/webapps2</h3>
-<div class="codehilite"><pre><span class="n">mv</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps2</span>
-</pre></div>
-
-
-<h3>第五步：挂载分区</h3>
-<div class="codehilite"><pre><span class="n">mkdir</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>
-<span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>   # 将<span class="n">sdb</span>这个硬盘挂载成为<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>
-<span class="n">cp</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local ...</span></pre></div>
-                <a class="readmore" href=".././Technology/2012/12/02/harddisk.html">read more</a>
-                <p>There are <a href=".././Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
+</li>
+<li>
+<p>找到刚才生成的密钥（默认为<strong>/root/.ssh/id_rsa.pub</strong>）文件并用文本编辑器打开，然后复制里面的内容。接着转到github站点，进入<strong>Account Setting--SSH Keys</strong> 选项后，点击<strong>add ssh key</strong> 并将刚才复制的内容粘贴保存。</p>
+</li>
+<li>
+<p>测试SSH连接。在git bash中执行以下命令：</p>
+<div class="codehilite"><pre><span class="c">#ssh -v git ...</span></pre></div></li></ol>
+                <a class="readmore" href="../Technology/2012/11/27/github.html">read more</a>
+                <p>There are <a href="../Technology/2012/11/27/github.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-        
-        
-            
+                            
 
-        
-         
-            
-            <li><article class="hentry">    
+                 
+                        <li><article class="hentry">    
                 <header>
-                    <h1><a href=".././Technology/2012/12/02/harddisk.html" rel="bookmark"
+                    <h1><a href="../Technology/2012/12/02/harddisk.html" rel="bookmark"
                            title="Permalink to 硬盘类型介绍">硬盘类型介绍</a></h1>
                 </header>
                 
@@ -146,22 +106,11 @@ Translations:
                 Sun 02 December 2012
         </abbr>
 
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
+                <address class="vcard author">
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
-        
-<p>In <a href=".././category/Technology.html">Technology</a>. </p>
-<p>tags: <a href=".././tag/.html"></a></p>
-
-
-Translations: 
-    
-        <a href=".././Technology/2012/12/02/harddisk.html">zhs</a>
-    
-
-</footer><!-- /.post-info -->
-                <blockquote>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/.html"></a></p></footer><!-- /.post-info -->                <blockquote>
 <p>本文内容有些旧，但基本概念在。摘自：<a href="http://blog.csdn.net/tianlesoftware/article/details/6009110">http://blog.csdn.net/tianlesoftware/article/details/6009110</a></p>
 </blockquote>
 <p>目前所能见到的硬盘接口类型主要有IDE、SATA、SCSI、SAS、FC等等。IDE是俗称的并口，SATA是俗称的串口，这两种硬盘是个人电脑和低端服务器常见的硬盘。SCSI是"小型计算机系统专用接口"的简称，SCSI硬盘就是采用这种接口的硬盘。SAS就是串口的SCSI接口。一般服务器硬盘采用这两类接口，其性能比上述两种硬盘要高，稳定性更强，但是价格高，容量小，噪音大。FC是光纤通道，和SCIS接口一样光纤通道最初也不是为硬盘设计开发的接口技术，是专门为网络系统设计的，但随着存储系统对速度的需求，才逐渐应用到硬盘系统中。SSD也称作电子硬盘或者固态电子盘，是由控制单元和固态存储单元（DRAM或FLASH芯片）组成的硬盘。固态硬盘的接口规范和定义、功能及使用方法上与普通硬盘的相同，在产品外形和尺寸上也与普通硬盘一致。新一代的固态硬盘普遍采用SATA-2接口，但其成本较高。</p>
@@ -169,20 +118,15 @@ Translations:
 <p>IDE（Integrated Drive Electronics集成驱动器电子）的缩写，它的本意是指把控制器与盘体集成在一起的硬盘驱动器，是一种硬盘的传输接口，它有另一个名称叫做ATA（Advanced Technology Attachment），这两个名词都有厂商在用，指的是相同的东西。
 IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名称，而这个规格同时又被称为Fast ATA。所不同的是Fast ATA是专指硬盘接口，而EIDE还制定了连接光盘等非硬盘产品的标准。而这个连接非硬盘类的IDE标准，又称为ATAPI接口。而之后再推出更快的接口，名称都只剩下ATA的字样，像是Ultra ATA、ATA/66、ATA/100等。</p>
 <p>早期的IDE接口有两种传输模式，一个是PIO（Programming I/O）模式，另一个是DMA（Direct Memory Access）。虽然DMA模式系统资源占用少，但需要额外的驱动程序或设置，因此被接受的程度比较低。后来在对速度要求愈来愈高的情况下，DMA模式由于执行效率较好，操作系统开始直接支持，而且厂商更推出了愈来愈快的DMA模式传输速度标准。而从英特尔的430TX芯片组开始，就提供了对Ultra DMA 33的支持 ...</p>
-                <a class="readmore" href=".././Technology/2012/12/02/harddisk.html">read more</a>
-                <p>There are <a href=".././Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
+                <a class="readmore" href="../Technology/2012/12/02/harddisk.html">read more</a>
+                <p>There are <a href="../Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-        
-        
-            
+                            
 
-        
-         
-            
-            <li><article class="hentry">    
+                 
+                        <li><article class="hentry">    
                 <header>
-                    <h1><a href=".././Blog/2012/11/26/helloworld.html" rel="bookmark"
+                    <h1><a href="../Blog/2012/11/26/helloworld.html" rel="bookmark"
                            title="Permalink to Hello World!">Hello World!</a></h1>
                 </header>
                 
@@ -192,32 +136,21 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                 Mon 26 November 2012
         </abbr>
 
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
+                <address class="vcard author">
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
-        
-<p>In <a href=".././category/Blog.html">Blog</a>. </p>
-<p>tags: <a href=".././tag/Loosky.html">Loosky</a><a href=".././tag/Python.html">Python</a><a href=".././tag/github.html">github</a><a href=".././tag/Pelican.html">Pelican</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>这是Loosky的个人博客，网站基于<a href="http://getpelican.com/">Pelican</a> &amp; <a href="https://github.com">GitHub</a>搭建，使用了<a href="http://www.python.org/">Python</a>技术。一切从零开始。</p>
+        <p>In <a href="../category/Blog.html">Blog</a>. </p>
+<p>tags: <a href="../tag/Loosky.html">Loosky</a><a href="../tag/Python.html">Python</a><a href="../tag/github.html">github</a><a href="../tag/Pelican.html">Pelican</a></p></footer><!-- /.post-info -->                <p>这是Loosky的个人博客，网站基于<a href="http://getpelican.com/">Pelican</a> &amp; <a href="https://github.com">GitHub</a>搭建，使用了<a href="http://www.python.org/">Python</a>技术。一切从零开始。</p>
 <p>您可以访问我的<a href="http://loosky.net">另外一个博客</a>,那里记录了从2003年以来的所有文章，包含技术、情感、生活等方面。</p>
-                <a class="readmore" href=".././Blog/2012/11/26/helloworld.html">read more</a>
-                <p>There are <a href=".././Blog/2012/11/26/helloworld.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
+                <a class="readmore" href="../Blog/2012/11/26/helloworld.html">read more</a>
+                <p>There are <a href="../Blog/2012/11/26/helloworld.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-        
-        
-            
+                            
 
-        
-         
-            
-            <li><article class="hentry">    
+                 
+                        <li><article class="hentry">    
                 <header>
-                    <h1><a href=".././Technology/2012/12/01/mysql-tuition.html" rel="bookmark"
+                    <h1><a href="../Technology/2012/12/01/mysql-tuition.html" rel="bookmark"
                            title="Permalink to Mysql入门操作">Mysql入门操作</a></h1>
                 </header>
                 
@@ -227,17 +160,11 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                 Sat 01 December 2012
         </abbr>
 
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/loosky.html">Loosky</a>
+                <address class="vcard author">
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
-        
-<p>In <a href=".././category/Technology.html">Technology</a>. </p>
-<p>tags: <a href=".././tag/Mysql.html">Mysql</a><a href=".././tag/SQL.html">SQL</a></p>
-
-
-</footer><!-- /.post-info -->
-                <h3>一、连接MySQL</h3>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/Mysql.html">Mysql</a><a href="../tag/SQL.html">SQL</a></p></footer><!-- /.post-info -->                <h3>一、连接MySQL</h3>
 <div class="codehilite"><pre>格式： <span class="n">mysql</span> <span class="o">-</span><span class="n">h</span>主机地址 <span class="o">-</span><span class="n">u</span>用户名 －<span class="n">p</span>用户密码
 </pre></div>
 
@@ -273,231 +200,175 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
 <p>例1、增加一个用户test1密码为abc，让他可以在任何主机上登录，并对所有数据库有查询、插入、修改、删除的权限。
 首先用以root用户连入MySQL:</p>
 <div class="codehilite"><pre><span class="n">mysql ...</span></pre></div></li></ol>
-                <a class="readmore" href=".././Technology/2012/12/01/mysql-tuition.html">read more</a>
-                <p>There are <a href=".././Technology/2012/12/01/mysql-tuition.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
+                <a class="readmore" href="../Technology/2012/12/01/mysql-tuition.html">read more</a>
+                <p>There are <a href="../Technology/2012/12/01/mysql-tuition.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-        
-        
-            </ol><!-- /#posts-list -->
-            
-                
-<p class="paginator">
-    
-        
-            <a href=".././author/Loosky.html">&laquo;</a>
-        
-    
-    Page 2 / 4
-    
-        <a href=".././author/Loosky3.html">&raquo;</a>
-    
-</p>
-
-            
-            </section><!-- /#content -->
-        
-    
-
-
-        <section id="extras" class="body">
+                            </ol><!-- /#posts-list -->
+                            <p class="paginator">
+                        <a href="../author/loosky.html">&laquo;</a>
+                Page 2 / 4
+            <a href="../author/loosky3.html">&raquo;</a>
+    </p>
+                        </section><!-- /#content -->
+                    <section id="extras" class="body">
         <div class="tags">
                         <h2>Tags</h2>
                         <ul>
-                        
-<li>
-    <a href=".././tag/github.html">
-       github
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Markdown.html">
+                        <li>
+    <a href="../tag/Markdown.html">
        Markdown
     </a>
 </li>
-
 <li>
-    <a href=".././tag/参考文献.html">
-       参考文献
+    <a href="../tag/OpenWRT.html">
+       OpenWRT
     </a>
 </li>
-
 <li>
-    <a href=".././tag/Python.html">
-       Python
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/挂载.html">
-       挂载
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/SQL.html">
-       SQL
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/git.html">
-       git
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/WordPress.html">
+    <a href="../tag/WordPress.html">
        WordPress
     </a>
 </li>
-
 <li>
-    <a href=".././tag/mesh.html">
+    <a href="../tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="../tag/mesh.html">
        mesh
     </a>
 </li>
-
 <li>
-    <a href=".././tag/scp.html">
-       scp
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/吞吐量.html">
+    <a href="../tag/吞吐量.html">
        吞吐量
     </a>
 </li>
-
 <li>
-    <a href=".././tag/MESH.html">
-       MESH
+    <a href="../tag/ROBIN.html">
+       ROBIN
     </a>
 </li>
-
 <li>
-    <a href=".././tag/Linux.html">
-       Linux
+    <a href="../tag/WMN.html">
+       WMN
     </a>
 </li>
-
 <li>
-    <a href=".././tag/分区.html">
-       分区
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Mysql.html">
+    <a href="../tag/Mysql.html">
        Mysql
     </a>
 </li>
-
 <li>
-    <a href=".././tag/网络.html">
+    <a href="../tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="../tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="../tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="../tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="../tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="../tag/网络.html">
        网络
     </a>
 </li>
-
 <li>
-    <a href=".././tag/.html">
-       
-    </a>
-</li>
-
-<li>
-    <a href=".././tag/Pelican.html">
+    <a href="../tag/Pelican.html">
        Pelican
     </a>
 </li>
-
 <li>
-    <a href=".././tag/WMN.html">
-       WMN
+    <a href="../tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+<li>
+    <a href="../tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="../tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="../tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="../tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="../tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="../tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="../tag/Loosky.html">
+       Loosky
     </a>
 </li>
                   
                         </ul>
         </div><!-- /.tags -->
-        
-                <div class="blogroll">
+                        <div class="blogroll">
                         <h2>blogroll</h2>
                         <ul>
-                        
-                            <li><a href="http://loosky.net">Loosky</a></li>
-                        
-                            <li><a href="http://www.worldhello.net/">worldhello</a></li>
-                        
-                            <li><a href="http://wowubuntu.com/">Wow! Ubuntu</a></li>
-                        
-                            <li><a href="http://wowubuntu.com/markdown/index.html">Markdown Manual</a></li>
-                        
-                            <li><a href="http://www.yangzhiping.com/">Yang Zhiping</a></li>
-                        
-                            <li><a href="http://yihui.name/">Yihui Xie</a></li>
-                        
-                        </ul>
+                                                    <li><a href="http://loosky.net/">Loosky</a></li>
+                                                    <li><a href="http://www.worldhello.net/">worldhello</a></li>
+                                                    <li><a href="http://wowubuntu.com/">Wow! Ubuntu</a></li>
+                                                    <li><a href="http://wowubuntu.com/markdown/index.html">Markdown Manual</a></li>
+                                                    <li><a href="http://www.yangzhiping.com/">Yang Zhiping</a></li>
+                                                    <li><a href="http://yihui.name/">Yihui Xie</a></li>
+                                                    <li><a href="http://blog.liuts.com/">Liu Tiansi</a></li>
+                                                    <li><a href="http://www.dbanotes.net/">DBA Notes</a></li>
+                                                    <li><a href="http://blog.s135.com/">Zhang Yan</a></li>
+                                                </ul>
                 </div><!-- /.blogroll -->
                         
-          
-                <div class="social">
+                          <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="http://loosky.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="http://loosky.com/" type="application/atom+xml" rel="alternate">atom feed</a></li>
                             
-
-                        
-                            <li><a href="https://github.com/loosky">GitHub</a></li>
-                        
-                            <li><a href="http://weibo.com/loosky">Weibo</a></li>
-                        
-                            <li><a href="http://www.douban.com/people/loosky/">Douban</a></li>
-                        
-                        </ul>
+                                                    <li><a href="https://github.com/loosky">GitHub</a></li>
+                                                    <li><a href="http://weibo.com/loosky">Weibo</a></li>
+                                                    <li><a href="http://www.douban.com/people/loosky/">Douban</a></li>
+                                                </ul>
                 </div><!-- /.social -->
-        
-        </section><!-- /#extras -->
+                </section><!-- /#extras -->
 
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
                 Proudly powered by <a href="http://getpelican.com/">Pelican</a> and Theme by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>.
                 </address><!-- /#about -->
         </footer><!-- /#contentinfo -->
-
-
-
 
 <script type="text/javascript">
     var disqus_shortname = 'looskyblog';
@@ -508,7 +379,6 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 </script>
-
 <script type='text/javascript' src='http://loosky.com/theme/loosky.js?ver=20121127'></script>
 </body>
 </html>

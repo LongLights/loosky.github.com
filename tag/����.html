@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Loosky's Blog - Loosky</title>
+        <title>Loosky's Blog - 挂载</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
                 
@@ -37,18 +37,61 @@
 
                             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../Blog/2012/11/26/helloworld.html">Hello World!</a></h1> 
+                    <h1 class="entry-title"><a href="../Technology/2012/12/02/Linux-mount-harddisk.html">Linux（CentOS）挂载硬盘</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2012-11-26T00:00:00">
-                Mon 26 November 2012
+        <abbr class="published" title="2012-12-02T00:00:00">
+                Sun 02 December 2012
         </abbr>
 
                 <address class="vcard author">
                 By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
-        <p>In <a href="../category/Blog.html">Blog</a>. </p>
-<p>tags: <a href="../tag/Loosky.html">Loosky</a><a href="../tag/Python.html">Python</a><a href="../tag/github.html">github</a><a href="../tag/Pelican.html">Pelican</a></p></footer><!-- /.post-info --><p>这是Loosky的个人博客，网站基于<a href="http://getpelican.com/">Pelican</a> &amp; <a href="https://github.com">GitHub</a>搭建，使用了<a href="http://www.python.org/">Python</a>技术。一切从零开始。</p>
-<p>您可以访问我的<a href="http://loosky.net">另外一个博客</a>,那里记录了从2003年以来的所有文章，包含技术、情感、生活等方面。</p><p>There are <a href="../Blog/2012/11/26/helloworld.html#disqus_thread">comments</a>.</p>                </article>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/CentOS.html">CentOS</a><a href="../tag/Linux.html">Linux</a><a href="../tag/分区.html">分区</a><a href="../tag/挂载.html">挂载</a></p></footer><!-- /.post-info --><p>在虚拟机中经常会碰到系统分区空间不够的问题，比如对于各种Web系统，我们可以通过挂载一个新的分区，把Web系统的目录迁移到新的分区中以扩展其空间，本文假定Web根目录位于/usr/local/webapps。</p>
+<blockquote>
+<p>在进行下面的操作之前，切记先把web服务停掉：/usr/local/tomcat/bin/shutdown.sh<br />
+操作完成后，再开启web服务： /usr/local/tomcat/bin/startup.sh</p>
+</blockquote>
+<p>在虚拟机中新建磁盘后，需要对其进行格式化并挂载到操作系统中，具体步骤如下：</p>
+<h3>第一步：列出所有磁盘</h3>
+<div class="codehilite"><pre><span class="n">ll</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">disk</span><span class="o">/</span><span class="n">by</span><span class="o">-</span><span class="n">path</span>
+</pre></div>
+
+
+<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount1.jpg" /></p>
+<p>要进行分区就必须针对每一个硬件设备进行操作，这就有可能是一块IDE硬盘或是一块SCSI硬盘。对于每一个硬盘（IDE或SCSI）设备，Linux分配了一个1到16的序列号码，这就代表了这块硬盘上面的分区号码。例如，第一个IDE硬盘的第一个分区，在Linux下面映射的就是hda1，第二个分区就称作是hda2。对于SCSI硬盘则是sda1、sdb1等。  </p>
+<p>如果无法确认数据盘设备名称，请使用df命令来确认系统盘的名称，从而排除挂错盘的情况。</p>
+<h3>第二步：格式化硬盘</h3>
+<div class="codehilite"><pre><span class="n">fdisk</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb</span>
+</pre></div>
+
+
+<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount2.jpg" /></p>
+<p><strong><em>注意：图中箭头标注处续手动键入</em></strong></p>
+<h3>第三步：创建分区</h3>
+<div class="codehilite"><pre><span class="n">mkfs</span><span class="p">.</span><span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span>
+</pre></div>
+
+
+<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount3.jpg" /></p>
+<h3>第四步：将/usr/local/webapps目录重命名为/usr/local/webapps2</h3>
+<div class="codehilite"><pre><span class="n">mv</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps2</span>
+</pre></div>
+
+
+<h3>第五步：挂载分区</h3>
+<div class="codehilite"><pre><span class="n">mkdir</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>
+<span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>   # 将<span class="n">sdb</span>这个硬盘挂载成为<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>
+<span class="n">cp</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps2</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>  #并将<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps2</span> 目录下的内容复制到<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>目录下。
+</pre></div>
+
+
+<h3>第六步：将信息写入fstab,让系统开启自动挂载。</h3>
+<div class="codehilite"><pre><span class="n">echo</span> &quot;<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span>               <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>                   <span class="n">ext4</span>    <span class="n">defaults</span>        0 0&quot; <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fstab</span>
+</pre></div>
+
+
+<p>参考：<a href="http://sudu.cn/service/detail.php?id=11831">http://sudu.cn/service/detail.php?id=11831</a></p><p>There are <a href="../Technology/2012/12/02/Linux-mount-harddisk.html#disqus_thread">comments</a>.</p>                </article>
                                     <p class="paginator">
         Page 1 / 1
     </p>

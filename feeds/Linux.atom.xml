@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/Linux.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-12-02T00:00:00+08:00</updated><entry><title>Linux（CentOS）挂载硬盘</title><link href="http://loosky.com/Technology/2012/12/02/harddisk.html" rel="alternate"></link><updated>2012-12-02T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-02:Technology/2012/12/02/harddisk.html</id><summary type="html">&lt;p&gt;在虚拟机中经常会碰到系统分区空间不够的问题，比如对于各种Web系统，我们可以通过挂载一个新的分区，把Web系统的目录迁移到新的分区中以扩展其空间，本文假定Web根目录位于/usr/local/webapps。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/Linux.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2012-12-02T00:00:00+08:00</updated><entry><title>Linux（CentOS）挂载硬盘</title><link href="http://loosky.com/Technology/2012/12/02/Linux-mount-harddisk.html" rel="alternate"></link><updated>2012-12-02T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-02:Technology/2012/12/02/Linux-mount-harddisk.html</id><summary type="html">&lt;p&gt;在虚拟机中经常会碰到系统分区空间不够的问题，比如对于各种Web系统，我们可以通过挂载一个新的分区，把Web系统的目录迁移到新的分区中以扩展其空间，本文假定Web根目录位于/usr/local/webapps。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;在进行下面的操作之前，切记先把web服务停掉：/usr/local/tomcat/bin/shutdown.sh&lt;br /&gt;
 操作完成后，再开启web服务： /usr/local/tomcat/bin/startup.sh&lt;/p&gt;
@@ -43,7 +43,70 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;参考：&lt;a href="http://sudu.cn/service/detail.php?id=11831"&gt;http://sudu.cn/service/detail.php?id=11831&lt;/a&gt;&lt;/p&gt;</summary><category term="CentOS"></category><category term="Linux"></category><category term="分区"></category><category term="挂载"></category></entry><entry><title>CentOS配置</title><link href="http://loosky.com/Technology/2012/12/01/CentOS-Configuration.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/CentOS-Configuration.html</id><summary type="html">&lt;p&gt;推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）&lt;/p&gt;
+&lt;p&gt;参考：&lt;a href="http://sudu.cn/service/detail.php?id=11831"&gt;http://sudu.cn/service/detail.php?id=11831&lt;/a&gt;&lt;/p&gt;</summary><category term="CentOS"></category><category term="Linux"></category><category term="分区"></category><category term="挂载"></category></entry><entry><title>升级CentOS系统的Python</title><link href="http://loosky.com/Technology/2012/12/01/python-upgrade.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/python-upgrade.html</id><summary type="html">&lt;h3&gt;1、下载Python最新版本&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;2、解压&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;jxvf&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;3、编译安装&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;6&lt;span class="p"&gt;.&lt;/span&gt;6
+&lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Python 默认安装目录在/usr/local/lib/python2.7
+查看一下刚才安装的版本 /usr/local/lib/python2.7 -V，看到了2.7.3吧&lt;/p&gt;
+&lt;h3&gt;4、更改系统默认版本&lt;/h3&gt;
+&lt;p&gt;之前查看版本使用 /usr/local/lib/python2.7 -V，现在来把系统默认的Python指向刚才安装的Python2.7.3。(如果有人问为什么不把之前的版本卸载呢？呃，貌似网上有讲yum是基于系统默认老版本的，所以我也就没那样折腾)&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;mv&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bak&lt;/span&gt;
+&lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;6 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;敲入 python -V 查看是否成功。&lt;/p&gt;
+&lt;h3&gt;5、修复不能正常工作的yum&lt;/h3&gt;
+&lt;p&gt;在完成了上面4步之后，如果有使用yum的话会发现出错，这是因为yum 依赖2.4.3而现在默认的 Python 版本是2.6.6。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;yum&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;将首行显示的 !#/usr/bin/python 修改为 !#/usr/bin/python2.4
+保存搞定。&lt;/p&gt;</summary><category term="CentOS"></category><category term="Linux"></category><category term="Python"></category></entry><entry><title>Linux系统之间拷贝文件</title><link href="http://loosky.com/Technology/2012/12/01/Linux-scp.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/Linux-scp.html</id><summary type="html">&lt;p&gt;Linux系统之间拷贝文件常用有3种方法：&lt;/p&gt;
+&lt;p&gt;第一种就是ftp，也就是其中一台Linux安装ftp Server，这样另外一台可以使用ftp来进行文件的拷贝。&lt;/p&gt;
+&lt;p&gt;第二种方法就是采用samba服务，类似Windows文件复制的方式来操作，比较简洁方便。&lt;/p&gt;
+&lt;p&gt;第三种就是利用scp命令来进行文件拷贝。&lt;/p&gt;
+&lt;p&gt;相对来说，个人觉得scp比较快捷、方便一点。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;scp复制文件或目录命令：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;复制文件：&lt;/p&gt;
+&lt;p&gt;（1）将本地文件拷贝到远程&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; 文件名 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;远程路径
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;（2）从远程将文件拷回本地&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;文件名 本地路径
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;复制目录：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;（1）将本地目录拷贝到远程&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; 目录名 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;远程路径
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;（2）从远程将目录拷回本地&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;目录名 本地路径
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="scp"></category></entry><entry><title>CentOS配置</title><link href="http://loosky.com/Technology/2012/12/01/CentOS-Configuration.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/CentOS-Configuration.html</id><summary type="html">&lt;p&gt;推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）&lt;/p&gt;
 &lt;h3&gt;1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;DEVICE&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;eth0&lt;/span&gt;&amp;quot;
     &lt;span class="n"&gt;NM_CONTROLLED&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;yes&lt;/span&gt;&amp;quot;
@@ -229,67 +292,4 @@
 
     &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sshd_config&lt;/span&gt;
     &lt;span class="n"&gt;Port&lt;/span&gt; 10086
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="CentOS"></category><category term="Linux"></category></entry><entry><title>Linux系统之间拷贝文件</title><link href="http://loosky.com/Technology/2012/12/01/Linux-scp.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/Linux-scp.html</id><summary type="html">&lt;p&gt;Linux系统之间拷贝文件常用有3种方法：&lt;/p&gt;
-&lt;p&gt;第一种就是ftp，也就是其中一台Linux安装ftp Server，这样另外一台可以使用ftp来进行文件的拷贝。&lt;/p&gt;
-&lt;p&gt;第二种方法就是采用samba服务，类似Windows文件复制的方式来操作，比较简洁方便。&lt;/p&gt;
-&lt;p&gt;第三种就是利用scp命令来进行文件拷贝。&lt;/p&gt;
-&lt;p&gt;相对来说，个人觉得scp比较快捷、方便一点。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;scp复制文件或目录命令：&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;复制文件：&lt;/p&gt;
-&lt;p&gt;（1）将本地文件拷贝到远程&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; 文件名 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;远程路径
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;（2）从远程将文件拷回本地&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;文件名 本地路径
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ol&gt;
-&lt;li&gt;复制目录：&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;（1）将本地目录拷贝到远程&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; 目录名 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;远程路径
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;（2）从远程将目录拷回本地&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;目录名 本地路径
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="scp"></category></entry><entry><title>升级CentOS系统的Python</title><link href="http://loosky.com/Technology/2012/12/01/python-upgrade.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/python-upgrade.html</id><summary type="html">&lt;h3&gt;1、下载Python最新版本&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ftp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;2、解压&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;jxvf&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bz2&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;3、编译安装&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;6&lt;span class="p"&gt;.&lt;/span&gt;6
-&lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt;
-&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Python 默认安装目录在/usr/local/lib/python2.7
-查看一下刚才安装的版本 /usr/local/lib/python2.7 -V，看到了2.7.3吧&lt;/p&gt;
-&lt;h3&gt;4、更改系统默认版本&lt;/h3&gt;
-&lt;p&gt;之前查看版本使用 /usr/local/lib/python2.7 -V，现在来把系统默认的Python指向刚才安装的Python2.7.3。(如果有人问为什么不把之前的版本卸载呢？呃，貌似网上有讲yum是基于系统默认老版本的，所以我也就没那样折腾)&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;mv&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bak&lt;/span&gt;
-&lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;6 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;敲入 python -V 查看是否成功。&lt;/p&gt;
-&lt;h3&gt;5、修复不能正常工作的yum&lt;/h3&gt;
-&lt;p&gt;在完成了上面4步之后，如果有使用yum的话会发现出错，这是因为yum 依赖2.4.3而现在默认的 Python 版本是2.6.6。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;vim&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;yum&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;将首行显示的 !#/usr/bin/python 修改为 !#/usr/bin/python2.4
-保存搞定。&lt;/p&gt;</summary><category term="CentOS"></category><category term="Linux"></category><category term="Python"></category></entry></feed>
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="CentOS"></category><category term="Linux"></category></entry></feed>
