@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Loosky's Blog - git</title>
+        <title>Loosky's Blog - use-Redis-to-Accelerate-WordPress</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
                 
@@ -37,129 +37,82 @@
 
                             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../Technology/2012/11/27/github.html">GitHub使用</a></h1> 
+                    <h1 class="entry-title"><a href="../Technology/2013/01/07/Redis,WordPress.html">使用Redis来加速WordPress</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2012-11-27T00:00:00">
-                Tue 27 November 2012
+        <abbr class="published" title="2013-01-07T00:00:00">
+                Mon 07 January 2013
         </abbr>
 
                 <address class="vcard author">
                 By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
         <p>In <a href="../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../tag/git.html">git</a><a href="../tag/github.html">github</a></p></footer><!-- /.post-info --><h3>一、创建github账号</h3>
-<p>github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：<a href="https://github.com">https://github.com</a>
-帐号注册成功后，点击<strong>New Repository</strong>，开始创建新版本库。用户可以创建类似于 <code>your_userid.github.com</code> 的版本库，这样就可以通过<code>http://your_userid.github.com</code>进行访问了。</p>
-<h3>二、建立本地git仓库</h3>
-<div class="codehilite"><pre><span class="c">#git config --global user.name &quot;your_userid&quot;   //提供使用者自己的身份标识</span>
-<span class="c">#git config --global user.email &quot;your_email&quot;    </span>
-<span class="c">#mkdir -p /home/work/your_userid.github.com   //建立项目</span>
-<span class="c">#cd /home/work/your_userid.github.com</span>
-<span class="c">#git init                                     //初始化git仓库</span>
+<p>tags: <a href="../tag/use-Redis-to-Accelerate-WordPress.html">use-Redis-to-Accelerate-WordPress</a></p></footer><!-- /.post-info --><h2>1、安装 Redis</h2>
+<p>官方网站：<a href="http://redis.io/download">http://redis.io/download</a></p>
+<div class="codehilite"><pre><span class="c"># cd /usr/local/src</span>
+<span class="c"># wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz</span>
+<span class="c"># tar xzf redis-2.6.7.tar.gz</span>
+<span class="c"># cd redis-2.6.7</span>
+<span class="c"># make</span>
 </pre></div>
 
 
-<h3>三、创建项目文件</h3>
-<div class="codehilite"><pre><span class="c">#touch README</span>
-<span class="c">#git add README</span>
+<p>安装完成后，启动Redis</p>
+<div class="codehilite"><pre><span class="c">#/usr/local/src/redis-2.6.7/src/redis-server</span>
 </pre></div>
 
 
-<p>如果添加项目目录下面所有的文件则用 <strong>git add .</strong></p>
-<h3>四、将项目提交到github管理</h3>
+<p>也可以将Redis加入开机自启动</p>
+<div class="codehilite"><pre><span class="c">#vi /etc/rc.d/rc.local</span>
+</pre></div>
+
+
+<p>加入</p>
+<div class="codehilite"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span>2<span class="p">.</span>6<span class="p">.</span>7<span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">server</span>
+</pre></div>
+
+
+<h2>2、使用 Predis 作为 Redis 的 PHP 客户端</h2>
+<p>你需要一个客户端开发包以便 PHP 可以连接到 Redis 服务上。这里我们推荐 [Predis(https://github.com/nrk/predis/)，上传 <a href="http://uploads.staticjw.com/ji/jim/predis.php">predis.php</a> 到 WordPress 的根目录。</p>
+<blockquote>
+<p>注意：Predis需要PHP的版本&gt;5.3。</p>
+</blockquote>
+<p>问题：在系统的PHP版本升级到5.3.X以上时，会出现WordPress的主题不能显示和编辑的情况，这主要是由于PHP中禁用了部分存在危险的PHP函数，与上述情况相关的函数是scandir</p>
+<p>解决方案：</p>
+<p>1、编辑PHP配置文件：</p>
+<div class="codehilite"><pre><span class="n">vi</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">php</span><span class="p">.</span><span class="n">ini</span>
+</pre></div>
+
+
+<p>寻找disable_functions字符串，将后面的scandir删除</p>
+<p>2、重启PHP生效</p>
+<div class="codehilite"><pre><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">php</span><span class="o">-</span><span class="n">fpm</span> <span class="n">restart</span>
+</pre></div>
+
+
+<h3>3、前端缓存的 PHP 脚本</h3>
+<p>1.在 WordPress的根目录创建新文件 index-with-redis.php，<a href="https://gist.github.com/3053250">下载地址</a></p>
+<p>2.修改文件中的变量进行自定义</p>
+<p>3.如果使用Apache，需在 .htaccess 中将所有出现 index.php 的地方改为 index-with-redis.php ；如果使用的是 Nginx，则将WordPress中的index.php重命名，并将index-with-redis.php 重命名为index.php。需要注意的是在每次升级后需要重新进行上述操作。</p>
+<p>同时，需要在 Nginx 配置文件中单独对 /wp-admin/ 指定一下 index.php 文件. 类似如下:</p>
+<div class="codehilite"><pre><span class="n">location</span> <span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span> <span class="p">{</span>
+    <span class="n">index</span>  <span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>参考文献：</p>
 <ol>
 <li>
-<p>创建SSH密钥</p>
-<div class="codehilite"><pre><span class="c">#ssh-keygen -C &#39;your_email&#39; -t rsa</span>
-</pre></div>
-
-
+<p><a href="http://dbanotes.net/sitelog/movable-type-2-wordpress.html">http://dbanotes.net/sitelog/movable-type-2-wordpress.html</a></p>
 </li>
 <li>
-<p>找到刚才生成的密钥（默认为<strong>/root/.ssh/id_rsa.pub</strong>）文件并用文本编辑器打开，然后复制里面的内容。接着转到github站点，进入<strong>Account Setting--SSH Keys</strong> 选项后，点击<strong>add ssh key</strong> 并将刚才复制的内容粘贴保存。</p>
+<p><a href="http://www.jimwestergren.com/wordpress-with-redis-as-a-frontend-cache/">How to load WordPress in a few milliseconds using Redis</a></p>
 </li>
 <li>
-<p>测试SSH连接。在git bash中执行以下命令：</p>
-<div class="codehilite"><pre><span class="c">#ssh -v git@github.com</span>
-</pre></div>
-
-
-<p>如果出现类似 <code>Hi loosky! You've successfully authenticated, but GitHub does not provide shell access.</code> 的提示，则证明SSH连接工作正常了</p>
+<p><a href="http://timyang.net/data/redis-misunderstanding/">Redis几个认识误区</a></p>
 </li>
-<li>
-<p>提交项目</p>
-<div class="codehilite"><pre><span class="c">#git commit -m &#39;first commit&#39;</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>添加远程仓库</p>
-<div class="codehilite"><pre><span class="c">#git remote add origin https://github.com/your_userid/your_userid.github.com.git</span>
-</pre></div>
-
-
-<p>这个只是第一次操作的时候需要，后面再次进行项目提交时，并不需要重复这个操作。</p>
-<p>如果出现：error: The requested URL returned error: 403 while accessing ... 的错误，可以编辑.git/config</p>
-<p>将url=https://github.com/your_userid/your_userid.github.com.git 改为 url=ssh://git@github.com/your_userid/your_userid.github.com.git</p>
-</li>
-<li>
-<p>push 到 GitCafe 仓库</p>
-<div class="codehilite"><pre><span class="c">#git push origin master</span>
-</pre></div>
-
-
-<p>如果出现：error: failed to push some refs to 'ssh://git@github.com/your_userid/your_userid.github.com.git' To prevent you from losing history, non-fast-forward updates were rejected Merge the remote changes before pushing again.  See the 'Note about fast-forwards' section of 'git push --help' for details.</p>
-<p>解决办法：git push origin +master</p>
-</li>
-</ol>
-<p>push 完成以后就可以在访问 GitCafe Pages 地址了。<a href="http://your_userid.github.com">http://your_userid.github.com</a></p>
-<h3>删除git文件</h3>
-<p>项目中，在本地删除了一些文件后，如果也删除远程服务器上的文件？</p>
-<ol>
-<li>
-<p>查看本地已经删除的文件</p>
-<div class="codehilite"><pre><span class="c"># git status   //可以看到我们删除的哪些文件</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>从当前的工作目录中和索引中删除文件</p>
-<div class="codehilite"><pre><span class="c">#git rm –r * （进入某个目录中，执行此语句，会删除该目录下的所有文件和子目录） </span>
-<span class="c">#git rm f1    (删除文件f1，包含本地目录和index中的此文件记录) </span>
-<span class="c">#git rm --ached f1 (删除文件f1，不会删除本地目录文件，只删除index中的文件记录；将已经git add的文件remove到cache中,这样commit的时候不会提交这个文件, 适用于一下子添加了很多文件, 却又想排除其中个别几个文件的情况.)</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>按照上面的方法重新提交。</p>
-</li>
-</ol>
-<h3>自动发布</h3>
-<p>为了方便下次发布，可以创建了自动发布的脚本publish</p>
-<div class="codehilite"><pre><span class="c">#cd /home/work</span>
-<span class="c">#vi publish</span>
-
-<span class="n">cd</span> <span class="n">your_userid</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">.</span> 
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">&quot;Update&quot;</span>
-<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
-<span class="n">cd</span> <span class="p">.</span><span class="o">./</span>
-</pre></div>
-
-
-<h3>参考</h3>
-<ol>
-<li><a href="https://help.github.com/articles/set-up-git#platform-linux">Set Up Git</a></li>
-<li><a href="https://help.github.com/articles/create-a-repo">Create A Repo</a></li>
-<li><a href="http://artori.us/git-github-usage/">Git/Github使用方法小记</a></li>
-<li><a href="http://hi.baidu.com/mcspring/item/198f1e977f8f98bccd80e5b3">windows下使用git管理github项目</a></li>
-<li><a href="http://www.yangzhiping.com/tech/github.html">如何高效利用GitHub</a></li>
-<li><a href="http://www.worldhello.net/gotgithub/index.html">GotGitHub</a></li>
-<li><a href="http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed">Pushing to Git returning Error Code 403 fatal: HTTP request failed</a></li>
-</ol><p>There are <a href="../Technology/2012/11/27/github.html#disqus_thread">comments</a>.</p>                </article>
+</ol><p>There are <a href="../Technology/2013/01/07/Redis,WordPress.html#disqus_thread">comments</a>.</p>                </article>
                                     <p class="paginator">
         Page 1 / 1
     </p>

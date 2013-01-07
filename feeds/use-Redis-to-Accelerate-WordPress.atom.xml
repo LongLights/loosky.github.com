@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/use-Redis-to-Accelerate-WordPress.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2013-01-07T00:00:00+08:00</updated><entry><title>使用Redis来加速WordPress</title><link href="http://loosky.com/Technology/2013/01/07/Redis,WordPress.html" rel="alternate"></link><updated>2013-01-07T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2013-01-07:Technology/2013/01/07/Redis,WordPress.html</id><summary type="html">&lt;h2&gt;1、安装 Redis&lt;/h2&gt;
+&lt;p&gt;官方网站：&lt;a href="http://redis.io/download"&gt;http://redis.io/download&lt;/a&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# cd /usr/local/src&lt;/span&gt;
+&lt;span class="c"&gt;# wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;# tar xzf redis-2.6.7.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;# cd redis-2.6.7&lt;/span&gt;
+&lt;span class="c"&gt;# make&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装完成后，启动Redis&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#/usr/local/src/redis-2.6.7/src/redis-server&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;也可以将Redis加入开机自启动&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#vi /etc/rc.d/rc.local&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;加入&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;2&lt;span class="p"&gt;.&lt;/span&gt;6&lt;span class="p"&gt;.&lt;/span&gt;7&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;redis&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;2、使用 Predis 作为 Redis 的 PHP 客户端&lt;/h2&gt;
+&lt;p&gt;你需要一个客户端开发包以便 PHP 可以连接到 Redis 服务上。这里我们推荐 [Predis(https://github.com/nrk/predis/)，上传 &lt;a href="http://uploads.staticjw.com/ji/jim/predis.php"&gt;predis.php&lt;/a&gt; 到 WordPress 的根目录。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：Predis需要PHP的版本&amp;gt;5.3。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;问题：在系统的PHP版本升级到5.3.X以上时，会出现WordPress的主题不能显示和编辑的情况，这主要是由于PHP中禁用了部分存在危险的PHP函数，与上述情况相关的函数是scandir&lt;/p&gt;
+&lt;p&gt;解决方案：&lt;/p&gt;
+&lt;p&gt;1、编辑PHP配置文件：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ini&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;寻找disable_functions字符串，将后面的scandir删除&lt;/p&gt;
+&lt;p&gt;2、重启PHP生效&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fpm&lt;/span&gt; &lt;span class="n"&gt;restart&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;3、前端缓存的 PHP 脚本&lt;/h3&gt;
+&lt;p&gt;1.在 WordPress的根目录创建新文件 index-with-redis.php，&lt;a href="https://gist.github.com/3053250"&gt;下载地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2.修改文件中的变量进行自定义&lt;/p&gt;
+&lt;p&gt;3.如果使用Apache，需在 .htaccess 中将所有出现 index.php 的地方改为 index-with-redis.php ；如果使用的是 Nginx，则将WordPress中的index.php重命名，并将index-with-redis.php 重命名为index.php。需要注意的是在每次升级后需要重新进行上述操作。&lt;/p&gt;
+&lt;p&gt;同时，需要在 Nginx 配置文件中单独对 /wp-admin/ 指定一下 index.php 文件. 类似如下:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;wp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;index&lt;/span&gt;  &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;参考文献：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://dbanotes.net/sitelog/movable-type-2-wordpress.html"&gt;http://dbanotes.net/sitelog/movable-type-2-wordpress.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://www.jimwestergren.com/wordpress-with-redis-as-a-frontend-cache/"&gt;How to load WordPress in a few milliseconds using Redis&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://timyang.net/data/redis-misunderstanding/"&gt;Redis几个认识误区&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="use-Redis-to-Accelerate-WordPress"></category></entry></feed>

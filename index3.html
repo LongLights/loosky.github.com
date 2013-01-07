@@ -40,6 +40,57 @@
                     <ol id="posts-list" class="hfeed" start="3">
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="./Technology/2012/12/01/python-upgrade.html" rel="bookmark"
+                           title="Permalink to 升级CentOS系统的Python">升级CentOS系统的Python</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-12-01T00:00:00">
+                Sat 01 December 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="./category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="./tag/CentOS.html">CentOS</a><a href="./tag/Linux.html">Linux</a><a href="./tag/Python.html">Python</a></p></footer><!-- /.post-info -->                <h3>1、下载Python最新版本</h3>
+<div class="codehilite"><pre><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">python</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">ftp</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="o">/</span><span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">bz2</span>
+</pre></div>
+
+
+<h3>2、解压</h3>
+<div class="codehilite"><pre><span class="n">tar</span> <span class="n">jxvf</span> <span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">bz2</span>
+</pre></div>
+
+
+<h3>3、编译安装</h3>
+<div class="codehilite"><pre><span class="n">cd</span> <span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>6<span class="p">.</span>6
+<span class="o">./</span><span class="n">configure</span>
+<span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span>
+</pre></div>
+
+
+<p>Python 默认安装目录在/usr/local/lib/python2.7
+查看一下刚才安装的版本 /usr/local/lib/python2.7 -V，看到了2.7.3吧</p>
+<h3>4、更改系统默认版本</h3>
+<p>之前查看版本使用 /usr/local/lib/python2.7 -V，现在来把系统默认的Python指向刚才安装的Python2.7.3。(如果有人问为什么不把之前的版本卸载呢？呃，貌似网上有讲yum是基于系统默认老版本的，所以我也就没那样折腾)</p>
+<div class="codehilite"><pre><span class="n">mv</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span><span class="p">.</span><span class="n">bak</span>
+<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span>6 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+
+
+<p>敲入 python -V 查看是否成功。</p>
+<h3>5、修复不能正常工作的yum</h3>
+<p>在完成了上面4步之后，如果有使用yum的话会发现出错，这是因为yum 依赖2 ...</p>
+                <a class="readmore" href="./Technology/2012/12/01/python-upgrade.html">read more</a>
+                <p>There are <a href="./Technology/2012/12/01/python-upgrade.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="./Research/2012/12/01/robin-WMN.html" rel="bookmark"
                            title="Permalink to ROBIN-Open Source Wireless Mesh Networking">ROBIN-Open Source Wireless Mesh Networking</a></h1>
                 </header>
@@ -113,62 +164,6 @@ R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.w
                 <a class="readmore" href="./Blog/2012/11/28/wordpress-markdown.html">read more</a>
                 <p>There are <a href="./Blog/2012/11/28/wordpress-markdown.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Technology/2012/11/27/github.html" rel="bookmark"
-                           title="Permalink to GitHub使用">GitHub使用</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-11-27T00:00:00">
-                Tue 27 November 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="./category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="./tag/git.html">git</a><a href="./tag/github.html">github</a></p></footer><!-- /.post-info -->                <h3>一、创建github账号</h3>
-<p>github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：<a href="https://github.com">https://github.com</a>
-帐号注册成功后，点击<strong>New Repository</strong>，开始创建新版本库。用户可以创建类似于 <code>your_userid.github.com</code> 的版本库，这样就可以通过<code>http://your_userid.github.com</code>进行访问了。</p>
-<h3>二、建立本地git仓库</h3>
-<div class="codehilite"><pre><span class="c">#git config --global user.name &quot;your_userid&quot;   //提供使用者自己的身份标识</span>
-<span class="c">#git config --global user.email &quot;your_email&quot;    </span>
-<span class="c">#mkdir -p /home/work/your_userid.github.com   //建立项目</span>
-<span class="c">#cd /home/work/your_userid.github.com</span>
-<span class="c">#git init                                     //初始化git仓库</span>
-</pre></div>
-
-
-<h3>三、创建项目文件</h3>
-<div class="codehilite"><pre><span class="c">#touch README</span>
-<span class="c">#git add README</span>
-</pre></div>
-
-
-<p>如果添加项目目录下面所有的文件则用 <strong>git add .</strong></p>
-<h3>四、将项目提交到github管理</h3>
-<ol>
-<li>
-<p>创建SSH密钥</p>
-<div class="codehilite"><pre><span class="c">#ssh-keygen -C &#39;your_email&#39; -t rsa</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>找到刚才生成的密钥（默认为<strong>/root/.ssh/id_rsa.pub</strong>）文件并用文本编辑器打开，然后复制里面的内容。接着转到github站点，进入<strong>Account Setting--SSH Keys</strong> 选项后，点击<strong>add ssh key</strong> 并将刚才复制的内容粘贴保存。</p>
-</li>
-<li>
-<p>测试SSH连接。在git bash中执行以下命令：</p>
-<div class="codehilite"><pre><span class="c">#ssh -v git ...</span></pre></div></li></ol>
-                <a class="readmore" href="./Technology/2012/11/27/github.html">read more</a>
-                <p>There are <a href="./Technology/2012/11/27/github.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
                         <a href="./index2.html">&laquo;</a>
@@ -181,18 +176,18 @@ R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.w
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="./tag/WordPress.html">
-       WordPress
+    <a href="./tag/Loosky.html">
+       Loosky
     </a>
 </li>
 <li>
-    <a href="./tag/CentOS.html">
-       CentOS
+    <a href="./tag/scp.html">
+       scp
     </a>
 </li>
 <li>
-    <a href="./tag/WMN.html">
-       WMN
+    <a href="./tag/Mysql.html">
+       Mysql
     </a>
 </li>
 <li>
@@ -201,28 +196,8 @@ R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.w
     </a>
 </li>
 <li>
-    <a href="./tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-<li>
-    <a href="./tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-<li>
-    <a href="./tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="./tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="./tag/Python.html">
-       Python
+    <a href="./tag/WordPress.html">
+       WordPress
     </a>
 </li>
 <li>
@@ -231,13 +206,43 @@ R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.w
     </a>
 </li>
 <li>
+    <a href="./tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="./tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="./tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
     <a href="./tag/Markdown.html">
        Markdown
     </a>
 </li>
 <li>
-    <a href="./tag/参考文献.html">
-       参考文献
+    <a href="./tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="./tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="./tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="./tag/Python.html">
+       Python
     </a>
 </li>
 <li>
@@ -246,13 +251,23 @@ R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.w
     </a>
 </li>
 <li>
-    <a href="./tag/mesh.html">
-       mesh
+    <a href="./tag/Linux.html">
+       Linux
     </a>
 </li>
 <li>
-    <a href="./tag/分区.html">
-       分区
+    <a href="./tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="./tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="./tag/参考文献.html">
+       参考文献
     </a>
 </li>
 <li>
@@ -266,18 +281,8 @@ R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.w
     </a>
 </li>
 <li>
-    <a href="./tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="./tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="./tag/scp.html">
-       scp
+    <a href="./tag/mesh.html">
+       mesh
     </a>
 </li>
 <li>
@@ -286,18 +291,13 @@ R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.w
     </a>
 </li>
 <li>
-    <a href="./tag/open-mesh.html">
-       open-mesh
+    <a href="./tag/分区.html">
+       分区
     </a>
 </li>
 <li>
-    <a href="./tag/github.html">
-       github
-    </a>
-</li>
-<li>
-    <a href="./tag/git.html">
-       git
+    <a href="./tag/Pelican.html">
+       Pelican
     </a>
 </li>
                   

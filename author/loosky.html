@@ -354,49 +354,53 @@
                  
                         <li><article class="hentry">    
                 <header>
-                    <h1><a href="../Research/2012/12/01/References-format.html" rel="bookmark"
-                           title="Permalink to 参考文献字母含义">参考文献字母含义</a></h1>
+                    <h1><a href="../Technology/2013/01/07/Redis,WordPress.html" rel="bookmark"
+                           title="Permalink to 使用Redis来加速WordPress">使用Redis来加速WordPress</a></h1>
                 </header>
                 
                 <div class="entry-content">
                 <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
+        <abbr class="published" title="2013-01-07T00:00:00">
+                Mon 07 January 2013
         </abbr>
 
                 <address class="vcard author">
                 By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
-        <p>In <a href="../category/Research.html">Research</a>. </p>
-<p>tags: <a href="../tag/参考文献.html">参考文献</a></p></footer><!-- /.post-info -->                <ul>
-<li>根据GB3469 规定</li>
-</ul>
-<p>①期刊［J］</p>
-<p>②专著［M］</p>
-<p>③论文集［C］</p>
-<p>④学位论文［D］</p>
-<p>⑤专利［P］</p>
-<p>⑥标准［S］</p>
-<p>⑦报纸［N］</p>
-<p>⑧技术报告［R］</p>
-<ul>
-<li>电子文献载体类型用双字母标识，例如：</li>
-</ul>
-<p>①磁带［MT］</p>
-<p>②磁盘［DK］</p>
-<p>③光盘［CD］</p>
-<p>④联机网络［OL］</p>
-<ul>
-<li>电子文献载体类型的参考文献类型标识方法为：［文献类型标识/载体类型标识］。例如：</li>
-</ul>
-<p>①联机网上数据库［DB/OL］</p>
-<p>②磁带数据库［DB/MT］</p>
-<p>③光盘图书［M/CD］</p>
-<p>④磁盘软件［CP/DK］</p>
-<p>⑤网上期刊［J/OL］</p>
-<p>⑥网上电子公告</p>
-                <a class="readmore" href="../Research/2012/12/01/References-format.html">read more</a>
-                <p>There are <a href="../Research/2012/12/01/References-format.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/use-Redis-to-Accelerate-WordPress.html">use-Redis-to-Accelerate-WordPress</a></p></footer><!-- /.post-info -->                <h2>1、安装 Redis</h2>
+<p>官方网站：<a href="http://redis.io/download">http://redis.io/download</a></p>
+<div class="codehilite"><pre><span class="c"># cd /usr/local/src</span>
+<span class="c"># wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz</span>
+<span class="c"># tar xzf redis-2.6.7.tar.gz</span>
+<span class="c"># cd redis-2.6.7</span>
+<span class="c"># make</span>
+</pre></div>
+
+
+<p>安装完成后，启动Redis</p>
+<div class="codehilite"><pre><span class="c">#/usr/local/src/redis-2.6.7/src/redis-server</span>
+</pre></div>
+
+
+<p>也可以将Redis加入开机自启动</p>
+<div class="codehilite"><pre><span class="c">#vi /etc/rc.d/rc.local</span>
+</pre></div>
+
+
+<p>加入</p>
+<div class="codehilite"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span>2<span class="p">.</span>6<span class="p">.</span>7<span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">server</span>
+</pre></div>
+
+
+<h2>2、使用 Predis 作为 Redis 的 PHP 客户端</h2>
+<p>你需要一个客户端开发包以便 PHP 可以连接到 Redis 服务上。这里我们推荐 [Predis(https://github.com/nrk/predis/)，上传 <a href="http://uploads.staticjw.com/ji/jim/predis.php">predis.php</a> 到 WordPress 的根目录。</p>
+<blockquote>
+<p>注意：Predis需要PHP的版本&gt;5.3。</p>
+</blockquote>
+<p>问题：在系统的PHP版本升级到5.3.X以上时，会出现WordPress的主题不能显示和编辑的情况，这主要是由于PHP中禁用了部分存在危险的PHP函数，与上述情况相关的函数是scandir ...</p>
+                <a class="readmore" href="../Technology/2013/01/07/Redis,WordPress.html">read more</a>
+                <p>There are <a href="../Technology/2013/01/07/Redis,WordPress.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
@@ -409,18 +413,18 @@
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../tag/WordPress.html">
-       WordPress
+    <a href="../tag/Loosky.html">
+       Loosky
     </a>
 </li>
 <li>
-    <a href="../tag/CentOS.html">
-       CentOS
+    <a href="../tag/scp.html">
+       scp
     </a>
 </li>
 <li>
-    <a href="../tag/WMN.html">
-       WMN
+    <a href="../tag/Mysql.html">
+       Mysql
     </a>
 </li>
 <li>
@@ -429,28 +433,8 @@
     </a>
 </li>
 <li>
-    <a href="../tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-<li>
-    <a href="../tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-<li>
-    <a href="../tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="../tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="../tag/Python.html">
-       Python
+    <a href="../tag/WordPress.html">
+       WordPress
     </a>
 </li>
 <li>
@@ -459,13 +443,43 @@
     </a>
 </li>
 <li>
+    <a href="../tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="../tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
     <a href="../tag/Markdown.html">
        Markdown
     </a>
 </li>
 <li>
-    <a href="../tag/参考文献.html">
-       参考文献
+    <a href="../tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="../tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="../tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="../tag/Python.html">
+       Python
     </a>
 </li>
 <li>
@@ -474,13 +488,23 @@
     </a>
 </li>
 <li>
-    <a href="../tag/mesh.html">
-       mesh
+    <a href="../tag/Linux.html">
+       Linux
     </a>
 </li>
 <li>
-    <a href="../tag/分区.html">
-       分区
+    <a href="../tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="../tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="../tag/参考文献.html">
+       参考文献
     </a>
 </li>
 <li>
@@ -494,18 +518,8 @@
     </a>
 </li>
 <li>
-    <a href="../tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="../tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="../tag/scp.html">
-       scp
+    <a href="../tag/mesh.html">
+       mesh
     </a>
 </li>
 <li>
@@ -514,18 +528,13 @@
     </a>
 </li>
 <li>
-    <a href="../tag/open-mesh.html">
-       open-mesh
+    <a href="../tag/分区.html">
+       分区
     </a>
 </li>
 <li>
-    <a href="../tag/github.html">
-       github
-    </a>
-</li>
-<li>
-    <a href="../tag/git.html">
-       git
+    <a href="../tag/Pelican.html">
+       Pelican
     </a>
 </li>
                   
