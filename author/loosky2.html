@@ -89,6 +89,57 @@
                  
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="../Technology/2013/03/01/git-command.html" rel="bookmark"
+                           title="Permalink to Git常用命令">Git常用命令</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-03-01T00:00:00">
+                Fri 01 March 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/Git.html">Git</a></p></footer><!-- /.post-info -->                <h2>Git配置</h2>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span> &quot;<span class="n">robbin</span>&quot;   
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span> &quot;<span class="n">fankai</span><span class="p">@</span><span class="n">gmail</span><span class="p">.</span><span class="n">com</span>&quot;
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">color</span><span class="p">.</span><span class="n">ui</span> <span class="n">true</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">co</span> <span class="n">checkout</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">ci</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">st</span> <span class="n">status</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">br</span> <span class="n">branch</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">core</span><span class="p">.</span><span class="n">editor</span> &quot;<span class="n">mate</span> <span class="o">-</span><span class="n">w</span>&quot;
+</pre></div>
+
+
+<p><code>用户的git配置文件~/.gitconfig</code></p>
+<h2>Git常用命令</h2>
+<h3>查看、添加、提交、删除、找回，重置修改文件</h3>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">help</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span>  # 显示<span class="n">command</span>的<span class="n">help</span>
+<span class="n">git</span> <span class="n">show</span>            # 显示某次提交的内容
+<span class="n">git</span> <span class="n">show</span> $<span class="n">id</span>
+
+<span class="n">git</span> <span class="n">co</span>  <span class="o">--</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>   # 抛弃工作区修改
+<span class="n">git</span> <span class="n">co</span>  <span class="p">.</span>           # 抛弃工作区修改
+
+<span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>      # 将工作文件修改提交到本地暂存区
+<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>           # 将所有修改过的工作文件提交暂存区
+
+<span class="n">git</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>       # 从版本库中删除文件
+<span class="n">git</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">cached</span>  # 从版本库中删除文件，但不删除文件
+
+<span class="n">git</span> <span class="n">reset ...</span></pre></div>
+                <a class="readmore" href="../Technology/2013/03/01/git-command.html">read more</a>
+                <p>There are <a href="../Technology/2013/03/01/git-command.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="../Technology/2012/11/27/github.html" rel="bookmark"
                            title="Permalink to GitHub使用">GitHub使用</a></h1>
                 </header>
@@ -170,30 +221,6 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                 <a class="readmore" href="../Technology/2012/12/02/harddisk.html">read more</a>
                 <p>There are <a href="../Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="../Blog/2012/11/26/helloworld.html" rel="bookmark"
-                           title="Permalink to Hello World!">Hello World!</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-11-26T00:00:00">
-                Mon 26 November 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="../author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="../category/Blog.html">Blog</a>. </p>
-<p>tags: <a href="../tag/Loosky.html">Loosky</a><a href="../tag/Python.html">Python</a><a href="../tag/github.html">github</a><a href="../tag/Pelican.html">Pelican</a></p></footer><!-- /.post-info -->                <p>这是Loosky的个人博客，网站基于<a href="http://getpelican.com/">Pelican</a> &amp; <a href="https://github.com">GitHub</a>搭建，使用了<a href="http://www.python.org/">Python</a>技术。一切从零开始。</p>
-<p>您可以访问我的<a href="http://loosky.net">另外一个博客</a>,那里记录了从2003年以来的所有文章，包含技术、情感、生活等方面。</p>
-                <a class="readmore" href="../Blog/2012/11/26/helloworld.html">read more</a>
-                <p>There are <a href="../Blog/2012/11/26/helloworld.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
                         <a href="../author/loosky.html">&laquo;</a>
@@ -206,88 +233,8 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="../tag/SQL.html">
-       SQL
-    </a>
-</li>
-<li>
-    <a href="../tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-<li>
-    <a href="../tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-<li>
-    <a href="../tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="../tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-<li>
-    <a href="../tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
-    <a href="../tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="../tag/.html">
-       
-    </a>
-</li>
-<li>
     <a href="../tag/Linux.html">
        Linux
-    </a>
-</li>
-<li>
-    <a href="../tag/git.html">
-       git
     </a>
 </li>
 <li>
@@ -296,18 +243,18 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="../tag/参考文献.html">
-       参考文献
+    <a href="../tag/CentOS.html">
+       CentOS
     </a>
 </li>
 <li>
-    <a href="../tag/OpenWRT.html">
-       OpenWRT
+    <a href="../tag/Pelican.html">
+       Pelican
     </a>
 </li>
 <li>
-    <a href="../tag/挂载.html">
-       挂载
+    <a href="../tag/Git.html">
+       Git
     </a>
 </li>
 <li>
@@ -316,8 +263,53 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
+    <a href="../tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
     <a href="../tag/网络.html">
        网络
+    </a>
+</li>
+<li>
+    <a href="../tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="../tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="../tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="../tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="../tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="../tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="../tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+<li>
+    <a href="../tag/.html">
+       
     </a>
 </li>
 <li>
@@ -326,8 +318,48 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="../tag/Pelican.html">
-       Pelican
+    <a href="../tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="../tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="../tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="../tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="../tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="../tag/Python.html">
+       Python
     </a>
 </li>
                   

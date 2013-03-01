@@ -40,6 +40,61 @@
                     <ol id="posts-list" class="hfeed" start="3">
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="../Technology/2012/12/01/CentOS-Configuration.html" rel="bookmark"
+                           title="Permalink to CentOS配置">CentOS配置</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-12-01T00:00:00">
+                Sat 01 December 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/CentOS.html">CentOS</a><a href="../tag/Linux.html">Linux</a></p></footer><!-- /.post-info -->                <p>推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）</p>
+<h3>1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0</h3>
+<div class="codehilite"><pre>    <span class="n">DEVICE</span><span class="p">=</span>&quot;<span class="n">eth0</span>&quot;
+    <span class="n">NM_CONTROLLED</span><span class="p">=</span>&quot;<span class="n">yes</span>&quot;
+    <span class="n">ONBOOT</span><span class="p">=</span><span class="n">yes</span>
+    <span class="n">TYPE</span><span class="p">=</span><span class="n">Ethernet</span>
+    <span class="n">BOOTPROTO</span><span class="p">=</span><span class="n">none</span>
+    <span class="n">IPADDR</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
+    <span class="n">PREFIX</span><span class="p">=</span>24
+    <span class="n">GATEWAY</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
+    <span class="n">DNS1</span><span class="p">=</span>59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
+    <span class="n">DNS2</span><span class="p">=</span>218<span class="p">.</span>85<span class="p">.</span>157<span class="p">.</span>99
+    <span class="n">DEFROUTE</span><span class="p">=</span><span class="n">yes</span>
+    <span class="n">IPV4_FAILURE_FATAL</span><span class="p">=</span><span class="n">yes</span>
+    <span class="n">IPV6INIT</span><span class="p">=</span><span class="n">no</span>
+    <span class="n">NAME</span><span class="p">=</span>&quot;<span class="n">System</span> <span class="n">eth0</span>&quot;
+</pre></div>
+
+
+<h3>2、配置DNS： vi /etc/resolv.conf</h3>
+<div class="codehilite"><pre>    <span class="n">nameserver</span> 59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
+    <span class="n">search</span> <span class="n">localdomain</span>
+
+配置好以后重启服务：
+
+    <span class="n">service</span> <span class="n">network</span> <span class="n">restart</span>
+</pre></div>
+
+
+<h3>3、解决中文乱码：vi /etc/sysconfig/i18n ：</h3>
+<div class="codehilite"><pre>    <span class="n">LANG</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span>&quot;
+    <span class="n">LANGUAGE</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">GB2312</span><span class="p">:</span><span class="n">zh_CN</span>&quot;
+    <span class="n">SUPPORTED</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN ...</span></pre></div>
+                <a class="readmore" href="../Technology/2012/12/01/CentOS-Configuration.html">read more</a>
+                <p>There are <a href="../Technology/2012/12/01/CentOS-Configuration.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="../Technology/2012/12/01/Linux-scp.html" rel="bookmark"
                            title="Permalink to Linux系统之间拷贝文件">Linux系统之间拷贝文件</a></h1>
                 </header>
@@ -196,30 +251,6 @@
                 <a class="readmore" href="../Technology/2012/12/01/python-upgrade.html">read more</a>
                 <p>There are <a href="../Technology/2012/12/01/python-upgrade.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="../Technology/2012/12/01/throughput-computing.html" rel="bookmark"
-                           title="Permalink to 吞吐量计算">吞吐量计算</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="../author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../tag/网络.html">网络</a><a href="../tag/吞吐量.html">吞吐量</a></p></footer><!-- /.post-info -->                <p>理论值 = [局域网的网络速率(Mbps)×帧长度(byte)×8] / [帧长度(byte)×8 + 帧间隔(bit)]
-测量值 = [发送帧的数量×帧长度(byte)×8] / [测试时间(s)×10^<em>-6</em>]</p>
-                <a class="readmore" href="../Technology/2012/12/01/throughput-computing.html">read more</a>
-                <p>There are <a href="../Technology/2012/12/01/throughput-computing.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
                         <a href="../category/Technology.html">&laquo;</a>
@@ -232,88 +263,8 @@
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="../tag/SQL.html">
-       SQL
-    </a>
-</li>
-<li>
-    <a href="../tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-<li>
-    <a href="../tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-<li>
-    <a href="../tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="../tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-<li>
-    <a href="../tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
-    <a href="../tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="../tag/.html">
-       
-    </a>
-</li>
-<li>
     <a href="../tag/Linux.html">
        Linux
-    </a>
-</li>
-<li>
-    <a href="../tag/git.html">
-       git
     </a>
 </li>
 <li>
@@ -322,18 +273,18 @@
     </a>
 </li>
 <li>
-    <a href="../tag/参考文献.html">
-       参考文献
+    <a href="../tag/CentOS.html">
+       CentOS
     </a>
 </li>
 <li>
-    <a href="../tag/OpenWRT.html">
-       OpenWRT
+    <a href="../tag/Pelican.html">
+       Pelican
     </a>
 </li>
 <li>
-    <a href="../tag/挂载.html">
-       挂载
+    <a href="../tag/Git.html">
+       Git
     </a>
 </li>
 <li>
@@ -342,8 +293,53 @@
     </a>
 </li>
 <li>
+    <a href="../tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
     <a href="../tag/网络.html">
        网络
+    </a>
+</li>
+<li>
+    <a href="../tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="../tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="../tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="../tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="../tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="../tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="../tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+<li>
+    <a href="../tag/.html">
+       
     </a>
 </li>
 <li>
@@ -352,8 +348,48 @@
     </a>
 </li>
 <li>
-    <a href="../tag/Pelican.html">
-       Pelican
+    <a href="../tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="../tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="../tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="../tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="../tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="../tag/Python.html">
+       Python
     </a>
 </li>
                   

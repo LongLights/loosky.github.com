@@ -37,8 +37,185 @@
 
                             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../Technology/2013/01/07/Redis,WordPress.html">使用Redis来加速WordPress</a></h1> 
+                    <h1 class="entry-title"><a href="../Technology/2013/03/01/git-command.html">Git常用命令</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2013-03-01T00:00:00">
+                Fri 01 March 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/Git.html">Git</a></p></footer><!-- /.post-info --><h2>Git配置</h2>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span> &quot;<span class="n">robbin</span>&quot;   
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span> &quot;<span class="n">fankai</span><span class="p">@</span><span class="n">gmail</span><span class="p">.</span><span class="n">com</span>&quot;
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">color</span><span class="p">.</span><span class="n">ui</span> <span class="n">true</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">co</span> <span class="n">checkout</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">ci</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">st</span> <span class="n">status</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">br</span> <span class="n">branch</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">core</span><span class="p">.</span><span class="n">editor</span> &quot;<span class="n">mate</span> <span class="o">-</span><span class="n">w</span>&quot;
+</pre></div>
+
+
+<p><code>用户的git配置文件~/.gitconfig</code></p>
+<h2>Git常用命令</h2>
+<h3>查看、添加、提交、删除、找回，重置修改文件</h3>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">help</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span>  # 显示<span class="n">command</span>的<span class="n">help</span>
+<span class="n">git</span> <span class="n">show</span>            # 显示某次提交的内容
+<span class="n">git</span> <span class="n">show</span> $<span class="n">id</span>
+
+<span class="n">git</span> <span class="n">co</span>  <span class="o">--</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>   # 抛弃工作区修改
+<span class="n">git</span> <span class="n">co</span>  <span class="p">.</span>           # 抛弃工作区修改
+
+<span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>      # 将工作文件修改提交到本地暂存区
+<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>           # 将所有修改过的工作文件提交暂存区
+
+<span class="n">git</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>       # 从版本库中删除文件
+<span class="n">git</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">cached</span>  # 从版本库中删除文件，但不删除文件
+
+<span class="n">git</span> <span class="n">reset</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>    # 从暂存区恢复到工作文件
+<span class="n">git</span> <span class="n">reset</span> <span class="o">--</span> <span class="p">.</span>      # 从暂存区恢复到工作文件
+<span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span>    # 恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改
+
+<span class="n">git</span> <span class="n">ci</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">ci</span> <span class="p">.</span>
+<span class="n">git</span> <span class="n">ci</span> <span class="o">-</span><span class="n">a</span>           # 将<span class="n">git</span> <span class="n">add</span><span class="p">,</span> <span class="n">git</span> <span class="n">rm</span>和<span class="n">git</span> <span class="n">ci</span>等操作都合并在一起做
+<span class="n">git</span> <span class="n">ci</span> <span class="o">-</span><span class="n">am</span> &quot;<span class="n">some</span> <span class="n">comments</span>&quot;
+<span class="n">git</span> <span class="n">ci</span> <span class="o">--</span><span class="n">amend</span>      # 修改最后一次提交记录
+
+<span class="n">git</span> <span class="n">revert</span> <span class="o">&lt;</span>$<span class="n">id</span><span class="o">&gt;</span>    # 恢复某次提交的状态，恢复动作本身也创建了一次提交对象
+<span class="n">git</span> <span class="n">revert</span> <span class="n">HEAD</span>     # 恢复最后一次提交的状态
+</pre></div>
+
+
+<h3>查看文件diff</h3>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">diff</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>     # 比较当前文件和暂存区文件差异
+<span class="n">git</span> <span class="n">diff</span>
+<span class="n">git</span> <span class="n">diff</span> <span class="o">&lt;</span>$<span class="n">id1</span><span class="o">&gt;</span> <span class="o">&lt;</span>$<span class="n">id2</span><span class="o">&gt;</span>   # 比较两次提交之间的差异
+<span class="n">git</span> <span class="n">diff</span> <span class="o">&lt;</span><span class="n">branch1</span><span class="o">&gt;</span><span class="p">..</span><span class="o">&lt;</span><span class="n">branch2</span><span class="o">&gt;</span> # 在两个分支之间比较 
+<span class="n">git</span> <span class="n">diff</span> <span class="o">--</span><span class="n">staged</span>   # 比较暂存区和版本库差异
+<span class="n">git</span> <span class="n">diff</span> <span class="o">--</span><span class="n">cached</span>   # 比较暂存区和版本库差异
+<span class="n">git</span> <span class="n">diff</span> <span class="o">--</span><span class="n">stat</span>     # 仅仅比较统计信息
+</pre></div>
+
+
+<h3>查看提交记录</h3>
+<div class="codehilite"><pre><span class="n">git</span> <span class="nb">log</span>
+<span class="n">git</span> <span class="nb">log</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>      # 查看该文件每次提交记录
+<span class="n">git</span> <span class="nb">log</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>   # 查看每次详细修改内容的<span class="n">diff</span>
+<span class="n">git</span> <span class="nb">log</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span>2       # 查看最近两次详细修改内容的<span class="n">diff</span>
+</pre></div>
+
+
+<h3>tig</h3>
+<p>Mac上可以使用tig代替diff和log，brew install tig</p>
+<h2>Git 本地分支管理</h2>
+<h3>查看、切换、创建和删除分支</h3>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">br</span> <span class="o">-</span><span class="n">r</span>           # 查看远程分支
+<span class="n">git</span> <span class="n">br</span> <span class="o">&lt;</span><span class="n">new_branch</span><span class="o">&gt;</span> # 创建新的分支
+<span class="n">git</span> <span class="n">br</span> <span class="o">-</span><span class="n">v</span>           # 查看各个分支最后提交信息
+<span class="n">git</span> <span class="n">br</span> <span class="o">--</span><span class="n">merged</span>     # 查看已经被合并到当前分支的分支
+<span class="n">git</span> <span class="n">br</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">merged</span>  # 查看尚未被合并到当前分支的分支
+
+<span class="n">git</span> <span class="n">co</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>     # 切换到某个分支
+<span class="n">git</span> <span class="n">co</span> <span class="o">-</span><span class="n">b</span> <span class="o">&lt;</span><span class="n">new_branch</span><span class="o">&gt;</span> # 创建新的分支，并且切换过去
+<span class="n">git</span> <span class="n">co</span> <span class="o">-</span><span class="n">b</span> <span class="o">&lt;</span><span class="n">new_branch</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>  # 基于<span class="n">branch</span>创建新的<span class="n">new_branch</span>
+
+<span class="n">git</span> <span class="n">co</span> $<span class="n">id</span>          # 把某次历史提交记录<span class="n">checkout</span>出来，但无分支信息，切换到其他分支会自动删除
+<span class="n">git</span> <span class="n">co</span> $<span class="n">id</span> <span class="o">-</span><span class="n">b</span> <span class="o">&lt;</span><span class="n">new_branch</span><span class="o">&gt;</span>  # 把某次历史提交记录<span class="n">checkout</span>出来，创建成一个分支
+
+<span class="n">git</span> <span class="n">br</span> <span class="o">-</span><span class="n">d</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>  # 删除某个分支
+<span class="n">git</span> <span class="n">br</span> <span class="o">-</span><span class="n">D</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>  # 强制删除某个分支 <span class="p">(</span>未被合并的分支被删除的时候需要强制<span class="p">)</span>
+</pre></div>
+
+
+<h3>分支合并和rebase</h3>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">merge</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>               # 将<span class="n">branch</span>分支合并到当前分支
+<span class="n">git</span> <span class="n">merge</span> <span class="n">origin</span><span class="o">/</span><span class="n">master</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ff</span>  # 不要<span class="n">Fast</span><span class="o">-</span><span class="n">Foward</span>合并，这样可以生成<span class="n">merge</span>提交
+
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">master</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>       # 将<span class="n">master</span> <span class="n">rebase</span>到<span class="n">branch</span>，相当于：
+<span class="n">git</span> <span class="n">co</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span> <span class="o">&amp;&amp;</span> <span class="n">git</span> <span class="n">rebase</span> <span class="n">master</span> <span class="o">&amp;&amp;</span> <span class="n">git</span> <span class="n">co</span> <span class="n">master</span> <span class="o">&amp;&amp;</span> <span class="n">git</span> <span class="n">merge</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<h2>Git补丁管理(方便在多台机器上开发同步时用)</h2>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">diff</span> <span class="o">&gt;</span> <span class="p">.</span><span class="o">./</span><span class="n">sync</span><span class="p">.</span><span class="n">patch</span>         # 生成补丁
+<span class="n">git</span> <span class="n">apply</span> <span class="p">.</span><span class="o">./</span><span class="n">sync</span><span class="p">.</span><span class="n">patch</span>          # 打补丁
+<span class="n">git</span> <span class="n">apply</span> <span class="o">--</span><span class="n">check</span> <span class="p">.</span><span class="o">./</span><span class="n">sync</span><span class="p">.</span><span class="n">patch</span>  # 测试补丁能否成功
+</pre></div>
+
+
+<h2>Git暂存管理</h2>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">stash</span>                        # 暂存
+<span class="n">git</span> <span class="n">stash</span> <span class="n">list</span>                   # 列所有<span class="n">stash</span>
+<span class="n">git</span> <span class="n">stash</span> <span class="n">apply</span>                  # 恢复暂存的内容
+<span class="n">git</span> <span class="n">stash</span> <span class="n">drop</span>                   # 删除暂存区
+</pre></div>
+
+
+<h2>Git远程分支管理</h2>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">pull</span>                         # 抓取远程仓库所有分支更新并合并到本地
+<span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ff</span>                 # 抓取远程仓库所有分支更新并合并到本地，不要快进合并
+<span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span>                 # 抓取远程仓库更新
+<span class="n">git</span> <span class="n">merge</span> <span class="n">origin</span><span class="o">/</span><span class="n">master</span>          # 将远程主分支合并到本地当前分支
+<span class="n">git</span> <span class="n">co</span> <span class="o">--</span><span class="n">track</span> <span class="n">origin</span><span class="o">/</span><span class="n">branch</span>     # 跟踪某个远程分支创建相应的本地分支
+<span class="n">git</span> <span class="n">co</span> <span class="o">-</span><span class="n">b</span> <span class="o">&lt;</span><span class="n">local_branch</span><span class="o">&gt;</span> <span class="n">origin</span><span class="o">/&lt;</span><span class="n">remote_branch</span><span class="o">&gt;</span>  # 基于远程分支创建本地分支，功能同上
+
+<span class="n">git</span> <span class="n">push</span>                         # <span class="n">push</span>所有分支
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>           # 将本地主分支推到远程主分支
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>        # 将本地主分支推到远程<span class="p">(</span>如无远程主分支则创建，用于初始化远程仓库<span class="p">)</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="o">&lt;</span><span class="n">local_branch</span><span class="o">&gt;</span>   # 创建远程分支， <span class="n">origin</span>是远程仓库名
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="o">&lt;</span><span class="n">local_branch</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">remote_branch</span><span class="o">&gt;</span>  # 创建远程分支
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="p">:</span><span class="o">&lt;</span><span class="n">remote_branch</span><span class="o">&gt;</span>  #先删除本地分支<span class="p">(</span><span class="n">git</span> <span class="n">br</span> <span class="o">-</span><span class="n">d</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span><span class="p">)</span>，然后再<span class="n">push</span>删除远程分支
+</pre></div>
+
+
+<h2>Git远程仓库管理</h2>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">remote</span> <span class="o">-</span><span class="n">v</span>                    # 查看远程服务器地址和仓库名称
+<span class="n">git</span> <span class="n">remote</span> <span class="n">show</span> <span class="n">origin</span>           # 查看远程服务器仓库状态
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="p">@</span><span class="n">github</span><span class="p">:</span><span class="n">robbin</span><span class="o">/</span><span class="n">robbin_site</span><span class="p">.</span><span class="n">git</span>         # 添加远程仓库地址
+<span class="n">git</span> <span class="n">remote</span> <span class="n">set</span><span class="o">-</span><span class="n">url</span> <span class="n">origin</span> <span class="n">git</span><span class="p">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">:</span><span class="n">robbin</span><span class="o">/</span><span class="n">robbin_site</span><span class="p">.</span><span class="n">gi</span>
+</pre></div>
+
+
+<h3>创建远程仓库</h3>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">bare</span> <span class="n">robbin_site</span> <span class="n">robbin_site</span><span class="p">.</span><span class="n">git</span>  # 用带版本的项目创建纯版本仓库
+<span class="n">scp</span> <span class="o">-</span><span class="n">r</span> <span class="n">my_project</span><span class="p">.</span><span class="n">git</span> <span class="n">git</span><span class="p">@</span><span class="n">git</span><span class="p">.</span><span class="n">csdn</span><span class="p">.</span><span class="n">net</span><span class="p">:</span><span class="o">~</span>      # 将纯仓库上传到服务器上
+
+<span class="n">mkdir</span> <span class="n">robbin_site</span><span class="p">.</span><span class="n">git</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">robbin_site</span><span class="p">.</span><span class="n">git</span> <span class="o">&amp;&amp;</span> <span class="n">git</span> <span class="o">--</span><span class="n">bare</span> <span class="n">init</span> # 在服务器创建纯仓库
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="p">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">:</span><span class="n">robbin</span><span class="o">/</span><span class="n">robbin_site</span><span class="p">.</span><span class="n">git</span>    # 设置远程仓库地址
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>                                      # 客户端首次提交
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">develop</span>  # 首次将本地<span class="n">develop</span>分支提交到远程<span class="n">develop</span>分支，并且<span class="n">track</span>
+
+<span class="n">git</span> <span class="n">remote</span> <span class="n">set</span><span class="o">-</span><span class="n">head</span> <span class="n">origin</span> <span class="n">master</span>   # 设置远程仓库的<span class="n">HEAD</span>指向<span class="n">master</span>分支
+</pre></div>
+
+
+<p>也可以命令设置跟踪远程库和本地库</p>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">branch</span> <span class="o">--</span><span class="n">set</span><span class="o">-</span><span class="n">upstream</span> <span class="n">master</span> <span class="n">origin</span><span class="o">/</span><span class="n">master</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">--</span><span class="n">set</span><span class="o">-</span><span class="n">upstream</span> <span class="n">develop</span> <span class="n">origin</span><span class="o">/</span><span class="n">develop</span>
+</pre></div>
+
+
+<p><a href="http://robbinfan.com/blog/34/git-common-command">原文链接</a></p><p>There are <a href="../Technology/2013/03/01/git-command.html#disqus_thread">comments</a>.</p>                </article>
+                            </aside><!-- /#featured -->
+                            <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+                                                
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="../Technology/2013/01/07/Redis,WordPress.html" rel="bookmark"
+                           title="Permalink to 使用Redis来加速WordPress">使用Redis来加速WordPress</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2013-01-07T00:00:00">
                 Mon 07 January 2013
         </abbr>
@@ -47,7 +224,7 @@
                 By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
         <p>In <a href="../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../tag/use-Redis-to-Accelerate-WordPress.html">use-Redis-to-Accelerate-WordPress</a></p></footer><!-- /.post-info --><h2>1、安装 Redis</h2>
+<p>tags: <a href="../tag/use-Redis-to-Accelerate-WordPress.html">use-Redis-to-Accelerate-WordPress</a></p></footer><!-- /.post-info -->                <h2>1、安装 Redis</h2>
 <p>官方网站：<a href="http://redis.io/download">http://redis.io/download</a></p>
 <div class="codehilite"><pre><span class="c"># cd /usr/local/src</span>
 <span class="c"># wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz</span>
@@ -77,48 +254,11 @@
 <blockquote>
 <p>注意：Predis需要PHP的版本&gt;5.3。</p>
 </blockquote>
-<p>问题：在系统的PHP版本升级到5.3.X以上时，会出现WordPress的主题不能显示和编辑的情况，这主要是由于PHP中禁用了部分存在危险的PHP函数，与上述情况相关的函数是scandir</p>
-<p>解决方案：</p>
-<p>1、编辑PHP配置文件：</p>
-<div class="codehilite"><pre><span class="n">vi</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">php</span><span class="p">.</span><span class="n">ini</span>
-</pre></div>
-
-
-<p>寻找disable_functions字符串，将后面的scandir删除</p>
-<p>2、重启PHP生效</p>
-<div class="codehilite"><pre><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">php</span><span class="o">-</span><span class="n">fpm</span> <span class="n">restart</span>
-</pre></div>
-
-
-<h3>3、前端缓存的 PHP 脚本</h3>
-<p>1.在 WordPress的根目录创建新文件 index-with-redis.php，<a href="https://gist.github.com/3053250">下载地址</a></p>
-<p>2.修改文件中的变量进行自定义</p>
-<p>3.如果使用Apache，需在 .htaccess 中将所有出现 index.php 的地方改为 index-with-redis.php ；如果使用的是 Nginx，则将WordPress中的index.php重命名，并将index-with-redis.php 重命名为index.php。需要注意的是在每次升级后需要重新进行上述操作。</p>
-<p>同时，需要在 Nginx 配置文件中单独对 /wp-admin/ 指定一下 index.php 文件. 类似如下:</p>
-<div class="codehilite"><pre><span class="n">location</span> <span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span> <span class="p">{</span>
-    <span class="n">index</span>  <span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>参考文献：</p>
-<ol>
-<li>
-<p><a href="http://dbanotes.net/sitelog/movable-type-2-wordpress.html">http://dbanotes.net/sitelog/movable-type-2-wordpress.html</a></p>
-</li>
-<li>
-<p><a href="http://www.jimwestergren.com/wordpress-with-redis-as-a-frontend-cache/">How to load WordPress in a few milliseconds using Redis</a></p>
-</li>
-<li>
-<p><a href="http://timyang.net/data/redis-misunderstanding/">Redis几个认识误区</a></p>
-</li>
-</ol><p>There are <a href="../Technology/2013/01/07/Redis,WordPress.html#disqus_thread">comments</a>.</p>                </article>
-                            </aside><!-- /#featured -->
-                            <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-                                                
+<p>问题：在系统的PHP版本升级到5.3.X以上时，会出现WordPress的主题不能显示和编辑的情况，这主要是由于PHP中禁用了部分存在危险的PHP函数，与上述情况相关的函数是scandir ...</p>
+                <a class="readmore" href="../Technology/2013/01/07/Redis,WordPress.html">read more</a>
+                <p>There are <a href="../Technology/2013/01/07/Redis,WordPress.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
 
                  
                         <li><article class="hentry">    
@@ -206,61 +346,6 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                 <a class="readmore" href="../Technology/2012/12/02/harddisk.html">read more</a>
                 <p>There are <a href="../Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="../Technology/2012/12/01/CentOS-Configuration.html" rel="bookmark"
-                           title="Permalink to CentOS配置">CentOS配置</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="../author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../tag/CentOS.html">CentOS</a><a href="../tag/Linux.html">Linux</a></p></footer><!-- /.post-info -->                <p>推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）</p>
-<h3>1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0</h3>
-<div class="codehilite"><pre>    <span class="n">DEVICE</span><span class="p">=</span>&quot;<span class="n">eth0</span>&quot;
-    <span class="n">NM_CONTROLLED</span><span class="p">=</span>&quot;<span class="n">yes</span>&quot;
-    <span class="n">ONBOOT</span><span class="p">=</span><span class="n">yes</span>
-    <span class="n">TYPE</span><span class="p">=</span><span class="n">Ethernet</span>
-    <span class="n">BOOTPROTO</span><span class="p">=</span><span class="n">none</span>
-    <span class="n">IPADDR</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
-    <span class="n">PREFIX</span><span class="p">=</span>24
-    <span class="n">GATEWAY</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
-    <span class="n">DNS1</span><span class="p">=</span>59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
-    <span class="n">DNS2</span><span class="p">=</span>218<span class="p">.</span>85<span class="p">.</span>157<span class="p">.</span>99
-    <span class="n">DEFROUTE</span><span class="p">=</span><span class="n">yes</span>
-    <span class="n">IPV4_FAILURE_FATAL</span><span class="p">=</span><span class="n">yes</span>
-    <span class="n">IPV6INIT</span><span class="p">=</span><span class="n">no</span>
-    <span class="n">NAME</span><span class="p">=</span>&quot;<span class="n">System</span> <span class="n">eth0</span>&quot;
-</pre></div>
-
-
-<h3>2、配置DNS： vi /etc/resolv.conf</h3>
-<div class="codehilite"><pre>    <span class="n">nameserver</span> 59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
-    <span class="n">search</span> <span class="n">localdomain</span>
-
-配置好以后重启服务：
-
-    <span class="n">service</span> <span class="n">network</span> <span class="n">restart</span>
-</pre></div>
-
-
-<h3>3、解决中文乱码：vi /etc/sysconfig/i18n ：</h3>
-<div class="codehilite"><pre>    <span class="n">LANG</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span>&quot;
-    <span class="n">LANGUAGE</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">GB2312</span><span class="p">:</span><span class="n">zh_CN</span>&quot;
-    <span class="n">SUPPORTED</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN ...</span></pre></div>
-                <a class="readmore" href="../Technology/2012/12/01/CentOS-Configuration.html">read more</a>
-                <p>There are <a href="../Technology/2012/12/01/CentOS-Configuration.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
         Page 1 / 3
@@ -272,88 +357,8 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="../tag/SQL.html">
-       SQL
-    </a>
-</li>
-<li>
-    <a href="../tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-<li>
-    <a href="../tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-<li>
-    <a href="../tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="../tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-<li>
-    <a href="../tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
-    <a href="../tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="../tag/.html">
-       
-    </a>
-</li>
-<li>
     <a href="../tag/Linux.html">
        Linux
-    </a>
-</li>
-<li>
-    <a href="../tag/git.html">
-       git
     </a>
 </li>
 <li>
@@ -362,18 +367,18 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="../tag/参考文献.html">
-       参考文献
+    <a href="../tag/CentOS.html">
+       CentOS
     </a>
 </li>
 <li>
-    <a href="../tag/OpenWRT.html">
-       OpenWRT
+    <a href="../tag/Pelican.html">
+       Pelican
     </a>
 </li>
 <li>
-    <a href="../tag/挂载.html">
-       挂载
+    <a href="../tag/Git.html">
+       Git
     </a>
 </li>
 <li>
@@ -382,8 +387,53 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
+    <a href="../tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
     <a href="../tag/网络.html">
        网络
+    </a>
+</li>
+<li>
+    <a href="../tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="../tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="../tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="../tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="../tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="../tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="../tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+<li>
+    <a href="../tag/.html">
+       
     </a>
 </li>
 <li>
@@ -392,8 +442,48 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="../tag/Pelican.html">
-       Pelican
+    <a href="../tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="../tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="../tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="../tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="../tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="../tag/Python.html">
+       Python
     </a>
 </li>
                   
