@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Loosky's Blog - scp</title>
+        <title>Loosky's Blog - Technology</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
                 
@@ -26,7 +26,7 @@
                 <nav><ul>
                                                     <li ><a href="../category/Blog.html">Blog</a></li>
                                     <li ><a href="../category/Research.html">Research</a></li>
-                                    <li ><a href="../category/Technology.html">Technology</a></li>
+                                    <li class="active"><a href="../category/Technology.html">Technology</a></li>
                                 <li><a href="../archives.html">Archives</a></li>
                                                     <li><a href="../pages/about.html">About</a></li>
                                     <li><a href="../pages/search.html">Search</a></li>
@@ -35,53 +35,67 @@
                 
             
 
-                            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="../Technology/2012/12/01/Linux-scp.html">Linux系统之间拷贝文件</a></h1> 
-                    <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
+                 
+                            <section id="content" class="body">
+                    <ol id="posts-list" class="hfeed" start="3">
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="../Technology/2012/11/27/github.html" rel="bookmark"
+                           title="Permalink to GitHub使用">GitHub使用</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-11-27T00:00:00">
+                Tue 27 November 2012
         </abbr>
 
                 <address class="vcard author">
                 By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
         <p>In <a href="../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../tag/Linux.html">Linux</a><a href="../tag/scp.html">scp</a></p></footer><!-- /.post-info --><p>Linux系统之间拷贝文件常用有3种方法：</p>
-<p>第一种就是ftp，也就是其中一台Linux安装ftp Server，这样另外一台可以使用ftp来进行文件的拷贝。</p>
-<p>第二种方法就是采用samba服务，类似Windows文件复制的方式来操作，比较简洁方便。</p>
-<p>第三种就是利用scp命令来进行文件拷贝。</p>
-<p>相对来说，个人觉得scp比较快捷、方便一点。</p>
+<p>tags: <a href="../tag/git.html">git</a><a href="../tag/github.html">github</a></p></footer><!-- /.post-info -->                <h3>一、创建github账号</h3>
+<p>github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：<a href="https://github.com">https://github.com</a>
+帐号注册成功后，点击<strong>New Repository</strong>，开始创建新版本库。用户可以创建类似于 <code>your_userid.github.com</code> 的版本库，这样就可以通过<code>http://your_userid.github.com</code>进行访问了。</p>
+<h3>二、建立本地git仓库</h3>
+<div class="codehilite"><pre><span class="c">#git config --global user.name &quot;your_userid&quot;   //提供使用者自己的身份标识</span>
+<span class="c">#git config --global user.email &quot;your_email&quot;    </span>
+<span class="c">#mkdir -p /home/work/your_userid.github.com   //建立项目</span>
+<span class="c">#cd /home/work/your_userid.github.com</span>
+<span class="c">#git init                                     //初始化git仓库</span>
+</pre></div>
+
+
+<h3>三、创建项目文件</h3>
+<div class="codehilite"><pre><span class="c">#touch README</span>
+<span class="c">#git add README</span>
+</pre></div>
+
+
+<p>如果添加项目目录下面所有的文件则用 <strong>git add .</strong></p>
+<h3>四、将项目提交到github管理</h3>
 <ol>
-<li>scp复制文件或目录命令：</li>
-</ol>
-<p>复制文件：</p>
-<p>（1）将本地文件拷贝到远程</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> 文件名 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>远程路径
+<li>
+<p>创建SSH密钥</p>
+<div class="codehilite"><pre><span class="c">#ssh-keygen -C &#39;your_email&#39; -t rsa</span>
 </pre></div>
 
 
-<p>（2）从远程将文件拷回本地</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>文件名 本地路径
-</pre></div>
-
-
-<ol>
-<li>复制目录：</li>
-</ol>
-<p>（1）将本地目录拷贝到远程</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> <span class="o">-</span><span class="n">r</span> 目录名 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>远程路径
-</pre></div>
-
-
-<p>（2）从远程将目录拷回本地</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> <span class="o">-</span><span class="n">r</span> 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>目录名 本地路径
-</pre></div><p>There are <a href="../Technology/2012/12/01/Linux-scp.html#disqus_thread">comments</a>.</p>                </article>
-                                    <p class="paginator">
-        Page 1 / 1
+</li>
+<li>
+<p>找到刚才生成的密钥（默认为<strong>/root/.ssh/id_rsa.pub</strong>）文件并用文本编辑器打开，然后复制里面的内容。接着转到github站点，进入<strong>Account Setting--SSH Keys</strong> 选项后，点击<strong>add ssh key</strong> 并将刚才复制的内容粘贴保存。</p>
+</li>
+<li>
+<p>测试SSH连接。在git bash中执行以下命令：</p>
+<div class="codehilite"><pre><span class="c">#ssh -v git ...</span></pre></div></li></ol>
+                <a class="readmore" href="../Technology/2012/11/27/github.html">read more</a>
+                <p>There are <a href="../Technology/2012/11/27/github.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            </ol><!-- /#posts-list -->
+                            <p class="paginator">
+                        <a href="../category/Technology3.html">&laquo;</a>
+                Page 4 / 4
     </p>
-                            </aside><!-- /#featured -->
-                                                </ol><!-- /#posts-list -->
                         </section><!-- /#content -->
                     <section id="extras" class="body">
         <div class="tags">

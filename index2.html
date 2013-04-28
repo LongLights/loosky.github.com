@@ -40,6 +40,147 @@
                     <ol id="posts-list" class="hfeed" start="3">
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="./Technology/2013/01/07/Redis,WordPress.html" rel="bookmark"
+                           title="Permalink to 使用Redis来加速WordPress">使用Redis来加速WordPress</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-01-07T00:00:00">
+                Mon 07 January 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="./category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="./tag/use-Redis-to-Accelerate-WordPress.html">use-Redis-to-Accelerate-WordPress</a></p></footer><!-- /.post-info -->                <h2>1、安装 Redis</h2>
+<p>官方网站：<a href="http://redis.io/download">http://redis.io/download</a></p>
+<div class="codehilite"><pre><span class="c"># cd /usr/local/src</span>
+<span class="c"># wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz</span>
+<span class="c"># tar xzf redis-2.6.7.tar.gz</span>
+<span class="c"># cd redis-2.6.7</span>
+<span class="c"># make</span>
+</pre></div>
+
+
+<p>安装完成后，启动Redis</p>
+<div class="codehilite"><pre><span class="c">#/usr/local/src/redis-2.6.7/src/redis-server</span>
+</pre></div>
+
+
+<p>也可以将Redis加入开机自启动</p>
+<div class="codehilite"><pre><span class="c">#vi /etc/rc.d/rc.local</span>
+</pre></div>
+
+
+<p>加入</p>
+<div class="codehilite"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span>2<span class="p">.</span>6<span class="p">.</span>7<span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">server</span>
+</pre></div>
+
+
+<h2>2、使用 Predis 作为 Redis 的 PHP 客户端</h2>
+<p>你需要一个客户端开发包以便 PHP 可以连接到 Redis 服务上。这里我们推荐 [Predis(https://github.com/nrk/predis/)，上传 <a href="http://uploads.staticjw.com/ji/jim/predis.php">predis.php</a> 到 WordPress 的根目录。</p>
+<blockquote>
+<p>注意：Predis需要PHP的版本&gt;5.3。</p>
+</blockquote>
+<p>问题：在系统的PHP版本升级到5.3.X以上时，会出现WordPress的主题不能显示和编辑的情况，这主要是由于PHP中禁用了部分存在危险的PHP函数，与上述情况相关的函数是scandir ...</p>
+                <a class="readmore" href="./Technology/2013/01/07/Redis,WordPress.html">read more</a>
+                <p>There are <a href="./Technology/2013/01/07/Redis,WordPress.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="./Technology/2012/12/02/Linux-mount-harddisk.html" rel="bookmark"
+                           title="Permalink to Linux（CentOS）挂载硬盘">Linux（CentOS）挂载硬盘</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-12-02T00:00:00">
+                Sun 02 December 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="./category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="./tag/CentOS.html">CentOS</a><a href="./tag/Linux.html">Linux</a><a href="./tag/分区.html">分区</a><a href="./tag/挂载.html">挂载</a></p></footer><!-- /.post-info -->                <p>在虚拟机中经常会碰到系统分区空间不够的问题，比如对于各种Web系统，我们可以通过挂载一个新的分区，把Web系统的目录迁移到新的分区中以扩展其空间，本文假定Web根目录位于/usr/local/webapps。</p>
+<blockquote>
+<p>在进行下面的操作之前，切记先把web服务停掉：/usr/local/tomcat/bin/shutdown.sh<br />
+操作完成后，再开启web服务： /usr/local/tomcat/bin/startup.sh</p>
+</blockquote>
+<p>在虚拟机中新建磁盘后，需要对其进行格式化并挂载到操作系统中，具体步骤如下：</p>
+<h3>第一步：列出所有磁盘</h3>
+<div class="codehilite"><pre><span class="n">ll</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">disk</span><span class="o">/</span><span class="n">by</span><span class="o">-</span><span class="n">path</span>
+</pre></div>
+
+
+<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount1.jpg" /></p>
+<p>要进行分区就必须针对每一个硬件设备进行操作，这就有可能是一块IDE硬盘或是一块SCSI硬盘。对于每一个硬盘（IDE或SCSI）设备，Linux分配了一个1到16的序列号码，这就代表了这块硬盘上面的分区号码。例如，第一个IDE硬盘的第一个分区，在Linux下面映射的就是hda1，第二个分区就称作是hda2。对于SCSI硬盘则是sda1、sdb1等。  </p>
+<p>如果无法确认数据盘设备名称，请使用df命令来确认系统盘的名称，从而排除挂错盘的情况。</p>
+<h3>第二步：格式化硬盘</h3>
+<div class="codehilite"><pre><span class="n">fdisk</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb</span>
+</pre></div>
+
+
+<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount2.jpg" /></p>
+<p><strong><em>注意：图中箭头标注处续手动键入</em></strong></p>
+<h3>第三步：创建分区</h3>
+<div class="codehilite"><pre><span class="n">mkfs</span><span class="p">.</span><span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span>
+</pre></div>
+
+
+<p><img alt="centos-mount" src="http://loosky.net/Upload/2012/11/centos-mount3.jpg" /></p>
+<h3>第四步：将/usr/local/webapps目录重命名为/usr/local/webapps2</h3>
+<div class="codehilite"><pre><span class="n">mv</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps2</span>
+</pre></div>
+
+
+<h3>第五步：挂载分区</h3>
+<div class="codehilite"><pre><span class="n">mkdir</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>
+<span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>   # 将<span class="n">sdb</span>这个硬盘挂载成为<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">webapps</span>
+<span class="n">cp</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local ...</span></pre></div>
+                <a class="readmore" href="./Technology/2012/12/02/Linux-mount-harddisk.html">read more</a>
+                <p>There are <a href="./Technology/2012/12/02/Linux-mount-harddisk.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="./Technology/2012/12/02/harddisk.html" rel="bookmark"
+                           title="Permalink to 硬盘类型介绍">硬盘类型介绍</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-12-02T00:00:00">
+                Sun 02 December 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="./category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="./tag/.html"></a></p></footer><!-- /.post-info -->                <blockquote>
+<p>本文内容有些旧，但基本概念在。摘自：<a href="http://blog.csdn.net/tianlesoftware/article/details/6009110">http://blog.csdn.net/tianlesoftware/article/details/6009110</a></p>
+</blockquote>
+<p>目前所能见到的硬盘接口类型主要有IDE、SATA、SCSI、SAS、FC等等。IDE是俗称的并口，SATA是俗称的串口，这两种硬盘是个人电脑和低端服务器常见的硬盘。SCSI是"小型计算机系统专用接口"的简称，SCSI硬盘就是采用这种接口的硬盘。SAS就是串口的SCSI接口。一般服务器硬盘采用这两类接口，其性能比上述两种硬盘要高，稳定性更强，但是价格高，容量小，噪音大。FC是光纤通道，和SCIS接口一样光纤通道最初也不是为硬盘设计开发的接口技术，是专门为网络系统设计的，但随着存储系统对速度的需求，才逐渐应用到硬盘系统中。SSD也称作电子硬盘或者固态电子盘，是由控制单元和固态存储单元（DRAM或FLASH芯片）组成的硬盘。固态硬盘的接口规范和定义、功能及使用方法上与普通硬盘的相同，在产品外形和尺寸上也与普通硬盘一致。新一代的固态硬盘普遍采用SATA-2接口，但其成本较高。</p>
+<h3>一. IDE</h3>
+<p>IDE（Integrated Drive Electronics集成驱动器电子）的缩写，它的本意是指把控制器与盘体集成在一起的硬盘驱动器，是一种硬盘的传输接口，它有另一个名称叫做ATA（Advanced Technology Attachment），这两个名词都有厂商在用，指的是相同的东西。
+IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名称，而这个规格同时又被称为Fast ATA。所不同的是Fast ATA是专指硬盘接口，而EIDE还制定了连接光盘等非硬盘产品的标准。而这个连接非硬盘类的IDE标准，又称为ATAPI接口。而之后再推出更快的接口，名称都只剩下ATA的字样，像是Ultra ATA、ATA/66、ATA/100等。</p>
+<p>早期的IDE接口有两种传输模式，一个是PIO（Programming I/O）模式，另一个是DMA（Direct Memory Access）。虽然DMA模式系统资源占用少，但需要额外的驱动程序或设置，因此被接受的程度比较低。后来在对速度要求愈来愈高的情况下，DMA模式由于执行效率较好，操作系统开始直接支持，而且厂商更推出了愈来愈快的DMA模式传输速度标准。而从英特尔的430TX芯片组开始，就提供了对Ultra DMA 33的支持 ...</p>
+                <a class="readmore" href="./Technology/2012/12/02/harddisk.html">read more</a>
+                <p>There are <a href="./Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="./Research/2012/12/02/wmn-opensource-project.html" rel="bookmark"
                            title="Permalink to WMN方面的开源项目">WMN方面的开源项目</a></h1>
                 </header>
@@ -79,166 +220,10 @@ ROBIN Mesh：<a href="http://www.robin-mesh.net/">http://www.robin-mesh.net/</a>
                 <a class="readmore" href="./Research/2012/12/02/wmn-opensource-project.html">read more</a>
                 <p>There are <a href="./Research/2012/12/02/wmn-opensource-project.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Technology/2012/12/01/CentOS-Configuration.html" rel="bookmark"
-                           title="Permalink to CentOS配置">CentOS配置</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="./category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="./tag/CentOS.html">CentOS</a><a href="./tag/Linux.html">Linux</a></p></footer><!-- /.post-info -->                <p>推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）</p>
-<h3>1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0</h3>
-<div class="codehilite"><pre>    <span class="n">DEVICE</span><span class="p">=</span>&quot;<span class="n">eth0</span>&quot;
-    <span class="n">NM_CONTROLLED</span><span class="p">=</span>&quot;<span class="n">yes</span>&quot;
-    <span class="n">ONBOOT</span><span class="p">=</span><span class="n">yes</span>
-    <span class="n">TYPE</span><span class="p">=</span><span class="n">Ethernet</span>
-    <span class="n">BOOTPROTO</span><span class="p">=</span><span class="n">none</span>
-    <span class="n">IPADDR</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
-    <span class="n">PREFIX</span><span class="p">=</span>24
-    <span class="n">GATEWAY</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
-    <span class="n">DNS1</span><span class="p">=</span>59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
-    <span class="n">DNS2</span><span class="p">=</span>218<span class="p">.</span>85<span class="p">.</span>157<span class="p">.</span>99
-    <span class="n">DEFROUTE</span><span class="p">=</span><span class="n">yes</span>
-    <span class="n">IPV4_FAILURE_FATAL</span><span class="p">=</span><span class="n">yes</span>
-    <span class="n">IPV6INIT</span><span class="p">=</span><span class="n">no</span>
-    <span class="n">NAME</span><span class="p">=</span>&quot;<span class="n">System</span> <span class="n">eth0</span>&quot;
-</pre></div>
-
-
-<h3>2、配置DNS： vi /etc/resolv.conf</h3>
-<div class="codehilite"><pre>    <span class="n">nameserver</span> 59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
-    <span class="n">search</span> <span class="n">localdomain</span>
-
-配置好以后重启服务：
-
-    <span class="n">service</span> <span class="n">network</span> <span class="n">restart</span>
-</pre></div>
-
-
-<h3>3、解决中文乱码：vi /etc/sysconfig/i18n ：</h3>
-<div class="codehilite"><pre>    <span class="n">LANG</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span>&quot;
-    <span class="n">LANGUAGE</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">GB2312</span><span class="p">:</span><span class="n">zh_CN</span>&quot;
-    <span class="n">SUPPORTED</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN ...</span></pre></div>
-                <a class="readmore" href="./Technology/2012/12/01/CentOS-Configuration.html">read more</a>
-                <p>There are <a href="./Technology/2012/12/01/CentOS-Configuration.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Technology/2012/12/01/Linux-scp.html" rel="bookmark"
-                           title="Permalink to Linux系统之间拷贝文件">Linux系统之间拷贝文件</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="./category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="./tag/Linux.html">Linux</a><a href="./tag/scp.html">scp</a></p></footer><!-- /.post-info -->                <p>Linux系统之间拷贝文件常用有3种方法：</p>
-<p>第一种就是ftp，也就是其中一台Linux安装ftp Server，这样另外一台可以使用ftp来进行文件的拷贝。</p>
-<p>第二种方法就是采用samba服务，类似Windows文件复制的方式来操作，比较简洁方便。</p>
-<p>第三种就是利用scp命令来进行文件拷贝。</p>
-<p>相对来说，个人觉得scp比较快捷、方便一点。</p>
-<ol>
-<li>scp复制文件或目录命令：</li>
-</ol>
-<p>复制文件：</p>
-<p>（1）将本地文件拷贝到远程</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> 文件名 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>远程路径
-</pre></div>
-
-
-<p>（2）从远程将文件拷回本地</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>文件名 本地路径
-</pre></div>
-
-
-<ol>
-<li>复制目录：</li>
-</ol>
-<p>（1）将本地目录拷贝到远程</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> <span class="o">-</span><span class="n">r</span> 目录名 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>远程路径
-</pre></div>
-
-
-<p>（2）从远程将目录拷回本地</p>
-<div class="codehilite"><pre>    <span class="n">scp</span> <span class="o">-</span><span class="n">r</span> 用户名<span class="p">@</span>计算机<span class="n">IP</span>或者计算机名称<span class="p">:</span>目录名 本地路径
-</pre></div>
-                <a class="readmore" href="./Technology/2012/12/01/Linux-scp.html">read more</a>
-                <p>There are <a href="./Technology/2012/12/01/Linux-scp.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Research/2012/12/01/References-format.html" rel="bookmark"
-                           title="Permalink to 参考文献字母含义">参考文献字母含义</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="./category/Research.html">Research</a>. </p>
-<p>tags: <a href="./tag/参考文献.html">参考文献</a></p></footer><!-- /.post-info -->                <ul>
-<li>根据GB3469 规定</li>
-</ul>
-<p>①期刊［J］</p>
-<p>②专著［M］</p>
-<p>③论文集［C］</p>
-<p>④学位论文［D］</p>
-<p>⑤专利［P］</p>
-<p>⑥标准［S］</p>
-<p>⑦报纸［N］</p>
-<p>⑧技术报告［R］</p>
-<ul>
-<li>电子文献载体类型用双字母标识，例如：</li>
-</ul>
-<p>①磁带［MT］</p>
-<p>②磁盘［DK］</p>
-<p>③光盘［CD］</p>
-<p>④联机网络［OL］</p>
-<ul>
-<li>电子文献载体类型的参考文献类型标识方法为：［文献类型标识/载体类型标识］。例如：</li>
-</ul>
-<p>①联机网上数据库［DB/OL］</p>
-<p>②磁带数据库［DB/MT］</p>
-<p>③光盘图书［M/CD］</p>
-<p>④磁盘软件［CP/DK］</p>
-<p>⑤网上期刊［J/OL］</p>
-<p>⑥网上电子公告</p>
-                <a class="readmore" href="./Research/2012/12/01/References-format.html">read more</a>
-                <p>There are <a href="./Research/2012/12/01/References-format.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
                         <a href="./index.html">&laquo;</a>
-                Page 2 / 4
+                Page 2 / 5
             <a href="./index3.html">&raquo;</a>
     </p>
                         </section><!-- /#content -->
@@ -247,118 +232,8 @@ ROBIN Mesh：<a href="http://www.robin-mesh.net/">http://www.robin-mesh.net/</a>
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="./tag/挂载.html">
-       挂载
-    </a>
-</li>
-<li>
-    <a href="./tag/mesh.html">
-       mesh
-    </a>
-</li>
-<li>
-    <a href="./tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="./tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="./tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="./tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="./tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="./tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
     <a href="./tag/网络.html">
        网络
-    </a>
-</li>
-<li>
-    <a href="./tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="./tag/分区.html">
-       分区
-    </a>
-</li>
-<li>
-    <a href="./tag/.html">
-       
-    </a>
-</li>
-<li>
-    <a href="./tag/参考文献.html">
-       参考文献
-    </a>
-</li>
-<li>
-    <a href="./tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="./tag/SQL.html">
-       SQL
-    </a>
-</li>
-<li>
-    <a href="./tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="./tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-<li>
-    <a href="./tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-<li>
-    <a href="./tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="./tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="./tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-<li>
-    <a href="./tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
-    <a href="./tag/github.html">
-       github
     </a>
 </li>
 <li>
@@ -367,13 +242,133 @@ ROBIN Mesh：<a href="http://www.robin-mesh.net/">http://www.robin-mesh.net/</a>
     </a>
 </li>
 <li>
-    <a href="./tag/吞吐量.html">
-       吞吐量
+    <a href="./tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="./tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="./tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="./tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="./tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="./tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="./tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="./tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="./tag/分区.html">
+       分区
     </a>
 </li>
 <li>
     <a href="./tag/Pelican.html">
        Pelican
+    </a>
+</li>
+<li>
+    <a href="./tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="./tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="./tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="./tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="./tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="./tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="./tag/mesh.html">
+       mesh
+    </a>
+</li>
+<li>
+    <a href="./tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="./tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="./tag/Nagios.html">
+       Nagios
+    </a>
+</li>
+<li>
+    <a href="./tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="./tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+<li>
+    <a href="./tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="./tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="./tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="./tag/MESH.html">
+       MESH
     </a>
 </li>
                   

@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/Nagios.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2013-04-28T00:00:00+08:00</updated><entry><title>Nagios监控配置</title><link href="http://loosky.com/Technology/2013/04/28/nagios-monitor.html" rel="alternate"></link><updated>2013-04-28T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2013-04-28:Technology/2013/04/28/nagios-monitor.html</id><summary type="html">&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;Nagios&lt;/span&gt;是一款开源的免费网络监视工具，能有效监控&lt;span class="n"&gt;Windows&lt;/span&gt;、&lt;span class="n"&gt;Linux&lt;/span&gt;和&lt;span class="n"&gt;Unix&lt;/span&gt;的主机状态，交换机路由器等网络设备以及打印机等。
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Nagios安装和配置：&lt;/strong&gt; &lt;a href="http://loosky.net/archives/2758.html"&gt;http://loosky.net/archives/2758.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;想获取客户机上更为详细的信息，还必须在服务器及客户端上安装NRPE插件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NRPE下载地址：&lt;/strong&gt; &lt;a href="http://www.nagios.org/download/addons"&gt;http://www.nagios.org/download/addons&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;服务器端监控程序安装&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#cd /usr/local/src&lt;/span&gt;
+&lt;span class="c"&gt;#tar zxvf nrpe-2.14.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;#cd nrpe-2.14&lt;/span&gt;
+&lt;span class="c"&gt;# ./configure --with-nagios-user=nagios -with-nagios-group=nagios --prefix=/usr/local/nagios/&lt;/span&gt;
+&lt;span class="c"&gt;# make all;make install-plugin ; make install-daemon;make install-daemon-config   //将check_nrpe插件安装到/usr/local/nagios/libexec/目录下&lt;/span&gt;
+&lt;span class="c"&gt;#/usr/local/nagios/libexec/check_nrpe -H 127.0.0.1&lt;/span&gt;
+
+    &lt;span class="n"&gt;NRPE&lt;/span&gt; &lt;span class="n"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;14
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Linux客户机监控&lt;/h3&gt;
+&lt;h4&gt;安装nagios插件&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#useradd -s /sbin/nologin nagios //添加nagios用户&lt;/span&gt;
+&lt;span class="c"&gt;#cd /usr/local/src&lt;/span&gt;
+&lt;span class="c"&gt;#tar zxvf nagios-plugins-1.4.16.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;#cd nagios-plugins-1.4.16&lt;/span&gt;
+&lt;span class="c"&gt;#./configure --with-nagios-user=nagios --with-nagios-group=nagios --prefix=/usr/local/nagios/   //指定安装目录及运行该软件用户和组&lt;/span&gt;
+&lt;span class="c"&gt;#make;make install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;安装nrpe&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#cd ..&lt;/span&gt;
+&lt;span class="c"&gt;#tar zxvf nrpe-2.14.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;#cd nrpe-2.14&lt;/span&gt;
+&lt;span class="c"&gt;#./configure --with-nagios-user=nagios --with-nagios-group=nagios --prefix=/usr/local/nagios/&lt;/span&gt;
+&lt;span class="c"&gt;# make all&lt;/span&gt;
+&lt;span class="c"&gt;# make install-plugin;make install-daemon;make install-daemon-config&lt;/span&gt;
+&lt;span class="c"&gt;# ls /usr/local/nagios/libexec/ //验证安装&lt;/span&gt;
+    &lt;span class="n"&gt;check_apt&lt;/span&gt; &lt;span class="n"&gt;check_ftp&lt;/span&gt; &lt;span class="n"&gt;check_mailq&lt;/span&gt; &lt;span class="n"&gt;check_overcr&lt;/span&gt; &lt;span class="n"&gt;check_tcp&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;配置、启动、测试NRPE&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# cd /usr/local/nagios/&lt;/span&gt;
+&lt;span class="c"&gt;# vi etc/nrpe.cfg&lt;/span&gt;
+
+    &lt;span class="n"&gt;allowed_hosts&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;127&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;1&lt;span class="p"&gt;,&lt;/span&gt;192&lt;span class="p"&gt;.&lt;/span&gt;168&lt;span class="p"&gt;.&lt;/span&gt;80&lt;span class="p"&gt;.&lt;/span&gt;200   &lt;span class="o"&gt;//&lt;/span&gt;添加服务器端的&lt;span class="n"&gt;IP&lt;/span&gt;地址
+
+&lt;span class="c"&gt;#/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg –d  //启动NRPE守护进程&lt;/span&gt;
+&lt;span class="c"&gt;#netstat -utpln |grep nrpe        //查看nrpe进程是否已正常启动&lt;/span&gt;
+
+    &lt;span class="n"&gt;tcp&lt;/span&gt; 0 0 0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;:&lt;/span&gt;5666 0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;LISTEN&lt;/span&gt; 17619&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nrpe&lt;/span&gt;
+
+&lt;span class="c"&gt;#echo &amp;quot;/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg -d&amp;quot; &amp;gt;&amp;gt;/etc/rc.local     //添加nrpe为开机自动启动 &lt;/span&gt;
+&lt;span class="c"&gt;#/usr/local/nagios/libexec/check_nrpe -H 127.0.0.1 &lt;/span&gt;
+    &lt;span class="n"&gt;NRPE&lt;/span&gt; &lt;span class="n"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;14    &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;nrpe&lt;/span&gt;测试结果，此结果为&lt;span class="n"&gt;nrpe&lt;/span&gt;已经正常工作了
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;定义监控内容&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# vi /usr/local/nagios/etc/nrpe.cfg   //定义监控服务器内容&lt;/span&gt;
+
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_users&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_users&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 5 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 10 &lt;span class="c"&gt;#监控登陆的用户数量&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_load&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_load&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 15&lt;span class="p"&gt;,&lt;/span&gt;10&lt;span class="p"&gt;,&lt;/span&gt;5 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 30&lt;span class="p"&gt;,&lt;/span&gt;25&lt;span class="p"&gt;,&lt;/span&gt;20 &lt;span class="c"&gt;#监控CPU的负载&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_sda2&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_disk&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 20&lt;span class="c"&gt;% -c 10% -p /dev/sda2 #监控磁盘利用率，这里的sda2必须是实际的硬盘分区，可使用fdisk –l查&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_swap&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_swap&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 20 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 10 &lt;span class="c"&gt;#监控交换空间&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_zombie_procs&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_procs&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 5 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 10 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;Z&lt;/span&gt; &lt;span class="c"&gt;#监控进程中的僵尸进程&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_total_procs&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_procs&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 150 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 200 &lt;span class="c"&gt;#监控所有进程&lt;/span&gt;
+
+    注意：&lt;span class="n"&gt;command&lt;/span&gt;后面括号中的内容就是定义的变量，变量名可以任意指定，只需和服务器配置文件中的一致即可
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;磁盘自动监控脚本&lt;/h4&gt;
+&lt;p&gt;上面的check_sda2命令是对具体的某个分区空间进行监控，但因为每台Linux主机的磁盘分区状况都不一样，而且有多少个分区就需要定义多少个命令，所以通过自定义写一个shell脚本来监控所有的磁盘分区：&lt;/p&gt;
+&lt;h5&gt;1、在客户端上创建脚本check_disk.sh&lt;/h5&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#vi  /usr/local/nagios/libexec/check_disk.sh 写入如下内容&lt;/span&gt;
+
+    &lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+        &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;`&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;wc&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;`
+        &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;0
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; `&lt;span class="n"&gt;seq&lt;/span&gt; 2 $&lt;span class="n"&gt;row&lt;/span&gt;`
+        &lt;span class="k"&gt;do&lt;/span&gt;
+                &lt;span class="n"&gt;spare&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;`&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$i&amp;quot;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;awk&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;{print $4}&amp;#39;&lt;/span&gt;`
+                &lt;span class="n"&gt;use_percentage&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;`&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$i&amp;quot;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;s/\%//&amp;quot;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;awk&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt;`
+                &lt;span class="n"&gt;spare_percentage&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;`&lt;span class="n"&gt;expr&lt;/span&gt; 100 &lt;span class="o"&gt;-&lt;/span&gt; $&lt;span class="n"&gt;use_percentage&lt;/span&gt;`
+                &lt;span class="n"&gt;partition_name&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;`&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;P&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$i&amp;quot;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;awk&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;{print $6}&amp;#39;&lt;/span&gt;`
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$spare_percentage&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;lt&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;  &lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="n"&gt;then&lt;/span&gt;
+                    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$partition_name CRITICAL ${spare_percentage}% $spare  &amp;quot;&lt;/span&gt;
+                    &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;$&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;2
+                &lt;span class="n"&gt;elif&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$spare_percentage&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;lt&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;5&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="n"&gt;then&lt;/span&gt;
+                    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;  &lt;span class="s"&gt;&amp;quot;$partition_name WARNING! ${spare_percentage}% $spare  &amp;quot;&lt;/span&gt;
+                    &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;$&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;1
+                &lt;span class="k"&gt;else&lt;/span&gt;
+                    &lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;  &lt;span class="s"&gt;&amp;quot;$partition_name OK ${spare_percentage}% $spare  &amp;quot;&lt;/span&gt;
+                    &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;$&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;0
+                &lt;span class="n"&gt;fi&lt;/span&gt;
+        &lt;span class="n"&gt;done&lt;/span&gt;
+        &lt;span class="n"&gt;zhuangtai&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;0
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; `&lt;span class="n"&gt;seq&lt;/span&gt; 2 $&lt;span class="n"&gt;row&lt;/span&gt;`
+        &lt;span class="k"&gt;do&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;${status[$j]}&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;gt&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$zhuangtai&amp;quot;&lt;/span&gt;  &lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="n"&gt;then&lt;/span&gt;
+                    &lt;span class="n"&gt;zhuangtai&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;$&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;$&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]}&lt;/span&gt;
+                &lt;span class="n"&gt;fi&lt;/span&gt;
+        &lt;span class="n"&gt;done&lt;/span&gt;
+        &lt;span class="nb"&gt;exit&lt;/span&gt; $&lt;span class="n"&gt;zhuangtai&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;2、修改该脚本的权限&lt;/h5&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#chmod +x  /usr/local/nagios/libexec/check_disk.sh&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;3、编辑/usr/local/nagios/etc/nrpe.cfg文件&lt;/h5&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#vi /usr/local/nagios/etc/nrpe.cfg  # 加入一行&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_disk&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_disk&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;
+
+&lt;span class="c"&gt;#killall nrpe&lt;/span&gt;
+&lt;span class="c"&gt;#/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg -d  //重启nrpe服务&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;4、检测脚本是否运行正常&lt;/h5&gt;
+&lt;p&gt;在Nagios服务器端执行如下命令：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#/usr/local/nagios/libexec/check_nrpe -H 192.168.80.201 -c check_disk  //192.168.80.201为客户机IP地址&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果正常的话，会输出一行磁盘检测的数据，否则可能会报错。&lt;/p&gt;
+&lt;h5&gt;5、在服务器端上添加相应的service&lt;/h5&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#cd  /usr/local/nagios/etc/&lt;/span&gt;
+&lt;span class="c"&gt;#vi  services.cfg   # 加入如下内容：&lt;/span&gt;
+    &lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;use&lt;/span&gt;     &lt;span class="n"&gt;generic&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;
+        &lt;span class="n"&gt;host_name&lt;/span&gt;       192&lt;span class="p"&gt;.&lt;/span&gt;168&lt;span class="p"&gt;.&lt;/span&gt;80&lt;span class="p"&gt;.&lt;/span&gt;201
+        &lt;span class="n"&gt;service_description&lt;/span&gt;     &lt;span class="n"&gt;check_disk&lt;/span&gt;
+        &lt;span class="n"&gt;check_command&lt;/span&gt;           &lt;span class="n"&gt;check_nrpe&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;check_disk&lt;/span&gt;
+        &lt;span class="n"&gt;max_check_attempts&lt;/span&gt; 5
+        &lt;span class="n"&gt;normal_check_interval&lt;/span&gt; 1
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;6、在服务器端重启nagios服务&lt;/h5&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#service nagios restart&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Windows主机监控&lt;/h3&gt;
+&lt;p&gt;Windows主机可以通过NSClient++来进行监控，在Windows机器上安装NSClient++外部构件并使用check_nt插件检测和与NSClient++构件进行通讯。&lt;/p&gt;
+&lt;p&gt;注：如果按照&lt;a href="http://loosky.net/archives/2758.html"&gt;正常的安装步骤&lt;/a&gt;来安装的话，check_nt插件已经安装到了Nagios服务器上。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NSClient++下载地址:&lt;/strong&gt; &lt;a href="http://sourceforge.net/projects/nscplus"&gt;http://sourceforge.net/projects/nscplus&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;1、NSClient++安装&lt;/h4&gt;
+&lt;p&gt;下载安装包后，双击进行安装，注意要填入正确的Nagios服务器地址，并加载相应的模块。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="NSClient++安装第一步" src="http://loosky.net/Upload/2013/04/NSClientplus-install-step1.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;2、验证服务是否启动并允许服务与桌面交互&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="验证服务是否正常启动" src="http://loosky.net/Upload/2013/04/NSClientplus-install-step2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="允许服务与桌面交互" src="http://loosky.net/Upload/2013/04/NSClientplus-install-step3.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;3、验证NSClient++端口&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;在&lt;span class="n"&gt;Windows&lt;/span&gt;的命令行中输入：&lt;span class="n"&gt;netstat&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;an&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="验证NSClient端口" src="http://loosky.net/Upload/2013/04/netstat.png" /&gt;&lt;/p&gt;
+&lt;p&gt;至此配置就基本完成了，这台Windows机器可以加到Nagios监控配置里了。&lt;/p&gt;
+&lt;h4&gt;4、IPv6配置&lt;/h4&gt;
+&lt;p&gt;如果Windows客户机启用了IPv6地址，那么NSClient++默认监听的就是IPv6的端口了
+&lt;img alt="IPv6主机" src="http://loosky.net/Upload/2013/04/netstat2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;解决办法：
+方法1、在服务器端也开启IPv6地址，并在客户机上添加服务器的的IP地址。修改安装目录下的nsclient.ini，在allowed_hosts选项中加入服务器的IPv6地址，然后重启NSClient++服务&lt;/p&gt;
+&lt;p&gt;方法2、在Windows的命令行界面下，进入安装目录，输入：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;nscp&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;generate&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;defaults&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;advanced&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;软件会重新生成nsclient.ini文件，在nsclient.ini文件中找到bind to在后面就可以设置监听到IPv4地址。&lt;/p&gt;
+&lt;p&gt;参考：&lt;a href="http://nsclient.org/nscp/ticket/575"&gt;http://nsclient.org/nscp/ticket/575&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;5、配置Nagios&lt;/h4&gt;
+&lt;p&gt;在服务器上定义相应的监控项目即可实现对Windows主机的监控。&lt;/p&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#############Windows Nsclient############&lt;/span&gt;
+&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;use&lt;/span&gt;                     &lt;span class="n"&gt;generic&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;
+        &lt;span class="n"&gt;hostgroup_name&lt;/span&gt;          &lt;span class="n"&gt;windows&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;servers&lt;/span&gt;
+        &lt;span class="n"&gt;service_description&lt;/span&gt;     &lt;span class="n"&gt;Uptime&lt;/span&gt;
+        &lt;span class="n"&gt;check_command&lt;/span&gt;           &lt;span class="n"&gt;check_nt&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;UPTIME&lt;/span&gt;   &lt;span class="o"&gt;--&amp;gt;&lt;/span&gt; 系统运行时间
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;use&lt;/span&gt;                     &lt;span class="n"&gt;generic&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;
+        &lt;span class="n"&gt;hostgroup_name&lt;/span&gt;          &lt;span class="n"&gt;windows&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;servers&lt;/span&gt;
+        &lt;span class="n"&gt;service_description&lt;/span&gt;     &lt;span class="n"&gt;CPU&lt;/span&gt; &lt;span class="n"&gt;Load&lt;/span&gt;
+        &lt;span class="n"&gt;check_command&lt;/span&gt;           &lt;span class="n"&gt;check_nt&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;CPULOAD&lt;/span&gt;&lt;span class="o"&gt;!-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; 5&lt;span class="p"&gt;,&lt;/span&gt;80&lt;span class="p"&gt;,&lt;/span&gt;90 &lt;span class="o"&gt;--&amp;gt;&lt;/span&gt; 系统运行负载
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;use&lt;/span&gt;                     &lt;span class="n"&gt;generic&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;
+        &lt;span class="n"&gt;hostgroup_name&lt;/span&gt;          &lt;span class="n"&gt;windows&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;servers&lt;/span&gt;
+        &lt;span class="n"&gt;service_description&lt;/span&gt;     &lt;span class="n"&gt;Memory&lt;/span&gt; &lt;span class="n"&gt;Usage&lt;/span&gt;
+        &lt;span class="n"&gt;check_command&lt;/span&gt;           &lt;span class="n"&gt;check_nt&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;MEMUSE&lt;/span&gt;&lt;span class="o"&gt;!-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 90 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 95  &lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;  系统内存占用量
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;use&lt;/span&gt;                     &lt;span class="n"&gt;generic&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;
+        &lt;span class="n"&gt;hostgroup_name&lt;/span&gt;          &lt;span class="n"&gt;windows&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;servers&lt;/span&gt;
+        &lt;span class="n"&gt;service_description&lt;/span&gt;     &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt; &lt;span class="n"&gt;Drive&lt;/span&gt; &lt;span class="n"&gt;Space&lt;/span&gt;
+        &lt;span class="n"&gt;check_command&lt;/span&gt;           &lt;span class="n"&gt;check_nt&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;USEDDISKSPACE&lt;/span&gt;&lt;span class="o"&gt;!-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 80 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 90 &lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;系统&lt;span class="n"&gt;C&lt;/span&gt;盘磁盘空间
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;use&lt;/span&gt;                     &lt;span class="n"&gt;generic&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;
+        &lt;span class="n"&gt;hostgroup_name&lt;/span&gt;          &lt;span class="n"&gt;windows&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;servers&lt;/span&gt;
+        &lt;span class="n"&gt;service_description&lt;/span&gt;     &lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt; &lt;span class="n"&gt;Drive&lt;/span&gt; &lt;span class="n"&gt;Space&lt;/span&gt;
+        &lt;span class="n"&gt;check_command&lt;/span&gt;           &lt;span class="n"&gt;check_nt&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;USEDDISKSPACE&lt;/span&gt;&lt;span class="o"&gt;!-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 80 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 90  &lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;系统&lt;span class="n"&gt;D&lt;/span&gt;盘磁盘空间
+｝
+
+&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;use&lt;/span&gt;                     &lt;span class="n"&gt;generic&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;
+        &lt;span class="n"&gt;host_name&lt;/span&gt;               192&lt;span class="p"&gt;.&lt;/span&gt;168&lt;span class="p"&gt;.&lt;/span&gt;185&lt;span class="p"&gt;.&lt;/span&gt;4
+        &lt;span class="n"&gt;service_description&lt;/span&gt;     &lt;span class="n"&gt;MMLogOrder&lt;/span&gt;
+        &lt;span class="n"&gt;check_command&lt;/span&gt;           &lt;span class="n"&gt;check_nt&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;PROCSTATE&lt;/span&gt;&lt;span class="o"&gt;!-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;SHOWALL&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="n"&gt;MakeMM&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;  &lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;系统管理器中&lt;span class="n"&gt;MakeMM&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;进程存活性
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Nagios"></category><category term="PNP"></category></entry><entry><title>Nagios可视化绘制工具PNP安装&amp;配置</title><link href="http://loosky.com/Technology/2013/04/28/nagios-pnp-install.html" rel="alternate"></link><updated>2013-04-28T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2013-04-28:Technology/2013/04/28/nagios-pnp-install.html</id><summary type="html">&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;Nagios&lt;/span&gt;是一款开源的免费网络监视工具，能有效监控&lt;span class="n"&gt;Windows&lt;/span&gt;、&lt;span class="n"&gt;Linux&lt;/span&gt;和&lt;span class="n"&gt;Unix&lt;/span&gt;的主机状态，交换机路由器等网络设备以及打印机等。
+
+&lt;span class="n"&gt;PNP&lt;/span&gt;是一个基于&lt;span class="n"&gt;php&lt;/span&gt;和&lt;span class="n"&gt;perl&lt;/span&gt;，用&lt;span class="n"&gt;rrdtool&lt;/span&gt;将&lt;span class="n"&gt;nagios&lt;/span&gt;采集的数据绘制图表的工具。
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Nagios安装和配置：&lt;/strong&gt; &lt;a href="http://loosky.net/archives/2758.html"&gt;http://loosky.net/archives/2758.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nagios监控配置：&lt;/strong&gt;&lt;a href="http://loosky.net/archives/2764.html"&gt;http://loosky.net/archives/2764.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;一、PNP安装&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;PNP下载地址：&lt;/strong&gt;&lt;a href="http://docs.pnp4nagios.org/pnp-0.6/install"&gt;http://docs.pnp4nagios.org/pnp-0.6/install&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;因为PNP是一个基于php和perl，用rrdtool将nagios采集的数据绘制图表的工具，所以安装pnp之前必须先安装php、perl和rrdtool。这里用yum直接来安装rrdtool，单独下载安装有很多依存关系，比较麻烦。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#yum install rrdtool&lt;/span&gt;
+&lt;span class="c"&gt;#cd /usr/local/src&lt;/span&gt;
+&lt;span class="c"&gt;#wget http://sourceforge.net/projects/pnp4nagios/files/PNP-0.6/pnp4nagios-0.6.15.tar.gz/download         //下载pnp&lt;/span&gt;
+&lt;span class="c"&gt;#tar xzvf pnp4nagios-0.6.15.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;#cd pnp4nagios-0.6.15&lt;/span&gt;
+&lt;span class="c"&gt;#./configure&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;此时有可能出现perl modules没有发现的错误：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="perl modules没有发现" src="http://loosky.net/Upload/2013/04/pnp-perl.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解决方案：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#yum install rrdtool-perl&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;参考：&lt;a href="http://ronaldbradford.com/blog/installing-perl-rrd-module-rrdspm-2009-07-11/"&gt;http://ronaldbradford.com/blog/installing-perl-rrd-module-rrdspm-2009-07-11/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;根据提示需要继续&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make all&lt;/span&gt;
+&lt;span class="c"&gt;# make fullinstall&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装成功后相关的文件信息如下：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;  &lt;span class="n"&gt;General&lt;/span&gt; &lt;span class="n"&gt;Options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="o"&gt;-------------------------&lt;/span&gt;         &lt;span class="o"&gt;-------------------&lt;/span&gt;
+  &lt;span class="n"&gt;Nagios&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                &lt;span class="n"&gt;nagios&lt;/span&gt; &lt;span class="n"&gt;nagios&lt;/span&gt;
+  &lt;span class="n"&gt;Install&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;
+  &lt;span class="n"&gt;HTML&lt;/span&gt; &lt;span class="n"&gt;Dir&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                         &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;
+  &lt;span class="n"&gt;Config&lt;/span&gt; &lt;span class="n"&gt;Dir&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                       &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;
+  &lt;span class="n"&gt;Location&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;rrdtool&lt;/span&gt; &lt;span class="n"&gt;binary&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;       &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;rrdtool&lt;/span&gt; &lt;span class="n"&gt;Version&lt;/span&gt; 1&lt;span class="p"&gt;.&lt;/span&gt;3&lt;span class="p"&gt;.&lt;/span&gt;8
+  &lt;span class="n"&gt;RRDs&lt;/span&gt; &lt;span class="n"&gt;Perl&lt;/span&gt; &lt;span class="n"&gt;Modules&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                &lt;span class="n"&gt;FOUND&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt; 1&lt;span class="p"&gt;.&lt;/span&gt;3008&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;RRD&lt;/span&gt; &lt;span class="n"&gt;Files&lt;/span&gt; &lt;span class="n"&gt;stored&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;              &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;perfdata&lt;/span&gt;
+  &lt;span class="n"&gt;process_perfdata&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pl&lt;/span&gt; &lt;span class="n"&gt;Logfile&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;      &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;perfdata&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;log&lt;/span&gt;
+  &lt;span class="n"&gt;Perfdata&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NPCD&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;stored&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;spool&lt;/span&gt;
+
+  &lt;span class="n"&gt;Web&lt;/span&gt; &lt;span class="n"&gt;Interface&lt;/span&gt; &lt;span class="n"&gt;Options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="o"&gt;-------------------------&lt;/span&gt;         &lt;span class="o"&gt;-------------------&lt;/span&gt;
+  &lt;span class="n"&gt;HTML&lt;/span&gt; &lt;span class="n"&gt;URL&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                         &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;
+  &lt;span class="n"&gt;Apache&lt;/span&gt; &lt;span class="n"&gt;Config&lt;/span&gt; &lt;span class="n"&gt;File&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;               &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;httpd&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
+
+  &lt;span class="n"&gt;PHP&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Files&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;frontend&lt;/span&gt;： &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp&lt;/span&gt;
+  &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="n"&gt;collector&lt;/span&gt; &lt;span class="n"&gt;process_perfdata&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pl&lt;/span&gt;：&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;
+  &lt;span class="n"&gt;sample&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;suffix&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sample&lt;/span&gt;：&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnpnagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;
+  &lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt; &lt;span class="n"&gt;frontend&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt;：&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后把相关后缀带sample文件变更成无sample后缀
+    #cd /usr/local/pnp4nagios/etc
+    #mv misccommands.cfg-sample misccommands.cfg
+    #mv nagios.cfg-sample nagios.cfg
+    #mv rra.cfg-sample rra.cfg&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#cd pages&lt;/span&gt;
+&lt;span class="c"&gt;#mv web_traffic.cfg-sample web_traffic.cfg&lt;/span&gt;
+
+&lt;span class="c"&gt;#cd ../check_commands/&lt;/span&gt;
+&lt;span class="c"&gt;#mv check_all_local_disks.cfg-sample check_all_local_disks.cfg&lt;/span&gt;
+&lt;span class="c"&gt;#mv check_nrpe.cfg-sample check_nrpe.cfg&lt;/span&gt;
+&lt;span class="c"&gt;#mv check_nwstat.cfg-sample check_nwstat.cfg&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;二、配置Ｎagios来启用PNP&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;Nagios&lt;/span&gt;的配置文件中，&lt;span class="n"&gt;enable_environment_macros&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;1默认是开启了的
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;pnp4nagios有很多种工作模式，参见：&lt;a href="http://docs.pnp4nagios.org/pnp-0.6/config"&gt;http://docs.pnp4nagios.org/pnp-0.6/config&lt;/a&gt;。这里我们选用同步模式，想选其它模式可以看说明都有详细配置教程。&lt;/p&gt;
+&lt;h4&gt;定义命令&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#vi /usr/local/nagios/etc/objects/commands.cfg  //新增或修改如下内容&lt;/span&gt;
+
+&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+       &lt;span class="n"&gt;command_name&lt;/span&gt;    &lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;perfdata&lt;/span&gt;
+       &lt;span class="n"&gt;command_line&lt;/span&gt;    &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;perl&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;process_perfdata&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pl&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+       &lt;span class="n"&gt;command_name&lt;/span&gt;    &lt;span class="n"&gt;process&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;perfdata&lt;/span&gt;
+       &lt;span class="n"&gt;command_line&lt;/span&gt;    &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;perl&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;process_perfdata&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;HOSTPERFDATA&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;修改主机和服务模板&lt;/h4&gt;
+&lt;p&gt;修改主机和服务模板，添加小太阳模版，镶嵌在nagios页面上（http://docs.pnp4nagios.org/pnp-0.6/webfe）&lt;/p&gt;
+&lt;p&gt;这里有两种查看图的方法，第一种方法是你当太阳的图标的时候会在新窗口中打开图形查看，第二种方法是你只需要把鼠标移动到太阳图标上面就会自动弹出图形出来，以下两种方法你可以根据自己喜好选其中一种即可&lt;/p&gt;
+&lt;p&gt;第一种方法在templates.cfg里面加入如下 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; 
+ &lt;span class="n"&gt;name&lt;/span&gt;       &lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pnp&lt;/span&gt; 
+ &lt;span class="n"&gt;action_url&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;graph&lt;/span&gt;?&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;$&lt;span class="n"&gt;HOSTNAME&lt;/span&gt;$&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;srv&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_HOST_&lt;/span&gt; 
+ &lt;span class="n"&gt;register&lt;/span&gt;   0 
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; 
+ &lt;span class="n"&gt;name&lt;/span&gt;       &lt;span class="n"&gt;srv&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pnp&lt;/span&gt; 
+ &lt;span class="n"&gt;action_url&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;graph&lt;/span&gt;?&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;$&lt;span class="n"&gt;HOSTNAME&lt;/span&gt;$&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;srv&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;$&lt;span class="n"&gt;SERVICEDESC&lt;/span&gt;$ 
+ &lt;span class="n"&gt;register&lt;/span&gt;   0 
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;第二种方法按照说明加入如下&lt;/p&gt;
+&lt;p&gt;拷贝status-header.ssi到/usr/local/nagios/share/ssi/目录下面来（这一步很重要，要不然移动到太阳标记上出不来图）&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; 
+    &lt;span class="n"&gt;name&lt;/span&gt;       &lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pnp&lt;/span&gt; 
+    &lt;span class="n"&gt;action_url&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pnp4nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;graph&lt;/span&gt;?&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;$&lt;span class="n"&gt;HOSTNAME&lt;/span&gt;$&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;srv&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_HOST_&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;tips&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/pnp4nagios/index.php/popup?host=$HOSTNAME$&amp;amp;srv=_HOST_ &lt;/span&gt;
+&lt;span class="s"&gt;    register   0 &lt;/span&gt;
+&lt;span class="s"&gt;}&lt;/span&gt;
+
+&lt;span class="s"&gt;define service { &lt;/span&gt;
+&lt;span class="s"&gt;    name       srv-pnp &lt;/span&gt;
+&lt;span class="s"&gt;    action_url /pnp4nagios/index.php/graph?host=$HOSTNAME$&amp;amp;srv=$SERVICEDESC$&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;tips&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;/pnp4nagios/index.php/popup?host=$HOSTNAME$&amp;amp;srv=$SERVICEDESC$ &lt;/span&gt;
+    &lt;span class="n"&gt;register&lt;/span&gt;   0 
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;为目标主机图标旁边添加一个小太阳标记：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://loosky.net/Upload/2013/04/pnp-host.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;为相关服务添加一个小太阳标记&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://loosky.net/Upload/2013/04/pnp-service.jpg" /&gt;&lt;/p&gt;</summary><category term="Nagios"></category><category term="PNP"></category></entry><entry><title>Nagios安装与配置</title><link href="http://loosky.com/Technology/2013/04/28/nagios-install.html" rel="alternate"></link><updated>2013-04-28T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2013-04-28:Technology/2013/04/28/nagios-install.html</id><summary type="html">&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;Nagios&lt;/span&gt;是一款开源的免费网络监视工具，能有效监控&lt;span class="n"&gt;Windows&lt;/span&gt;、&lt;span class="n"&gt;Linux&lt;/span&gt;和&lt;span class="n"&gt;Unix&lt;/span&gt;的主机状态，交换机路由器等网络设备以及打印机等。
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;安装前提：&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;gcc&lt;/span&gt; &lt;span class="n"&gt;glibc&lt;/span&gt; &lt;span class="n"&gt;glibc&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt; &lt;span class="n"&gt;gd&lt;/span&gt; &lt;span class="n"&gt;gd&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt; &lt;span class="n"&gt;php&lt;/span&gt; &lt;span class="n"&gt;openssl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt; &lt;span class="n"&gt;httpd&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;1、创建用户：&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#useradd -m nagios     #添加一个名为nagios的用户来运行nagios          &lt;/span&gt;
+&lt;span class="c"&gt;#usermod -a -G nagios apache    #将运行apache用户apache加入nagios组&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;2、 编译安装nagios及其插件：&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;nagios core官网下载地址：&lt;/strong&gt;&lt;a href="http://www.nagios.org/download/core/"&gt;http://www.nagios.org/download/core/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;nagios插件下载地址：&lt;/strong&gt;&lt;a href="http://www.nagios.org/download/plugins/"&gt;http://www.nagios.org/download/plugins/&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;安装Nagios Core&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#cd /usr/local/src&lt;/span&gt;
+&lt;span class="c"&gt;#mkdir /etc/httpd/conf/extra  //用来存放关于nagios的http配置文件&lt;/span&gt;
+&lt;span class="c"&gt;#tar zxvf nagios-3.5.0.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;#cd nagios-3.5.0&lt;/span&gt;
+&lt;span class="c"&gt;#./configure --prefix=/usr/local/nagios/ --with-comman-group=nagios --with-httpd-conf=/etc/httpd/conf/extra/ //指定安装目录及用户、组和http的配置目录&lt;/span&gt;
+&lt;span class="c"&gt;#make all;make install&lt;/span&gt;
+&lt;span class="c"&gt;# make install-init;make install-config;make install-commandmode;make install-webconf      //初始生成启动脚本、配置文件、命令配置模块和httpd的配置文件&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;安装nagios插件&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#cd ../&lt;/span&gt;
+&lt;span class="c"&gt;#tar zxvf nagios-plugins-1.4.16.tar.gz  &lt;/span&gt;
+&lt;span class="c"&gt;#cd nagios-plugins-1.4.16&lt;/span&gt;
+&lt;span class="c"&gt;#./configure --with-nagios-user=nagios --with-nagios-group=nagios --prefix=/usr/local/nagios/   //指定安装目录及用户和组&lt;/span&gt;
+&lt;span class="c"&gt;#make;make install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;配置httpd&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin   //创建登陆用户名nagiosadmin及密码,为web登陆时的用户名和密码 &lt;/span&gt;
+&lt;span class="c"&gt;# vi /etc/httpd/conf/httpd.conf #添加如下行，让nagios.conf生效&lt;/span&gt;
+
+    &lt;span class="n"&gt;Include&lt;/span&gt; &lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;extra&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;启动httpd及nagios服务并验证####&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#chkconfig --add nagios   //设置nagios及http开机自启动&lt;/span&gt;
+&lt;span class="c"&gt;#chkconfig nagios on&lt;/span&gt;
+&lt;span class="c"&gt;#chkconfig httpd on&lt;/span&gt;
+&lt;span class="c"&gt;#service nagios start&lt;/span&gt;
+&lt;span class="c"&gt;#service httpd start&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在浏览器中输入如：http://ip/nagios/访问nagios，一般情况下能看到英文的nagios监控界面。说明nagios基本能进行工作了。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Nagios" src="http://loosky.net/Upload/2013/04/nagios.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;3、安装NRPE&lt;/h3&gt;
+&lt;p&gt;想获取客户机上更为详细的信息，还必须在服务器及客户端上安装NRPE插件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NRPE下载地址：&lt;/strong&gt; &lt;a href="http://www.nagios.org/download/addons"&gt;http://www.nagios.org/download/addons&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;客户机端安装NRPE插件&lt;/h4&gt;
+&lt;h5&gt;安装nagios插件&lt;/h5&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#useradd -s /sbin/nologin nagios //添加nagios用户&lt;/span&gt;
+&lt;span class="c"&gt;#cd /usr/local/src&lt;/span&gt;
+&lt;span class="c"&gt;#tar zxvf nagios-plugins-1.4.16.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;#cd nagios-plugins-1.4.16&lt;/span&gt;
+&lt;span class="c"&gt;#./configure --with-nagios-user=nagios --with-nagios-group=nagios --prefix=/usr/local/nagios/   //指定安装目录及运行该软件用户和组&lt;/span&gt;
+&lt;span class="c"&gt;#make;make install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;安装nrpe&lt;/h5&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#cd ..&lt;/span&gt;
+&lt;span class="c"&gt;#tar zxvf nrpe-2.14.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;#cd nrpe-2.14&lt;/span&gt;
+&lt;span class="c"&gt;#./configure --with-nagios-user=nagios --with-nagios-group=nagios --prefix=/usr/local/nagios/&lt;/span&gt;
+&lt;span class="c"&gt;# make all&lt;/span&gt;
+&lt;span class="c"&gt;# make install-plugin;make install-daemon;make install-daemon-config&lt;/span&gt;
+&lt;span class="c"&gt;# ls /usr/local/nagios/libexec/ //验证安装&lt;/span&gt;
+&lt;span class="n"&gt;check_apt&lt;/span&gt; &lt;span class="n"&gt;check_ftp&lt;/span&gt; &lt;span class="n"&gt;check_mailq&lt;/span&gt; &lt;span class="n"&gt;check_overcr&lt;/span&gt; &lt;span class="n"&gt;check_tcp&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;配置、启动、测试NRPE&lt;/h5&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# cd /usr/local/nagios/&lt;/span&gt;
+&lt;span class="c"&gt;# vi etc/nrpe.cfg&lt;/span&gt;
+
+    &lt;span class="n"&gt;allowed_hosts&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;127&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;1&lt;span class="p"&gt;,&lt;/span&gt;192&lt;span class="p"&gt;.&lt;/span&gt;168&lt;span class="p"&gt;.&lt;/span&gt;80&lt;span class="p"&gt;.&lt;/span&gt;200   &lt;span class="o"&gt;//&lt;/span&gt;添加服务器端的&lt;span class="n"&gt;IP&lt;/span&gt;地址
+
+&lt;span class="c"&gt;#/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg –d  //启动NRPE守护进程&lt;/span&gt;
+&lt;span class="c"&gt;#netstat -utpln |grep nrpe        //查看nrpe进程是否已正常启动&lt;/span&gt;
+
+    &lt;span class="n"&gt;tcp&lt;/span&gt; 0 0 0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;:&lt;/span&gt;5666 0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;.&lt;/span&gt;0&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;LISTEN&lt;/span&gt; 17619&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nrpe&lt;/span&gt;
+
+&lt;span class="c"&gt;#echo &amp;quot;/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg -d&amp;quot; &amp;gt;&amp;gt;/etc/rc.local     //添加nrpe为开机自动启动 &lt;/span&gt;
+&lt;span class="c"&gt;#/usr/local/nagios/libexec/check_nrpe -H 127.0.0.1 &lt;/span&gt;
+    &lt;span class="n"&gt;NRPE&lt;/span&gt; &lt;span class="n"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;14    &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;nrpe&lt;/span&gt;测试结果，此结果为&lt;span class="n"&gt;nrpe&lt;/span&gt;已经正常工作了
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;定义监控内容&lt;/h5&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# vi /usr/local/nagios/etc/nrpe.cfg   //定义监控服务器内容&lt;/span&gt;
+
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_users&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_users&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 5 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 10 &lt;span class="c"&gt;#监控登陆的用户数量&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_load&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_load&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 15&lt;span class="p"&gt;,&lt;/span&gt;10&lt;span class="p"&gt;,&lt;/span&gt;5 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 30&lt;span class="p"&gt;,&lt;/span&gt;25&lt;span class="p"&gt;,&lt;/span&gt;20 &lt;span class="c"&gt;#监控CPU的负载&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_sda2&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_disk&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 20&lt;span class="c"&gt;% -c 10% -p /dev/sda2 #监控磁盘利用率，这里的sda2必须是实际的硬盘分区，可使用fdisk –l查&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_swap&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_swap&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 20 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 10 &lt;span class="c"&gt;#监控交换空间&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_zombie_procs&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_procs&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 5 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 10 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;Z&lt;/span&gt; &lt;span class="c"&gt;#监控进程中的僵尸进程&lt;/span&gt;
+    &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;check_total_procs&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libexec&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_procs&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt; 150 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 200 &lt;span class="c"&gt;#监控所有进程&lt;/span&gt;
+
+    注意：&lt;span class="n"&gt;command&lt;/span&gt;后面括号中的内容就是定义的变量，变量名可以任意指定，只需和服务器配置文件中的一致即可
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;服务器端安装NRPE插件&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#cd ..&lt;/span&gt;
+&lt;span class="c"&gt;#tar zxvf nrpe-2.14.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;#cd nrpe-2.14&lt;/span&gt;
+&lt;span class="c"&gt;# ./configure --with-nagios-user=nagios -with-nagios-group=nagios --prefix=/usr/local/nagios/&lt;/span&gt;
+&lt;span class="c"&gt;# make all;make install-plugin ; make install-daemon;make install-daemon-config   //将check_nrpe插件安装到/usr/local/nagios/libexec/目录下&lt;/span&gt;
+&lt;span class="c"&gt;#/usr/local/nagios/libexec/check_nrpe -H 192.168.80.201&lt;/span&gt;
+
+    &lt;span class="n"&gt;NRPE&lt;/span&gt; &lt;span class="n"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;14 &lt;span class="o"&gt;//&lt;/span&gt;该结果表示能与客户端通讯
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;4、配置Nagios服务器支持远程监控&lt;/h3&gt;
+&lt;h4&gt;添加监控主机&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# pwd&lt;/span&gt;
+    &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;
+
+&lt;span class="c"&gt;# vi host.cfg #定义要监控的主机&lt;/span&gt;
+    &lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="n"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;
+        &lt;span class="n"&gt;host_name&lt;/span&gt; &lt;span class="n"&gt;slaves&lt;/span&gt;
+        &lt;span class="n"&gt;address&lt;/span&gt; 192&lt;span class="p"&gt;.&lt;/span&gt;168&lt;span class="p"&gt;.&lt;/span&gt;8&lt;span class="p"&gt;.&lt;/span&gt;15
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;定义要监控的服务&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# vi services.cfg #定义要监控的服务&lt;/span&gt;
+    &lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;
+        &lt;span class="n"&gt;host_name&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt;
+        &lt;span class="n"&gt;service_description&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;
+        &lt;span class="n"&gt;check_command&lt;/span&gt; &lt;span class="n"&gt;check_http&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;
+        &lt;span class="n"&gt;host_name&lt;/span&gt; &lt;span class="n"&gt;web&lt;/span&gt;
+        &lt;span class="n"&gt;service_description&lt;/span&gt; &lt;span class="nb"&gt;ftp&lt;/span&gt;
+        &lt;span class="n"&gt;check_command&lt;/span&gt; &lt;span class="n"&gt;check_ftp&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;添加定义check_nrpe命令&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# vi commands.cfg #定义check_nrpe监控命令&lt;/span&gt;
+    &lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;command_name&lt;/span&gt; &lt;span class="n"&gt;check_nrpe&lt;/span&gt;
+        &lt;span class="n"&gt;command_line&lt;/span&gt; $&lt;span class="n"&gt;USER1&lt;/span&gt;$&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;check_nrpe&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt; $&lt;span class="n"&gt;HOSTADDRESS&lt;/span&gt;$ &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; $&lt;span class="n"&gt;ARG1&lt;/span&gt;$
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;添加host.cfg及ervices.cfg到nagios.cfg&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# pwd&lt;/span&gt;
+    &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;
+
+&lt;span class="c"&gt;#vi nagios.cfg&lt;/span&gt;
+    &lt;span class="n"&gt;cfg_file&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cfg&lt;/span&gt;
+    &lt;span class="n"&gt;cfg_file&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nagios&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;services&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cfg&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;修改接受报警邮箱&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# vi contacts.cfg&lt;/span&gt;
+    &lt;span class="n"&gt;email&lt;/span&gt; &lt;span class="nb"&gt;test&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="nb"&gt;test&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;     &lt;span class="c"&gt;#请修改为自己的邮箱地址&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;测试及启动Nagios服务&lt;/h4&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg #检测配置文件是否正确&lt;/span&gt;
+
+    &lt;span class="n"&gt;Total&lt;/span&gt; &lt;span class="n"&gt;Warnings&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; 0
+    &lt;span class="n"&gt;Total&lt;/span&gt; &lt;span class="n"&gt;Errors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; 0 &lt;span class="c"&gt;#结果表示配置无错误&lt;/span&gt;
+
+&lt;span class="c"&gt;# service nagios restart #重启Nagios服务&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;最后访问nagios如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Nagios" src="http://loosky.net/Upload/2013/04/Nagiosservice.png" /&gt;&lt;/p&gt;</summary><category term="Nagios"></category></entry></feed>

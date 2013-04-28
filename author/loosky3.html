@@ -122,82 +122,101 @@
                  
                         <li><article class="hentry">    
                 <header>
-                    <h1><a href="../Technology/2012/12/01/python-upgrade.html" rel="bookmark"
-                           title="Permalink to 升级CentOS系统的Python">升级CentOS系统的Python</a></h1>
+                    <h1><a href="../Technology/2013/04/28/nagios-install.html" rel="bookmark"
+                           title="Permalink to Nagios安装与配置">Nagios安装与配置</a></h1>
                 </header>
                 
                 <div class="entry-content">
                 <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
+        <abbr class="published" title="2013-04-28T00:00:00">
+                Sun 28 April 2013
         </abbr>
 
                 <address class="vcard author">
                 By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
         <p>In <a href="../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../tag/CentOS.html">CentOS</a><a href="../tag/Linux.html">Linux</a><a href="../tag/Python.html">Python</a></p></footer><!-- /.post-info -->                <h3>1、下载Python最新版本</h3>
-<div class="codehilite"><pre><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">python</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">ftp</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="o">/</span><span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">bz2</span>
+<p>tags: <a href="../tag/Nagios.html">Nagios</a></p></footer><!-- /.post-info -->                <div class="codehilite"><pre><span class="n">Nagios</span>是一款开源的免费网络监视工具，能有效监控<span class="n">Windows</span>、<span class="n">Linux</span>和<span class="n">Unix</span>的主机状态，交换机路由器等网络设备以及打印机等。
 </pre></div>
 
 
-<h3>2、解压</h3>
-<div class="codehilite"><pre><span class="n">tar</span> <span class="n">jxvf</span> <span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>7<span class="p">.</span>3<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">bz2</span>
+<h3>安装前提：</h3>
+<div class="codehilite"><pre><span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">gcc</span> <span class="n">glibc</span> <span class="n">glibc</span><span class="o">-</span><span class="n">common</span> <span class="n">gd</span> <span class="n">gd</span><span class="o">-</span><span class="n">devel</span> <span class="n">php</span> <span class="n">openssl</span><span class="o">-</span><span class="n">devel</span> <span class="n">httpd</span>
 </pre></div>
 
 
-<h3>3、编译安装</h3>
-<div class="codehilite"><pre><span class="n">cd</span> <span class="n">Python</span><span class="o">-</span>2<span class="p">.</span>6<span class="p">.</span>6
-<span class="o">./</span><span class="n">configure</span>
-<span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span>
+<h3>1、创建用户：</h3>
+<div class="codehilite"><pre><span class="c">#useradd -m nagios     #添加一个名为nagios的用户来运行nagios          </span>
+<span class="c">#usermod -a -G nagios apache    #将运行apache用户apache加入nagios组</span>
 </pre></div>
 
 
-<p>Python 默认安装目录在/usr/local/lib/python2.7
-查看一下刚才安装的版本 /usr/local/lib/python2.7 -V，看到了2.7.3吧</p>
-<h3>4、更改系统默认版本</h3>
-<p>之前查看版本使用 /usr/local/lib/python2.7 -V，现在来把系统默认的Python指向刚才安装的Python2.7.3。(如果有人问为什么不把之前的版本卸载呢？呃，貌似网上有讲yum是基于系统默认老版本的，所以我也就没那样折腾)</p>
-<div class="codehilite"><pre><span class="n">mv</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span><span class="p">.</span><span class="n">bak</span>
-<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span>6 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span>
-</pre></div>
-
-
-<p>敲入 python -V 查看是否成功。</p>
-<h3>5、修复不能正常工作的yum</h3>
-<p>在完成了上面4步之后，如果有使用yum的话会发现出错，这是因为yum 依赖2 ...</p>
-                <a class="readmore" href="../Technology/2012/12/01/python-upgrade.html">read more</a>
-                <p>There are <a href="../Technology/2012/12/01/python-upgrade.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+<h3>2、 编译安装nagios及其插件：</h3>
+<p><strong>nagios core官网下载地址：</strong><a href="http://www.nagios.org/download/core/">http://www.nagios.org/download/core/</a></p>
+<p><strong>nagios插件下载地址：</strong><a href="http://www.nagios.org/download/plugins/">http://www.nagios.org/download/plugins/</a></p>
+<h4>安装Nagios Core</h4>
+<div class="codehilite"><pre><span class="c">#cd /usr/local/src</span>
+<span class="c">#mkdir /etc/httpd/conf/extra  //用来存放关于nagios的http配置文件</span>
+<span class="c">#tar zxvf nagios-3.5.0.tar.gz</span>
+<span class="c">#cd nagios-3.5.0</span>
+<span class="c">#./configure --prefix=/usr/local/nagios/ --with-comman-group=nagios --with-httpd-conf=/etc/httpd/conf/extra/ //指定安装目录及用户、组和http的配置目录</span>
+<span class="c">#make all;make install</span>
+<span class="c"># make install-init;make install-config;make install-commandmode ...</span></pre></div>
+                <a class="readmore" href="../Technology/2013/04/28/nagios-install.html">read more</a>
+                <p>There are <a href="../Technology/2013/04/28/nagios-install.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
                             
 
                  
                         <li><article class="hentry">    
                 <header>
-                    <h1><a href="../Research/2012/12/01/robin-WMN.html" rel="bookmark"
-                           title="Permalink to ROBIN-Open Source Wireless Mesh Networking">ROBIN-Open Source Wireless Mesh Networking</a></h1>
+                    <h1><a href="../Technology/2013/04/28/nagios-monitor.html" rel="bookmark"
+                           title="Permalink to Nagios监控配置">Nagios监控配置</a></h1>
                 </header>
                 
                 <div class="entry-content">
                 <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
+        <abbr class="published" title="2013-04-28T00:00:00">
+                Sun 28 April 2013
         </abbr>
 
                 <address class="vcard author">
                 By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
-        <p>In <a href="../category/Research.html">Research</a>. </p>
-<p>tags: <a href="../tag/mesh.html">mesh</a><a href="../tag/open-mesh.html">open-mesh</a><a href="../tag/OpenWRT.html">OpenWRT</a><a href="../tag/ROBIN.html">ROBIN</a></p></footer><!-- /.post-info -->                <p>The ROBIN project
-R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.wikipedia.org/wiki/Wireless_mesh_network">mesh network</a> project, deployed on top of <a href="http://openwrt.org/">OpenWRT</a> Kamikaze, running on any Atheros AP51 routers such as <a href="http://open-mesh.com/store/">Accton MR3201A</a>, <a href="http://meraki.com/">Meraki Mini*</a> or <a href="http://www.fon.com/en/">La Fonera*</a> and using the <a href="http://www.open-mesh.org/">B.A.T.M.A.N.</a> or <a href="http://www.olsr.org/">OLSR</a> routing algorithm as cited in <a href="http://www.rushessay.com/">custom essays</a>. ROBIN spreads a wired internet connection such as a DSL throughout an apartment complex, neighborhood, village or school, and works on a variety of commonly available, low-cost hardware. ROBIN is being developed by <a href="http://www.blogin.it/">Antonio Anselmi</a></p>
-<p>Features
-• builded on top of <a href="http://www.openwrt.org/">OpenWRT kamikaze ...</a></p>
-                <a class="readmore" href="../Research/2012/12/01/robin-WMN.html">read more</a>
-                <p>There are <a href="../Research/2012/12/01/robin-WMN.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/Nagios.html">Nagios</a><a href="../tag/PNP.html">PNP</a></p></footer><!-- /.post-info -->                <div class="codehilite"><pre><span class="n">Nagios</span>是一款开源的免费网络监视工具，能有效监控<span class="n">Windows</span>、<span class="n">Linux</span>和<span class="n">Unix</span>的主机状态，交换机路由器等网络设备以及打印机等。
+</pre></div>
+
+
+<p><strong>Nagios安装和配置：</strong> <a href="http://loosky.net/archives/2758.html">http://loosky.net/archives/2758.html</a></p>
+<p>想获取客户机上更为详细的信息，还必须在服务器及客户端上安装NRPE插件。</p>
+<p><strong>NRPE下载地址：</strong> <a href="http://www.nagios.org/download/addons">http://www.nagios.org/download/addons</a></p>
+<h3>服务器端监控程序安装</h3>
+<div class="codehilite"><pre><span class="c">#cd /usr/local/src</span>
+<span class="c">#tar zxvf nrpe-2.14.tar.gz</span>
+<span class="c">#cd nrpe-2.14</span>
+<span class="c"># ./configure --with-nagios-user=nagios -with-nagios-group=nagios --prefix=/usr/local/nagios/</span>
+<span class="c"># make all;make install-plugin ; make install-daemon;make install-daemon-config   //将check_nrpe插件安装到/usr/local/nagios/libexec/目录下</span>
+<span class="c">#/usr/local/nagios/libexec/check_nrpe -H 127.0.0.1</span>
+
+    <span class="n">NRPE</span> <span class="n">v2</span><span class="p">.</span>14
+</pre></div>
+
+
+<h3>Linux客户机监控</h3>
+<h4>安装nagios插件</h4>
+<div class="codehilite"><pre><span class="c">#useradd -s /sbin/nologin nagios //添加nagios用户</span>
+<span class="c">#cd /usr/local/src</span>
+<span class="c">#tar zxvf nagios-plugins-1.4.16.tar.gz</span>
+<span class="c">#cd nagios-plugins-1.4.16</span>
+<span class="c">#./configure --with-nagios-user ...</span></pre></div>
+                <a class="readmore" href="../Technology/2013/04/28/nagios-monitor.html">read more</a>
+                <p>There are <a href="../Technology/2013/04/28/nagios-monitor.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
                         <a href="../author/loosky2.html">&laquo;</a>
-                Page 3 / 4
+                Page 3 / 5
             <a href="../author/loosky4.html">&raquo;</a>
     </p>
                         </section><!-- /#content -->
@@ -206,118 +225,8 @@ R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.w
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../tag/挂载.html">
-       挂载
-    </a>
-</li>
-<li>
-    <a href="../tag/mesh.html">
-       mesh
-    </a>
-</li>
-<li>
-    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="../tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="../tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
     <a href="../tag/网络.html">
        网络
-    </a>
-</li>
-<li>
-    <a href="../tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/分区.html">
-       分区
-    </a>
-</li>
-<li>
-    <a href="../tag/.html">
-       
-    </a>
-</li>
-<li>
-    <a href="../tag/参考文献.html">
-       参考文献
-    </a>
-</li>
-<li>
-    <a href="../tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="../tag/SQL.html">
-       SQL
-    </a>
-</li>
-<li>
-    <a href="../tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="../tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-<li>
-    <a href="../tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-<li>
-    <a href="../tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="../tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="../tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-<li>
-    <a href="../tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
-    <a href="../tag/github.html">
-       github
     </a>
 </li>
 <li>
@@ -326,13 +235,133 @@ R.O.B.IN (Routing Olsr and Batman INside) is an Open Source <a href="http://en.w
     </a>
 </li>
 <li>
-    <a href="../tag/吞吐量.html">
-       吞吐量
+    <a href="../tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="../tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="../tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="../tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="../tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="../tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="../tag/分区.html">
+       分区
     </a>
 </li>
 <li>
     <a href="../tag/Pelican.html">
        Pelican
+    </a>
+</li>
+<li>
+    <a href="../tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="../tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="../tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="../tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="../tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="../tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="../tag/mesh.html">
+       mesh
+    </a>
+</li>
+<li>
+    <a href="../tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="../tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="../tag/Nagios.html">
+       Nagios
+    </a>
+</li>
+<li>
+    <a href="../tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+<li>
+    <a href="../tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="../tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="../tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="../tag/MESH.html">
+       MESH
     </a>
 </li>
                   

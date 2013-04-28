@@ -32,49 +32,96 @@
                                     <li><a href="./pages/search.html">Search</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
-        <section id="content" class="body">
-<h1>Archives for Loosky's Blog</h1>
+                
+            
 
-<dl>
-    <dt>Sun 28 April 2013</dt>
-    <dd><a href="./Technology/2013/04/28/nagios-install.html">Nagios安装与配置</a></dd>
-    <dt>Sun 28 April 2013</dt>
-    <dd><a href="./Technology/2013/04/28/nagios-monitor.html">Nagios监控配置</a></dd>
-    <dt>Sun 28 April 2013</dt>
-    <dd><a href="./Technology/2013/04/28/nagios-pnp-install.html">Nagios可视化绘制工具PNP安装&配置</a></dd>
-    <dt>Fri 01 March 2013</dt>
-    <dd><a href="./Technology/2013/03/01/git-command.html">Git常用命令</a></dd>
-    <dt>Mon 07 January 2013</dt>
-    <dd><a href="./Technology/2013/01/07/Redis,WordPress.html">使用Redis来加速WordPress</a></dd>
-    <dt>Sun 02 December 2012</dt>
-    <dd><a href="./Technology/2012/12/02/Linux-mount-harddisk.html">Linux（CentOS）挂载硬盘</a></dd>
-    <dt>Sun 02 December 2012</dt>
-    <dd><a href="./Technology/2012/12/02/harddisk.html">硬盘类型介绍</a></dd>
-    <dt>Sun 02 December 2012</dt>
-    <dd><a href="./Research/2012/12/02/wmn-opensource-project.html">WMN方面的开源项目</a></dd>
-    <dt>Sat 01 December 2012</dt>
-    <dd><a href="./Technology/2012/12/01/CentOS-Configuration.html">CentOS配置</a></dd>
-    <dt>Sat 01 December 2012</dt>
-    <dd><a href="./Technology/2012/12/01/Linux-scp.html">Linux系统之间拷贝文件</a></dd>
-    <dt>Sat 01 December 2012</dt>
-    <dd><a href="./Research/2012/12/01/References-format.html">参考文献字母含义</a></dd>
-    <dt>Sat 01 December 2012</dt>
-    <dd><a href="./Technology/2012/12/01/mysql-tuition.html">Mysql入门操作</a></dd>
-    <dt>Sat 01 December 2012</dt>
-    <dd><a href="./Technology/2012/12/01/python-upgrade.html">升级CentOS系统的Python</a></dd>
-    <dt>Sat 01 December 2012</dt>
-    <dd><a href="./Research/2012/12/01/robin-WMN.html">ROBIN-Open Source Wireless Mesh Networking</a></dd>
-    <dt>Sat 01 December 2012</dt>
-    <dd><a href="./Technology/2012/12/01/throughput-computing.html">吞吐量计算</a></dd>
-    <dt>Wed 28 November 2012</dt>
-    <dd><a href="./Blog/2012/11/28/wordpress-markdown.html">在WordPress中使用Markdown语法</a></dd>
-    <dt>Tue 27 November 2012</dt>
-    <dd><a href="./Technology/2012/11/27/github.html">GitHub使用</a></dd>
-    <dt>Mon 26 November 2012</dt>
-    <dd><a href="./Blog/2012/11/26/helloworld.html">Hello World!</a></dd>
-</dl>
-</section>
-        <section id="extras" class="body">
+                 
+                            <section id="content" class="body">
+                    <ol id="posts-list" class="hfeed" start="3">
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="./Technology/2012/11/27/github.html" rel="bookmark"
+                           title="Permalink to GitHub使用">GitHub使用</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-11-27T00:00:00">
+                Tue 27 November 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="./category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="./tag/git.html">git</a><a href="./tag/github.html">github</a></p></footer><!-- /.post-info -->                <h3>一、创建github账号</h3>
+<p>github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：<a href="https://github.com">https://github.com</a>
+帐号注册成功后，点击<strong>New Repository</strong>，开始创建新版本库。用户可以创建类似于 <code>your_userid.github.com</code> 的版本库，这样就可以通过<code>http://your_userid.github.com</code>进行访问了。</p>
+<h3>二、建立本地git仓库</h3>
+<div class="codehilite"><pre><span class="c">#git config --global user.name &quot;your_userid&quot;   //提供使用者自己的身份标识</span>
+<span class="c">#git config --global user.email &quot;your_email&quot;    </span>
+<span class="c">#mkdir -p /home/work/your_userid.github.com   //建立项目</span>
+<span class="c">#cd /home/work/your_userid.github.com</span>
+<span class="c">#git init                                     //初始化git仓库</span>
+</pre></div>
+
+
+<h3>三、创建项目文件</h3>
+<div class="codehilite"><pre><span class="c">#touch README</span>
+<span class="c">#git add README</span>
+</pre></div>
+
+
+<p>如果添加项目目录下面所有的文件则用 <strong>git add .</strong></p>
+<h3>四、将项目提交到github管理</h3>
+<ol>
+<li>
+<p>创建SSH密钥</p>
+<div class="codehilite"><pre><span class="c">#ssh-keygen -C &#39;your_email&#39; -t rsa</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>找到刚才生成的密钥（默认为<strong>/root/.ssh/id_rsa.pub</strong>）文件并用文本编辑器打开，然后复制里面的内容。接着转到github站点，进入<strong>Account Setting--SSH Keys</strong> 选项后，点击<strong>add ssh key</strong> 并将刚才复制的内容粘贴保存。</p>
+</li>
+<li>
+<p>测试SSH连接。在git bash中执行以下命令：</p>
+<div class="codehilite"><pre><span class="c">#ssh -v git ...</span></pre></div></li></ol>
+                <a class="readmore" href="./Technology/2012/11/27/github.html">read more</a>
+                <p>There are <a href="./Technology/2012/11/27/github.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="./Blog/2012/11/26/helloworld.html" rel="bookmark"
+                           title="Permalink to Hello World!">Hello World!</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-11-26T00:00:00">
+                Mon 26 November 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="./category/Blog.html">Blog</a>. </p>
+<p>tags: <a href="./tag/Loosky.html">Loosky</a><a href="./tag/Python.html">Python</a><a href="./tag/github.html">github</a><a href="./tag/Pelican.html">Pelican</a></p></footer><!-- /.post-info -->                <p>这是Loosky的个人博客，网站基于<a href="http://getpelican.com/">Pelican</a> &amp; <a href="https://github.com">GitHub</a>搭建，使用了<a href="http://www.python.org/">Python</a>技术。一切从零开始。</p>
+<p>您可以访问我的<a href="http://loosky.net">另外一个博客</a>,那里记录了从2003年以来的所有文章，包含技术、情感、生活等方面。</p>
+                <a class="readmore" href="./Blog/2012/11/26/helloworld.html">read more</a>
+                <p>There are <a href="./Blog/2012/11/26/helloworld.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            </ol><!-- /#posts-list -->
+                            <p class="paginator">
+                        <a href="./index4.html">&laquo;</a>
+                Page 5 / 5
+    </p>
+                        </section><!-- /#content -->
+                    <section id="extras" class="body">
         <div class="tags">
                         <h2>Tags</h2>
                         <ul>
