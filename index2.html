@@ -40,6 +40,57 @@
                     <ol id="posts-list" class="hfeed" start="3">
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="./Technology/2013/03/01/git-command.html" rel="bookmark"
+                           title="Permalink to Git常用命令">Git常用命令</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-03-01T00:00:00">
+                Fri 01 March 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="./category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="./tag/Git.html">Git</a></p></footer><!-- /.post-info -->                <h2>Git配置</h2>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span> &quot;<span class="n">robbin</span>&quot;   
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span> &quot;<span class="n">fankai</span><span class="p">@</span><span class="n">gmail</span><span class="p">.</span><span class="n">com</span>&quot;
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">color</span><span class="p">.</span><span class="n">ui</span> <span class="n">true</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">co</span> <span class="n">checkout</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">ci</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">st</span> <span class="n">status</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">br</span> <span class="n">branch</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">core</span><span class="p">.</span><span class="n">editor</span> &quot;<span class="n">mate</span> <span class="o">-</span><span class="n">w</span>&quot;
+</pre></div>
+
+
+<p><code>用户的git配置文件~/.gitconfig</code></p>
+<h2>Git常用命令</h2>
+<h3>查看、添加、提交、删除、找回，重置修改文件</h3>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">help</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span>  # 显示<span class="n">command</span>的<span class="n">help</span>
+<span class="n">git</span> <span class="n">show</span>            # 显示某次提交的内容
+<span class="n">git</span> <span class="n">show</span> $<span class="n">id</span>
+
+<span class="n">git</span> <span class="n">co</span>  <span class="o">--</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>   # 抛弃工作区修改
+<span class="n">git</span> <span class="n">co</span>  <span class="p">.</span>           # 抛弃工作区修改
+
+<span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>      # 将工作文件修改提交到本地暂存区
+<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>           # 将所有修改过的工作文件提交暂存区
+
+<span class="n">git</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>       # 从版本库中删除文件
+<span class="n">git</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">cached</span>  # 从版本库中删除文件，但不删除文件
+
+<span class="n">git</span> <span class="n">reset ...</span></pre></div>
+                <a class="readmore" href="./Technology/2013/03/01/git-command.html">read more</a>
+                <p>There are <a href="./Technology/2013/03/01/git-command.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="./Technology/2013/01/07/Redis,WordPress.html" rel="bookmark"
                            title="Permalink to 使用Redis来加速WordPress">使用Redis来加速WordPress</a></h1>
                 </header>
@@ -176,50 +227,6 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                 <a class="readmore" href="./Technology/2012/12/02/harddisk.html">read more</a>
                 <p>There are <a href="./Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Research/2012/12/02/wmn-opensource-project.html" rel="bookmark"
-                           title="Permalink to WMN方面的开源项目">WMN方面的开源项目</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-02T00:00:00">
-                Sun 02 December 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="./category/Research.html">Research</a>. </p>
-<p>tags: <a href="./tag/MESH.html">MESH</a><a href="./tag/OpenWRT.html">OpenWRT</a><a href="./tag/ROBIN.html">ROBIN</a><a href="./tag/WMN.html">WMN</a></p></footer><!-- /.post-info -->                <p>无线Mesh网络（WMN）方面的研究比较多，也有一些相关的开源项目，目前我有关注的如下：</p>
-<h3>开发环境：</h3>
-<ol>
-<li>OpenWRT（<a href="http://openwrt.org/">http://openwrt.org/</a>），这个不是针对WMN的，但是很多项目都是基于OpenWRT进行开发的。做网络方面的嵌入式开发，基本上都可以使用这个开发环境。</li>
-<li>ROBIN（<a href="http://robin.forumup.it">http://robin.forumup.it</a>）：基于OpenWRT的WMN解决方案，目前已经可以支持802.11n（ROBIN V2），但是方案不太完美。
-ROBIN Mesh：<a href="http://www.robin-mesh.net/">http://www.robin-mesh.net/</a></li>
-<li>Meraki（<a href="http://meraki.com/">http://meraki.com/</a>）</li>
-<li>Gargoyle：<a href="http://www.gargoyle-router.com/">http://www.gargoyle-router.com/</a></li>
-</ol>
-<h3>路由协议：</h3>
-<ol>
-<li>OLSRD：<a href="http://www.olsr.org/">http://www.olsr.org/</a></li>
-<li>BATMAN：<a href="http://www.open-mesh.org/">http://www.open-mesh.org/</a></li>
-<li>BATMAN adv（基于二层）：<a href="http://www.open-mesh.org/wiki/batman-adv/Wiki">http://www.open-mesh.org/wiki/batman-adv/Wiki</a></li>
-</ol>
-<h3>Dashboard：</h3>
-<ol>
-<li>Open-Mesh：<a href="http://dashboard.open-mesh.com">http://dashboard.open-mesh.com</a></li>
-<li>Meraki：<a href="http://dashboard.meraki.com/">http://dashboard.meraki.com/</a></li>
-<li>Meshconnect：<a href="http://wifimesh.trigmax.com/en/">http://wifimesh.trigmax.com/en/</a></li>
-<li>OrangeMesh:<a href="http://orangemesh.sourceforge.net/">http://orangemesh.sourceforge.net/</a></li>
-</ol>
-                <a class="readmore" href="./Research/2012/12/02/wmn-opensource-project.html">read more</a>
-                <p>There are <a href="./Research/2012/12/02/wmn-opensource-project.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
                         <a href="./index.html">&laquo;</a>
@@ -232,56 +239,6 @@ ROBIN Mesh：<a href="http://www.robin-mesh.net/">http://www.robin-mesh.net/</a>
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="./tag/网络.html">
-       网络
-    </a>
-</li>
-<li>
-    <a href="./tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="./tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="./tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="./tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="./tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-<li>
-    <a href="./tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="./tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="./tag/github.html">
-       github
-    </a>
-</li>
-<li>
-    <a href="./tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
     <a href="./tag/分区.html">
        分区
     </a>
@@ -292,58 +249,8 @@ ROBIN Mesh：<a href="http://www.robin-mesh.net/">http://www.robin-mesh.net/</a>
     </a>
 </li>
 <li>
-    <a href="./tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-<li>
-    <a href="./tag/PNP.html">
-       PNP
-    </a>
-</li>
-<li>
-    <a href="./tag/挂载.html">
-       挂载
-    </a>
-</li>
-<li>
-    <a href="./tag/.html">
-       
-    </a>
-</li>
-<li>
-    <a href="./tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="./tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
     <a href="./tag/mesh.html">
        mesh
-    </a>
-</li>
-<li>
-    <a href="./tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="./tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="./tag/Nagios.html">
-       Nagios
-    </a>
-</li>
-<li>
-    <a href="./tag/WordPress.html">
-       WordPress
     </a>
 </li>
 <li>
@@ -352,13 +259,48 @@ ROBIN Mesh：<a href="http://www.robin-mesh.net/">http://www.robin-mesh.net/</a>
     </a>
 </li>
 <li>
+    <a href="./tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="./tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
     <a href="./tag/吞吐量.html">
        吞吐量
     </a>
 </li>
 <li>
-    <a href="./tag/ROBIN.html">
-       ROBIN
+    <a href="./tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="./tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="./tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="./tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="./tag/网络.html">
+       网络
+    </a>
+</li>
+<li>
+    <a href="./tag/Git.html">
+       Git
     </a>
 </li>
 <li>
@@ -367,8 +309,83 @@ ROBIN Mesh：<a href="http://www.robin-mesh.net/">http://www.robin-mesh.net/</a>
     </a>
 </li>
 <li>
+    <a href="./tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="./tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="./tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="./tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="./tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="./tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="./tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="./tag/WebBench.html">
+       WebBench
+    </a>
+</li>
+<li>
     <a href="./tag/MESH.html">
        MESH
+    </a>
+</li>
+<li>
+    <a href="./tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="./tag/web.html">
+       web
+    </a>
+</li>
+<li>
+    <a href="./tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="./tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="./tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="./tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="./tag/Nagios.html">
+       Nagios
     </a>
 </li>
                   

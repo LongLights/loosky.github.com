@@ -1,5 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/all.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2013-04-28T00:00:00+08:00</updated><entry><title>Nagios安装与配置</title><link href="http://loosky.com/Technology/2013/04/28/nagios-install.html" rel="alternate"></link><updated>2013-04-28T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2013-04-28:Technology/2013/04/28/nagios-install.html</id><summary type="html">&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;Nagios&lt;/span&gt;是一款开源的免费网络监视工具，能有效监控&lt;span class="n"&gt;Windows&lt;/span&gt;、&lt;span class="n"&gt;Linux&lt;/span&gt;和&lt;span class="n"&gt;Unix&lt;/span&gt;的主机状态，交换机路由器等网络设备以及打印机等。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/all.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2013-05-16T00:00:00+08:00</updated><entry><title>Web网站性能/压力测试工具WebBench使用详解</title><link href="http://loosky.com/Technology/2013/05/16/WebBench.html" rel="alternate"></link><updated>2013-05-16T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2013-05-16:Technology/2013/05/16/WebBench.html</id><summary type="html">&lt;p&gt;Webbench是知名的网站压力方面的测试工具，它是由Lionbridge公司开发。&lt;/p&gt;
+&lt;p&gt;官方主页：&lt;a href="http://home.tiscali.cz/~cz210552/webbench.html"&gt;http://home.tiscali.cz/~cz210552/webbench.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在运维工作中，网站压力及性能测试是一项很重要的工作。比如在一个网站上线之前，能承受多大访问量、在大访问量情况下性能怎样，这些数据指标好坏将会直接影响用户体验。但是，在压力及性能测试中存在一个共性，那就是压力及性能测试的结果与实际负载结果不会完全相同，就算压力及性能测试工作做的再好，也不能保证100%和线上性能指标相同。面对这些问题，我们只能尽量去想方设法去模拟。所以，压力及性能测试非常有必要，有了这些数据，我们就能对自己做维护的平台做到心中有数。&lt;/p&gt;
+&lt;p&gt;Web Bench最多可以模拟3万个并发连接去测试网站的负载能力。Web Bench能测试处在相同硬件上，不同服务的性能以及不同硬件上同一个服务的运行状况。Web Bech的标准测试可以向我们展示服务器的两项内容：每秒钟相应请求数和每秒钟传输数据量。Web Bench不但能具有静态页面的测试能力，还能对动态页面（ASP,PHP,JAVA,CGI）进行测试的能力。还有就是他支持对含有SSL的安全网站例如电子商务网站进行静态或动态的性能测试。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;适用于linux操作系统&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;1、WebBench安装：&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;
+&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tiscali&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cz&lt;/span&gt;&lt;span class="o"&gt;/~&lt;/span&gt;&lt;span class="n"&gt;cz210552&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;distfiles&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;webbench&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;5&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;zxvf&lt;/span&gt; &lt;span class="n"&gt;webbench&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;5&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;webbench&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;1&lt;span class="p"&gt;.&lt;/span&gt;5
+&lt;span class="n"&gt;make&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;补充：安装过程中如提示缺少组件请安装，缺少目录，请手动创建。&lt;/p&gt;
+&lt;p&gt;常见错误：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cc -Wall -ggdb -W -O   -c -o webbench.o webbench.c&lt;/p&gt;
+&lt;p&gt;webbench.c: In function ‘alarm_handler’:&lt;/p&gt;
+&lt;p&gt;webbench.c:77: warning: unused parameter ’signal’&lt;/p&gt;
+&lt;p&gt;cc -Wall -ggdb -W -O   -o webbench webbench.o&lt;/p&gt;
+&lt;p&gt;ctags *.c&lt;/p&gt;
+&lt;p&gt;/bin/sh: ctags: command not found&lt;/p&gt;
+&lt;p&gt;make: [tags] Error 127 (ignored)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;centos有相应的组件，搜索一下ctags安装即可&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# yum install ctags&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;2、WebBench使用：&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#webbench -c 1000 -t 60 http://test.cn/info.php&lt;/span&gt;
+&lt;span class="n"&gt;webbench&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; 并发数 &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; 运行测试时间  &lt;span class="n"&gt;URL&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;3、测试结果示例：&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#webbench -c 600 -t 30 http://test.cn/index.php&lt;/span&gt;
+&lt;span class="n"&gt;Webbench&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;Simple&lt;/span&gt; &lt;span class="n"&gt;Web&lt;/span&gt; &lt;span class="n"&gt;Benchmark&lt;/span&gt; 1&lt;span class="p"&gt;.&lt;/span&gt;5
+&lt;span class="n"&gt;Copyright&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Radim&lt;/span&gt; &lt;span class="n"&gt;Kolar&lt;/span&gt; 1997&lt;span class="o"&gt;-&lt;/span&gt;2004&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GPL&lt;/span&gt; &lt;span class="n"&gt;Open&lt;/span&gt; &lt;span class="n"&gt;Source&lt;/span&gt; &lt;span class="n"&gt;Software&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Benchmarking&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;GET&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nb"&gt;test&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;index&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;
+600 &lt;span class="n"&gt;clients&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt; 30 &lt;span class="nb"&gt;sec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Speed&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;12082 &lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 152635 &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;sec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Requests&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; 6041 &lt;span class="n"&gt;susceed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 0 &lt;span class="n"&gt;failed&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="o"&gt;-------------------------------------------------------------------------------------&lt;/span&gt;
+
+&lt;span class="c"&gt;#webbench -c 1000 -t 60 http://test.cn/index.php&lt;/span&gt;
+&lt;span class="n"&gt;Webbench&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;Simple&lt;/span&gt; &lt;span class="n"&gt;Web&lt;/span&gt; &lt;span class="n"&gt;Benchmark&lt;/span&gt; 1&lt;span class="p"&gt;.&lt;/span&gt;5
+&lt;span class="n"&gt;Copyright&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Radim&lt;/span&gt; &lt;span class="n"&gt;Kolar&lt;/span&gt; 1997&lt;span class="o"&gt;-&lt;/span&gt;2004&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GPL&lt;/span&gt; &lt;span class="n"&gt;Open&lt;/span&gt; &lt;span class="n"&gt;Source&lt;/span&gt; &lt;span class="n"&gt;Software&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Benchmarking&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;GET&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nb"&gt;test&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;index&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;
+1000 &lt;span class="n"&gt;clients&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt; 60 &lt;span class="nb"&gt;sec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Speed&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;5553 &lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 70152 &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;sec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Requests&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; 5553 &lt;span class="n"&gt;susceed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 0 &lt;span class="n"&gt;failed&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;每秒钟响应请求数：24525/60= X pages/sec，每秒钟传输数据量20794612 bytes/sec.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# webbench -c 2000 -t 60 http://test.cn/index.php&lt;/span&gt;
+&lt;span class="n"&gt;Webbench&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;Simple&lt;/span&gt; &lt;span class="n"&gt;Web&lt;/span&gt; &lt;span class="n"&gt;Benchmark&lt;/span&gt; 1&lt;span class="p"&gt;.&lt;/span&gt;5
+&lt;span class="n"&gt;Copyright&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Radim&lt;/span&gt; &lt;span class="n"&gt;Kolar&lt;/span&gt; 1997&lt;span class="o"&gt;-&lt;/span&gt;2004&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;GPL&lt;/span&gt; &lt;span class="n"&gt;Open&lt;/span&gt; &lt;span class="n"&gt;Source&lt;/span&gt; &lt;span class="n"&gt;Software&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Benchmarking&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;GET&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nb"&gt;test&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;index&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;
+2000 &lt;span class="n"&gt;clients&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt; 60 &lt;span class="nb"&gt;sec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Speed&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;10479 &lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 132043 &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;sec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Requests&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; 10453 &lt;span class="n"&gt;susceed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 26 &lt;span class="n"&gt;failed&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;当并发2000时，已经显示有26个连接failed了，说明超负荷了。&lt;/p&gt;
+&lt;p&gt;补充：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;压力及性能测试工作应该放到产品上线之前，而不是上线以后；&lt;/li&gt;
+&lt;li&gt;测试时并发应当由小逐渐加大，比如并发100时观察一下网站负载是多少、打开页面是否流畅，并发200时又是多少、网站打开缓慢时并发是多少、网站打不开时并发又是多少；&lt;/li&gt;
+&lt;li&gt;更详细的进行某个页面测试，如电商网站可以着重测试购物车、推广页面等，因为这些页面占整个网站访问量比重较大。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;备注：webbench 做压力及性能测试时，该软件自身也会消耗CPU和内存资源，为了测试准确，建议将 webbench安装在其他的服务器上，已达到测试数据更加精确。&lt;/p&gt;
+&lt;p&gt;转自：&lt;a href="http://blog.fity.cn/" title="未来往事"&gt;http://blog.fity.cn/&lt;/a&gt;&lt;/p&gt;</summary><category term="web"></category><category term="WebBench"></category></entry><entry><title>Nagios安装与配置</title><link href="http://loosky.com/Technology/2013/04/28/nagios-install.html" rel="alternate"></link><updated>2013-04-28T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2013-04-28:Technology/2013/04/28/nagios-install.html</id><summary type="html">&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;Nagios&lt;/span&gt;是一款开源的免费网络监视工具，能有效监控&lt;span class="n"&gt;Windows&lt;/span&gt;、&lt;span class="n"&gt;Linux&lt;/span&gt;和&lt;span class="n"&gt;Unix&lt;/span&gt;的主机状态，交换机路由器等网络设备以及打印机等。
 &lt;/pre&gt;&lt;/div&gt;
 
 

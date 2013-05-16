@@ -40,6 +40,50 @@
                     <ol id="posts-list" class="hfeed" start="3">
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="./Research/2012/12/02/wmn-opensource-project.html" rel="bookmark"
+                           title="Permalink to WMN方面的开源项目">WMN方面的开源项目</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-12-02T00:00:00">
+                Sun 02 December 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="./category/Research.html">Research</a>. </p>
+<p>tags: <a href="./tag/MESH.html">MESH</a><a href="./tag/OpenWRT.html">OpenWRT</a><a href="./tag/ROBIN.html">ROBIN</a><a href="./tag/WMN.html">WMN</a></p></footer><!-- /.post-info -->                <p>无线Mesh网络（WMN）方面的研究比较多，也有一些相关的开源项目，目前我有关注的如下：</p>
+<h3>开发环境：</h3>
+<ol>
+<li>OpenWRT（<a href="http://openwrt.org/">http://openwrt.org/</a>），这个不是针对WMN的，但是很多项目都是基于OpenWRT进行开发的。做网络方面的嵌入式开发，基本上都可以使用这个开发环境。</li>
+<li>ROBIN（<a href="http://robin.forumup.it">http://robin.forumup.it</a>）：基于OpenWRT的WMN解决方案，目前已经可以支持802.11n（ROBIN V2），但是方案不太完美。
+ROBIN Mesh：<a href="http://www.robin-mesh.net/">http://www.robin-mesh.net/</a></li>
+<li>Meraki（<a href="http://meraki.com/">http://meraki.com/</a>）</li>
+<li>Gargoyle：<a href="http://www.gargoyle-router.com/">http://www.gargoyle-router.com/</a></li>
+</ol>
+<h3>路由协议：</h3>
+<ol>
+<li>OLSRD：<a href="http://www.olsr.org/">http://www.olsr.org/</a></li>
+<li>BATMAN：<a href="http://www.open-mesh.org/">http://www.open-mesh.org/</a></li>
+<li>BATMAN adv（基于二层）：<a href="http://www.open-mesh.org/wiki/batman-adv/Wiki">http://www.open-mesh.org/wiki/batman-adv/Wiki</a></li>
+</ol>
+<h3>Dashboard：</h3>
+<ol>
+<li>Open-Mesh：<a href="http://dashboard.open-mesh.com">http://dashboard.open-mesh.com</a></li>
+<li>Meraki：<a href="http://dashboard.meraki.com/">http://dashboard.meraki.com/</a></li>
+<li>Meshconnect：<a href="http://wifimesh.trigmax.com/en/">http://wifimesh.trigmax.com/en/</a></li>
+<li>OrangeMesh:<a href="http://orangemesh.sourceforge.net/">http://orangemesh.sourceforge.net/</a></li>
+</ol>
+                <a class="readmore" href="./Research/2012/12/02/wmn-opensource-project.html">read more</a>
+                <p>There are <a href="./Research/2012/12/02/wmn-opensource-project.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="./Technology/2012/12/01/CentOS-Configuration.html" rel="bookmark"
                            title="Permalink to CentOS配置">CentOS配置</a></h1>
                 </header>
@@ -191,64 +235,6 @@
                 <a class="readmore" href="./Research/2012/12/01/References-format.html">read more</a>
                 <p>There are <a href="./Research/2012/12/01/References-format.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Technology/2012/12/01/mysql-tuition.html" rel="bookmark"
-                           title="Permalink to Mysql入门操作">Mysql入门操作</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="./category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="./tag/Mysql.html">Mysql</a><a href="./tag/SQL.html">SQL</a></p></footer><!-- /.post-info -->                <h3>一、连接MySQL</h3>
-<div class="codehilite"><pre>格式： <span class="n">mysql</span> <span class="o">-</span><span class="n">h</span>主机地址 <span class="o">-</span><span class="n">u</span>用户名 －<span class="n">p</span>用户密码
-</pre></div>
-
-
-<ol>
-<li>例1：连接到本机上的MySQL。 
-   首先打开DOS窗口，然后进入mysql安装目录下的bin文件夹，再键入命令mysql -uroot -p，回车后提示你输密码，如果刚安装好MySQL，超级用户root是没有密码的，故直接回车即可进入到MYSQL中了，MYSQL的提示符是：MySQL&gt; </li>
-<li>例2：连接到远程主机上的MySQL。假设远程主机的IP为：110.110.110.110，用户名为root,密码为123。则键入以下命令:mysql -h110.110.110.110 -uroot -p123 （注:u与root可以不用加空格，其它也一样） </li>
-<li>退出MySQL命令： exit （回车）</li>
-</ol>
-<h3>二、修改密码。</h3>
-<div class="codehilite"><pre>格式：<span class="n">mysqladmin</span> <span class="o">-</span><span class="n">u</span>用户名 <span class="o">-</span><span class="n">p</span>旧密码  <span class="n">password</span> 新密码
-</pre></div>
-
-
-<ol>
-<li>例1：给root加个密码ab12。首先在DOS下进入mysql安装目录下的bin文件夹，然后键入以下命令  mysqladmin -uroot -password 123  // 注：因为开始时root没有密码，所以-p旧密码一项就可以省略了。 </li>
-<li>
-<p>例2：再将root的密码改为345</p>
-<div class="codehilite"><pre><span class="n">mysqladmin</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p123</span> <span class="n">password</span> 345
-</pre></div>
-
-
-</li>
-</ol>
-<h3>三、增加新用户。（注意：和上面不同，下面的因为是MySQL环境中的命令，所以后面都带一个分号作为命令结束符）</h3>
-<div class="codehilite"><pre>格式：<span class="n">grant</span> <span class="n">select</span> <span class="n">on</span> 数据库<span class="o">.*</span> <span class="n">to</span> 用户名<span class="p">@</span>登录主机 <span class="n">identified</span> <span class="n">by</span> &quot;密码&quot;
-</pre></div>
-
-
-<ol>
-<li>
-<p>例1、增加一个用户test1密码为abc，让他可以在任何主机上登录，并对所有数据库有查询、插入、修改、删除的权限。
-首先用以root用户连入MySQL:</p>
-<div class="codehilite"><pre><span class="n">mysql ...</span></pre></div></li></ol>
-                <a class="readmore" href="./Technology/2012/12/01/mysql-tuition.html">read more</a>
-                <p>There are <a href="./Technology/2012/12/01/mysql-tuition.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
                         <a href="./index2.html">&laquo;</a>
@@ -261,56 +247,6 @@
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="./tag/网络.html">
-       网络
-    </a>
-</li>
-<li>
-    <a href="./tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="./tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="./tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="./tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="./tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-<li>
-    <a href="./tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="./tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="./tag/github.html">
-       github
-    </a>
-</li>
-<li>
-    <a href="./tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
     <a href="./tag/分区.html">
        分区
     </a>
@@ -321,58 +257,8 @@
     </a>
 </li>
 <li>
-    <a href="./tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-<li>
-    <a href="./tag/PNP.html">
-       PNP
-    </a>
-</li>
-<li>
-    <a href="./tag/挂载.html">
-       挂载
-    </a>
-</li>
-<li>
-    <a href="./tag/.html">
-       
-    </a>
-</li>
-<li>
-    <a href="./tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="./tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
     <a href="./tag/mesh.html">
        mesh
-    </a>
-</li>
-<li>
-    <a href="./tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="./tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="./tag/Nagios.html">
-       Nagios
-    </a>
-</li>
-<li>
-    <a href="./tag/WordPress.html">
-       WordPress
     </a>
 </li>
 <li>
@@ -381,13 +267,48 @@
     </a>
 </li>
 <li>
+    <a href="./tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="./tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
     <a href="./tag/吞吐量.html">
        吞吐量
     </a>
 </li>
 <li>
-    <a href="./tag/ROBIN.html">
-       ROBIN
+    <a href="./tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="./tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="./tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="./tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="./tag/网络.html">
+       网络
+    </a>
+</li>
+<li>
+    <a href="./tag/Git.html">
+       Git
     </a>
 </li>
 <li>
@@ -396,8 +317,83 @@
     </a>
 </li>
 <li>
+    <a href="./tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="./tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="./tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="./tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="./tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="./tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="./tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="./tag/WebBench.html">
+       WebBench
+    </a>
+</li>
+<li>
     <a href="./tag/MESH.html">
        MESH
+    </a>
+</li>
+<li>
+    <a href="./tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="./tag/web.html">
+       web
+    </a>
+</li>
+<li>
+    <a href="./tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="./tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="./tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="./tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="./tag/Nagios.html">
+       Nagios
     </a>
 </li>
                   

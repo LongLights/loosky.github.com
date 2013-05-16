@@ -40,6 +40,57 @@
                     <ol id="posts-list" class="hfeed" start="3">
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="../Technology/2013/03/01/git-command.html" rel="bookmark"
+                           title="Permalink to Git常用命令">Git常用命令</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-03-01T00:00:00">
+                Fri 01 March 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/Git.html">Git</a></p></footer><!-- /.post-info -->                <h2>Git配置</h2>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span> &quot;<span class="n">robbin</span>&quot;   
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span> &quot;<span class="n">fankai</span><span class="p">@</span><span class="n">gmail</span><span class="p">.</span><span class="n">com</span>&quot;
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">color</span><span class="p">.</span><span class="n">ui</span> <span class="n">true</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">co</span> <span class="n">checkout</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">ci</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">st</span> <span class="n">status</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">br</span> <span class="n">branch</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">core</span><span class="p">.</span><span class="n">editor</span> &quot;<span class="n">mate</span> <span class="o">-</span><span class="n">w</span>&quot;
+</pre></div>
+
+
+<p><code>用户的git配置文件~/.gitconfig</code></p>
+<h2>Git常用命令</h2>
+<h3>查看、添加、提交、删除、找回，重置修改文件</h3>
+<div class="codehilite"><pre><span class="n">git</span> <span class="n">help</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span>  # 显示<span class="n">command</span>的<span class="n">help</span>
+<span class="n">git</span> <span class="n">show</span>            # 显示某次提交的内容
+<span class="n">git</span> <span class="n">show</span> $<span class="n">id</span>
+
+<span class="n">git</span> <span class="n">co</span>  <span class="o">--</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>   # 抛弃工作区修改
+<span class="n">git</span> <span class="n">co</span>  <span class="p">.</span>           # 抛弃工作区修改
+
+<span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>      # 将工作文件修改提交到本地暂存区
+<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>           # 将所有修改过的工作文件提交暂存区
+
+<span class="n">git</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>       # 从版本库中删除文件
+<span class="n">git</span> <span class="n">rm</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">cached</span>  # 从版本库中删除文件，但不删除文件
+
+<span class="n">git</span> <span class="n">reset ...</span></pre></div>
+                <a class="readmore" href="../Technology/2013/03/01/git-command.html">read more</a>
+                <p>There are <a href="../Technology/2013/03/01/git-command.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="../Technology/2013/01/07/Redis,WordPress.html" rel="bookmark"
                            title="Permalink to 使用Redis来加速WordPress">使用Redis来加速WordPress</a></h1>
                 </header>
@@ -176,61 +227,6 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                 <a class="readmore" href="../Technology/2012/12/02/harddisk.html">read more</a>
                 <p>There are <a href="../Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="../Technology/2012/12/01/CentOS-Configuration.html" rel="bookmark"
-                           title="Permalink to CentOS配置">CentOS配置</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-01T00:00:00">
-                Sat 01 December 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="../author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../tag/CentOS.html">CentOS</a><a href="../tag/Linux.html">Linux</a></p></footer><!-- /.post-info -->                <p>推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）</p>
-<h3>1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0</h3>
-<div class="codehilite"><pre>    <span class="n">DEVICE</span><span class="p">=</span>&quot;<span class="n">eth0</span>&quot;
-    <span class="n">NM_CONTROLLED</span><span class="p">=</span>&quot;<span class="n">yes</span>&quot;
-    <span class="n">ONBOOT</span><span class="p">=</span><span class="n">yes</span>
-    <span class="n">TYPE</span><span class="p">=</span><span class="n">Ethernet</span>
-    <span class="n">BOOTPROTO</span><span class="p">=</span><span class="n">none</span>
-    <span class="n">IPADDR</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
-    <span class="n">PREFIX</span><span class="p">=</span>24
-    <span class="n">GATEWAY</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span><span class="p">.</span><span class="n">XXX</span>
-    <span class="n">DNS1</span><span class="p">=</span>59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
-    <span class="n">DNS2</span><span class="p">=</span>218<span class="p">.</span>85<span class="p">.</span>157<span class="p">.</span>99
-    <span class="n">DEFROUTE</span><span class="p">=</span><span class="n">yes</span>
-    <span class="n">IPV4_FAILURE_FATAL</span><span class="p">=</span><span class="n">yes</span>
-    <span class="n">IPV6INIT</span><span class="p">=</span><span class="n">no</span>
-    <span class="n">NAME</span><span class="p">=</span>&quot;<span class="n">System</span> <span class="n">eth0</span>&quot;
-</pre></div>
-
-
-<h3>2、配置DNS： vi /etc/resolv.conf</h3>
-<div class="codehilite"><pre>    <span class="n">nameserver</span> 59<span class="p">.</span>77<span class="p">.</span>139<span class="p">.</span>1
-    <span class="n">search</span> <span class="n">localdomain</span>
-
-配置好以后重启服务：
-
-    <span class="n">service</span> <span class="n">network</span> <span class="n">restart</span>
-</pre></div>
-
-
-<h3>3、解决中文乱码：vi /etc/sysconfig/i18n ：</h3>
-<div class="codehilite"><pre>    <span class="n">LANG</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span>&quot;
-    <span class="n">LANGUAGE</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN</span><span class="p">.</span><span class="n">GB2312</span><span class="p">:</span><span class="n">zh_CN</span>&quot;
-    <span class="n">SUPPORTED</span><span class="p">=</span>&quot;<span class="n">zh_CN</span><span class="p">.</span><span class="n">GB18030</span><span class="p">:</span><span class="n">zh_CN ...</span></pre></div>
-                <a class="readmore" href="../Technology/2012/12/01/CentOS-Configuration.html">read more</a>
-                <p>There are <a href="../Technology/2012/12/01/CentOS-Configuration.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
                         <a href="../category/Technology.html">&laquo;</a>
@@ -243,56 +239,6 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../tag/网络.html">
-       网络
-    </a>
-</li>
-<li>
-    <a href="../tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="../tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="../tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/open-mesh.html">
-       open-mesh
-    </a>
-</li>
-<li>
-    <a href="../tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="../tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="../tag/github.html">
-       github
-    </a>
-</li>
-<li>
-    <a href="../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
     <a href="../tag/分区.html">
        分区
     </a>
@@ -303,58 +249,8 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="../tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-<li>
-    <a href="../tag/PNP.html">
-       PNP
-    </a>
-</li>
-<li>
-    <a href="../tag/挂载.html">
-       挂载
-    </a>
-</li>
-<li>
-    <a href="../tag/.html">
-       
-    </a>
-</li>
-<li>
-    <a href="../tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="../tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
     <a href="../tag/mesh.html">
        mesh
-    </a>
-</li>
-<li>
-    <a href="../tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../tag/Nagios.html">
-       Nagios
-    </a>
-</li>
-<li>
-    <a href="../tag/WordPress.html">
-       WordPress
     </a>
 </li>
 <li>
@@ -363,13 +259,48 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
+    <a href="../tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="../tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
     <a href="../tag/吞吐量.html">
        吞吐量
     </a>
 </li>
 <li>
-    <a href="../tag/ROBIN.html">
-       ROBIN
+    <a href="../tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="../tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="../tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="../tag/网络.html">
+       网络
+    </a>
+</li>
+<li>
+    <a href="../tag/Git.html">
+       Git
     </a>
 </li>
 <li>
@@ -378,8 +309,83 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
+    <a href="../tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="../tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="../tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="../tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="../tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="../tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="../tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="../tag/WebBench.html">
+       WebBench
+    </a>
+</li>
+<li>
     <a href="../tag/MESH.html">
        MESH
+    </a>
+</li>
+<li>
+    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/web.html">
+       web
+    </a>
+</li>
+<li>
+    <a href="../tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="../tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="../tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="../tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="../tag/Nagios.html">
+       Nagios
     </a>
 </li>
                   
