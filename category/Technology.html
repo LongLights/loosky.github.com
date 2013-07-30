@@ -37,8 +37,152 @@
 
                             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../Technology/2013/05/16/WebBench.html">Web网站性能/压力测试工具WebBench使用详解</a></h1> 
+                    <h1 class="entry-title"><a href="../Technology/2013/07/30/Tiny-Tiny-RSS.html">Tiny Tiny RSS–Google Reader的替代</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2013-07-30T00:00:00">
+                Tue 30 July 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/Google.html">Google</a><a href="../tag/Google Reader.html">Google Reader</a><a href="../tag/PHP.html">PHP</a><a href="../tag/RSS.html">RSS</a><a href="../tag/Tiny Tiny RSS.html">Tiny Tiny RSS</a></p></footer><!-- /.post-info --><p>Google Reader是一款<a href="http://xbeta.info/google-reader.htm">无可替代的伟大产品</a>，但实实在在地跟我们<a href="http://loosky.net/archives/2789.html">告别了</a>。一直以来习惯于通过订阅RSS来浏览文章，说实在话并不喜欢通过微博或者微信来浏览，信息量太大，而真正有用的东西又不多，极容易被淹没，不容易沉淀。</p>
+<p>Google Reader关闭后，一直用着<a href="https://theoldreader.com/">the Old Reader</a>，其使用习惯和界面均比较接近于Google Reader。但比较痛苦的地方在于速度和稳定性均不是很好，经常长时间不能访问，难以忍受。于是便想自己搭建一个平台，先尝试了<a href="https://github.com/samuelclay/NewsBlur">NewsBlur</a>，基于Django的，步骤相当繁琐。刚好碰到小众软件介绍了<a href="http://www.appinn.com/tiny-tiny-rss/">Tiny Tiny RSS</a>，基于PHP+MySQL/PostgreSQL，安装起来也很方便。于是便安装了一个试试，发现挺不错的。</p>
+<p>Tiny Tiny RSS 是使用 <a href="http://www.simplepie.org/">SimplePie</a> 作为 RSS 抓取引擎的，抓取回来的文章数据需要保存在 MySQL/PostgreSQL 数据库里，抓取数据的时候，需要消耗一定的流量，所以，如果你的订阅源多的话，搭建类似的站点的确是一个消耗存储空间、带宽的活。</p>
+<h3>一、优点</h3>
+<p>项目主页： <a href="http://tt-rss.org/redmine/">http://tt-rss.org/</a>，其优点如下：</p>
+<ol>
+<li>feed状况检查：可以检查订阅的feeds是否失效</li>
+<li>支持各种主题，包括模仿Google Reeder、feedly界面的主题</li>
+<li>有适合移动设备的皮肤/插件</li>
+<li>支持插件，其中精品插件包括ff_feedcleaner（feed内容过滤）、af_feedmod（制作全文阅读feed）、oneclickpocket（一键发送到pocket）、fever（模拟fever api，支持更多客户端）等</li>
+<li>支持多种平台的客户端，包括Andriod、WP、iOS等</li>
+<li>可以灵活地设置更新频率，第一时间获得订阅更新</li>
+<li>支持导入OPML</li>
+<li>可以收藏</li>
+<li>有中文版本，但不完全</li>
+<li>filter功能：类似gmail的filter。从标题，内容，时间等等中匹配关键词，然后可以选择是打分还是加tag，加label，加星，标记已读，删除条目等，filter可以是作用于所有feed或者指定feed。可以是匹配关键词，或者是剔除关键词。</li>
+<li>条目中的图片可以选择是显示还是隐藏。</li>
+<li>邮件digest。把每天的未读条目作为digest发送到指定邮箱。而且可以选择发送了的条目自动标记为已读。发送时间也可以指定。</li>
+<li>基于sphinx的全文搜索</li>
+<li>...</li>
+</ol>
+<h3>二、安装要求</h3>
+<p>要求其实挺简单的，见<a href="http://tt-rss.org/redmine/projects/tt-rss/wiki#Requirements">官方wiki</a>。</p>
+<div class="codehilite"><pre>1<span class="p">.</span> <span class="n">PHP</span>版本必须高于5<span class="p">.</span>3；
+2<span class="p">.</span> 可选<span class="n">PostgreSQL</span> 或 <span class="n">MySQL</span>数据库，其中<span class="n">MySQL</span>数据库必须支持<span class="n">InnoDB</span><span class="p">.</span>
+</pre></div>
+
+
+<h3>三、安装步骤</h3>
+<p>具体安装步骤可参考<a href="http://tt-rss.org/redmine/projects/tt-rss/wiki/InstallationNotes">Installation Notes</a></p>
+<ol>
+<li>
+<p>在按照要求配置好服务器环境后，<a href="https://github.com/gothfox/Tiny-Tiny-RSS/archive/1.9.tar.gz">下载安装包</a> （目前最新版本为1.9，Jul 21, 2013）并解压。</p>
+<div class="codehilite"><pre><span class="c"># tar zxfv Tiny-Tiny-RSS-1.x.x.tar.gz</span>
+<span class="c"># mv Tiny-Tiny-RSS-1.x.x tt-rss</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>输入<a href="http://your.site.com/tt-rss/install/">http://your.site.com/tt-rss/install/</a>，并执行安装步骤，填写相应的数据库等信息。
+<img alt="安装步骤" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-install.png" /></p>
+</li>
+<li>
+<p>安装完成后，输入网址 <a href="http://your.site.com/tt-rss/">http://your.site.com/tt-rss/</a> 访问系统，系统后台已经部分汉化。默认管理员用户为：</p>
+<div class="codehilite"><pre><span class="n">username</span><span class="o">:</span> <span class="n">admin</span><span class="o">,</span> <span class="n">password</span><span class="o">:</span> <span class="n">password</span>
+</pre></div>
+
+
+</li>
+</ol>
+<p><img alt="系统登录" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-login.png" /></p>
+<p>登陆后即可手动添加RSS地址或者直接导入OPML文件了。</p>
+<p><img alt="导入OPML文件" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-importrss.png" /></p>
+<h3>四、优化配置</h3>
+<h4>1. 配置订阅条目自动更新</h4>
+<p>详细操作说明见<a href="http://tt-rss.org/redmine/projects/tt-rss/wiki/UpdatingFeeds">官方wiki</a>，可以采用三种方式，本站使用的是第二种，即通过crontab来定时更新feeds。</p>
+<p><strong>这里需要注意的是更新脚本文件<code>update.php</code>或<code>update_daemon2.php</code>不能由root用户来执行，可以通过apache或者Nginx的运行用户来执行，如apache或者www等。</strong></p>
+<p>当我们以<code>root</code>用户直接执行命令时，会出现如下错误：</p>
+<div class="codehilite"><pre><span class="p">[</span><span class="n">root</span><span class="p">@</span><span class="n">localhost</span> <span class="o">~</span><span class="p">]</span># <span class="n">php</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wwwroot</span><span class="o">/</span>具体路径<span class="o">/</span><span class="n">update</span><span class="p">.</span><span class="n">php</span> 
+<span class="n">Tiny</span> <span class="n">Tiny</span> <span class="n">RSS</span> <span class="n">was</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">start</span> <span class="n">properly</span><span class="p">.</span> <span class="n">This</span> <span class="n">usually</span> <span class="n">means</span> <span class="n">a</span> <span class="n">misconfiguration</span> <span class="n">or</span> <span class="n">an</span> <span class="n">incomplete</span> <span class="n">upgrade</span><span class="p">.</span>
+<span class="n">Please</span> <span class="nb">fix</span> <span class="n">errors</span> <span class="n">indicated</span> <span class="n">by</span> <span class="n">the</span> <span class="n">following</span> <span class="n">messages</span><span class="p">:</span>
+
+ <span class="o">*</span> <span class="n">Please</span> <span class="n">don</span><span class="o">&#39;</span><span class="n">t</span> <span class="n">run</span> <span class="n">this</span> <span class="n">script</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
+
+<span class="n">You</span> <span class="n">might</span> <span class="n">want</span> <span class="n">to</span> <span class="n">check</span> <span class="n">tt</span><span class="o">-</span><span class="n">rss</span> <span class="n">wiki</span> <span class="n">or</span> <span class="n">the</span> <span class="n">forums</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+<span class="n">Please</span> <span class="n">search</span> <span class="n">the</span> <span class="n">forums</span> <span class="n">before</span> <span class="n">creating</span> <span class="n">new</span> <span class="n">topic</span> <span class="k">for</span> <span class="n">your</span> <span class="n">question</span><span class="p">.</span>
+</pre></div>
+
+
+<p>即提示不能以root用户运行脚本，否则订阅条目不能自动更新。因此，可以通过给普通用户如<code>www</code>添加crontab运行脚本：</p>
+<div class="codehilite"><pre><span class="c">#crontab -u www -e</span>
+</pre></div>
+
+
+<p>添加如下内容：</p>
+<div class="codehilite"><pre><span class="o">*/</span>30 <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">php</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wwwroot</span><span class="o">/</span>具体路径<span class="o">/</span><span class="n">update</span><span class="p">.</span><span class="n">php</span> <span class="o">--</span><span class="n">feeds</span> <span class="o">--</span><span class="n">quiet</span>
+</pre></div>
+
+
+<p>同时在后台可以设置feeds的更新时间。</p>
+<p><img alt="设置更新时间" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-update.png" /></p>
+<p><strong>说明：</strong></p>
+<ol>
+<li>必须用普通用户来运行更新脚本；</li>
+<li>更新时间这里设置为每30分钟更新一次，具体可调；</li>
+<li>若你的系统中php的路径不是<code>/usr/bin/php</code>,需要修改之，同时也注意修改<code>config.php</code>中的内容；</li>
+<li>修改<code>/home/wwwroot/具体路径/update.php</code>为你的具体路径。</li>
+</ol>
+<h4>2. 安装皮肤</h4>
+<p>Tiny Tiny RSS<a href="http://tt-rss.org/forum/viewtopic.php?f=22&amp;t=1679">安装皮肤</a>挺简单的，将CSS文件放入themes目录下，并在管理员后台进行选择就可以了，当然也可以通过自定义CSS的方式。</p>
+<p><img alt="定义皮肤" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-theme.png" /></p>
+<p>推荐一款仿Google Reader的皮肤： <a href="https://github.com/naeramarth7/clean-greader">clean-greader</a>，更多的可在<a href="http://tt-rss.org/forum/viewforum.php?f=22">官方论坛</a>中寻找。</p>
+<p><img alt="clean-greader" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss.png" /></p>
+<h4>3. 安装插件</h4>
+<p>系统后台自带了很多系统插件以及第三方插件，我们只需要启用就好，当然也可以去论坛<a href="http://tt-rss.org/forum/viewforum.php?f=22">寻找插件</a>。</p>
+<p><img alt="" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-plugins.png" /></p>
+<p>付上大多数插件的说明，所有插件一般有三种，在文章右下角生成响应图标的、在设置标签生成设置页面的、其他无图标无设置的插件[<a href="https://wjchen.me/index.php/ttrss-1.html">参考</a>]</p>
+<ul>
+<li>af_unburn:解决feedburner等rss链接跳转。</li>
+<li>bookmarklets:在设置-信息源生成bookmarklets标签。</li>
+<li>embed_original:图标插件，点击图标会显示文章原始内容，而不是rss。</li>
+<li>fever:模拟fever api，在设置-Fver Emulation，设置好密码，可以和tt-rss的登录密码不同，然后就能支持fever的客户端比如reeder、Mr. Reader。</li>
+<li>ff_feedcleaner:feed广告过滤，在设置标签生成FeecCleaner标签，过滤规则要用正则表达式，比较复杂。</li>
+<li>googlereaderkeys:模拟google reader快捷键，如J、K等。</li>
+<li>import_export:在设置-信息源，导入导出配置。</li>
+<li>mail:图标插件，点击通过邮件分享。</li>
+<li>mark_button:文章右下角能够快速将文章标记为已读未读。</li>
+<li>mobilize:图标插件，点击显示readability简化的页面。</li>
+<li>note:图标插件。</li>
+<li>nsfw:根据标签隐藏文章内容。</li>
+<li>share:图标插件，点击生成唯一的url方便分享。</li>
+<li>swap_jk:添加j、k快捷键，类似vim。</li>
+</ul>
+<h4>4. 移动端支持</h4>
+<p>要支持移动端，既可以通过手机、平板电脑等设备进行访问，必须先开启系统支持，即在管理后台偏好设置里面勾选“Enable API”。</p>
+<p><img alt="Enable API" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-enableapi.png" /></p>
+<p><a href="http://tt-rss.org/redmine/projects/tt-rss-android/wiki">官方开发</a>的Andriod客户端：<a href="https://play.google.com/store/apps/details?id=org.fox.ttrss&amp;feature=search_result">Tiny Tiny RSS</a></p>
+<p>同时也推荐一下Nils Braden 开发的 <a href="https://play.google.com/store/apps/details?id=org.ttrssreader&amp;feature=related_apps#?t=W251bGwsMSwxLDEwOSwib3JnLnR0cnNzcmVhZGVyIl0.">TTRSS-Reader</a> 这个 Android 手机客户端，这个客户端提供针对Tiny Tiny RSS的手机离线阅读功能，还可以离线缓存图片。</p>
+<p><img alt="移动客户端" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-client.png" /></p><p>There are <a href="../Technology/2013/07/30/Tiny-Tiny-RSS.html#disqus_thread">comments</a>.</p>                </article>
+                            </aside><!-- /#featured -->
+                            <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+                                                
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="../Technology/2013/05/16/WebBench.html" rel="bookmark"
+                           title="Permalink to Web网站性能/压力测试工具WebBench使用详解">Web网站性能/压力测试工具WebBench使用详解</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2013-05-16T00:00:00">
                 Thu 16 May 2013
         </abbr>
@@ -47,7 +191,7 @@
                 By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
         <p>In <a href="../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../tag/web.html">web</a><a href="../tag/WebBench.html">WebBench</a></p></footer><!-- /.post-info --><p>Webbench是知名的网站压力方面的测试工具，它是由Lionbridge公司开发。</p>
+<p>tags: <a href="../tag/web.html">web</a><a href="../tag/WebBench.html">WebBench</a></p></footer><!-- /.post-info -->                <p>Webbench是知名的网站压力方面的测试工具，它是由Lionbridge公司开发。</p>
 <p>官方主页：<a href="http://home.tiscali.cz/~cz210552/webbench.html">http://home.tiscali.cz/~cz210552/webbench.html</a></p>
 <p>在运维工作中，网站压力及性能测试是一项很重要的工作。比如在一个网站上线之前，能承受多大访问量、在大访问量情况下性能怎样，这些数据指标好坏将会直接影响用户体验。但是，在压力及性能测试中存在一个共性，那就是压力及性能测试的结果与实际负载结果不会完全相同，就算压力及性能测试工作做的再好，也不能保证100%和线上性能指标相同。面对这些问题，我们只能尽量去想方设法去模拟。所以，压力及性能测试非常有必要，有了这些数据，我们就能对自己做维护的平台做到心中有数。</p>
 <p>Web Bench最多可以模拟3万个并发连接去测试网站的负载能力。Web Bench能测试处在相同硬件上，不同服务的性能以及不同硬件上同一个服务的运行状况。Web Bech的标准测试可以向我们展示服务器的两项内容：每秒钟相应请求数和每秒钟传输数据量。Web Bench不但能具有静态页面的测试能力，还能对动态页面（ASP,PHP,JAVA,CGI）进行测试的能力。还有就是他支持对含有SSL的安全网站例如电子商务网站进行静态或动态的性能测试。</p>
@@ -67,76 +211,11 @@
 <blockquote>
 <p>cc -Wall -ggdb -W -O   -c -o webbench.o webbench.c</p>
 <p>webbench.c: In function ‘alarm_handler’:</p>
-<p>webbench.c:77: warning: unused parameter ’signal’</p>
-<p>cc -Wall -ggdb -W -O   -o webbench webbench.o</p>
-<p>ctags *.c</p>
-<p>/bin/sh: ctags: command not found</p>
-<p>make: [tags] Error 127 (ignored)</p>
-</blockquote>
-<p>centos有相应的组件，搜索一下ctags安装即可</p>
-<div class="codehilite"><pre><span class="c"># yum install ctags</span>
-</pre></div>
-
-
-<h3>2、WebBench使用：</h3>
-<div class="codehilite"><pre><span class="c">#webbench -c 1000 -t 60 http://test.cn/info.php</span>
-<span class="n">webbench</span> <span class="o">-</span><span class="n">c</span> 并发数 <span class="o">-</span><span class="n">t</span> 运行测试时间  <span class="n">URL</span>
-</pre></div>
-
-
-<h3>3、测试结果示例：</h3>
-<div class="codehilite"><pre><span class="c">#webbench -c 600 -t 30 http://test.cn/index.php</span>
-<span class="n">Webbench</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">Web</span> <span class="n">Benchmark</span> 1<span class="p">.</span>5
-<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">Radim</span> <span class="n">Kolar</span> 1997<span class="o">-</span>2004<span class="p">,</span> <span class="n">GPL</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">.</span>
-
-<span class="n">Benchmarking</span><span class="p">:</span> <span class="n">GET</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="nb">test</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="nb">index</span><span class="p">.</span><span class="n">php</span>
-600 <span class="n">clients</span><span class="p">,</span> <span class="n">running</span> 30 <span class="nb">sec</span><span class="p">.</span>
-
-<span class="n">Speed</span><span class="p">=</span>12082 <span class="n">pages</span><span class="o">/</span><span class="nb">min</span><span class="p">,</span> 152635 <span class="n">bytes</span><span class="o">/</span><span class="nb">sec</span><span class="p">.</span>
-<span class="n">Requests</span><span class="p">:</span> 6041 <span class="n">susceed</span><span class="p">,</span> 0 <span class="n">failed</span><span class="p">.</span>
-
-<span class="o">-------------------------------------------------------------------------------------</span>
-
-<span class="c">#webbench -c 1000 -t 60 http://test.cn/index.php</span>
-<span class="n">Webbench</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">Web</span> <span class="n">Benchmark</span> 1<span class="p">.</span>5
-<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">Radim</span> <span class="n">Kolar</span> 1997<span class="o">-</span>2004<span class="p">,</span> <span class="n">GPL</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">.</span>
-
-<span class="n">Benchmarking</span><span class="p">:</span> <span class="n">GET</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="nb">test</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="nb">index</span><span class="p">.</span><span class="n">php</span>
-1000 <span class="n">clients</span><span class="p">,</span> <span class="n">running</span> 60 <span class="nb">sec</span><span class="p">.</span>
-
-<span class="n">Speed</span><span class="p">=</span>5553 <span class="n">pages</span><span class="o">/</span><span class="nb">min</span><span class="p">,</span> 70152 <span class="n">bytes</span><span class="o">/</span><span class="nb">sec</span><span class="p">.</span>
-<span class="n">Requests</span><span class="p">:</span> 5553 <span class="n">susceed</span><span class="p">,</span> 0 <span class="n">failed</span><span class="p">.</span>
-</pre></div>
-
-
-<p>每秒钟响应请求数：24525/60= X pages/sec，每秒钟传输数据量20794612 bytes/sec.</p>
-<div class="codehilite"><pre><span class="c"># webbench -c 2000 -t 60 http://test.cn/index.php</span>
-<span class="n">Webbench</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">Web</span> <span class="n">Benchmark</span> 1<span class="p">.</span>5
-<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">Radim</span> <span class="n">Kolar</span> 1997<span class="o">-</span>2004<span class="p">,</span> <span class="n">GPL</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">.</span>
-
-<span class="n">Benchmarking</span><span class="p">:</span> <span class="n">GET</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="nb">test</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="nb">index</span><span class="p">.</span><span class="n">php</span>
-2000 <span class="n">clients</span><span class="p">,</span> <span class="n">running</span> 60 <span class="nb">sec</span><span class="p">.</span>
-
-<span class="n">Speed</span><span class="p">=</span>10479 <span class="n">pages</span><span class="o">/</span><span class="nb">min</span><span class="p">,</span> 132043 <span class="n">bytes</span><span class="o">/</span><span class="nb">sec</span><span class="p">.</span>
-<span class="n">Requests</span><span class="p">:</span> 10453 <span class="n">susceed</span><span class="p">,</span> 26 <span class="n">failed</span><span class="p">.</span>
-</pre></div>
-
-
-<p>当并发2000时，已经显示有26个连接failed了，说明超负荷了。</p>
-<p>补充：</p>
-<ol>
-<li>压力及性能测试工作应该放到产品上线之前，而不是上线以后；</li>
-<li>测试时并发应当由小逐渐加大，比如并发100时观察一下网站负载是多少、打开页面是否流畅，并发200时又是多少、网站打开缓慢时并发是多少、网站打不开时并发又是多少；</li>
-<li>更详细的进行某个页面测试，如电商网站可以着重测试购物车、推广页面等，因为这些页面占整个网站访问量比重较大。</li>
-</ol>
-<p>备注：webbench 做压力及性能测试时，该软件自身也会消耗CPU和内存资源，为了测试准确，建议将 webbench安装在其他的服务器上，已达到测试数据更加精确。</p>
-<p>转自：<a href="http://blog.fity.cn/" title="未来往事">http://blog.fity.cn/</a></p><p>There are <a href="../Technology/2013/05/16/WebBench.html#disqus_thread">comments</a>.</p>                </article>
-                            </aside><!-- /#featured -->
-                            <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-                                                
+<p>webbench ...</p></blockquote>
+                <a class="readmore" href="../Technology/2013/05/16/WebBench.html">read more</a>
+                <p>There are <a href="../Technology/2013/05/16/WebBench.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
 
                  
                         <li><article class="hentry">    
@@ -232,58 +311,6 @@
                 <a class="readmore" href="../Technology/2013/04/28/nagios-monitor.html">read more</a>
                 <p>There are <a href="../Technology/2013/04/28/nagios-monitor.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="../Technology/2013/04/28/nagios-pnp-install.html" rel="bookmark"
-                           title="Permalink to Nagios可视化绘制工具PNP安装&配置">Nagios可视化绘制工具PNP安装&配置</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2013-04-28T00:00:00">
-                Sun 28 April 2013
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="../author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../tag/Nagios.html">Nagios</a><a href="../tag/PNP.html">PNP</a></p></footer><!-- /.post-info -->                <div class="codehilite"><pre><span class="n">Nagios</span>是一款开源的免费网络监视工具，能有效监控<span class="n">Windows</span>、<span class="n">Linux</span>和<span class="n">Unix</span>的主机状态，交换机路由器等网络设备以及打印机等。
-
-<span class="n">PNP</span>是一个基于<span class="n">php</span>和<span class="n">perl</span>，用<span class="n">rrdtool</span>将<span class="n">nagios</span>采集的数据绘制图表的工具。
-</pre></div>
-
-
-<p><strong>Nagios安装和配置：</strong> <a href="http://loosky.net/archives/2758.html">http://loosky.net/archives/2758.html</a></p>
-<p><strong>Nagios监控配置：</strong><a href="http://loosky.net/archives/2764.html">http://loosky.net/archives/2764.html</a></p>
-<h3>一、PNP安装</h3>
-<p><strong>PNP下载地址：</strong><a href="http://docs.pnp4nagios.org/pnp-0.6/install">http://docs.pnp4nagios.org/pnp-0.6/install</a></p>
-<p>因为PNP是一个基于php和perl，用rrdtool将nagios采集的数据绘制图表的工具，所以安装pnp之前必须先安装php、perl和rrdtool。这里用yum直接来安装rrdtool，单独下载安装有很多依存关系，比较麻烦。</p>
-<div class="codehilite"><pre><span class="c">#yum install rrdtool</span>
-<span class="c">#cd /usr/local/src</span>
-<span class="c">#wget http://sourceforge.net/projects/pnp4nagios/files/PNP-0.6/pnp4nagios-0.6.15.tar.gz/download         //下载pnp</span>
-<span class="c">#tar xzvf pnp4nagios-0.6.15.tar.gz</span>
-<span class="c">#cd pnp4nagios-0.6.15</span>
-<span class="c">#./configure</span>
-</pre></div>
-
-
-<p>此时有可能出现perl modules没有发现的错误：</p>
-<p><img alt="perl modules没有发现" src="http://loosky.net/Upload/2013/04/pnp-perl.png" /></p>
-<p><strong>解决方案：</strong></p>
-<div class="codehilite"><pre><span class="c">#yum install rrdtool-perl</span>
-</pre></div>
-
-
-<p>参考：<a href="http://ronaldbradford.com/blog/installing-perl-rrd-module-rrdspm-2009-07-11/">http://ronaldbradford.com/blog/installing-perl-rrd-module-rrdspm-2009-07-11/</a></p>
-<p>根据提示需要继续</p>
-<div class="codehilite"><pre><span class="c"># make all ...</span></pre></div>
-                <a class="readmore" href="../Technology/2013/04/28/nagios-pnp-install.html">read more</a>
-                <p>There are <a href="../Technology/2013/04/28/nagios-pnp-install.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
         Page 1 / 4
@@ -295,33 +322,8 @@
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../tag/分区.html">
-       分区
-    </a>
-</li>
-<li>
     <a href="../tag/Pelican.html">
        Pelican
-    </a>
-</li>
-<li>
-    <a href="../tag/mesh.html">
-       mesh
-    </a>
-</li>
-<li>
-    <a href="../tag/参考文献.html">
-       参考文献
-    </a>
-</li>
-<li>
-    <a href="../tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="../tag/Mysql.html">
-       Mysql
     </a>
 </li>
 <li>
@@ -330,83 +332,8 @@
     </a>
 </li>
 <li>
-    <a href="../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="../tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../tag/网络.html">
-       网络
-    </a>
-</li>
-<li>
-    <a href="../tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="../tag/SQL.html">
-       SQL
-    </a>
-</li>
-<li>
-    <a href="../tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="../tag/github.html">
-       github
-    </a>
-</li>
-<li>
-    <a href="../tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-<li>
-    <a href="../tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
-    <a href="../tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="../tag/挂载.html">
-       挂载
-    </a>
-</li>
-<li>
-    <a href="../tag/PNP.html">
-       PNP
-    </a>
-</li>
-<li>
-    <a href="../tag/WebBench.html">
-       WebBench
-    </a>
-</li>
-<li>
-    <a href="../tag/MESH.html">
-       MESH
+    <a href="../tag/Linux.html">
+       Linux
     </a>
 </li>
 <li>
@@ -415,13 +342,33 @@
     </a>
 </li>
 <li>
-    <a href="../tag/web.html">
-       web
+    <a href="../tag/CentOS.html">
+       CentOS
     </a>
 </li>
 <li>
-    <a href="../tag/.html">
-       
+    <a href="../tag/mesh.html">
+       mesh
+    </a>
+</li>
+<li>
+    <a href="../tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="../tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="../tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="../tag/Mysql.html">
+       Mysql
     </a>
 </li>
 <li>
@@ -430,18 +377,98 @@
     </a>
 </li>
 <li>
-    <a href="../tag/Linux.html">
-       Linux
+    <a href="../tag/web.html">
+       web
     </a>
 </li>
 <li>
-    <a href="../tag/open-mesh.html">
-       open-mesh
+    <a href="../tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="../tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="../tag/Google Reader.html">
+       Google Reader
+    </a>
+</li>
+<li>
+    <a href="../tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="../tag/git.html">
+       git
     </a>
 </li>
 <li>
     <a href="../tag/Nagios.html">
        Nagios
+    </a>
+</li>
+<li>
+    <a href="../tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="../tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="../tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="../tag/网络.html">
+       网络
+    </a>
+</li>
+<li>
+    <a href="../tag/Tiny Tiny RSS.html">
+       Tiny Tiny RSS
+    </a>
+</li>
+<li>
+    <a href="../tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="../tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+<li>
+    <a href="../tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="../tag/Google.html">
+       Google
+    </a>
+</li>
+<li>
+    <a href="../tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="../tag/open-mesh.html">
+       open-mesh
     </a>
 </li>
                   

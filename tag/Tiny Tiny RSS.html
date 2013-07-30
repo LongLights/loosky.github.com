@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Loosky's Blog</title>
+        <title>Loosky's Blog - Tiny Tiny RSS</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
                 
         <!--[if IE]>
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
         <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
-                <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="../css/ie.css"/>
+                <script src="../js/IE8.js" type="text/javascript"></script><![endif]-->
 
         <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="../css/ie6.css"/><![endif]-->
        <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
 </head>
 
@@ -22,14 +22,14 @@
 <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://loosky.com/theme/images/forkme_right_red.png" alt="To Loosky.net" />
 </a>
         <header id="banner" class="body">
-                <h1><a href=".">Loosky's Blog </a></h1>
+                <h1><a href="..">Loosky's Blog </a></h1>
                 <nav><ul>
-                                                    <li ><a href="./category/Blog.html">Blog</a></li>
-                                    <li ><a href="./category/Research.html">Research</a></li>
-                                    <li ><a href="./category/Technology.html">Technology</a></li>
-                                <li><a href="./archives.html">Archives</a></li>
-                                                    <li><a href="./pages/about.html">About</a></li>
-                                    <li><a href="./pages/search.html">Search</a></li>
+                                                    <li ><a href="../category/Blog.html">Blog</a></li>
+                                    <li ><a href="../category/Research.html">Research</a></li>
+                                    <li ><a href="../category/Technology.html">Technology</a></li>
+                                <li><a href="../archives.html">Archives</a></li>
+                                                    <li><a href="../pages/about.html">About</a></li>
+                                    <li><a href="../pages/search.html">Search</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
                 
@@ -37,17 +37,17 @@
 
                             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./Technology/2013/07/30/Tiny-Tiny-RSS.html">Tiny Tiny RSS–Google Reader的替代</a></h1> 
+                    <h1 class="entry-title"><a href="../Technology/2013/07/30/Tiny-Tiny-RSS.html">Tiny Tiny RSS–Google Reader的替代</a></h1> 
                     <footer class="post-info">
         <abbr class="published" title="2013-07-30T00:00:00">
                 Tue 30 July 2013
         </abbr>
 
                 <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
         </address>
-        <p>In <a href="./category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="./tag/Google.html">Google</a><a href="./tag/Google Reader.html">Google Reader</a><a href="./tag/PHP.html">PHP</a><a href="./tag/RSS.html">RSS</a><a href="./tag/Tiny Tiny RSS.html">Tiny Tiny RSS</a></p></footer><!-- /.post-info --><p>Google Reader是一款<a href="http://xbeta.info/google-reader.htm">无可替代的伟大产品</a>，但实实在在地跟我们<a href="http://loosky.net/archives/2789.html">告别了</a>。一直以来习惯于通过订阅RSS来浏览文章，说实在话并不喜欢通过微博或者微信来浏览，信息量太大，而真正有用的东西又不多，极容易被淹没，不容易沉淀。</p>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/Google.html">Google</a><a href="../tag/Google Reader.html">Google Reader</a><a href="../tag/PHP.html">PHP</a><a href="../tag/RSS.html">RSS</a><a href="../tag/Tiny Tiny RSS.html">Tiny Tiny RSS</a></p></footer><!-- /.post-info --><p>Google Reader是一款<a href="http://xbeta.info/google-reader.htm">无可替代的伟大产品</a>，但实实在在地跟我们<a href="http://loosky.net/archives/2789.html">告别了</a>。一直以来习惯于通过订阅RSS来浏览文章，说实在话并不喜欢通过微博或者微信来浏览，信息量太大，而真正有用的东西又不多，极容易被淹没，不容易沉淀。</p>
 <p>Google Reader关闭后，一直用着<a href="https://theoldreader.com/">the Old Reader</a>，其使用习惯和界面均比较接近于Google Reader。但比较痛苦的地方在于速度和稳定性均不是很好，经常长时间不能访问，难以忍受。于是便想自己搭建一个平台，先尝试了<a href="https://github.com/samuelclay/NewsBlur">NewsBlur</a>，基于Django的，步骤相当繁琐。刚好碰到小众软件介绍了<a href="http://www.appinn.com/tiny-tiny-rss/">Tiny Tiny RSS</a>，基于PHP+MySQL/PostgreSQL，安装起来也很方便。于是便安装了一个试试，发现挺不错的。</p>
 <p>Tiny Tiny RSS 是使用 <a href="http://www.simplepie.org/">SimplePie</a> 作为 RSS 抓取引擎的，抓取回来的文章数据需要保存在 MySQL/PostgreSQL 数据库里，抓取数据的时候，需要消耗一定的流量，所以，如果你的订阅源多的话，搭建类似的站点的确是一个消耗存储空间、带宽的活。</p>
 <h3>一、优点</h3>
@@ -166,308 +166,164 @@
 <p><img alt="Enable API" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-enableapi.png" /></p>
 <p><a href="http://tt-rss.org/redmine/projects/tt-rss-android/wiki">官方开发</a>的Andriod客户端：<a href="https://play.google.com/store/apps/details?id=org.fox.ttrss&amp;feature=search_result">Tiny Tiny RSS</a></p>
 <p>同时也推荐一下Nils Braden 开发的 <a href="https://play.google.com/store/apps/details?id=org.ttrssreader&amp;feature=related_apps#?t=W251bGwsMSwxLDEwOSwib3JnLnR0cnNzcmVhZGVyIl0.">TTRSS-Reader</a> 这个 Android 手机客户端，这个客户端提供针对Tiny Tiny RSS的手机离线阅读功能，还可以离线缓存图片。</p>
-<p><img alt="移动客户端" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-client.png" /></p><p>There are <a href="./Technology/2013/07/30/Tiny-Tiny-RSS.html#disqus_thread">comments</a>.</p>                </article>
-                            </aside><!-- /#featured -->
-                            <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-                                                
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Technology/2013/05/16/WebBench.html" rel="bookmark"
-                           title="Permalink to Web网站性能/压力测试工具WebBench使用详解">Web网站性能/压力测试工具WebBench使用详解</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2013-05-16T00:00:00">
-                Thu 16 May 2013
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="./category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="./tag/web.html">web</a><a href="./tag/WebBench.html">WebBench</a></p></footer><!-- /.post-info -->                <p>Webbench是知名的网站压力方面的测试工具，它是由Lionbridge公司开发。</p>
-<p>官方主页：<a href="http://home.tiscali.cz/~cz210552/webbench.html">http://home.tiscali.cz/~cz210552/webbench.html</a></p>
-<p>在运维工作中，网站压力及性能测试是一项很重要的工作。比如在一个网站上线之前，能承受多大访问量、在大访问量情况下性能怎样，这些数据指标好坏将会直接影响用户体验。但是，在压力及性能测试中存在一个共性，那就是压力及性能测试的结果与实际负载结果不会完全相同，就算压力及性能测试工作做的再好，也不能保证100%和线上性能指标相同。面对这些问题，我们只能尽量去想方设法去模拟。所以，压力及性能测试非常有必要，有了这些数据，我们就能对自己做维护的平台做到心中有数。</p>
-<p>Web Bench最多可以模拟3万个并发连接去测试网站的负载能力。Web Bench能测试处在相同硬件上，不同服务的性能以及不同硬件上同一个服务的运行状况。Web Bech的标准测试可以向我们展示服务器的两项内容：每秒钟相应请求数和每秒钟传输数据量。Web Bench不但能具有静态页面的测试能力，还能对动态页面（ASP,PHP,JAVA,CGI）进行测试的能力。还有就是他支持对含有SSL的安全网站例如电子商务网站进行静态或动态的性能测试。</p>
-<p><strong>适用于linux操作系统</strong></p>
-<h3>1、WebBench安装：</h3>
-<div class="codehilite"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span>
-<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">home</span><span class="p">.</span><span class="n">tiscali</span><span class="p">.</span><span class="n">cz</span><span class="o">/~</span><span class="n">cz210552</span><span class="o">/</span><span class="n">distfiles</span><span class="o">/</span><span class="n">webbench</span><span class="o">-</span>1<span class="p">.</span>5<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
-<span class="n">tar</span> <span class="n">zxvf</span> <span class="n">webbench</span><span class="o">-</span>1<span class="p">.</span>5<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
-<span class="n">cd</span> <span class="n">webbench</span><span class="o">-</span>1<span class="p">.</span>5
-<span class="n">make</span>
-<span class="n">make</span> <span class="n">install</span>
-</pre></div>
-
-
-<p>补充：安装过程中如提示缺少组件请安装，缺少目录，请手动创建。</p>
-<p>常见错误：</p>
-<blockquote>
-<p>cc -Wall -ggdb -W -O   -c -o webbench.o webbench.c</p>
-<p>webbench.c: In function ‘alarm_handler’:</p>
-<p>webbench ...</p></blockquote>
-                <a class="readmore" href="./Technology/2013/05/16/WebBench.html">read more</a>
-                <p>There are <a href="./Technology/2013/05/16/WebBench.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Technology/2013/04/28/nagios-install.html" rel="bookmark"
-                           title="Permalink to Nagios安装与配置">Nagios安装与配置</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2013-04-28T00:00:00">
-                Sun 28 April 2013
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="./category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="./tag/Nagios.html">Nagios</a></p></footer><!-- /.post-info -->                <div class="codehilite"><pre><span class="n">Nagios</span>是一款开源的免费网络监视工具，能有效监控<span class="n">Windows</span>、<span class="n">Linux</span>和<span class="n">Unix</span>的主机状态，交换机路由器等网络设备以及打印机等。
-</pre></div>
-
-
-<h3>安装前提：</h3>
-<div class="codehilite"><pre><span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">gcc</span> <span class="n">glibc</span> <span class="n">glibc</span><span class="o">-</span><span class="n">common</span> <span class="n">gd</span> <span class="n">gd</span><span class="o">-</span><span class="n">devel</span> <span class="n">php</span> <span class="n">openssl</span><span class="o">-</span><span class="n">devel</span> <span class="n">httpd</span>
-</pre></div>
-
-
-<h3>1、创建用户：</h3>
-<div class="codehilite"><pre><span class="c">#useradd -m nagios     #添加一个名为nagios的用户来运行nagios          </span>
-<span class="c">#usermod -a -G nagios apache    #将运行apache用户apache加入nagios组</span>
-</pre></div>
-
-
-<h3>2、 编译安装nagios及其插件：</h3>
-<p><strong>nagios core官网下载地址：</strong><a href="http://www.nagios.org/download/core/">http://www.nagios.org/download/core/</a></p>
-<p><strong>nagios插件下载地址：</strong><a href="http://www.nagios.org/download/plugins/">http://www.nagios.org/download/plugins/</a></p>
-<h4>安装Nagios Core</h4>
-<div class="codehilite"><pre><span class="c">#cd /usr/local/src</span>
-<span class="c">#mkdir /etc/httpd/conf/extra  //用来存放关于nagios的http配置文件</span>
-<span class="c">#tar zxvf nagios-3.5.0.tar.gz</span>
-<span class="c">#cd nagios-3.5.0</span>
-<span class="c">#./configure --prefix=/usr/local/nagios/ --with-comman-group=nagios --with-httpd-conf=/etc/httpd/conf/extra/ //指定安装目录及用户、组和http的配置目录</span>
-<span class="c">#make all;make install</span>
-<span class="c"># make install-init;make install-config;make install-commandmode ...</span></pre></div>
-                <a class="readmore" href="./Technology/2013/04/28/nagios-install.html">read more</a>
-                <p>There are <a href="./Technology/2013/04/28/nagios-install.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Technology/2013/04/28/nagios-monitor.html" rel="bookmark"
-                           title="Permalink to Nagios监控配置">Nagios监控配置</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2013-04-28T00:00:00">
-                Sun 28 April 2013
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="./category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="./tag/Nagios.html">Nagios</a><a href="./tag/PNP.html">PNP</a></p></footer><!-- /.post-info -->                <div class="codehilite"><pre><span class="n">Nagios</span>是一款开源的免费网络监视工具，能有效监控<span class="n">Windows</span>、<span class="n">Linux</span>和<span class="n">Unix</span>的主机状态，交换机路由器等网络设备以及打印机等。
-</pre></div>
-
-
-<p><strong>Nagios安装和配置：</strong> <a href="http://loosky.net/archives/2758.html">http://loosky.net/archives/2758.html</a></p>
-<p>想获取客户机上更为详细的信息，还必须在服务器及客户端上安装NRPE插件。</p>
-<p><strong>NRPE下载地址：</strong> <a href="http://www.nagios.org/download/addons">http://www.nagios.org/download/addons</a></p>
-<h3>服务器端监控程序安装</h3>
-<div class="codehilite"><pre><span class="c">#cd /usr/local/src</span>
-<span class="c">#tar zxvf nrpe-2.14.tar.gz</span>
-<span class="c">#cd nrpe-2.14</span>
-<span class="c"># ./configure --with-nagios-user=nagios -with-nagios-group=nagios --prefix=/usr/local/nagios/</span>
-<span class="c"># make all;make install-plugin ; make install-daemon;make install-daemon-config   //将check_nrpe插件安装到/usr/local/nagios/libexec/目录下</span>
-<span class="c">#/usr/local/nagios/libexec/check_nrpe -H 127.0.0.1</span>
-
-    <span class="n">NRPE</span> <span class="n">v2</span><span class="p">.</span>14
-</pre></div>
-
-
-<h3>Linux客户机监控</h3>
-<h4>安装nagios插件</h4>
-<div class="codehilite"><pre><span class="c">#useradd -s /sbin/nologin nagios //添加nagios用户</span>
-<span class="c">#cd /usr/local/src</span>
-<span class="c">#tar zxvf nagios-plugins-1.4.16.tar.gz</span>
-<span class="c">#cd nagios-plugins-1.4.16</span>
-<span class="c">#./configure --with-nagios-user ...</span></pre></div>
-                <a class="readmore" href="./Technology/2013/04/28/nagios-monitor.html">read more</a>
-                <p>There are <a href="./Technology/2013/04/28/nagios-monitor.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-                            </ol><!-- /#posts-list -->
-                            <p class="paginator">
-        Page 1 / 5
-            <a href="./index2.html">&raquo;</a>
+<p><img alt="移动客户端" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-client.png" /></p><p>There are <a href="../Technology/2013/07/30/Tiny-Tiny-RSS.html#disqus_thread">comments</a>.</p>                </article>
+                                    <p class="paginator">
+        Page 1 / 1
     </p>
+                            </aside><!-- /#featured -->
+                                                </ol><!-- /#posts-list -->
                         </section><!-- /#content -->
                     <section id="extras" class="body">
         <div class="tags">
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="./tag/Pelican.html">
+    <a href="../tag/Pelican.html">
        Pelican
     </a>
 </li>
 <li>
-    <a href="./tag/吞吐量.html">
+    <a href="../tag/吞吐量.html">
        吞吐量
     </a>
 </li>
 <li>
-    <a href="./tag/Linux.html">
+    <a href="../tag/Linux.html">
        Linux
     </a>
 </li>
 <li>
-    <a href="./tag/use-Redis-to-Accelerate-WordPress.html">
+    <a href="../tag/use-Redis-to-Accelerate-WordPress.html">
        use-Redis-to-Accelerate-WordPress
     </a>
 </li>
 <li>
-    <a href="./tag/CentOS.html">
+    <a href="../tag/CentOS.html">
        CentOS
     </a>
 </li>
 <li>
-    <a href="./tag/mesh.html">
+    <a href="../tag/mesh.html">
        mesh
     </a>
 </li>
 <li>
-    <a href="./tag/分区.html">
+    <a href="../tag/分区.html">
        分区
     </a>
 </li>
 <li>
-    <a href="./tag/Git.html">
+    <a href="../tag/Git.html">
        Git
     </a>
 </li>
 <li>
-    <a href="./tag/PNP.html">
+    <a href="../tag/PNP.html">
        PNP
     </a>
 </li>
 <li>
-    <a href="./tag/Mysql.html">
+    <a href="../tag/Mysql.html">
        Mysql
     </a>
 </li>
 <li>
-    <a href="./tag/OpenWRT.html">
+    <a href="../tag/OpenWRT.html">
        OpenWRT
     </a>
 </li>
 <li>
-    <a href="./tag/web.html">
+    <a href="../tag/web.html">
        web
     </a>
 </li>
 <li>
-    <a href="./tag/WordPress.html">
+    <a href="../tag/WordPress.html">
        WordPress
     </a>
 </li>
 <li>
-    <a href="./tag/Python.html">
+    <a href="../tag/Python.html">
        Python
     </a>
 </li>
 <li>
-    <a href="./tag/scp.html">
+    <a href="../tag/scp.html">
        scp
     </a>
 </li>
 <li>
-    <a href="./tag/Google Reader.html">
+    <a href="../tag/Google Reader.html">
        Google Reader
     </a>
 </li>
 <li>
-    <a href="./tag/MESH.html">
+    <a href="../tag/MESH.html">
        MESH
     </a>
 </li>
 <li>
-    <a href="./tag/git.html">
+    <a href="../tag/git.html">
        git
     </a>
 </li>
 <li>
-    <a href="./tag/Nagios.html">
+    <a href="../tag/Nagios.html">
        Nagios
     </a>
 </li>
 <li>
-    <a href="./tag/Loosky.html">
+    <a href="../tag/Loosky.html">
        Loosky
     </a>
 </li>
 <li>
-    <a href="./tag/ROBIN.html">
+    <a href="../tag/ROBIN.html">
        ROBIN
     </a>
 </li>
 <li>
-    <a href="./tag/github.html">
+    <a href="../tag/github.html">
        github
     </a>
 </li>
 <li>
-    <a href="./tag/网络.html">
+    <a href="../tag/网络.html">
        网络
     </a>
 </li>
 <li>
-    <a href="./tag/Tiny Tiny RSS.html">
+    <a href="../tag/Tiny Tiny RSS.html">
        Tiny Tiny RSS
     </a>
 </li>
 <li>
-    <a href="./tag/WMN.html">
+    <a href="../tag/WMN.html">
        WMN
     </a>
 </li>
 <li>
-    <a href="./tag/参考文献.html">
+    <a href="../tag/参考文献.html">
        参考文献
     </a>
 </li>
 <li>
-    <a href="./tag/SQL.html">
+    <a href="../tag/SQL.html">
        SQL
     </a>
 </li>
 <li>
-    <a href="./tag/Google.html">
+    <a href="../tag/Google.html">
        Google
     </a>
 </li>
 <li>
-    <a href="./tag/.html">
+    <a href="../tag/.html">
        
     </a>
 </li>
 <li>
-    <a href="./tag/open-mesh.html">
+    <a href="../tag/open-mesh.html">
        open-mesh
     </a>
 </li>

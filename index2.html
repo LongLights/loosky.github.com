@@ -40,6 +40,58 @@
                     <ol id="posts-list" class="hfeed" start="3">
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="./Technology/2013/04/28/nagios-pnp-install.html" rel="bookmark"
+                           title="Permalink to Nagios可视化绘制工具PNP安装&配置">Nagios可视化绘制工具PNP安装&配置</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-04-28T00:00:00">
+                Sun 28 April 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="./author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="./category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="./tag/Nagios.html">Nagios</a><a href="./tag/PNP.html">PNP</a></p></footer><!-- /.post-info -->                <div class="codehilite"><pre><span class="n">Nagios</span>是一款开源的免费网络监视工具，能有效监控<span class="n">Windows</span>、<span class="n">Linux</span>和<span class="n">Unix</span>的主机状态，交换机路由器等网络设备以及打印机等。
+
+<span class="n">PNP</span>是一个基于<span class="n">php</span>和<span class="n">perl</span>，用<span class="n">rrdtool</span>将<span class="n">nagios</span>采集的数据绘制图表的工具。
+</pre></div>
+
+
+<p><strong>Nagios安装和配置：</strong> <a href="http://loosky.net/archives/2758.html">http://loosky.net/archives/2758.html</a></p>
+<p><strong>Nagios监控配置：</strong><a href="http://loosky.net/archives/2764.html">http://loosky.net/archives/2764.html</a></p>
+<h3>一、PNP安装</h3>
+<p><strong>PNP下载地址：</strong><a href="http://docs.pnp4nagios.org/pnp-0.6/install">http://docs.pnp4nagios.org/pnp-0.6/install</a></p>
+<p>因为PNP是一个基于php和perl，用rrdtool将nagios采集的数据绘制图表的工具，所以安装pnp之前必须先安装php、perl和rrdtool。这里用yum直接来安装rrdtool，单独下载安装有很多依存关系，比较麻烦。</p>
+<div class="codehilite"><pre><span class="c">#yum install rrdtool</span>
+<span class="c">#cd /usr/local/src</span>
+<span class="c">#wget http://sourceforge.net/projects/pnp4nagios/files/PNP-0.6/pnp4nagios-0.6.15.tar.gz/download         //下载pnp</span>
+<span class="c">#tar xzvf pnp4nagios-0.6.15.tar.gz</span>
+<span class="c">#cd pnp4nagios-0.6.15</span>
+<span class="c">#./configure</span>
+</pre></div>
+
+
+<p>此时有可能出现perl modules没有发现的错误：</p>
+<p><img alt="perl modules没有发现" src="http://loosky.net/Upload/2013/04/pnp-perl.png" /></p>
+<p><strong>解决方案：</strong></p>
+<div class="codehilite"><pre><span class="c">#yum install rrdtool-perl</span>
+</pre></div>
+
+
+<p>参考：<a href="http://ronaldbradford.com/blog/installing-perl-rrd-module-rrdspm-2009-07-11/">http://ronaldbradford.com/blog/installing-perl-rrd-module-rrdspm-2009-07-11/</a></p>
+<p>根据提示需要继续</p>
+<div class="codehilite"><pre><span class="c"># make all ...</span></pre></div>
+                <a class="readmore" href="./Technology/2013/04/28/nagios-pnp-install.html">read more</a>
+                <p>There are <a href="./Technology/2013/04/28/nagios-pnp-install.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="./Technology/2013/03/01/git-command.html" rel="bookmark"
                            title="Permalink to Git常用命令">Git常用命令</a></h1>
                 </header>
@@ -197,36 +249,6 @@
                 <a class="readmore" href="./Technology/2012/12/02/Linux-mount-harddisk.html">read more</a>
                 <p>There are <a href="./Technology/2012/12/02/Linux-mount-harddisk.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="./Technology/2012/12/02/harddisk.html" rel="bookmark"
-                           title="Permalink to 硬盘类型介绍">硬盘类型介绍</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-12-02T00:00:00">
-                Sun 02 December 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="./author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="./category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="./tag/.html"></a></p></footer><!-- /.post-info -->                <blockquote>
-<p>本文内容有些旧，但基本概念在。摘自：<a href="http://blog.csdn.net/tianlesoftware/article/details/6009110">http://blog.csdn.net/tianlesoftware/article/details/6009110</a></p>
-</blockquote>
-<p>目前所能见到的硬盘接口类型主要有IDE、SATA、SCSI、SAS、FC等等。IDE是俗称的并口，SATA是俗称的串口，这两种硬盘是个人电脑和低端服务器常见的硬盘。SCSI是"小型计算机系统专用接口"的简称，SCSI硬盘就是采用这种接口的硬盘。SAS就是串口的SCSI接口。一般服务器硬盘采用这两类接口，其性能比上述两种硬盘要高，稳定性更强，但是价格高，容量小，噪音大。FC是光纤通道，和SCIS接口一样光纤通道最初也不是为硬盘设计开发的接口技术，是专门为网络系统设计的，但随着存储系统对速度的需求，才逐渐应用到硬盘系统中。SSD也称作电子硬盘或者固态电子盘，是由控制单元和固态存储单元（DRAM或FLASH芯片）组成的硬盘。固态硬盘的接口规范和定义、功能及使用方法上与普通硬盘的相同，在产品外形和尺寸上也与普通硬盘一致。新一代的固态硬盘普遍采用SATA-2接口，但其成本较高。</p>
-<h3>一. IDE</h3>
-<p>IDE（Integrated Drive Electronics集成驱动器电子）的缩写，它的本意是指把控制器与盘体集成在一起的硬盘驱动器，是一种硬盘的传输接口，它有另一个名称叫做ATA（Advanced Technology Attachment），这两个名词都有厂商在用，指的是相同的东西。
-IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名称，而这个规格同时又被称为Fast ATA。所不同的是Fast ATA是专指硬盘接口，而EIDE还制定了连接光盘等非硬盘产品的标准。而这个连接非硬盘类的IDE标准，又称为ATAPI接口。而之后再推出更快的接口，名称都只剩下ATA的字样，像是Ultra ATA、ATA/66、ATA/100等。</p>
-<p>早期的IDE接口有两种传输模式，一个是PIO（Programming I/O）模式，另一个是DMA（Direct Memory Access）。虽然DMA模式系统资源占用少，但需要额外的驱动程序或设置，因此被接受的程度比较低。后来在对速度要求愈来愈高的情况下，DMA模式由于执行效率较好，操作系统开始直接支持，而且厂商更推出了愈来愈快的DMA模式传输速度标准。而从英特尔的430TX芯片组开始，就提供了对Ultra DMA 33的支持 ...</p>
-                <a class="readmore" href="./Technology/2012/12/02/harddisk.html">read more</a>
-                <p>There are <a href="./Technology/2012/12/02/harddisk.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
                         <a href="./index.html">&laquo;</a>
@@ -239,33 +261,8 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="./tag/分区.html">
-       分区
-    </a>
-</li>
-<li>
     <a href="./tag/Pelican.html">
        Pelican
-    </a>
-</li>
-<li>
-    <a href="./tag/mesh.html">
-       mesh
-    </a>
-</li>
-<li>
-    <a href="./tag/参考文献.html">
-       参考文献
-    </a>
-</li>
-<li>
-    <a href="./tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="./tag/Mysql.html">
-       Mysql
     </a>
 </li>
 <li>
@@ -274,83 +271,8 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="./tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="./tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="./tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="./tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="./tag/网络.html">
-       网络
-    </a>
-</li>
-<li>
-    <a href="./tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="./tag/SQL.html">
-       SQL
-    </a>
-</li>
-<li>
-    <a href="./tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="./tag/github.html">
-       github
-    </a>
-</li>
-<li>
-    <a href="./tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-<li>
-    <a href="./tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
-    <a href="./tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="./tag/挂载.html">
-       挂载
-    </a>
-</li>
-<li>
-    <a href="./tag/PNP.html">
-       PNP
-    </a>
-</li>
-<li>
-    <a href="./tag/WebBench.html">
-       WebBench
-    </a>
-</li>
-<li>
-    <a href="./tag/MESH.html">
-       MESH
+    <a href="./tag/Linux.html">
+       Linux
     </a>
 </li>
 <li>
@@ -359,13 +281,33 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="./tag/web.html">
-       web
+    <a href="./tag/CentOS.html">
+       CentOS
     </a>
 </li>
 <li>
-    <a href="./tag/.html">
-       
+    <a href="./tag/mesh.html">
+       mesh
+    </a>
+</li>
+<li>
+    <a href="./tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="./tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="./tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="./tag/Mysql.html">
+       Mysql
     </a>
 </li>
 <li>
@@ -374,18 +316,98 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="./tag/Linux.html">
-       Linux
+    <a href="./tag/web.html">
+       web
     </a>
 </li>
 <li>
-    <a href="./tag/open-mesh.html">
-       open-mesh
+    <a href="./tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="./tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="./tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="./tag/Google Reader.html">
+       Google Reader
+    </a>
+</li>
+<li>
+    <a href="./tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="./tag/git.html">
+       git
     </a>
 </li>
 <li>
     <a href="./tag/Nagios.html">
        Nagios
+    </a>
+</li>
+<li>
+    <a href="./tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="./tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="./tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="./tag/网络.html">
+       网络
+    </a>
+</li>
+<li>
+    <a href="./tag/Tiny Tiny RSS.html">
+       Tiny Tiny RSS
+    </a>
+</li>
+<li>
+    <a href="./tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="./tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+<li>
+    <a href="./tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="./tag/Google.html">
+       Google
+    </a>
+</li>
+<li>
+    <a href="./tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="./tag/open-mesh.html">
+       open-mesh
     </a>
 </li>
                   

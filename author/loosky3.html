@@ -40,6 +40,62 @@
                     <ol id="posts-list" class="hfeed" start="3">
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="../Technology/2012/11/27/github.html" rel="bookmark"
+                           title="Permalink to GitHub使用">GitHub使用</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-11-27T00:00:00">
+                Tue 27 November 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="../author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="../category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="../tag/git.html">git</a><a href="../tag/github.html">github</a></p></footer><!-- /.post-info -->                <h3>一、创建github账号</h3>
+<p>github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：<a href="https://github.com">https://github.com</a>
+帐号注册成功后，点击<strong>New Repository</strong>，开始创建新版本库。用户可以创建类似于 <code>your_userid.github.com</code> 的版本库，这样就可以通过<code>http://your_userid.github.com</code>进行访问了。</p>
+<h3>二、建立本地git仓库</h3>
+<div class="codehilite"><pre><span class="c">#git config --global user.name &quot;your_userid&quot;   //提供使用者自己的身份标识</span>
+<span class="c">#git config --global user.email &quot;your_email&quot;    </span>
+<span class="c">#mkdir -p /home/work/your_userid.github.com   //建立项目</span>
+<span class="c">#cd /home/work/your_userid.github.com</span>
+<span class="c">#git init                                     //初始化git仓库</span>
+</pre></div>
+
+
+<h3>三、创建项目文件</h3>
+<div class="codehilite"><pre><span class="c">#touch README</span>
+<span class="c">#git add README</span>
+</pre></div>
+
+
+<p>如果添加项目目录下面所有的文件则用 <strong>git add .</strong></p>
+<h3>四、将项目提交到github管理</h3>
+<ol>
+<li>
+<p>创建SSH密钥</p>
+<div class="codehilite"><pre><span class="c">#ssh-keygen -C &#39;your_email&#39; -t rsa</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>找到刚才生成的密钥（默认为<strong>/root/.ssh/id_rsa.pub</strong>）文件并用文本编辑器打开，然后复制里面的内容。接着转到github站点，进入<strong>Account Setting--SSH Keys</strong> 选项后，点击<strong>add ssh key</strong> 并将刚才复制的内容粘贴保存。</p>
+</li>
+<li>
+<p>测试SSH连接。在git bash中执行以下命令：</p>
+<div class="codehilite"><pre><span class="c">#ssh -v git ...</span></pre></div></li></ol>
+                <a class="readmore" href="../Technology/2012/11/27/github.html">read more</a>
+                <p>There are <a href="../Technology/2012/11/27/github.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="../Technology/2012/12/02/harddisk.html" rel="bookmark"
                            title="Permalink to 硬盘类型介绍">硬盘类型介绍</a></h1>
                 </header>
@@ -147,54 +203,6 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                 <a class="readmore" href="../Technology/2012/12/01/mysql-tuition.html">read more</a>
                 <p>There are <a href="../Technology/2012/12/01/mysql-tuition.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="../Technology/2013/04/28/nagios-install.html" rel="bookmark"
-                           title="Permalink to Nagios安装与配置">Nagios安装与配置</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2013-04-28T00:00:00">
-                Sun 28 April 2013
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="../author/loosky.html">Loosky</a>
-        </address>
-        <p>In <a href="../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../tag/Nagios.html">Nagios</a></p></footer><!-- /.post-info -->                <div class="codehilite"><pre><span class="n">Nagios</span>是一款开源的免费网络监视工具，能有效监控<span class="n">Windows</span>、<span class="n">Linux</span>和<span class="n">Unix</span>的主机状态，交换机路由器等网络设备以及打印机等。
-</pre></div>
-
-
-<h3>安装前提：</h3>
-<div class="codehilite"><pre><span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">gcc</span> <span class="n">glibc</span> <span class="n">glibc</span><span class="o">-</span><span class="n">common</span> <span class="n">gd</span> <span class="n">gd</span><span class="o">-</span><span class="n">devel</span> <span class="n">php</span> <span class="n">openssl</span><span class="o">-</span><span class="n">devel</span> <span class="n">httpd</span>
-</pre></div>
-
-
-<h3>1、创建用户：</h3>
-<div class="codehilite"><pre><span class="c">#useradd -m nagios     #添加一个名为nagios的用户来运行nagios          </span>
-<span class="c">#usermod -a -G nagios apache    #将运行apache用户apache加入nagios组</span>
-</pre></div>
-
-
-<h3>2、 编译安装nagios及其插件：</h3>
-<p><strong>nagios core官网下载地址：</strong><a href="http://www.nagios.org/download/core/">http://www.nagios.org/download/core/</a></p>
-<p><strong>nagios插件下载地址：</strong><a href="http://www.nagios.org/download/plugins/">http://www.nagios.org/download/plugins/</a></p>
-<h4>安装Nagios Core</h4>
-<div class="codehilite"><pre><span class="c">#cd /usr/local/src</span>
-<span class="c">#mkdir /etc/httpd/conf/extra  //用来存放关于nagios的http配置文件</span>
-<span class="c">#tar zxvf nagios-3.5.0.tar.gz</span>
-<span class="c">#cd nagios-3.5.0</span>
-<span class="c">#./configure --prefix=/usr/local/nagios/ --with-comman-group=nagios --with-httpd-conf=/etc/httpd/conf/extra/ //指定安装目录及用户、组和http的配置目录</span>
-<span class="c">#make all;make install</span>
-<span class="c"># make install-init;make install-config;make install-commandmode ...</span></pre></div>
-                <a class="readmore" href="../Technology/2013/04/28/nagios-install.html">read more</a>
-                <p>There are <a href="../Technology/2013/04/28/nagios-install.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
                             </ol><!-- /#posts-list -->
                             <p class="paginator">
                         <a href="../author/loosky2.html">&laquo;</a>
@@ -207,33 +215,8 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../tag/分区.html">
-       分区
-    </a>
-</li>
-<li>
     <a href="../tag/Pelican.html">
        Pelican
-    </a>
-</li>
-<li>
-    <a href="../tag/mesh.html">
-       mesh
-    </a>
-</li>
-<li>
-    <a href="../tag/参考文献.html">
-       参考文献
-    </a>
-</li>
-<li>
-    <a href="../tag/Loosky.html">
-       Loosky
-    </a>
-</li>
-<li>
-    <a href="../tag/Mysql.html">
-       Mysql
     </a>
 </li>
 <li>
@@ -242,83 +225,8 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="../tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="../tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../tag/网络.html">
-       网络
-    </a>
-</li>
-<li>
-    <a href="../tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="../tag/SQL.html">
-       SQL
-    </a>
-</li>
-<li>
-    <a href="../tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="../tag/github.html">
-       github
-    </a>
-</li>
-<li>
-    <a href="../tag/ROBIN.html">
-       ROBIN
-    </a>
-</li>
-<li>
-    <a href="../tag/WMN.html">
-       WMN
-    </a>
-</li>
-<li>
-    <a href="../tag/Markdown.html">
-       Markdown
-    </a>
-</li>
-<li>
-    <a href="../tag/挂载.html">
-       挂载
-    </a>
-</li>
-<li>
-    <a href="../tag/PNP.html">
-       PNP
-    </a>
-</li>
-<li>
-    <a href="../tag/WebBench.html">
-       WebBench
-    </a>
-</li>
-<li>
-    <a href="../tag/MESH.html">
-       MESH
+    <a href="../tag/Linux.html">
+       Linux
     </a>
 </li>
 <li>
@@ -327,13 +235,33 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="../tag/web.html">
-       web
+    <a href="../tag/CentOS.html">
+       CentOS
     </a>
 </li>
 <li>
-    <a href="../tag/.html">
-       
+    <a href="../tag/mesh.html">
+       mesh
+    </a>
+</li>
+<li>
+    <a href="../tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="../tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="../tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="../tag/Mysql.html">
+       Mysql
     </a>
 </li>
 <li>
@@ -342,18 +270,98 @@ IDE的规格后来有所进步，而推出了EIDE（Enhanced IDE）的规格名�
     </a>
 </li>
 <li>
-    <a href="../tag/Linux.html">
-       Linux
+    <a href="../tag/web.html">
+       web
     </a>
 </li>
 <li>
-    <a href="../tag/open-mesh.html">
-       open-mesh
+    <a href="../tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="../tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="../tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="../tag/Google Reader.html">
+       Google Reader
+    </a>
+</li>
+<li>
+    <a href="../tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="../tag/git.html">
+       git
     </a>
 </li>
 <li>
     <a href="../tag/Nagios.html">
        Nagios
+    </a>
+</li>
+<li>
+    <a href="../tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="../tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="../tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="../tag/网络.html">
+       网络
+    </a>
+</li>
+<li>
+    <a href="../tag/Tiny Tiny RSS.html">
+       Tiny Tiny RSS
+    </a>
+</li>
+<li>
+    <a href="../tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="../tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+<li>
+    <a href="../tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="../tag/Google.html">
+       Google
+    </a>
+</li>
+<li>
+    <a href="../tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="../tag/open-mesh.html">
+       open-mesh
     </a>
 </li>
                   

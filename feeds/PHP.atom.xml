@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/PHP.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2013-07-30T00:00:00+08:00</updated><entry><title>Tiny Tiny RSS–Google Reader的替代</title><link href="http://loosky.com/Technology/2013/07/30/Tiny-Tiny-RSS.html" rel="alternate"></link><updated>2013-07-30T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2013-07-30:Technology/2013/07/30/Tiny-Tiny-RSS.html</id><summary type="html">&lt;p&gt;Google Reader是一款&lt;a href="http://xbeta.info/google-reader.htm"&gt;无可替代的伟大产品&lt;/a&gt;，但实实在在地跟我们&lt;a href="http://loosky.net/archives/2789.html"&gt;告别了&lt;/a&gt;。一直以来习惯于通过订阅RSS来浏览文章，说实在话并不喜欢通过微博或者微信来浏览，信息量太大，而真正有用的东西又不多，极容易被淹没，不容易沉淀。&lt;/p&gt;
+&lt;p&gt;Google Reader关闭后，一直用着&lt;a href="https://theoldreader.com/"&gt;the Old Reader&lt;/a&gt;，其使用习惯和界面均比较接近于Google Reader。但比较痛苦的地方在于速度和稳定性均不是很好，经常长时间不能访问，难以忍受。于是便想自己搭建一个平台，先尝试了&lt;a href="https://github.com/samuelclay/NewsBlur"&gt;NewsBlur&lt;/a&gt;，基于Django的，步骤相当繁琐。刚好碰到小众软件介绍了&lt;a href="http://www.appinn.com/tiny-tiny-rss/"&gt;Tiny Tiny RSS&lt;/a&gt;，基于PHP+MySQL/PostgreSQL，安装起来也很方便。于是便安装了一个试试，发现挺不错的。&lt;/p&gt;
+&lt;p&gt;Tiny Tiny RSS 是使用 &lt;a href="http://www.simplepie.org/"&gt;SimplePie&lt;/a&gt; 作为 RSS 抓取引擎的，抓取回来的文章数据需要保存在 MySQL/PostgreSQL 数据库里，抓取数据的时候，需要消耗一定的流量，所以，如果你的订阅源多的话，搭建类似的站点的确是一个消耗存储空间、带宽的活。&lt;/p&gt;
+&lt;h3&gt;一、优点&lt;/h3&gt;
+&lt;p&gt;项目主页： &lt;a href="http://tt-rss.org/redmine/"&gt;http://tt-rss.org/&lt;/a&gt;，其优点如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;feed状况检查：可以检查订阅的feeds是否失效&lt;/li&gt;
+&lt;li&gt;支持各种主题，包括模仿Google Reeder、feedly界面的主题&lt;/li&gt;
+&lt;li&gt;有适合移动设备的皮肤/插件&lt;/li&gt;
+&lt;li&gt;支持插件，其中精品插件包括ff_feedcleaner（feed内容过滤）、af_feedmod（制作全文阅读feed）、oneclickpocket（一键发送到pocket）、fever（模拟fever api，支持更多客户端）等&lt;/li&gt;
+&lt;li&gt;支持多种平台的客户端，包括Andriod、WP、iOS等&lt;/li&gt;
+&lt;li&gt;可以灵活地设置更新频率，第一时间获得订阅更新&lt;/li&gt;
+&lt;li&gt;支持导入OPML&lt;/li&gt;
+&lt;li&gt;可以收藏&lt;/li&gt;
+&lt;li&gt;有中文版本，但不完全&lt;/li&gt;
+&lt;li&gt;filter功能：类似gmail的filter。从标题，内容，时间等等中匹配关键词，然后可以选择是打分还是加tag，加label，加星，标记已读，删除条目等，filter可以是作用于所有feed或者指定feed。可以是匹配关键词，或者是剔除关键词。&lt;/li&gt;
+&lt;li&gt;条目中的图片可以选择是显示还是隐藏。&lt;/li&gt;
+&lt;li&gt;邮件digest。把每天的未读条目作为digest发送到指定邮箱。而且可以选择发送了的条目自动标记为已读。发送时间也可以指定。&lt;/li&gt;
+&lt;li&gt;基于sphinx的全文搜索&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;二、安装要求&lt;/h3&gt;
+&lt;p&gt;要求其实挺简单的，见&lt;a href="http://tt-rss.org/redmine/projects/tt-rss/wiki#Requirements"&gt;官方wiki&lt;/a&gt;。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;1&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;PHP&lt;/span&gt;版本必须高于5&lt;span class="p"&gt;.&lt;/span&gt;3；
+2&lt;span class="p"&gt;.&lt;/span&gt; 可选&lt;span class="n"&gt;PostgreSQL&lt;/span&gt; 或 &lt;span class="n"&gt;MySQL&lt;/span&gt;数据库，其中&lt;span class="n"&gt;MySQL&lt;/span&gt;数据库必须支持&lt;span class="n"&gt;InnoDB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;三、安装步骤&lt;/h3&gt;
+&lt;p&gt;具体安装步骤可参考&lt;a href="http://tt-rss.org/redmine/projects/tt-rss/wiki/InstallationNotes"&gt;Installation Notes&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在按照要求配置好服务器环境后，&lt;a href="https://github.com/gothfox/Tiny-Tiny-RSS/archive/1.9.tar.gz"&gt;下载安装包&lt;/a&gt; （目前最新版本为1.9，Jul 21, 2013）并解压。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# tar zxfv Tiny-Tiny-RSS-1.x.x.tar.gz&lt;/span&gt;
+&lt;span class="c"&gt;# mv Tiny-Tiny-RSS-1.x.x tt-rss&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;输入&lt;a href="http://your.site.com/tt-rss/install/"&gt;http://your.site.com/tt-rss/install/&lt;/a&gt;，并执行安装步骤，填写相应的数据库等信息。
+&lt;img alt="安装步骤" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-install.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完成后，输入网址 &lt;a href="http://your.site.com/tt-rss/"&gt;http://your.site.com/tt-rss/&lt;/a&gt; 访问系统，系统后台已经部分汉化。默认管理员用户为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img alt="系统登录" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-login.png" /&gt;&lt;/p&gt;
+&lt;p&gt;登陆后即可手动添加RSS地址或者直接导入OPML文件了。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="导入OPML文件" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-importrss.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;四、优化配置&lt;/h3&gt;
+&lt;h4&gt;1. 配置订阅条目自动更新&lt;/h4&gt;
+&lt;p&gt;详细操作说明见&lt;a href="http://tt-rss.org/redmine/projects/tt-rss/wiki/UpdatingFeeds"&gt;官方wiki&lt;/a&gt;，可以采用三种方式，本站使用的是第二种，即通过crontab来定时更新feeds。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这里需要注意的是更新脚本文件&lt;code&gt;update.php&lt;/code&gt;或&lt;code&gt;update_daemon2.php&lt;/code&gt;不能由root用户来执行，可以通过apache或者Nginx的运行用户来执行，如apache或者www等。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当我们以&lt;code&gt;root&lt;/code&gt;用户直接执行命令时，会出现如下错误：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;# &lt;span class="n"&gt;php&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;wwwroot&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;具体路径&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt; 
+&lt;span class="n"&gt;Tiny&lt;/span&gt; &lt;span class="n"&gt;Tiny&lt;/span&gt; &lt;span class="n"&gt;RSS&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="n"&gt;unable&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;properly&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;usually&lt;/span&gt; &lt;span class="n"&gt;means&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;misconfiguration&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;incomplete&lt;/span&gt; &lt;span class="n"&gt;upgrade&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="nb"&gt;fix&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt; &lt;span class="n"&gt;indicated&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;following&lt;/span&gt; &lt;span class="n"&gt;messages&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+ &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;don&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;You&lt;/span&gt; &lt;span class="n"&gt;might&lt;/span&gt; &lt;span class="n"&gt;want&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;check&lt;/span&gt; &lt;span class="n"&gt;tt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rss&lt;/span&gt; &lt;span class="n"&gt;wiki&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;forums&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Please&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;forums&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="n"&gt;creating&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;topic&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;即提示不能以root用户运行脚本，否则订阅条目不能自动更新。因此，可以通过给普通用户如&lt;code&gt;www&lt;/code&gt;添加crontab运行脚本：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#crontab -u www -e&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;添加如下内容：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;*/&lt;/span&gt;30 &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;wwwroot&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;具体路径&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;feeds&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;quiet&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;同时在后台可以设置feeds的更新时间。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="设置更新时间" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-update.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;说明：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;必须用普通用户来运行更新脚本；&lt;/li&gt;
+&lt;li&gt;更新时间这里设置为每30分钟更新一次，具体可调；&lt;/li&gt;
+&lt;li&gt;若你的系统中php的路径不是&lt;code&gt;/usr/bin/php&lt;/code&gt;,需要修改之，同时也注意修改&lt;code&gt;config.php&lt;/code&gt;中的内容；&lt;/li&gt;
+&lt;li&gt;修改&lt;code&gt;/home/wwwroot/具体路径/update.php&lt;/code&gt;为你的具体路径。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;2. 安装皮肤&lt;/h4&gt;
+&lt;p&gt;Tiny Tiny RSS&lt;a href="http://tt-rss.org/forum/viewtopic.php?f=22&amp;amp;t=1679"&gt;安装皮肤&lt;/a&gt;挺简单的，将CSS文件放入themes目录下，并在管理员后台进行选择就可以了，当然也可以通过自定义CSS的方式。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="定义皮肤" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-theme.png" /&gt;&lt;/p&gt;
+&lt;p&gt;推荐一款仿Google Reader的皮肤： &lt;a href="https://github.com/naeramarth7/clean-greader"&gt;clean-greader&lt;/a&gt;，更多的可在&lt;a href="http://tt-rss.org/forum/viewforum.php?f=22"&gt;官方论坛&lt;/a&gt;中寻找。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="clean-greader" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss.png" /&gt;&lt;/p&gt;
+&lt;h4&gt;3. 安装插件&lt;/h4&gt;
+&lt;p&gt;系统后台自带了很多系统插件以及第三方插件，我们只需要启用就好，当然也可以去论坛&lt;a href="http://tt-rss.org/forum/viewforum.php?f=22"&gt;寻找插件&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-plugins.png" /&gt;&lt;/p&gt;
+&lt;p&gt;付上大多数插件的说明，所有插件一般有三种，在文章右下角生成响应图标的、在设置标签生成设置页面的、其他无图标无设置的插件[&lt;a href="https://wjchen.me/index.php/ttrss-1.html"&gt;参考&lt;/a&gt;]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;af_unburn:解决feedburner等rss链接跳转。&lt;/li&gt;
+&lt;li&gt;bookmarklets:在设置-信息源生成bookmarklets标签。&lt;/li&gt;
+&lt;li&gt;embed_original:图标插件，点击图标会显示文章原始内容，而不是rss。&lt;/li&gt;
+&lt;li&gt;fever:模拟fever api，在设置-Fver Emulation，设置好密码，可以和tt-rss的登录密码不同，然后就能支持fever的客户端比如reeder、Mr. Reader。&lt;/li&gt;
+&lt;li&gt;ff_feedcleaner:feed广告过滤，在设置标签生成FeecCleaner标签，过滤规则要用正则表达式，比较复杂。&lt;/li&gt;
+&lt;li&gt;googlereaderkeys:模拟google reader快捷键，如J、K等。&lt;/li&gt;
+&lt;li&gt;import_export:在设置-信息源，导入导出配置。&lt;/li&gt;
+&lt;li&gt;mail:图标插件，点击通过邮件分享。&lt;/li&gt;
+&lt;li&gt;mark_button:文章右下角能够快速将文章标记为已读未读。&lt;/li&gt;
+&lt;li&gt;mobilize:图标插件，点击显示readability简化的页面。&lt;/li&gt;
+&lt;li&gt;note:图标插件。&lt;/li&gt;
+&lt;li&gt;nsfw:根据标签隐藏文章内容。&lt;/li&gt;
+&lt;li&gt;share:图标插件，点击生成唯一的url方便分享。&lt;/li&gt;
+&lt;li&gt;swap_jk:添加j、k快捷键，类似vim。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;4. 移动端支持&lt;/h4&gt;
+&lt;p&gt;要支持移动端，既可以通过手机、平板电脑等设备进行访问，必须先开启系统支持，即在管理后台偏好设置里面勾选“Enable API”。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable API" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-enableapi.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://tt-rss.org/redmine/projects/tt-rss-android/wiki"&gt;官方开发&lt;/a&gt;的Andriod客户端：&lt;a href="https://play.google.com/store/apps/details?id=org.fox.ttrss&amp;amp;feature=search_result"&gt;Tiny Tiny RSS&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;同时也推荐一下Nils Braden 开发的 &lt;a href="https://play.google.com/store/apps/details?id=org.ttrssreader&amp;amp;feature=related_apps#?t=W251bGwsMSwxLDEwOSwib3JnLnR0cnNzcmVhZGVyIl0."&gt;TTRSS-Reader&lt;/a&gt; 这个 Android 手机客户端，这个客户端提供针对Tiny Tiny RSS的手机离线阅读功能，还可以离线缓存图片。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="移动客户端" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-client.png" /&gt;&lt;/p&gt;</summary><category term="Google"></category><category term="Google Reader"></category><category term="PHP"></category><category term="RSS"></category><category term="Tiny Tiny RSS"></category></entry></feed>
