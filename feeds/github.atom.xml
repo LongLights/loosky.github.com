@@ -3,7 +3,7 @@
 &lt;p&gt;github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：&lt;a href="https://github.com"&gt;https://github.com&lt;/a&gt;
 帐号注册成功后，点击&lt;strong&gt;New Repository&lt;/strong&gt;，开始创建新版本库。用户可以创建类似于 &lt;code&gt;your_userid.github.com&lt;/code&gt; 的版本库，这样就可以通过&lt;code&gt;http://your_userid.github.com&lt;/code&gt;进行访问了。&lt;/p&gt;
 &lt;h3&gt;二、建立本地git仓库&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git config --global user.name &amp;quot;your_userid&amp;quot;   //提供使用者自己的身份标识&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git config --global user.name &amp;quot;your_userid&amp;quot;   //提供使用者自己的身份标识&lt;/span&gt;
 &lt;span class="c"&gt;#git config --global user.email &amp;quot;your_email&amp;quot;    &lt;/span&gt;
 &lt;span class="c"&gt;#mkdir -p /home/work/your_userid.github.com   //建立项目&lt;/span&gt;
 &lt;span class="c"&gt;#cd /home/work/your_userid.github.com&lt;/span&gt;
@@ -12,7 +12,7 @@
 
 
 &lt;h3&gt;三、创建项目文件&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#touch README&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#touch README&lt;/span&gt;
 &lt;span class="c"&gt;#git add README&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -22,7 +22,7 @@
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;创建SSH密钥&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#ssh-keygen -C &amp;#39;your_email&amp;#39; -t rsa&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#ssh-keygen -C &amp;#39;your_email&amp;#39; -t rsa&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -32,7 +32,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;测试SSH连接。在git bash中执行以下命令：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#ssh -v git@github.com&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#ssh -v git@github.com&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -40,14 +40,14 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;提交项目&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git commit -m &amp;#39;first commit&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git commit -m &amp;#39;first commit&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;添加远程仓库&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git remote add origin https://github.com/your_userid/your_userid.github.com.git&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git remote add origin https://github.com/your_userid/your_userid.github.com.git&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -57,7 +57,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;push 到 GitCafe 仓库&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git push origin master&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git push origin master&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -71,14 +71,14 @@
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;查看本地已经删除的文件&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# git status   //可以看到我们删除的哪些文件&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# git status   //可以看到我们删除的哪些文件&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;从当前的工作目录中和索引中删除文件&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git rm –r * （进入某个目录中，执行此语句，会删除该目录下的所有文件和子目录） &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#git rm –r * （进入某个目录中，执行此语句，会删除该目录下的所有文件和子目录） &lt;/span&gt;
 &lt;span class="c"&gt;#git rm f1    (删除文件f1，包含本地目录和index中的此文件记录) &lt;/span&gt;
 &lt;span class="c"&gt;#git rm --ached f1 (删除文件f1，不会删除本地目录文件，只删除index中的文件记录；将已经git add的文件remove到cache中,这样commit的时候不会提交这个文件, 适用于一下子添加了很多文件, 却又想排除其中个别几个文件的情况.)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -91,14 +91,14 @@
 &lt;/ol&gt;
 &lt;h3&gt;自动发布&lt;/h3&gt;
 &lt;p&gt;为了方便下次发布，可以创建了自动发布的脚本publish&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#cd /home/work&lt;/span&gt;
-&lt;span class="c"&gt;#vi publish&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#cd /home/work&lt;/span&gt;
+&lt;span class="cp"&gt;#vi publish&lt;/span&gt;
 
 &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;your_userid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; 
 &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Update&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
-&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;./&lt;/span&gt;
+&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="p"&gt;..&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

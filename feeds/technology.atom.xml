@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/all-zhs.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2013-10-01T00:00:00+08:00</updated><entry><title>长微博生成（html to image）原理</title><link href="http://loosky.com/Technology/2013/10/01/changweibo.html" rel="alternate"></link><updated>2013-10-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2013-10-01:Technology/2013/10/01/changweibo.html</id><summary type="html">&lt;p&gt;在平时工作中有一些需求，简单而言就是需要将一些内容生成图片。简单的内容通过PhotoShop处理还行，但是类似于带表格等的内容，每次都通过PhotoShop进行处理太浪费时间。网上有很多类似于长微博等的生成工具，生成简单的图片还行，但是要使用富文本生成图片，则多需要money，于是便自己研究了一下基于PHP的实现。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Loosky's Blog</title><link href="http://loosky.com/" rel="alternate"></link><link href="http://loosky.com/feeds/technology.atom.xml" rel="self"></link><id>http://loosky.com/</id><updated>2013-10-01T00:00:00+08:00</updated><entry><title>长微博生成（html to image）原理</title><link href="http://loosky.com/Technology/2013/10/01/changweibo.html" rel="alternate"></link><updated>2013-10-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2013-10-01:Technology/2013/10/01/changweibo.html</id><summary type="html">&lt;p&gt;在平时工作中有一些需求，简单而言就是需要将一些内容生成图片。简单的内容通过PhotoShop处理还行，但是类似于带表格等的内容，每次都通过PhotoShop进行处理太浪费时间。网上有很多类似于长微博等的生成工具，生成简单的图片还行，但是要使用富文本生成图片，则多需要money，于是便自己研究了一下基于PHP的实现。&lt;/p&gt;
 &lt;p&gt;首先展示一下&lt;strong&gt;演示效果&lt;/strong&gt;：&lt;a href="http://loosky.cn/"&gt;http://loosky.cn/&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;需求及原理&lt;/h3&gt;
 &lt;p&gt;基于PHP，将html内容生成图片（PNG，JPEG等）&lt;/p&gt;
@@ -1263,28 +1263,7 @@ SAS的接口也做了较大的改进，它同时提供了3.5英寸和2.5英寸�
 &lt;p&gt;SLC的特点是成本高、容量小、但是速度快，而MLC的特点是容量大成本低，但是速度慢。MLC的每个单元是2bit的，相对SLC来说整整多了一倍。不过，由于每个MLC存储单元中存放的资料较多，结构相对复杂，出错的几率会增加，必须进行错误修正，这个动作导致其性能大幅落后于结构简单的SLC闪存。此外，SLC闪存的优点是复写次数高达100000次，比MLC闪存高10倍。此外，为了保证MLC的寿命，控制芯片都校验和智能磨损平衡技术算法，使得每个存储单元的写入次数可以平均分摊，达到100万小时故障间隔时间(MTBF)。&lt;/p&gt;
 &lt;p&gt;（2）基于DRAM的固态硬盘：&lt;/p&gt;
 &lt;p&gt;采用DRAM作为存储介质，目前应用范围较窄。它仿效传统硬盘的设计、可被绝大部分操作系统的文件系统工具进行卷设置和管理，并提供工业标准的PCI和FC接口用于连接主机或者服务器。应用方式可分为SSD硬盘和SSD硬盘阵列两种。它是一种高性能的存储器，而且使用寿命很长，美中不足的是需要独立电源来保护数据安全。&lt;/p&gt;
-&lt;p&gt;摘自：&lt;a href="http://blog.csdn.net/tianlesoftware/article/details/6009110"&gt;http://blog.csdn.net/tianlesoftware/article/details/6009110&lt;/a&gt;&lt;/p&gt;</summary><category term=""></category></entry><entry><title>WMN方面的开源项目</title><link href="http://loosky.com/Research/2012/12/02/wmn-opensource-project.html" rel="alternate"></link><updated>2012-12-02T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-02:Research/2012/12/02/wmn-opensource-project.html</id><summary type="html">&lt;p&gt;无线Mesh网络（WMN）方面的研究比较多，也有一些相关的开源项目，目前我有关注的如下：&lt;/p&gt;
-&lt;h3&gt;开发环境：&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;OpenWRT（&lt;a href="http://openwrt.org/"&gt;http://openwrt.org/&lt;/a&gt;），这个不是针对WMN的，但是很多项目都是基于OpenWRT进行开发的。做网络方面的嵌入式开发，基本上都可以使用这个开发环境。&lt;/li&gt;
-&lt;li&gt;ROBIN（&lt;a href="http://robin.forumup.it"&gt;http://robin.forumup.it&lt;/a&gt;）：基于OpenWRT的WMN解决方案，目前已经可以支持802.11n（ROBIN V2），但是方案不太完美。
-ROBIN Mesh：&lt;a href="http://www.robin-mesh.net/"&gt;http://www.robin-mesh.net/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Meraki（&lt;a href="http://meraki.com/"&gt;http://meraki.com/&lt;/a&gt;）&lt;/li&gt;
-&lt;li&gt;Gargoyle：&lt;a href="http://www.gargoyle-router.com/"&gt;http://www.gargoyle-router.com/&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3&gt;路由协议：&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;OLSRD：&lt;a href="http://www.olsr.org/"&gt;http://www.olsr.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;BATMAN：&lt;a href="http://www.open-mesh.org/"&gt;http://www.open-mesh.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;BATMAN adv（基于二层）：&lt;a href="http://www.open-mesh.org/wiki/batman-adv/Wiki"&gt;http://www.open-mesh.org/wiki/batman-adv/Wiki&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3&gt;Dashboard：&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;Open-Mesh：&lt;a href="http://dashboard.open-mesh.com"&gt;http://dashboard.open-mesh.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Meraki：&lt;a href="http://dashboard.meraki.com/"&gt;http://dashboard.meraki.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Meshconnect：&lt;a href="http://wifimesh.trigmax.com/en/"&gt;http://wifimesh.trigmax.com/en/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;OrangeMesh:&lt;a href="http://orangemesh.sourceforge.net/"&gt;http://orangemesh.sourceforge.net/&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="MESH"></category><category term="OpenWRT"></category><category term="ROBIN"></category><category term="WMN"></category></entry><entry><title>CentOS配置</title><link href="http://loosky.com/Technology/2012/12/01/CentOS-Configuration.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/CentOS-Configuration.html</id><summary type="html">&lt;p&gt;推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）&lt;/p&gt;
+&lt;p&gt;摘自：&lt;a href="http://blog.csdn.net/tianlesoftware/article/details/6009110"&gt;http://blog.csdn.net/tianlesoftware/article/details/6009110&lt;/a&gt;&lt;/p&gt;</summary><category term=""></category></entry><entry><title>CentOS配置</title><link href="http://loosky.com/Technology/2012/12/01/CentOS-Configuration.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/CentOS-Configuration.html</id><summary type="html">&lt;p&gt;推荐使用工具：SSH Secure Shell Client（SSH连接，命令行利器）、SSH Secure File Transfer Client（传文件）、VNCViewer（远程桌面连接，服务器上得安装VNCServer）&lt;/p&gt;
 &lt;h3&gt;1、配置IP地址： vi /etc/sysconfig/network-scripts/ifcfg-eth0&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;DEVICE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;eth0&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;NM_CONTROLLED&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;yes&amp;quot;&lt;/span&gt;
@@ -1499,33 +1478,7 @@ ROBIN Mesh：&lt;a href="http://www.robin-mesh.net/"&gt;http://www.robin-mesh.ne
 
 &lt;p&gt;（2）从远程将目录拷回本地&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="err"&gt;用户名@计算机&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="err"&gt;或者计算机名称&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;目录名&lt;/span&gt; &lt;span class="err"&gt;本地路径&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="scp"></category></entry><entry><title>参考文献字母含义</title><link href="http://loosky.com/Research/2012/12/01/References-format.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Research/2012/12/01/References-format.html</id><summary type="html">&lt;ul&gt;
-&lt;li&gt;根据GB3469 规定&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;①期刊［J］&lt;/p&gt;
-&lt;p&gt;②专著［M］&lt;/p&gt;
-&lt;p&gt;③论文集［C］&lt;/p&gt;
-&lt;p&gt;④学位论文［D］&lt;/p&gt;
-&lt;p&gt;⑤专利［P］&lt;/p&gt;
-&lt;p&gt;⑥标准［S］&lt;/p&gt;
-&lt;p&gt;⑦报纸［N］&lt;/p&gt;
-&lt;p&gt;⑧技术报告［R］&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;电子文献载体类型用双字母标识，例如：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;①磁带［MT］&lt;/p&gt;
-&lt;p&gt;②磁盘［DK］&lt;/p&gt;
-&lt;p&gt;③光盘［CD］&lt;/p&gt;
-&lt;p&gt;④联机网络［OL］&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;电子文献载体类型的参考文献类型标识方法为：［文献类型标识/载体类型标识］。例如：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;①联机网上数据库［DB/OL］&lt;/p&gt;
-&lt;p&gt;②磁带数据库［DB/MT］&lt;/p&gt;
-&lt;p&gt;③光盘图书［M/CD］&lt;/p&gt;
-&lt;p&gt;④磁盘软件［CP/DK］&lt;/p&gt;
-&lt;p&gt;⑤网上期刊［J/OL］&lt;/p&gt;
-&lt;p&gt;⑥网上电子公告&lt;/p&gt;</summary><category term="参考文献"></category></entry><entry><title>Mysql入门操作</title><link href="http://loosky.com/Technology/2012/12/01/mysql-tuition.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/mysql-tuition.html</id><summary type="html">&lt;h3&gt;一、连接MySQL&lt;/h3&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="scp"></category></entry><entry><title>Mysql入门操作</title><link href="http://loosky.com/Technology/2012/12/01/mysql-tuition.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/mysql-tuition.html</id><summary type="html">&lt;h3&gt;一、连接MySQL&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;格式：&lt;/span&gt; &lt;span class="n"&gt;mysql&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="err"&gt;主机地址&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="err"&gt;用户名&lt;/span&gt; &lt;span class="err"&gt;－&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="err"&gt;用户密码&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -1765,29 +1718,8 @@ password：用户密码&lt;/p&gt;
 
 
 &lt;p&gt;将首行显示的 !#/usr/bin/python 修改为 !#/usr/bin/python2.4
-保存搞定。&lt;/p&gt;</summary><category term="CentOS"></category><category term="Linux"></category><category term="Python"></category></entry><entry><title>ROBIN-Open Source Wireless Mesh Networking</title><link href="http://loosky.com/Research/2012/12/01/robin-WMN.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Research/2012/12/01/robin-WMN.html</id><summary type="html">&lt;p&gt;The ROBIN project
-R.O.B.IN (Routing Olsr and Batman INside) is an Open Source &lt;a href="http://en.wikipedia.org/wiki/Wireless_mesh_network"&gt;mesh network&lt;/a&gt; project, deployed on top of &lt;a href="http://openwrt.org/"&gt;OpenWRT&lt;/a&gt; Kamikaze, running on any Atheros AP51 routers such as &lt;a href="http://open-mesh.com/store/"&gt;Accton MR3201A&lt;/a&gt;, &lt;a href="http://meraki.com/"&gt;Meraki Mini*&lt;/a&gt; or &lt;a href="http://www.fon.com/en/"&gt;La Fonera*&lt;/a&gt; and using the &lt;a href="http://www.open-mesh.org/"&gt;B.A.T.M.A.N.&lt;/a&gt; or &lt;a href="http://www.olsr.org/"&gt;OLSR&lt;/a&gt; routing algorithm as cited in &lt;a href="http://www.rushessay.com/"&gt;custom essays&lt;/a&gt;. ROBIN spreads a wired internet connection such as a DSL throughout an apartment complex, neighborhood, village or school, and works on a variety of commonly available, low-cost hardware. ROBIN is being developed by &lt;a href="http://www.blogin.it/"&gt;Antonio Anselmi&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Features
-• builded on top of &lt;a href="http://www.openwrt.org/"&gt;OpenWRT kamikaze&lt;/a&gt;
-• auto-configuration (plug &amp;amp; play)
-• routing algorithm choice (&lt;a href="https://www.olsr.org/"&gt;OLSR&lt;/a&gt; or &lt;a href="https://www.open-mesh.net/batman"&gt;BATMAN&lt;/a&gt;)
-• Public Access Point with captive portal + WPA-PSK Private Access Point
-• &lt;a href="http://kokoro.ucsd.edu/nodogsplash"&gt;nodogsplash&lt;/a&gt; , &lt;a href="http://coova.org/"&gt;CoovaAAA&lt;/a&gt;, &lt;a href="http://worldspot.net/"&gt;worldspot&lt;/a&gt;, &lt;a href="http://www.wifi-cpa.com/"&gt;wifi-cpa&lt;/a&gt; or your own RADIUS server as Captive Portal solution
-• strict-mesh, LAN block, on-the-air update and upgrade, versions management, channel switch,...
-• support to several Dashboard Management Systems
-Robin is free software; you can redistribute it and/or modify it under the terms of the GNU General
-Public License version 2 as published by the Free Software Foundation. See COPYING for more details.&lt;/p&gt;
-&lt;p&gt;Resources&lt;/p&gt;
-&lt;p&gt;• Wiki &lt;a href="http://robin-mesh.wik.is/"&gt;http://robin-mesh.wik.is/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;• subversion (svn) repository &lt;a href="http://svn6.assembla.com/svn/RobinMesh/"&gt;http://svn6.assembla.com/svn/RobinMesh/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;• trac system &lt;a href="http://trac6.assembla.com/RobinMesh/browser"&gt;http://trac6.assembla.com/RobinMesh/browser&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;• users forum &lt;a href="http://robin.forumup.it/"&gt;http://robin.forumup.it/&lt;/a&gt;&lt;/p&gt;</summary><category term="mesh"></category><category term="open-mesh"></category><category term="OpenWRT"></category><category term="ROBIN"></category></entry><entry><title>吞吐量计算</title><link href="http://loosky.com/Technology/2012/12/01/throughput-computing.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/throughput-computing.html</id><summary type="html">&lt;p&gt;理论值 = [局域网的网络速率(Mbps)×帧长度(byte)×8] / [帧长度(byte)×8 + 帧间隔(bit)]
-测量值 = [发送帧的数量×帧长度(byte)×8] / [测试时间(s)×10^&lt;em&gt;-6&lt;/em&gt;]&lt;/p&gt;</summary><category term="网络"></category><category term="吞吐量"></category></entry><entry><title>在WordPress中使用Markdown语法</title><link href="http://loosky.com/Blog/2012/11/28/wordpress-markdown.html" rel="alternate"></link><updated>2012-11-28T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-28:Blog/2012/11/28/wordpress-markdown.html</id><summary type="html">&lt;p&gt;最近接触了一下Python，顺带接触了一下&lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;，感觉还是挺好用的。于是基于&lt;a href="http://getpelican.com/"&gt;Pelican&lt;/a&gt; &amp;amp; &lt;a href="https://github.com/"&gt;GitHub&lt;/a&gt; 搭建了一个&lt;a href="http://loosky.com/"&gt;博客&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;个人感觉Markdown语法要比码html代码写东西强多了，不用再过多的去关注html排版等，英雄所见略同的&lt;a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html"&gt;大有人在&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;可惜的是WordPress 官方目前没有提供 Markdown 支持，不过 WordPress 扩展性很强，有很多插件可以使用。我目前安装的是&lt;a href="http://wordpress.org/extend/plugins/wp-markdown/"&gt;WP-Markdown&lt;/a&gt; ,安装后就可以设置通过Markdown进行写作了，支持在文章、页面和评论中使用Markdown。&lt;/p&gt;
-&lt;p&gt;&lt;img alt="WP-Markdown" src="http://loosky.net/Upload/2012/11/WP-Markdown.png" /&gt;&lt;/p&gt;
-&lt;p&gt;目前使用的编辑器主要是&lt;a href="http://markdownpad.com/"&gt;MarkdownPad&lt;/a&gt;，推荐一试。&lt;/p&gt;
-&lt;p&gt;附：&lt;a href="http://wowubuntu.com/markdown/"&gt;Markdown语法&lt;/a&gt;&lt;/p&gt;</summary><category term="WordPress"></category><category term="Markdown"></category><category term="Python"></category></entry><entry><title>GitHub使用</title><link href="http://loosky.com/Technology/2012/11/27/github.html" rel="alternate"></link><updated>2012-11-27T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-27:Technology/2012/11/27/github.html</id><summary type="html">&lt;h3&gt;一、创建github账号&lt;/h3&gt;
+保存搞定。&lt;/p&gt;</summary><category term="CentOS"></category><category term="Linux"></category><category term="Python"></category></entry><entry><title>吞吐量计算</title><link href="http://loosky.com/Technology/2012/12/01/throughput-computing.html" rel="alternate"></link><updated>2012-12-01T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-12-01:Technology/2012/12/01/throughput-computing.html</id><summary type="html">&lt;p&gt;理论值 = [局域网的网络速率(Mbps)×帧长度(byte)×8] / [帧长度(byte)×8 + 帧间隔(bit)]
+测量值 = [发送帧的数量×帧长度(byte)×8] / [测试时间(s)×10^&lt;em&gt;-6&lt;/em&gt;]&lt;/p&gt;</summary><category term="网络"></category><category term="吞吐量"></category></entry><entry><title>GitHub使用</title><link href="http://loosky.com/Technology/2012/11/27/github.html" rel="alternate"></link><updated>2012-11-27T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-27:Technology/2012/11/27/github.html</id><summary type="html">&lt;h3&gt;一、创建github账号&lt;/h3&gt;
 &lt;p&gt;github是一个类似sf的免费项目管理及分享的服务平台，要想使用github提供的服务，你必须先注册成为github注册用户。github的网址是：&lt;a href="https://github.com"&gt;https://github.com&lt;/a&gt;
 帐号注册成功后，点击&lt;strong&gt;New Repository&lt;/strong&gt;，开始创建新版本库。用户可以创建类似于 &lt;code&gt;your_userid.github.com&lt;/code&gt; 的版本库，这样就可以通过&lt;code&gt;http://your_userid.github.com&lt;/code&gt;进行访问了。&lt;/p&gt;
 &lt;h3&gt;二、建立本地git仓库&lt;/h3&gt;
@@ -1899,5 +1831,4 @@ Public License version 2 as published by the Free Software Foundation. See COPYI
 &lt;li&gt;&lt;a href="http://www.yangzhiping.com/tech/github.html"&gt;如何高效利用GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.worldhello.net/gotgithub/index.html"&gt;GotGitHub&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed"&gt;Pushing to Git returning Error Code 403 fatal: HTTP request failed&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="git"></category><category term="github"></category></entry><entry><title>Hello World!</title><link href="http://loosky.com/Blog/2012/11/26/helloworld.html" rel="alternate"></link><updated>2012-11-26T00:00:00+08:00</updated><author><name>Loosky</name></author><id>tag:loosky.com,2012-11-26:Blog/2012/11/26/helloworld.html</id><summary type="html">&lt;p&gt;这是Loosky的个人博客，网站基于&lt;a href="http://getpelican.com/"&gt;Pelican&lt;/a&gt; &amp;amp; &lt;a href="https://github.com"&gt;GitHub&lt;/a&gt;搭建，使用了&lt;a href="http://www.python.org/"&gt;Python&lt;/a&gt;技术。一切从零开始。&lt;/p&gt;
-&lt;p&gt;您可以访问我的&lt;a href="http://loosky.net"&gt;另外一个博客&lt;/a&gt;,那里记录了从2003年以来的所有文章，包含技术、情感、生活等方面。&lt;/p&gt;</summary><category term="Loosky"></category><category term="Python"></category><category term="github"></category><category term="Pelican"></category></entry></feed>
+&lt;/ol&gt;</summary><category term="git"></category><category term="github"></category></entry></feed>

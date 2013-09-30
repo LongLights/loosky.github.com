@@ -3,17 +3,17 @@
 <head>
         <title>Web网站性能/压力测试工具WebBench使用详解</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="../../../../theme/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="http://loosky.com/theme/css/main.css" type="text/css" />
                 
         <!--[if IE]>
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
         <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="../../../../css/ie.css"/>
-                <script src="../../../../js/IE8.js" type="text/javascript"></script><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie.css"/>
+                <script src="http://loosky.com/js/IE8.js" type="text/javascript"></script><![endif]-->
 
         <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="../../../../css/ie6.css"/><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie6.css"/><![endif]-->
        <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
 </head>
 
@@ -22,14 +22,14 @@
 <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://loosky.com/theme/images/forkme_right_red.png" alt="To Loosky.net" />
 </a>
         <header id="banner" class="body">
-                <h1><a href="../../../..">Loosky's Blog </a></h1>
+                <h1><a href="http://loosky.com">Loosky's Blog </a></h1>
                 <nav><ul>
-                                                    <li ><a href="../../../../category/Blog.html">Blog</a></li>
-                                    <li ><a href="../../../../category/Research.html">Research</a></li>
-                                    <li class="active"><a href="../../../../category/Technology.html">Technology</a></li>
-                                <li><a href="../../../../archives.html">Archives</a></li>
-                                                    <li><a href="../../../../pages/about.html">About</a></li>
-                                    <li><a href="../../../../pages/search.html">Search</a></li>
+                                                    <li ><a href="http://loosky.com/category/Blog.html">Blog</a></li>
+                                    <li ><a href="http://loosky.com/category/Research.html">Research</a></li>
+                                    <li class="active"><a href="http://loosky.com/category/Technology.html">Technology</a></li>
+                                <li><a href="http://loosky.com/archives.html">Archives</a></li>
+                                                    <li><a href="http://loosky.com/pages/about.html">About</a></li>
+                                    <li><a href="http://loosky.com/pages/search.html">Search</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
         <section id="content" class="body">
@@ -47,19 +47,19 @@
         </abbr>
 
                 <address class="vcard author">
-                By <a class="url fn" href="../../../../author/loosky.html">Loosky</a>
+                By <a class="url fn" href="http://loosky.com/author/loosky.html">Loosky</a>
         </address>
-        <p>In <a href="../../../../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../../../../tag/web.html">web</a><a href="../../../../tag/WebBench.html">WebBench</a></p></footer><!-- /.post-info -->      <p>Webbench是知名的网站压力方面的测试工具，它是由Lionbridge公司开发。</p>
+        <p>In <a href="http://loosky.com/category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="http://loosky.com/tag/web.html">web</a><a href="http://loosky.com/tag/WebBench.html">WebBench</a></p></footer><!-- /.post-info -->      <p>Webbench是知名的网站压力方面的测试工具，它是由Lionbridge公司开发。</p>
 <p>官方主页：<a href="http://home.tiscali.cz/~cz210552/webbench.html">http://home.tiscali.cz/~cz210552/webbench.html</a></p>
 <p>在运维工作中，网站压力及性能测试是一项很重要的工作。比如在一个网站上线之前，能承受多大访问量、在大访问量情况下性能怎样，这些数据指标好坏将会直接影响用户体验。但是，在压力及性能测试中存在一个共性，那就是压力及性能测试的结果与实际负载结果不会完全相同，就算压力及性能测试工作做的再好，也不能保证100%和线上性能指标相同。面对这些问题，我们只能尽量去想方设法去模拟。所以，压力及性能测试非常有必要，有了这些数据，我们就能对自己做维护的平台做到心中有数。</p>
 <p>Web Bench最多可以模拟3万个并发连接去测试网站的负载能力。Web Bench能测试处在相同硬件上，不同服务的性能以及不同硬件上同一个服务的运行状况。Web Bech的标准测试可以向我们展示服务器的两项内容：每秒钟相应请求数和每秒钟传输数据量。Web Bench不但能具有静态页面的测试能力，还能对动态页面（ASP,PHP,JAVA,CGI）进行测试的能力。还有就是他支持对含有SSL的安全网站例如电子商务网站进行静态或动态的性能测试。</p>
 <p><strong>适用于linux操作系统</strong></p>
 <h3>1、WebBench安装：</h3>
-<div class="codehilite"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span>
-<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">home</span><span class="p">.</span><span class="n">tiscali</span><span class="p">.</span><span class="n">cz</span><span class="o">/~</span><span class="n">cz210552</span><span class="o">/</span><span class="n">distfiles</span><span class="o">/</span><span class="n">webbench</span><span class="o">-</span>1<span class="p">.</span>5<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
-<span class="n">tar</span> <span class="n">zxvf</span> <span class="n">webbench</span><span class="o">-</span>1<span class="p">.</span>5<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
-<span class="n">cd</span> <span class="n">webbench</span><span class="o">-</span>1<span class="p">.</span>5
+<div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span>
+<span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//home.tiscali.cz/~cz210552/distfiles/webbench-1.5.tar.gz</span>
+<span class="n">tar</span> <span class="n">zxvf</span> <span class="n">webbench</span><span class="o">-</span><span class="mf">1.5</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">webbench</span><span class="o">-</span><span class="mf">1.5</span>
 <span class="n">make</span>
 <span class="n">make</span> <span class="n">install</span>
 </pre></div>
@@ -77,51 +77,51 @@
 <p>make: [tags] Error 127 (ignored)</p>
 </blockquote>
 <p>centos有相应的组件，搜索一下ctags安装即可</p>
-<div class="codehilite"><pre><span class="c"># yum install ctags</span>
+<div class="highlight"><pre><span class="c"># yum install ctags</span>
 </pre></div>
 
 
 <h3>2、WebBench使用：</h3>
-<div class="codehilite"><pre><span class="c">#webbench -c 1000 -t 60 http://test.cn/info.php</span>
-<span class="n">webbench</span> <span class="o">-</span><span class="n">c</span> 并发数 <span class="o">-</span><span class="n">t</span> 运行测试时间  <span class="n">URL</span>
+<div class="highlight"><pre><span class="cp">#webbench -c 1000 -t 60 http:</span><span class="c1">//test.cn/info.php</span>
+<span class="n">webbench</span> <span class="o">-</span><span class="n">c</span> <span class="err">并发数</span> <span class="o">-</span><span class="n">t</span> <span class="err">运行测试时间</span>  <span class="n">URL</span>
 </pre></div>
 
 
 <h3>3、测试结果示例：</h3>
-<div class="codehilite"><pre><span class="c">#webbench -c 600 -t 30 http://test.cn/index.php</span>
-<span class="n">Webbench</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">Web</span> <span class="n">Benchmark</span> 1<span class="p">.</span>5
-<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">Radim</span> <span class="n">Kolar</span> 1997<span class="o">-</span>2004<span class="p">,</span> <span class="n">GPL</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">.</span>
+<div class="highlight"><pre><span class="cp">#webbench -c 600 -t 30 http:</span><span class="c1">//test.cn/index.php</span>
+<span class="n">Webbench</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">Web</span> <span class="n">Benchmark</span> <span class="mf">1.5</span>
+<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">Radim</span> <span class="n">Kolar</span> <span class="mi">1997</span><span class="o">-</span><span class="mi">2004</span><span class="p">,</span> <span class="n">GPL</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">.</span>
 
-<span class="n">Benchmarking</span><span class="p">:</span> <span class="n">GET</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="nb">test</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="nb">index</span><span class="p">.</span><span class="n">php</span>
-600 <span class="n">clients</span><span class="p">,</span> <span class="n">running</span> 30 <span class="nb">sec</span><span class="p">.</span>
+<span class="nl">Benchmarking:</span> <span class="n">GET</span> <span class="n">http</span><span class="o">:</span><span class="c1">//test.cn/index.php</span>
+<span class="mi">600</span> <span class="n">clients</span><span class="p">,</span> <span class="n">running</span> <span class="mi">30</span> <span class="n">sec</span><span class="p">.</span>
 
-<span class="n">Speed</span><span class="p">=</span>12082 <span class="n">pages</span><span class="o">/</span><span class="nb">min</span><span class="p">,</span> 152635 <span class="n">bytes</span><span class="o">/</span><span class="nb">sec</span><span class="p">.</span>
-<span class="n">Requests</span><span class="p">:</span> 6041 <span class="n">susceed</span><span class="p">,</span> 0 <span class="n">failed</span><span class="p">.</span>
+<span class="n">Speed</span><span class="o">=</span><span class="mi">12082</span> <span class="n">pages</span><span class="o">/</span><span class="n">min</span><span class="p">,</span> <span class="mi">152635</span> <span class="n">bytes</span><span class="o">/</span><span class="n">sec</span><span class="p">.</span>
+<span class="nl">Requests:</span> <span class="mi">6041</span> <span class="n">susceed</span><span class="p">,</span> <span class="mi">0</span> <span class="n">failed</span><span class="p">.</span>
 
 <span class="o">-------------------------------------------------------------------------------------</span>
 
-<span class="c">#webbench -c 1000 -t 60 http://test.cn/index.php</span>
-<span class="n">Webbench</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">Web</span> <span class="n">Benchmark</span> 1<span class="p">.</span>5
-<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">Radim</span> <span class="n">Kolar</span> 1997<span class="o">-</span>2004<span class="p">,</span> <span class="n">GPL</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">.</span>
+<span class="cp">#webbench -c 1000 -t 60 http:</span><span class="c1">//test.cn/index.php</span>
+<span class="n">Webbench</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">Web</span> <span class="n">Benchmark</span> <span class="mf">1.5</span>
+<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">Radim</span> <span class="n">Kolar</span> <span class="mi">1997</span><span class="o">-</span><span class="mi">2004</span><span class="p">,</span> <span class="n">GPL</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">.</span>
 
-<span class="n">Benchmarking</span><span class="p">:</span> <span class="n">GET</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="nb">test</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="nb">index</span><span class="p">.</span><span class="n">php</span>
-1000 <span class="n">clients</span><span class="p">,</span> <span class="n">running</span> 60 <span class="nb">sec</span><span class="p">.</span>
+<span class="nl">Benchmarking:</span> <span class="n">GET</span> <span class="n">http</span><span class="o">:</span><span class="c1">//test.cn/index.php</span>
+<span class="mi">1000</span> <span class="n">clients</span><span class="p">,</span> <span class="n">running</span> <span class="mi">60</span> <span class="n">sec</span><span class="p">.</span>
 
-<span class="n">Speed</span><span class="p">=</span>5553 <span class="n">pages</span><span class="o">/</span><span class="nb">min</span><span class="p">,</span> 70152 <span class="n">bytes</span><span class="o">/</span><span class="nb">sec</span><span class="p">.</span>
-<span class="n">Requests</span><span class="p">:</span> 5553 <span class="n">susceed</span><span class="p">,</span> 0 <span class="n">failed</span><span class="p">.</span>
+<span class="n">Speed</span><span class="o">=</span><span class="mi">5553</span> <span class="n">pages</span><span class="o">/</span><span class="n">min</span><span class="p">,</span> <span class="mi">70152</span> <span class="n">bytes</span><span class="o">/</span><span class="n">sec</span><span class="p">.</span>
+<span class="nl">Requests:</span> <span class="mi">5553</span> <span class="n">susceed</span><span class="p">,</span> <span class="mi">0</span> <span class="n">failed</span><span class="p">.</span>
 </pre></div>
 
 
 <p>每秒钟响应请求数：24525/60= X pages/sec，每秒钟传输数据量20794612 bytes/sec.</p>
-<div class="codehilite"><pre><span class="c"># webbench -c 2000 -t 60 http://test.cn/index.php</span>
-<span class="n">Webbench</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">Web</span> <span class="n">Benchmark</span> 1<span class="p">.</span>5
-<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">Radim</span> <span class="n">Kolar</span> 1997<span class="o">-</span>2004<span class="p">,</span> <span class="n">GPL</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">.</span>
+<div class="highlight"><pre><span class="cp"># webbench -c 2000 -t 60 http:</span><span class="c1">//test.cn/index.php</span>
+<span class="n">Webbench</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">Web</span> <span class="n">Benchmark</span> <span class="mf">1.5</span>
+<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">Radim</span> <span class="n">Kolar</span> <span class="mi">1997</span><span class="o">-</span><span class="mi">2004</span><span class="p">,</span> <span class="n">GPL</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">.</span>
 
-<span class="n">Benchmarking</span><span class="p">:</span> <span class="n">GET</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="nb">test</span><span class="p">.</span><span class="n">cn</span><span class="o">/</span><span class="nb">index</span><span class="p">.</span><span class="n">php</span>
-2000 <span class="n">clients</span><span class="p">,</span> <span class="n">running</span> 60 <span class="nb">sec</span><span class="p">.</span>
+<span class="nl">Benchmarking:</span> <span class="n">GET</span> <span class="n">http</span><span class="o">:</span><span class="c1">//test.cn/index.php</span>
+<span class="mi">2000</span> <span class="n">clients</span><span class="p">,</span> <span class="n">running</span> <span class="mi">60</span> <span class="n">sec</span><span class="p">.</span>
 
-<span class="n">Speed</span><span class="p">=</span>10479 <span class="n">pages</span><span class="o">/</span><span class="nb">min</span><span class="p">,</span> 132043 <span class="n">bytes</span><span class="o">/</span><span class="nb">sec</span><span class="p">.</span>
-<span class="n">Requests</span><span class="p">:</span> 10453 <span class="n">susceed</span><span class="p">,</span> 26 <span class="n">failed</span><span class="p">.</span>
+<span class="n">Speed</span><span class="o">=</span><span class="mi">10479</span> <span class="n">pages</span><span class="o">/</span><span class="n">min</span><span class="p">,</span> <span class="mi">132043</span> <span class="n">bytes</span><span class="o">/</span><span class="n">sec</span><span class="p">.</span>
+<span class="nl">Requests:</span> <span class="mi">10453</span> <span class="n">susceed</span><span class="p">,</span> <span class="mi">26</span> <span class="n">failed</span><span class="p">.</span>
 </pre></div>
 
 
@@ -155,153 +155,153 @@
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../../../../tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/mesh.html">
-       mesh
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/分区.html">
-       分区
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/PNP.html">
-       PNP
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/web.html">
-       web
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Google Reader.html">
-       Google Reader
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Nagios.html">
-       Nagios
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Loosky.html">
+    <a href="http://loosky.com/tag/Loosky.html">
        Loosky
     </a>
 </li>
 <li>
-    <a href="../../../../tag/ROBIN.html">
-       ROBIN
+    <a href="http://loosky.com/tag/open-mesh.html">
+       open-mesh
     </a>
 </li>
 <li>
-    <a href="../../../../tag/github.html">
-       github
+    <a href="http://loosky.com/tag/Nginx.html">
+       Nginx
     </a>
 </li>
 <li>
-    <a href="../../../../tag/网络.html">
-       网络
+    <a href="http://loosky.com/tag/Google Reader.html">
+       Google Reader
     </a>
 </li>
 <li>
-    <a href="../../../../tag/Tiny Tiny RSS.html">
-       Tiny Tiny RSS
+    <a href="http://loosky.com/tag/web.html">
+       web
     </a>
 </li>
 <li>
-    <a href="../../../../tag/WMN.html">
+    <a href="http://loosky.com/tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PHP.html">
+       PHP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WMN.html">
        WMN
     </a>
 </li>
 <li>
-    <a href="../../../../tag/参考文献.html">
-       参考文献
+    <a href="http://loosky.com/tag/Nagios.html">
+       Nagios
     </a>
 </li>
 <li>
-    <a href="../../../../tag/SQL.html">
-       SQL
+    <a href="http://loosky.com/tag/Python.html">
+       Python
     </a>
 </li>
 <li>
-    <a href="../../../../tag/Google.html">
-       Google
+    <a href="http://loosky.com/tag/scp.html">
+       scp
     </a>
 </li>
 <li>
-    <a href="../../../../tag/.html">
+    <a href="http://loosky.com/tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Apache.html">
+       Apache
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/.html">
        
     </a>
 </li>
 <li>
-    <a href="../../../../tag/open-mesh.html">
-       open-mesh
+    <a href="http://loosky.com/tag/CutyCapt.html">
+       CutyCapt
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/TCPDF.html">
+       TCPDF
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/参考文献.html">
+       参考文献
     </a>
 </li>
                   

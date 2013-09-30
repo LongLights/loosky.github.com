@@ -3,17 +3,17 @@
 <head>
         <title>Tiny Tiny RSS–Google Reader的替代</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="../../../../theme/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="http://loosky.com/theme/css/main.css" type="text/css" />
                 
         <!--[if IE]>
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
         <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="../../../../css/ie.css"/>
-                <script src="../../../../js/IE8.js" type="text/javascript"></script><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie.css"/>
+                <script src="http://loosky.com/js/IE8.js" type="text/javascript"></script><![endif]-->
 
         <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="../../../../css/ie6.css"/><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie6.css"/><![endif]-->
        <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
 </head>
 
@@ -22,14 +22,14 @@
 <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://loosky.com/theme/images/forkme_right_red.png" alt="To Loosky.net" />
 </a>
         <header id="banner" class="body">
-                <h1><a href="../../../..">Loosky's Blog </a></h1>
+                <h1><a href="http://loosky.com">Loosky's Blog </a></h1>
                 <nav><ul>
-                                                    <li ><a href="../../../../category/Blog.html">Blog</a></li>
-                                    <li ><a href="../../../../category/Research.html">Research</a></li>
-                                    <li class="active"><a href="../../../../category/Technology.html">Technology</a></li>
-                                <li><a href="../../../../archives.html">Archives</a></li>
-                                                    <li><a href="../../../../pages/about.html">About</a></li>
-                                    <li><a href="../../../../pages/search.html">Search</a></li>
+                                                    <li ><a href="http://loosky.com/category/Blog.html">Blog</a></li>
+                                    <li ><a href="http://loosky.com/category/Research.html">Research</a></li>
+                                    <li class="active"><a href="http://loosky.com/category/Technology.html">Technology</a></li>
+                                <li><a href="http://loosky.com/archives.html">Archives</a></li>
+                                                    <li><a href="http://loosky.com/pages/about.html">About</a></li>
+                                    <li><a href="http://loosky.com/pages/search.html">Search</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
         <section id="content" class="body">
@@ -47,10 +47,10 @@
         </abbr>
 
                 <address class="vcard author">
-                By <a class="url fn" href="../../../../author/loosky.html">Loosky</a>
+                By <a class="url fn" href="http://loosky.com/author/loosky.html">Loosky</a>
         </address>
-        <p>In <a href="../../../../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../../../../tag/Google.html">Google</a><a href="../../../../tag/Google Reader.html">Google Reader</a><a href="../../../../tag/PHP.html">PHP</a><a href="../../../../tag/RSS.html">RSS</a><a href="../../../../tag/Tiny Tiny RSS.html">Tiny Tiny RSS</a></p></footer><!-- /.post-info -->      <p>Google Reader是一款<a href="http://xbeta.info/google-reader.htm">无可替代的伟大产品</a>，但实实在在地跟我们<a href="http://loosky.net/archives/2789.html">告别了</a>。一直以来习惯于通过订阅RSS来浏览文章，说实在话并不喜欢通过微博或者微信来浏览，信息量太大，而真正有用的东西又不多，极容易被淹没，不容易沉淀。</p>
+        <p>In <a href="http://loosky.com/category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="http://loosky.com/tag/Google.html">Google</a><a href="http://loosky.com/tag/Google Reader.html">Google Reader</a><a href="http://loosky.com/tag/PHP.html">PHP</a><a href="http://loosky.com/tag/RSS.html">RSS</a><a href="http://loosky.com/tag/Tiny Tiny RSS.html">Tiny Tiny RSS</a></p></footer><!-- /.post-info -->      <p>Google Reader是一款<a href="http://xbeta.info/google-reader.htm">无可替代的伟大产品</a>，但实实在在地跟我们<a href="http://loosky.net/archives/2789.html">告别了</a>。一直以来习惯于通过订阅RSS来浏览文章，说实在话并不喜欢通过微博或者微信来浏览，信息量太大，而真正有用的东西又不多，极容易被淹没，不容易沉淀。</p>
 <p>Google Reader关闭后，一直用着<a href="https://theoldreader.com/">the Old Reader</a>，其使用习惯和界面均比较接近于Google Reader。但比较痛苦的地方在于速度和稳定性均不是很好，经常长时间不能访问，难以忍受。于是便想自己搭建一个平台，先尝试了<a href="https://github.com/samuelclay/NewsBlur">NewsBlur</a>，基于Django的，步骤相当繁琐。刚好碰到小众软件介绍了<a href="http://www.appinn.com/tiny-tiny-rss/">Tiny Tiny RSS</a>，基于PHP+MySQL/PostgreSQL，安装起来也很方便。于是便安装了一个试试，发现挺不错的。</p>
 <p>Tiny Tiny RSS 是使用 <a href="http://www.simplepie.org/">SimplePie</a> 作为 RSS 抓取引擎的，抓取回来的文章数据需要保存在 MySQL/PostgreSQL 数据库里，抓取数据的时候，需要消耗一定的流量，所以，如果你的订阅源多的话，搭建类似的站点的确是一个消耗存储空间、带宽的活。</p>
 <h3>一、优点</h3>
@@ -73,8 +73,8 @@
 </ol>
 <h3>二、安装要求</h3>
 <p>要求其实挺简单的，见<a href="http://tt-rss.org/redmine/projects/tt-rss/wiki#Requirements">官方wiki</a>。</p>
-<div class="codehilite"><pre>1<span class="p">.</span> <span class="n">PHP</span>版本必须高于5<span class="p">.</span>3；
-2<span class="p">.</span> 可选<span class="n">PostgreSQL</span> 或 <span class="n">MySQL</span>数据库，其中<span class="n">MySQL</span>数据库必须支持<span class="n">InnoDB</span><span class="p">.</span>
+<div class="highlight"><pre><span class="mf">1.</span> <span class="n">PHP</span><span class="err">版本必须高于</span><span class="mf">5.3</span><span class="err">；</span>
+<span class="mf">2.</span> <span class="err">可选</span><span class="n">PostgreSQL</span> <span class="err">或</span> <span class="n">MySQL</span><span class="err">数据库，其中</span><span class="n">MySQL</span><span class="err">数据库必须支持</span><span class="n">InnoDB</span><span class="p">.</span>
 </pre></div>
 
 
@@ -83,7 +83,7 @@
 <ol>
 <li>
 <p>在按照要求配置好服务器环境后，<a href="https://github.com/gothfox/Tiny-Tiny-RSS/archive/1.9.tar.gz">下载安装包</a> （目前最新版本为1.9，Jul 21, 2013）并解压。</p>
-<div class="codehilite"><pre><span class="c"># tar zxfv Tiny-Tiny-RSS-1.x.x.tar.gz</span>
+<div class="highlight"><pre><span class="c"># tar zxfv Tiny-Tiny-RSS-1.x.x.tar.gz</span>
 <span class="c"># mv Tiny-Tiny-RSS-1.x.x tt-rss</span>
 </pre></div>
 
@@ -95,7 +95,7 @@
 </li>
 <li>
 <p>安装完成后，输入网址 <a href="http://your.site.com/tt-rss/">http://your.site.com/tt-rss/</a> 访问系统，系统后台已经部分汉化。默认管理员用户为：</p>
-<div class="codehilite"><pre><span class="n">username</span><span class="o">:</span> <span class="n">admin</span><span class="o">,</span> <span class="n">password</span><span class="o">:</span> <span class="n">password</span>
+<div class="highlight"><pre><span class="n">username</span><span class="o">:</span> <span class="n">admin</span><span class="o">,</span> <span class="n">password</span><span class="o">:</span> <span class="n">password</span>
 </pre></div>
 
 
@@ -109,11 +109,11 @@
 <p>详细操作说明见<a href="http://tt-rss.org/redmine/projects/tt-rss/wiki/UpdatingFeeds">官方wiki</a>，可以采用三种方式，本站使用的是第二种，即通过crontab来定时更新feeds。</p>
 <p><strong>这里需要注意的是更新脚本文件<code>update.php</code>或<code>update_daemon2.php</code>不能由root用户来执行，可以通过apache或者Nginx的运行用户来执行，如apache或者www等。</strong></p>
 <p>当我们以<code>root</code>用户直接执行命令时，会出现如下错误：</p>
-<div class="codehilite"><pre><span class="p">[</span><span class="n">root</span><span class="p">@</span><span class="n">localhost</span> <span class="o">~</span><span class="p">]</span># <span class="n">php</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wwwroot</span><span class="o">/</span>具体路径<span class="o">/</span><span class="n">update</span><span class="p">.</span><span class="n">php</span> 
+<div class="highlight"><pre><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">localhost</span> <span class="o">~</span><span class="p">]</span><span class="err">#</span> <span class="n">php</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wwwroot</span><span class="o">/</span><span class="err">具体路径</span><span class="o">/</span><span class="n">update</span><span class="p">.</span><span class="n">php</span> 
 <span class="n">Tiny</span> <span class="n">Tiny</span> <span class="n">RSS</span> <span class="n">was</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">start</span> <span class="n">properly</span><span class="p">.</span> <span class="n">This</span> <span class="n">usually</span> <span class="n">means</span> <span class="n">a</span> <span class="n">misconfiguration</span> <span class="n">or</span> <span class="n">an</span> <span class="n">incomplete</span> <span class="n">upgrade</span><span class="p">.</span>
-<span class="n">Please</span> <span class="nb">fix</span> <span class="n">errors</span> <span class="n">indicated</span> <span class="n">by</span> <span class="n">the</span> <span class="n">following</span> <span class="n">messages</span><span class="p">:</span>
+<span class="n">Please</span> <span class="n">fix</span> <span class="n">errors</span> <span class="n">indicated</span> <span class="n">by</span> <span class="n">the</span> <span class="n">following</span> <span class="n">messages</span><span class="o">:</span>
 
- <span class="o">*</span> <span class="n">Please</span> <span class="n">don</span><span class="o">&#39;</span><span class="n">t</span> <span class="n">run</span> <span class="n">this</span> <span class="n">script</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
+ <span class="o">*</span> <span class="n">Please</span> <span class="n">don</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">run</span> <span class="n">this</span> <span class="n">script</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
 
 <span class="n">You</span> <span class="n">might</span> <span class="n">want</span> <span class="n">to</span> <span class="n">check</span> <span class="n">tt</span><span class="o">-</span><span class="n">rss</span> <span class="n">wiki</span> <span class="n">or</span> <span class="n">the</span> <span class="n">forums</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
 <span class="n">Please</span> <span class="n">search</span> <span class="n">the</span> <span class="n">forums</span> <span class="n">before</span> <span class="n">creating</span> <span class="n">new</span> <span class="n">topic</span> <span class="k">for</span> <span class="n">your</span> <span class="n">question</span><span class="p">.</span>
@@ -121,12 +121,12 @@
 
 
 <p>即提示不能以root用户运行脚本，否则订阅条目不能自动更新。因此，可以通过给普通用户如<code>www</code>添加crontab运行脚本：</p>
-<div class="codehilite"><pre><span class="c">#crontab -u www -e</span>
+<div class="highlight"><pre><span class="c">#crontab -u www -e</span>
 </pre></div>
 
 
 <p>添加如下内容：</p>
-<div class="codehilite"><pre><span class="o">*/</span>30 <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">php</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wwwroot</span><span class="o">/</span>具体路径<span class="o">/</span><span class="n">update</span><span class="p">.</span><span class="n">php</span> <span class="o">--</span><span class="n">feeds</span> <span class="o">--</span><span class="n">quiet</span>
+<div class="highlight"><pre><span class="err">*/</span><span class="mi">30</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">php</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wwwroot</span><span class="o">/</span><span class="err">具体路径</span><span class="o">/</span><span class="n">update</span><span class="p">.</span><span class="n">php</span> <span class="o">--</span><span class="n">feeds</span> <span class="o">--</span><span class="n">quiet</span>
 </pre></div>
 
 
@@ -191,153 +191,153 @@
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../../../../tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/mesh.html">
-       mesh
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/分区.html">
-       分区
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/PNP.html">
-       PNP
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/web.html">
-       web
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Google Reader.html">
-       Google Reader
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Nagios.html">
-       Nagios
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Loosky.html">
+    <a href="http://loosky.com/tag/Loosky.html">
        Loosky
     </a>
 </li>
 <li>
-    <a href="../../../../tag/ROBIN.html">
-       ROBIN
+    <a href="http://loosky.com/tag/open-mesh.html">
+       open-mesh
     </a>
 </li>
 <li>
-    <a href="../../../../tag/github.html">
-       github
+    <a href="http://loosky.com/tag/Nginx.html">
+       Nginx
     </a>
 </li>
 <li>
-    <a href="../../../../tag/网络.html">
-       网络
+    <a href="http://loosky.com/tag/Google Reader.html">
+       Google Reader
     </a>
 </li>
 <li>
-    <a href="../../../../tag/Tiny Tiny RSS.html">
-       Tiny Tiny RSS
+    <a href="http://loosky.com/tag/web.html">
+       web
     </a>
 </li>
 <li>
-    <a href="../../../../tag/WMN.html">
+    <a href="http://loosky.com/tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PHP.html">
+       PHP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WMN.html">
        WMN
     </a>
 </li>
 <li>
-    <a href="../../../../tag/参考文献.html">
-       参考文献
+    <a href="http://loosky.com/tag/Nagios.html">
+       Nagios
     </a>
 </li>
 <li>
-    <a href="../../../../tag/SQL.html">
-       SQL
+    <a href="http://loosky.com/tag/Python.html">
+       Python
     </a>
 </li>
 <li>
-    <a href="../../../../tag/Google.html">
-       Google
+    <a href="http://loosky.com/tag/scp.html">
+       scp
     </a>
 </li>
 <li>
-    <a href="../../../../tag/.html">
+    <a href="http://loosky.com/tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Apache.html">
+       Apache
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/.html">
        
     </a>
 </li>
 <li>
-    <a href="../../../../tag/open-mesh.html">
-       open-mesh
+    <a href="http://loosky.com/tag/CutyCapt.html">
+       CutyCapt
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/TCPDF.html">
+       TCPDF
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/参考文献.html">
+       参考文献
     </a>
 </li>
                   

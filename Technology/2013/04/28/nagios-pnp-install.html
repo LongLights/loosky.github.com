@@ -3,17 +3,17 @@
 <head>
         <title>Nagios可视化绘制工具PNP安装&配置</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="../../../../theme/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="http://loosky.com/theme/css/main.css" type="text/css" />
                 
         <!--[if IE]>
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
         <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="../../../../css/ie.css"/>
-                <script src="../../../../js/IE8.js" type="text/javascript"></script><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie.css"/>
+                <script src="http://loosky.com/js/IE8.js" type="text/javascript"></script><![endif]-->
 
         <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="../../../../css/ie6.css"/><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie6.css"/><![endif]-->
        <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
 </head>
 
@@ -22,14 +22,14 @@
 <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://loosky.com/theme/images/forkme_right_red.png" alt="To Loosky.net" />
 </a>
         <header id="banner" class="body">
-                <h1><a href="../../../..">Loosky's Blog </a></h1>
+                <h1><a href="http://loosky.com">Loosky's Blog </a></h1>
                 <nav><ul>
-                                                    <li ><a href="../../../../category/Blog.html">Blog</a></li>
-                                    <li ><a href="../../../../category/Research.html">Research</a></li>
-                                    <li class="active"><a href="../../../../category/Technology.html">Technology</a></li>
-                                <li><a href="../../../../archives.html">Archives</a></li>
-                                                    <li><a href="../../../../pages/about.html">About</a></li>
-                                    <li><a href="../../../../pages/search.html">Search</a></li>
+                                                    <li ><a href="http://loosky.com/category/Blog.html">Blog</a></li>
+                                    <li ><a href="http://loosky.com/category/Research.html">Research</a></li>
+                                    <li class="active"><a href="http://loosky.com/category/Technology.html">Technology</a></li>
+                                <li><a href="http://loosky.com/archives.html">Archives</a></li>
+                                                    <li><a href="http://loosky.com/pages/about.html">About</a></li>
+                                    <li><a href="http://loosky.com/pages/search.html">Search</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
         <section id="content" class="body">
@@ -47,12 +47,12 @@
         </abbr>
 
                 <address class="vcard author">
-                By <a class="url fn" href="../../../../author/loosky.html">Loosky</a>
+                By <a class="url fn" href="http://loosky.com/author/loosky.html">Loosky</a>
         </address>
-        <p>In <a href="../../../../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../../../../tag/Nagios.html">Nagios</a><a href="../../../../tag/PNP.html">PNP</a></p></footer><!-- /.post-info -->      <div class="codehilite"><pre><span class="n">Nagios</span>是一款开源的免费网络监视工具，能有效监控<span class="n">Windows</span>、<span class="n">Linux</span>和<span class="n">Unix</span>的主机状态，交换机路由器等网络设备以及打印机等。
+        <p>In <a href="http://loosky.com/category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="http://loosky.com/tag/Nagios.html">Nagios</a><a href="http://loosky.com/tag/PNP.html">PNP</a></p></footer><!-- /.post-info -->      <div class="highlight"><pre><span class="n">Nagios</span><span class="err">是一款开源的免费网络监视工具，能有效监控</span><span class="n">Windows</span><span class="err">、</span><span class="n">Linux</span><span class="err">和</span><span class="n">Unix</span><span class="err">的主机状态，交换机路由器等网络设备以及打印机等。</span>
 
-<span class="n">PNP</span>是一个基于<span class="n">php</span>和<span class="n">perl</span>，用<span class="n">rrdtool</span>将<span class="n">nagios</span>采集的数据绘制图表的工具。
+<span class="n">PNP</span><span class="err">是一个基于</span><span class="n">php</span><span class="err">和</span><span class="n">perl</span><span class="err">，用</span><span class="n">rrdtool</span><span class="err">将</span><span class="n">nagios</span><span class="err">采集的数据绘制图表的工具。</span>
 </pre></div>
 
 
@@ -61,7 +61,7 @@
 <h3>一、PNP安装</h3>
 <p><strong>PNP下载地址：</strong><a href="http://docs.pnp4nagios.org/pnp-0.6/install">http://docs.pnp4nagios.org/pnp-0.6/install</a></p>
 <p>因为PNP是一个基于php和perl，用rrdtool将nagios采集的数据绘制图表的工具，所以安装pnp之前必须先安装php、perl和rrdtool。这里用yum直接来安装rrdtool，单独下载安装有很多依存关系，比较麻烦。</p>
-<div class="codehilite"><pre><span class="c">#yum install rrdtool</span>
+<div class="highlight"><pre><span class="c">#yum install rrdtool</span>
 <span class="c">#cd /usr/local/src</span>
 <span class="c">#wget http://sourceforge.net/projects/pnp4nagios/files/PNP-0.6/pnp4nagios-0.6.15.tar.gz/download         //下载pnp</span>
 <span class="c">#tar xzvf pnp4nagios-0.6.15.tar.gz</span>
@@ -73,39 +73,39 @@
 <p>此时有可能出现perl modules没有发现的错误：</p>
 <p><img alt="perl modules没有发现" src="http://loosky.net/Upload/2013/04/pnp-perl.png" /></p>
 <p><strong>解决方案：</strong></p>
-<div class="codehilite"><pre><span class="c">#yum install rrdtool-perl</span>
+<div class="highlight"><pre><span class="c">#yum install rrdtool-perl</span>
 </pre></div>
 
 
 <p>参考：<a href="http://ronaldbradford.com/blog/installing-perl-rrd-module-rrdspm-2009-07-11/">http://ronaldbradford.com/blog/installing-perl-rrd-module-rrdspm-2009-07-11/</a></p>
 <p>根据提示需要继续</p>
-<div class="codehilite"><pre><span class="c"># make all</span>
+<div class="highlight"><pre><span class="c"># make all</span>
 <span class="c"># make fullinstall</span>
 </pre></div>
 
 
 <p>安装成功后相关的文件信息如下：</p>
-<div class="codehilite"><pre>  <span class="n">General</span> <span class="n">Options</span><span class="p">:</span>
+<div class="highlight"><pre>  <span class="n">General</span> <span class="n">Options</span><span class="o">:</span>
   <span class="o">-------------------------</span>         <span class="o">-------------------</span>
-  <span class="n">Nagios</span> <span class="n">user</span><span class="o">/</span><span class="n">group</span><span class="p">:</span>                <span class="n">nagios</span> <span class="n">nagios</span>
-  <span class="n">Install</span> <span class="n">directory</span><span class="p">:</span>                <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span>
-  <span class="n">HTML</span> <span class="n">Dir</span><span class="p">:</span>                         <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">share</span>
-  <span class="n">Config</span> <span class="n">Dir</span><span class="p">:</span>                       <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">etc</span>
-  <span class="n">Location</span> <span class="n">of</span> <span class="n">rrdtool</span> <span class="n">binary</span><span class="p">:</span>       <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">rrdtool</span> <span class="n">Version</span> 1<span class="p">.</span>3<span class="p">.</span>8
-  <span class="n">RRDs</span> <span class="n">Perl</span> <span class="n">Modules</span><span class="p">:</span>                <span class="n">FOUND</span> <span class="p">(</span><span class="n">Version</span> 1<span class="p">.</span>3008<span class="p">)</span>
-  <span class="n">RRD</span> <span class="n">Files</span> <span class="n">stored</span> <span class="n">in</span><span class="p">:</span>              <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">perfdata</span>
-  <span class="n">process_perfdata</span><span class="p">.</span><span class="n">pl</span> <span class="n">Logfile</span><span class="p">:</span>      <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">perfdata</span><span class="p">.</span><span class="nb">log</span>
-  <span class="n">Perfdata</span> <span class="n">files</span> <span class="p">(</span><span class="n">NPCD</span><span class="p">)</span> <span class="n">stored</span> <span class="n">in</span><span class="p">:</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">spool</span>
+  <span class="n">Nagios</span> <span class="n">user</span><span class="o">/</span><span class="n">group</span><span class="o">:</span>                <span class="n">nagios</span> <span class="n">nagios</span>
+  <span class="n">Install</span> <span class="n">directory</span><span class="o">:</span>                <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span>
+  <span class="n">HTML</span> <span class="n">Dir</span><span class="o">:</span>                         <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">share</span>
+  <span class="n">Config</span> <span class="n">Dir</span><span class="o">:</span>                       <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">etc</span>
+  <span class="n">Location</span> <span class="n">of</span> <span class="n">rrdtool</span> <span class="n">binary</span><span class="o">:</span>       <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">rrdtool</span> <span class="n">Version</span> <span class="mf">1.3.8</span>
+  <span class="n">RRDs</span> <span class="n">Perl</span> <span class="n">Modules</span><span class="o">:</span>                <span class="n">FOUND</span> <span class="p">(</span><span class="n">Version</span> <span class="mf">1.3008</span><span class="p">)</span>
+  <span class="n">RRD</span> <span class="n">Files</span> <span class="n">stored</span> <span class="n">in</span><span class="o">:</span>              <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">perfdata</span>
+  <span class="n">process_perfdata</span><span class="p">.</span><span class="n">pl</span> <span class="n">Logfile</span><span class="o">:</span>      <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">perfdata</span><span class="p">.</span><span class="n">log</span>
+  <span class="n">Perfdata</span> <span class="n">files</span> <span class="p">(</span><span class="n">NPCD</span><span class="p">)</span> <span class="n">stored</span> <span class="n">in</span><span class="o">:</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">spool</span>
 
-  <span class="n">Web</span> <span class="n">Interface</span> <span class="n">Options</span><span class="p">:</span>
+  <span class="n">Web</span> <span class="n">Interface</span> <span class="n">Options</span><span class="o">:</span>
   <span class="o">-------------------------</span>         <span class="o">-------------------</span>
-  <span class="n">HTML</span> <span class="n">URL</span><span class="p">:</span>                         <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="o">/</span><span class="n">pnp4nagios</span>
-  <span class="n">Apache</span> <span class="n">Config</span> <span class="n">File</span><span class="p">:</span>               <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">httpd</span><span class="o">/</span><span class="n">conf</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="p">.</span><span class="n">conf</span>
+  <span class="n">HTML</span> <span class="n">URL</span><span class="o">:</span>                         <span class="n">http</span><span class="o">:</span><span class="c1">//localhost/pnp4nagios</span>
+  <span class="n">Apache</span> <span class="n">Config</span> <span class="n">File</span><span class="o">:</span>               <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">httpd</span><span class="o">/</span><span class="n">conf</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="p">.</span><span class="n">conf</span>
 
-  <span class="n">PHP</span><span class="o">-</span><span class="n">Files</span> <span class="k">for</span> <span class="n">the</span> <span class="n">web</span><span class="o">-</span><span class="n">frontend</span>： <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">pnp</span>
-  <span class="n">data</span> <span class="n">collector</span> <span class="n">process_perfdata</span><span class="p">.</span><span class="n">pl</span>：<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">libexec</span>
-  <span class="n">sample</span> <span class="n">config</span> <span class="n">files</span> <span class="n">with</span> <span class="n">the</span> <span class="n">suffix</span> <span class="o">-</span><span class="n">sample</span>：<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnpnagios</span><span class="o">/</span><span class="n">etc</span>
-  <span class="n">config</span> <span class="n">file</span> <span class="n">config</span><span class="p">.</span><span class="n">php</span> <span class="k">for</span> <span class="n">the</span> <span class="n">web</span> <span class="n">frontend</span> <span class="n">in</span>：<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">etc</span>
+  <span class="n">PHP</span><span class="o">-</span><span class="n">Files</span> <span class="k">for</span> <span class="n">the</span> <span class="n">web</span><span class="o">-</span><span class="n">frontend</span><span class="err">：</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">pnp</span>
+  <span class="n">data</span> <span class="n">collector</span> <span class="n">process_perfdata</span><span class="p">.</span><span class="n">pl</span><span class="err">：</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">libexec</span>
+  <span class="n">sample</span> <span class="n">config</span> <span class="n">files</span> <span class="n">with</span> <span class="n">the</span> <span class="n">suffix</span> <span class="o">-</span><span class="n">sample</span><span class="err">：</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnpnagios</span><span class="o">/</span><span class="n">etc</span>
+  <span class="n">config</span> <span class="n">file</span> <span class="n">config</span><span class="p">.</span><span class="n">php</span> <span class="k">for</span> <span class="n">the</span> <span class="n">web</span> <span class="n">frontend</span> <span class="n">in</span><span class="err">：</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">etc</span>
 </pre></div>
 
 
@@ -114,7 +114,7 @@
     #mv misccommands.cfg-sample misccommands.cfg
     #mv nagios.cfg-sample nagios.cfg
     #mv rra.cfg-sample rra.cfg</p>
-<div class="codehilite"><pre><span class="c">#cd pages</span>
+<div class="highlight"><pre><span class="c">#cd pages</span>
 <span class="c">#mv web_traffic.cfg-sample web_traffic.cfg</span>
 
 <span class="c">#cd ../check_commands/</span>
@@ -125,22 +125,22 @@
 
 
 <h3>二、配置Ｎagios来启用PNP</h3>
-<div class="codehilite"><pre><span class="n">Nagios</span>的配置文件中，<span class="n">enable_environment_macros</span><span class="p">=</span>1默认是开启了的
+<div class="highlight"><pre><span class="n">Nagios</span><span class="err">的配置文件中，</span><span class="n">enable_environment_macros</span><span class="o">=</span><span class="mi">1</span><span class="err">默认是开启了的</span>
 </pre></div>
 
 
 <p>pnp4nagios有很多种工作模式，参见：<a href="http://docs.pnp4nagios.org/pnp-0.6/config">http://docs.pnp4nagios.org/pnp-0.6/config</a>。这里我们选用同步模式，想选其它模式可以看说明都有详细配置教程。</p>
 <h4>定义命令</h4>
-<div class="codehilite"><pre><span class="c">#vi /usr/local/nagios/etc/objects/commands.cfg  //新增或修改如下内容</span>
+<div class="highlight"><pre><span class="cp">#vi /usr/local/nagios/etc/objects/commands.cfg  </span><span class="c1">//新增或修改如下内容</span>
 
 <span class="n">define</span> <span class="n">command</span> <span class="p">{</span>
        <span class="n">command_name</span>    <span class="n">process</span><span class="o">-</span><span class="n">service</span><span class="o">-</span><span class="n">perfdata</span>
-       <span class="n">command_line</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="nb">perl</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">process_perfdata</span><span class="p">.</span><span class="n">pl</span>
+       <span class="n">command_line</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">perl</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">process_perfdata</span><span class="p">.</span><span class="n">pl</span>
 <span class="p">}</span>
 
 <span class="n">define</span> <span class="n">command</span> <span class="p">{</span>
        <span class="n">command_name</span>    <span class="n">process</span><span class="o">-</span><span class="n">host</span><span class="o">-</span><span class="n">perfdata</span>
-       <span class="n">command_line</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="nb">perl</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">process_perfdata</span><span class="p">.</span><span class="n">pl</span> <span class="o">-</span><span class="n">d</span> <span class="n">HOSTPERFDATA</span>
+       <span class="n">command_line</span>    <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">perl</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">process_perfdata</span><span class="p">.</span><span class="n">pl</span> <span class="o">-</span><span class="n">d</span> <span class="n">HOSTPERFDATA</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -149,32 +149,32 @@
 <p>修改主机和服务模板，添加小太阳模版，镶嵌在nagios页面上（http://docs.pnp4nagios.org/pnp-0.6/webfe）</p>
 <p>这里有两种查看图的方法，第一种方法是你当太阳的图标的时候会在新窗口中打开图形查看，第二种方法是你只需要把鼠标移动到太阳图标上面就会自动弹出图形出来，以下两种方法你可以根据自己喜好选其中一种即可</p>
 <p>第一种方法在templates.cfg里面加入如下 </p>
-<div class="codehilite"><pre><span class="n">define</span> <span class="n">host</span> <span class="p">{</span> 
+<div class="highlight"><pre><span class="n">define</span> <span class="n">host</span> <span class="p">{</span> 
  <span class="n">name</span>       <span class="n">host</span><span class="o">-</span><span class="n">pnp</span> 
- <span class="n">action_url</span> <span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="o">/</span><span class="n">graph</span>?<span class="n">host</span><span class="p">=</span>$<span class="n">HOSTNAME</span>$<span class="o">&amp;</span><span class="n">srv</span><span class="p">=</span><span class="n">_HOST_</span> 
- <span class="n">register</span>   0 
+ <span class="n">action_url</span> <span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="o">/</span><span class="n">graph</span><span class="o">?</span><span class="n">host</span><span class="o">=</span><span class="err">$</span><span class="n">HOSTNAME</span><span class="err">$</span><span class="o">&amp;</span><span class="n">srv</span><span class="o">=</span><span class="n">_HOST_</span> 
+ <span class="k">register</span>   <span class="mi">0</span> 
 <span class="p">}</span>
 
 <span class="n">define</span> <span class="n">service</span> <span class="p">{</span> 
  <span class="n">name</span>       <span class="n">srv</span><span class="o">-</span><span class="n">pnp</span> 
- <span class="n">action_url</span> <span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="o">/</span><span class="n">graph</span>?<span class="n">host</span><span class="p">=</span>$<span class="n">HOSTNAME</span>$<span class="o">&amp;</span><span class="n">srv</span><span class="p">=</span>$<span class="n">SERVICEDESC</span>$ 
- <span class="n">register</span>   0 
+ <span class="n">action_url</span> <span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="o">/</span><span class="n">graph</span><span class="o">?</span><span class="n">host</span><span class="o">=</span><span class="err">$</span><span class="n">HOSTNAME</span><span class="err">$</span><span class="o">&amp;</span><span class="n">srv</span><span class="o">=</span><span class="err">$</span><span class="n">SERVICEDESC</span><span class="err">$</span> 
+ <span class="k">register</span>   <span class="mi">0</span> 
 <span class="p">}</span>
 </pre></div>
 
 
 <p>第二种方法按照说明加入如下</p>
 <p>拷贝status-header.ssi到/usr/local/nagios/share/ssi/目录下面来（这一步很重要，要不然移动到太阳标记上出不来图）</p>
-<div class="codehilite"><pre><span class="n">define</span> <span class="n">host</span> <span class="p">{</span> 
+<div class="highlight"><pre><span class="n">define</span> <span class="n">host</span> <span class="p">{</span> 
     <span class="n">name</span>       <span class="n">host</span><span class="o">-</span><span class="n">pnp</span> 
-    <span class="n">action_url</span> <span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="o">/</span><span class="n">graph</span>?<span class="n">host</span><span class="p">=</span>$<span class="n">HOSTNAME</span>$<span class="o">&amp;</span><span class="n">srv</span><span class="p">=</span><span class="n">_HOST_</span><span class="o">&#39;</span> <span class="n">class</span><span class="p">=</span><span class="s">&#39;tips&#39;</span> <span class="n">rel</span><span class="p">=</span><span class="s">&#39;/pnp4nagios/index.php/popup?host=$HOSTNAME$&amp;srv=_HOST_ </span>
-<span class="s">    register   0 </span>
-<span class="s">}</span>
+    <span class="n">action_url</span> <span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="o">/</span><span class="n">graph</span><span class="o">?</span><span class="n">host</span><span class="o">=</span><span class="err">$</span><span class="n">HOSTNAME</span><span class="err">$</span><span class="o">&amp;</span><span class="n">srv</span><span class="o">=</span><span class="n">_HOST_</span><span class="err">&#39;</span> <span class="n">class</span><span class="o">=</span><span class="err">&#39;</span><span class="n">tips</span><span class="err">&#39;</span> <span class="n">rel</span><span class="o">=</span><span class="err">&#39;</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="o">/</span><span class="n">popup</span><span class="o">?</span><span class="n">host</span><span class="o">=</span><span class="err">$</span><span class="n">HOSTNAME</span><span class="err">$</span><span class="o">&amp;</span><span class="n">srv</span><span class="o">=</span><span class="n">_HOST_</span> 
+    <span class="k">register</span>   <span class="mi">0</span> 
+<span class="p">}</span>
 
-<span class="s">define service { </span>
-<span class="s">    name       srv-pnp </span>
-<span class="s">    action_url /pnp4nagios/index.php/graph?host=$HOSTNAME$&amp;srv=$SERVICEDESC$&#39;</span> <span class="n">class</span><span class="p">=</span><span class="s">&#39;tips&#39;</span> <span class="n">rel</span><span class="p">=</span><span class="s">&#39;</span><span class="err">/pnp4nagios/index.php/popup?host=$HOSTNAME$&amp;srv=$SERVICEDESC$ </span>
-    <span class="n">register</span>   0 
+<span class="n">define</span> <span class="n">service</span> <span class="p">{</span> 
+    <span class="n">name</span>       <span class="n">srv</span><span class="o">-</span><span class="n">pnp</span> 
+    <span class="n">action_url</span> <span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="o">/</span><span class="n">graph</span><span class="o">?</span><span class="n">host</span><span class="o">=</span><span class="err">$</span><span class="n">HOSTNAME</span><span class="err">$</span><span class="o">&amp;</span><span class="n">srv</span><span class="o">=</span><span class="err">$</span><span class="n">SERVICEDESC</span><span class="err">$&#39;</span> <span class="n">class</span><span class="o">=</span><span class="err">&#39;</span><span class="n">tips</span><span class="err">&#39;</span> <span class="n">rel</span><span class="o">=</span><span class="err">&#39;</span><span class="o">/</span><span class="n">pnp4nagios</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="o">/</span><span class="n">popup</span><span class="o">?</span><span class="n">host</span><span class="o">=</span><span class="err">$</span><span class="n">HOSTNAME</span><span class="err">$</span><span class="o">&amp;</span><span class="n">srv</span><span class="o">=</span><span class="err">$</span><span class="n">SERVICEDESC</span><span class="err">$</span> 
+    <span class="k">register</span>   <span class="mi">0</span> 
 <span class="p">}</span>
 </pre></div>
 
@@ -204,153 +204,153 @@
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../../../../tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/mesh.html">
-       mesh
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/分区.html">
-       分区
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/PNP.html">
-       PNP
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/web.html">
-       web
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Google Reader.html">
-       Google Reader
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Nagios.html">
-       Nagios
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Loosky.html">
+    <a href="http://loosky.com/tag/Loosky.html">
        Loosky
     </a>
 </li>
 <li>
-    <a href="../../../../tag/ROBIN.html">
-       ROBIN
+    <a href="http://loosky.com/tag/open-mesh.html">
+       open-mesh
     </a>
 </li>
 <li>
-    <a href="../../../../tag/github.html">
-       github
+    <a href="http://loosky.com/tag/Nginx.html">
+       Nginx
     </a>
 </li>
 <li>
-    <a href="../../../../tag/网络.html">
-       网络
+    <a href="http://loosky.com/tag/Google Reader.html">
+       Google Reader
     </a>
 </li>
 <li>
-    <a href="../../../../tag/Tiny Tiny RSS.html">
-       Tiny Tiny RSS
+    <a href="http://loosky.com/tag/web.html">
+       web
     </a>
 </li>
 <li>
-    <a href="../../../../tag/WMN.html">
+    <a href="http://loosky.com/tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PHP.html">
+       PHP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WMN.html">
        WMN
     </a>
 </li>
 <li>
-    <a href="../../../../tag/参考文献.html">
-       参考文献
+    <a href="http://loosky.com/tag/Nagios.html">
+       Nagios
     </a>
 </li>
 <li>
-    <a href="../../../../tag/SQL.html">
-       SQL
+    <a href="http://loosky.com/tag/Python.html">
+       Python
     </a>
 </li>
 <li>
-    <a href="../../../../tag/Google.html">
-       Google
+    <a href="http://loosky.com/tag/scp.html">
+       scp
     </a>
 </li>
 <li>
-    <a href="../../../../tag/.html">
+    <a href="http://loosky.com/tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Apache.html">
+       Apache
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/.html">
        
     </a>
 </li>
 <li>
-    <a href="../../../../tag/open-mesh.html">
-       open-mesh
+    <a href="http://loosky.com/tag/CutyCapt.html">
+       CutyCapt
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/TCPDF.html">
+       TCPDF
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/参考文献.html">
+       参考文献
     </a>
 </li>
                   

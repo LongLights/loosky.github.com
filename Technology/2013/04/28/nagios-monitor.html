@@ -3,17 +3,17 @@
 <head>
         <title>Nagios监控配置</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="../../../../theme/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="http://loosky.com/theme/css/main.css" type="text/css" />
                 
         <!--[if IE]>
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
         <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="../../../../css/ie.css"/>
-                <script src="../../../../js/IE8.js" type="text/javascript"></script><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie.css"/>
+                <script src="http://loosky.com/js/IE8.js" type="text/javascript"></script><![endif]-->
 
         <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="../../../../css/ie6.css"/><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie6.css"/><![endif]-->
        <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
 </head>
 
@@ -22,14 +22,14 @@
 <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://loosky.com/theme/images/forkme_right_red.png" alt="To Loosky.net" />
 </a>
         <header id="banner" class="body">
-                <h1><a href="../../../..">Loosky's Blog </a></h1>
+                <h1><a href="http://loosky.com">Loosky's Blog </a></h1>
                 <nav><ul>
-                                                    <li ><a href="../../../../category/Blog.html">Blog</a></li>
-                                    <li ><a href="../../../../category/Research.html">Research</a></li>
-                                    <li class="active"><a href="../../../../category/Technology.html">Technology</a></li>
-                                <li><a href="../../../../archives.html">Archives</a></li>
-                                                    <li><a href="../../../../pages/about.html">About</a></li>
-                                    <li><a href="../../../../pages/search.html">Search</a></li>
+                                                    <li ><a href="http://loosky.com/category/Blog.html">Blog</a></li>
+                                    <li ><a href="http://loosky.com/category/Research.html">Research</a></li>
+                                    <li class="active"><a href="http://loosky.com/category/Technology.html">Technology</a></li>
+                                <li><a href="http://loosky.com/archives.html">Archives</a></li>
+                                                    <li><a href="http://loosky.com/pages/about.html">About</a></li>
+                                    <li><a href="http://loosky.com/pages/search.html">Search</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
         <section id="content" class="body">
@@ -47,10 +47,10 @@
         </abbr>
 
                 <address class="vcard author">
-                By <a class="url fn" href="../../../../author/loosky.html">Loosky</a>
+                By <a class="url fn" href="http://loosky.com/author/loosky.html">Loosky</a>
         </address>
-        <p>In <a href="../../../../category/Technology.html">Technology</a>. </p>
-<p>tags: <a href="../../../../tag/Nagios.html">Nagios</a><a href="../../../../tag/PNP.html">PNP</a></p></footer><!-- /.post-info -->      <div class="codehilite"><pre><span class="n">Nagios</span>是一款开源的免费网络监视工具，能有效监控<span class="n">Windows</span>、<span class="n">Linux</span>和<span class="n">Unix</span>的主机状态，交换机路由器等网络设备以及打印机等。
+        <p>In <a href="http://loosky.com/category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="http://loosky.com/tag/Nagios.html">Nagios</a><a href="http://loosky.com/tag/PNP.html">PNP</a></p></footer><!-- /.post-info -->      <div class="highlight"><pre><span class="n">Nagios</span><span class="err">是一款开源的免费网络监视工具，能有效监控</span><span class="n">Windows</span><span class="err">、</span><span class="n">Linux</span><span class="err">和</span><span class="n">Unix</span><span class="err">的主机状态，交换机路由器等网络设备以及打印机等。</span>
 </pre></div>
 
 
@@ -58,20 +58,20 @@
 <p>想获取客户机上更为详细的信息，还必须在服务器及客户端上安装NRPE插件。</p>
 <p><strong>NRPE下载地址：</strong> <a href="http://www.nagios.org/download/addons">http://www.nagios.org/download/addons</a></p>
 <h3>服务器端监控程序安装</h3>
-<div class="codehilite"><pre><span class="c">#cd /usr/local/src</span>
-<span class="c">#tar zxvf nrpe-2.14.tar.gz</span>
-<span class="c">#cd nrpe-2.14</span>
-<span class="c"># ./configure --with-nagios-user=nagios -with-nagios-group=nagios --prefix=/usr/local/nagios/</span>
-<span class="c"># make all;make install-plugin ; make install-daemon;make install-daemon-config   //将check_nrpe插件安装到/usr/local/nagios/libexec/目录下</span>
-<span class="c">#/usr/local/nagios/libexec/check_nrpe -H 127.0.0.1</span>
+<div class="highlight"><pre><span class="cp">#cd /usr/local/src</span>
+<span class="cp">#tar zxvf nrpe-2.14.tar.gz</span>
+<span class="cp">#cd nrpe-2.14</span>
+<span class="cp"># ./configure --with-nagios-user=nagios -with-nagios-group=nagios --prefix=/usr/local/nagios/</span>
+<span class="cp"># make all;make install-plugin ; make install-daemon;make install-daemon-config   </span><span class="c1">//将check_nrpe插件安装到/usr/local/nagios/libexec/目录下</span>
+<span class="cp">#/usr/local/nagios/libexec/check_nrpe -H 127.0.0.1</span>
 
-    <span class="n">NRPE</span> <span class="n">v2</span><span class="p">.</span>14
+    <span class="n">NRPE</span> <span class="n">v2</span><span class="mf">.14</span>
 </pre></div>
 
 
 <h3>Linux客户机监控</h3>
 <h4>安装nagios插件</h4>
-<div class="codehilite"><pre><span class="c">#useradd -s /sbin/nologin nagios //添加nagios用户</span>
+<div class="highlight"><pre><span class="c">#useradd -s /sbin/nologin nagios //添加nagios用户</span>
 <span class="c">#cd /usr/local/src</span>
 <span class="c">#tar zxvf nagios-plugins-1.4.16.tar.gz</span>
 <span class="c">#cd nagios-plugins-1.4.16</span>
@@ -81,121 +81,121 @@
 
 
 <h4>安装nrpe</h4>
-<div class="codehilite"><pre><span class="c">#cd ..</span>
-<span class="c">#tar zxvf nrpe-2.14.tar.gz</span>
-<span class="c">#cd nrpe-2.14</span>
-<span class="c">#./configure --with-nagios-user=nagios --with-nagios-group=nagios --prefix=/usr/local/nagios/</span>
-<span class="c"># make all</span>
-<span class="c"># make install-plugin;make install-daemon;make install-daemon-config</span>
-<span class="c"># ls /usr/local/nagios/libexec/ //验证安装</span>
+<div class="highlight"><pre><span class="cp">#cd ..</span>
+<span class="cp">#tar zxvf nrpe-2.14.tar.gz</span>
+<span class="cp">#cd nrpe-2.14</span>
+<span class="cp">#./configure --with-nagios-user=nagios --with-nagios-group=nagios --prefix=/usr/local/nagios/</span>
+<span class="cp"># make all</span>
+<span class="cp"># make install-plugin;make install-daemon;make install-daemon-config</span>
+<span class="cp"># ls /usr/local/nagios/libexec/ </span><span class="c1">//验证安装</span>
     <span class="n">check_apt</span> <span class="n">check_ftp</span> <span class="n">check_mailq</span> <span class="n">check_overcr</span> <span class="n">check_tcp</span>
 </pre></div>
 
 
 <h4>配置、启动、测试NRPE</h4>
-<div class="codehilite"><pre><span class="c"># cd /usr/local/nagios/</span>
-<span class="c"># vi etc/nrpe.cfg</span>
+<div class="highlight"><pre><span class="cp"># cd /usr/local/nagios/</span>
+<span class="cp"># vi etc/nrpe.cfg</span>
 
-    <span class="n">allowed_hosts</span><span class="p">=</span>127<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>1<span class="p">,</span>192<span class="p">.</span>168<span class="p">.</span>80<span class="p">.</span>200   <span class="o">//</span>添加服务器端的<span class="n">IP</span>地址
+    <span class="n">allowed_hosts</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">,</span><span class="mf">192.168.80.200</span>   <span class="c1">//添加服务器端的IP地址</span>
 
-<span class="c">#/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg –d  //启动NRPE守护进程</span>
-<span class="c">#netstat -utpln |grep nrpe        //查看nrpe进程是否已正常启动</span>
+<span class="cp">#/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg –d  </span><span class="c1">//启动NRPE守护进程</span>
+<span class="cp">#netstat -utpln |grep nrpe        </span><span class="c1">//查看nrpe进程是否已正常启动</span>
 
-    <span class="n">tcp</span> 0 0 0<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>0<span class="p">:</span>5666 0<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>0<span class="p">:</span><span class="o">*</span> <span class="n">LISTEN</span> 17619<span class="o">/</span><span class="n">nrpe</span>
+    <span class="n">tcp</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.0.0.0</span><span class="o">:</span><span class="mi">5666</span> <span class="mf">0.0.0.0</span><span class="o">:*</span> <span class="n">LISTEN</span> <span class="mi">17619</span><span class="o">/</span><span class="n">nrpe</span>
 
-<span class="c">#echo &quot;/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg -d&quot; &gt;&gt;/etc/rc.local     //添加nrpe为开机自动启动 </span>
-<span class="c">#/usr/local/nagios/libexec/check_nrpe -H 127.0.0.1 </span>
-    <span class="n">NRPE</span> <span class="n">v2</span><span class="p">.</span>14    <span class="o">//</span><span class="n">nrpe</span>测试结果，此结果为<span class="n">nrpe</span>已经正常工作了
+<span class="cp">#echo &quot;/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg -d&quot; &gt;&gt;/etc/rc.local     </span><span class="c1">//添加nrpe为开机自动启动 </span>
+<span class="cp">#/usr/local/nagios/libexec/check_nrpe -H 127.0.0.1 </span>
+    <span class="n">NRPE</span> <span class="n">v2</span><span class="mf">.14</span>    <span class="c1">//nrpe测试结果，此结果为nrpe已经正常工作了</span>
 </pre></div>
 
 
 <h4>定义监控内容</h4>
-<div class="codehilite"><pre><span class="c"># vi /usr/local/nagios/etc/nrpe.cfg   //定义监控服务器内容</span>
+<div class="highlight"><pre><span class="cp"># vi /usr/local/nagios/etc/nrpe.cfg   </span><span class="c1">//定义监控服务器内容</span>
 
-    <span class="n">command</span><span class="p">[</span><span class="n">check_users</span><span class="p">]=</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_users</span> <span class="o">-</span><span class="n">w</span> 5 <span class="o">-</span><span class="n">c</span> 10 <span class="c">#监控登陆的用户数量</span>
-    <span class="n">command</span><span class="p">[</span><span class="n">check_load</span><span class="p">]=</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_load</span> <span class="o">-</span><span class="n">w</span> 15<span class="p">,</span>10<span class="p">,</span>5 <span class="o">-</span><span class="n">c</span> 30<span class="p">,</span>25<span class="p">,</span>20 <span class="c">#监控CPU的负载</span>
-    <span class="n">command</span><span class="p">[</span><span class="n">check_sda2</span><span class="p">]=</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_disk</span> <span class="o">-</span><span class="n">w</span> 20<span class="c">% -c 10% -p /dev/sda2 #监控磁盘利用率，这里的sda2必须是实际的硬盘分区，可使用fdisk –l查</span>
-    <span class="n">command</span><span class="p">[</span><span class="n">check_swap</span><span class="p">]=</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">//</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_swap</span> <span class="o">-</span><span class="n">w</span> 20 <span class="o">-</span><span class="n">c</span> 10 <span class="c">#监控交换空间</span>
-    <span class="n">command</span><span class="p">[</span><span class="n">check_zombie_procs</span><span class="p">]=</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_procs</span> <span class="o">-</span><span class="n">w</span> 5 <span class="o">-</span><span class="n">c</span> 10 <span class="o">-</span><span class="n">s</span> <span class="n">Z</span> <span class="c">#监控进程中的僵尸进程</span>
-    <span class="n">command</span><span class="p">[</span><span class="n">check_total_procs</span><span class="p">]=</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_procs</span> <span class="o">-</span><span class="n">w</span> 150 <span class="o">-</span><span class="n">c</span> 200 <span class="c">#监控所有进程</span>
+    <span class="n">command</span><span class="p">[</span><span class="n">check_users</span><span class="p">]</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_users</span> <span class="o">-</span><span class="n">w</span> <span class="mi">5</span> <span class="o">-</span><span class="n">c</span> <span class="mi">10</span> <span class="err">#监控登陆的用户数量</span>
+    <span class="n">command</span><span class="p">[</span><span class="n">check_load</span><span class="p">]</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_load</span> <span class="o">-</span><span class="n">w</span> <span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span> <span class="o">-</span><span class="n">c</span> <span class="mi">30</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">20</span> <span class="err">#监控</span><span class="n">CPU</span><span class="err">的负载</span>
+    <span class="n">command</span><span class="p">[</span><span class="n">check_sda2</span><span class="p">]</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_disk</span> <span class="o">-</span><span class="n">w</span> <span class="mi">20</span><span class="o">%</span> <span class="o">-</span><span class="n">c</span> <span class="mi">10</span><span class="o">%</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda2</span> <span class="err">#监控磁盘利用率，这里的</span><span class="n">sda2</span><span class="err">必须是实际的硬盘分区，可使用</span><span class="n">fdisk</span> <span class="err">–</span><span class="n">l</span><span class="err">查</span>
+    <span class="n">command</span><span class="p">[</span><span class="n">check_swap</span><span class="p">]</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="c1">//libexec/check_swap -w 20 -c 10 #监控交换空间</span>
+    <span class="n">command</span><span class="p">[</span><span class="n">check_zombie_procs</span><span class="p">]</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_procs</span> <span class="o">-</span><span class="n">w</span> <span class="mi">5</span> <span class="o">-</span><span class="n">c</span> <span class="mi">10</span> <span class="o">-</span><span class="n">s</span> <span class="n">Z</span> <span class="err">#监控进程中的僵尸进程</span>
+    <span class="n">command</span><span class="p">[</span><span class="n">check_total_procs</span><span class="p">]</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_procs</span> <span class="o">-</span><span class="n">w</span> <span class="mi">150</span> <span class="o">-</span><span class="n">c</span> <span class="mi">200</span> <span class="err">#监控所有进程</span>
 
-    注意：<span class="n">command</span>后面括号中的内容就是定义的变量，变量名可以任意指定，只需和服务器配置文件中的一致即可
+    <span class="err">注意：</span><span class="n">command</span><span class="err">后面括号中的内容就是定义的变量，变量名可以任意指定，只需和服务器配置文件中的一致即可</span>
 </pre></div>
 
 
 <h4>磁盘自动监控脚本</h4>
 <p>上面的check_sda2命令是对具体的某个分区空间进行监控，但因为每台Linux主机的磁盘分区状况都不一样，而且有多少个分区就需要定义多少个命令，所以通过自定义写一个shell脚本来监控所有的磁盘分区：</p>
 <h5>1、在客户端上创建脚本check_disk.sh</h5>
-<div class="codehilite"><pre><span class="c">#vi  /usr/local/nagios/libexec/check_disk.sh 写入如下内容</span>
+<div class="highlight"><pre>#vi  /usr/local/nagios/libexec/check_disk.sh 写入如下内容
 
-    <span class="c">#!/bin/bash</span>
-        <span class="n">row</span><span class="p">=</span>`<span class="n">df</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">P</span><span class="o">|</span><span class="n">wc</span> <span class="o">-</span><span class="n">l</span>`
-        <span class="n">status</span><span class="p">=</span>0
-        <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> `<span class="n">seq</span> 2 $<span class="n">row</span>`
-        <span class="k">do</span>
-                <span class="n">spare</span><span class="p">=</span>`<span class="n">df</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">P</span><span class="o">|</span><span class="n">sed</span> <span class="o">-</span><span class="n">n</span> <span class="s">&quot;$i&quot;</span><span class="n">p</span><span class="o">|</span><span class="n">awk</span> <span class="s">&#39;{print $4}&#39;</span>`
-                <span class="n">use_percentage</span><span class="p">=</span>`<span class="n">df</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">P</span><span class="o">|</span><span class="n">sed</span> <span class="o">-</span><span class="n">n</span> <span class="s">&quot;$i&quot;</span><span class="n">p</span><span class="o">|</span><span class="n">sed</span> <span class="o">-</span><span class="n">n</span> <span class="s">&quot;s/\%//&quot;</span><span class="n">p</span><span class="o">|</span><span class="n">awk</span> <span class="s">&#39;{print $5}&#39;</span>`
-                <span class="n">spare_percentage</span><span class="p">=</span>`<span class="n">expr</span> 100 <span class="o">-</span> $<span class="n">use_percentage</span>`
-                <span class="n">partition_name</span><span class="p">=</span>`<span class="n">df</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span><span class="n">P</span><span class="o">|</span><span class="n">sed</span> <span class="o">-</span><span class="n">n</span> <span class="s">&quot;$i&quot;</span><span class="n">p</span><span class="o">|</span><span class="n">awk</span> <span class="s">&#39;{print $6}&#39;</span>`
-                <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;$spare_percentage&quot;</span> <span class="o">-</span><span class="nb">lt</span> <span class="s">&quot;3&quot;</span>  <span class="p">];</span><span class="n">then</span>
-                    <span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="s">&quot;$partition_name CRITICAL ${spare_percentage}% $spare  &quot;</span>
-                    <span class="n">status</span><span class="p">[</span>$<span class="n">i</span><span class="p">]=</span>2
-                <span class="n">elif</span> <span class="p">[</span> <span class="s">&quot;$spare_percentage&quot;</span> <span class="o">-</span><span class="nb">lt</span> <span class="s">&quot;5&quot;</span> <span class="p">];</span><span class="n">then</span>
-                    <span class="n">echo</span> <span class="o">-</span><span class="n">n</span>  <span class="s">&quot;$partition_name WARNING! ${spare_percentage}% $spare  &quot;</span>
-                    <span class="n">status</span><span class="p">[</span>$<span class="n">i</span><span class="p">]=</span>1
-                <span class="k">else</span>
-                    <span class="n">echo</span> <span class="o">-</span><span class="n">n</span>  <span class="s">&quot;$partition_name OK ${spare_percentage}% $spare  &quot;</span>
-                    <span class="n">status</span><span class="p">[</span>$<span class="n">i</span><span class="p">]=</span>0
-                <span class="n">fi</span>
-        <span class="n">done</span>
-        <span class="n">zhuangtai</span><span class="p">=</span>0
-        <span class="k">for</span> <span class="n">j</span> <span class="n">in</span> `<span class="n">seq</span> 2 $<span class="n">row</span>`
-        <span class="k">do</span>
-                <span class="k">if</span> <span class="p">[</span> <span class="s">&quot;${status[$j]}&quot;</span> <span class="o">-</span><span class="nb">gt</span> <span class="s">&quot;$zhuangtai&quot;</span>  <span class="p">];</span><span class="n">then</span>
-                    <span class="n">zhuangtai</span><span class="p">=</span>$<span class="p">{</span><span class="n">status</span><span class="p">[</span>$<span class="n">j</span><span class="p">]}</span>
-                <span class="n">fi</span>
-        <span class="n">done</span>
-        <span class="nb">exit</span> $<span class="n">zhuangtai</span>
+    #!/bin/bash
+        row=`df -h -P|wc -l`
+        status=0
+        for i in `seq 2 <span class="nv">$row</span>`
+        do
+                spare=`df -h -P|sed -n &quot;<span class="nv">$i</span>&quot;p|awk &#39;{print $4}&#39;`
+                use_percentage=`df -h -P|sed -n &quot;<span class="nv">$i</span>&quot;p|sed -n &quot;s/\%//&quot;p|awk &#39;{print $5}&#39;`
+                spare_percentage=`expr 100 - <span class="nv">$use_percentage</span>`
+                partition_name=`df -h -P|sed -n &quot;<span class="nv">$i</span>&quot;p|awk &#39;{print $6}&#39;`
+                if [ &quot;<span class="nv">$spare_percentage</span>&quot; -lt &quot;3&quot;  ];then
+                    echo -n &quot;<span class="nv">$partition_name</span> CRITICAL <span class="cp">${</span><span class="n">spare_percentage</span><span class="cp">}</span>% <span class="nv">$spare</span>  &quot;
+                    status[<span class="nv">$i</span>]=2
+                elif [ &quot;<span class="nv">$spare_percentage</span>&quot; -lt &quot;5&quot; ];then
+                    echo -n  &quot;<span class="nv">$partition_name</span> WARNING! <span class="cp">${</span><span class="n">spare_percentage</span><span class="cp">}</span>% <span class="nv">$spare</span>  &quot;
+                    status[<span class="nv">$i</span>]=1
+                else
+                    echo -n  &quot;<span class="nv">$partition_name</span> OK <span class="cp">${</span><span class="n">spare_percentage</span><span class="cp">}</span>% <span class="nv">$spare</span>  &quot;
+                    status[<span class="nv">$i</span>]=0
+                fi
+        done
+        zhuangtai=0
+        for j in `seq 2 <span class="nv">$row</span>`
+        do
+                if [ &quot;<span class="cp">${</span><span class="n">status</span><span class="p">[</span><span class="err">$</span><span class="n">j</span><span class="p">]</span><span class="cp">}</span>&quot; -gt &quot;<span class="nv">$zhuangtai</span>&quot;  ];then
+                    zhuangtai=<span class="cp">${</span><span class="n">status</span><span class="p">[</span><span class="err">$</span><span class="n">j</span><span class="p">]</span><span class="cp">}</span>
+                fi
+        done
+        exit <span class="nv">$zhuangtai</span>
 </pre></div>
 
 
 <h5>2、修改该脚本的权限</h5>
-<div class="codehilite"><pre><span class="c">#chmod +x  /usr/local/nagios/libexec/check_disk.sh</span>
+<div class="highlight"><pre><span class="c">#chmod +x  /usr/local/nagios/libexec/check_disk.sh</span>
 </pre></div>
 
 
 <h5>3、编辑/usr/local/nagios/etc/nrpe.cfg文件</h5>
-<div class="codehilite"><pre><span class="c">#vi /usr/local/nagios/etc/nrpe.cfg  # 加入一行</span>
-    <span class="n">command</span><span class="p">[</span><span class="n">check_disk</span><span class="p">]=</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_disk</span><span class="p">.</span><span class="n">sh</span>
+<div class="highlight"><pre><span class="cp">#vi /usr/local/nagios/etc/nrpe.cfg  # 加入一行</span>
+    <span class="n">command</span><span class="p">[</span><span class="n">check_disk</span><span class="p">]</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nagios</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">check_disk</span><span class="p">.</span><span class="n">sh</span>
 
-<span class="c">#killall nrpe</span>
-<span class="c">#/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg -d  //重启nrpe服务</span>
+<span class="cp">#killall nrpe</span>
+<span class="cp">#/usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg -d  </span><span class="c1">//重启nrpe服务</span>
 </pre></div>
 
 
 <h5>4、检测脚本是否运行正常</h5>
 <p>在Nagios服务器端执行如下命令：</p>
-<div class="codehilite"><pre><span class="c">#/usr/local/nagios/libexec/check_nrpe -H 192.168.80.201 -c check_disk  //192.168.80.201为客户机IP地址</span>
+<div class="highlight"><pre><span class="c">#/usr/local/nagios/libexec/check_nrpe -H 192.168.80.201 -c check_disk  //192.168.80.201为客户机IP地址</span>
 </pre></div>
 
 
 <p>如果正常的话，会输出一行磁盘检测的数据，否则可能会报错。</p>
 <h5>5、在服务器端上添加相应的service</h5>
-<div class="codehilite"><pre><span class="c">#cd  /usr/local/nagios/etc/</span>
-<span class="c">#vi  services.cfg   # 加入如下内容：</span>
+<div class="highlight"><pre><span class="cp">#cd  /usr/local/nagios/etc/</span>
+<span class="cp">#vi  services.cfg   # 加入如下内容：</span>
     <span class="n">define</span> <span class="n">service</span><span class="p">{</span>
         <span class="n">use</span>     <span class="n">generic</span><span class="o">-</span><span class="n">service</span>
-        <span class="n">host_name</span>       192<span class="p">.</span>168<span class="p">.</span>80<span class="p">.</span>201
+        <span class="n">host_name</span>       <span class="mf">192.168.80.201</span>
         <span class="n">service_description</span>     <span class="n">check_disk</span>
         <span class="n">check_command</span>           <span class="n">check_nrpe</span><span class="o">!</span><span class="n">check_disk</span>
-        <span class="n">max_check_attempts</span> 5
-        <span class="n">normal_check_interval</span> 1
+        <span class="n">max_check_attempts</span> <span class="mi">5</span>
+        <span class="n">normal_check_interval</span> <span class="mi">1</span>
     <span class="p">}</span>
 </pre></div>
 
 
 <h5>6、在服务器端重启nagios服务</h5>
-<div class="codehilite"><pre><span class="c">#service nagios restart</span>
+<div class="highlight"><pre><span class="c">#service nagios restart</span>
 </pre></div>
 
 
@@ -210,7 +210,7 @@
 <p><img alt="验证服务是否正常启动" src="http://loosky.net/Upload/2013/04/NSClientplus-install-step2.png" /></p>
 <p><img alt="允许服务与桌面交互" src="http://loosky.net/Upload/2013/04/NSClientplus-install-step3.png" /></p>
 <h4>3、验证NSClient++端口</h4>
-<div class="codehilite"><pre>在<span class="n">Windows</span>的命令行中输入：<span class="n">netstat</span> <span class="o">-</span><span class="n">an</span>
+<div class="highlight"><pre><span class="err">在</span><span class="n">Windows</span><span class="err">的命令行中输入：</span><span class="n">netstat</span> <span class="o">-</span><span class="n">an</span>
 </pre></div>
 
 
@@ -222,7 +222,7 @@
 <p>解决办法：
 方法1、在服务器端也开启IPv6地址，并在客户机上添加服务器的的IP地址。修改安装目录下的nsclient.ini，在allowed_hosts选项中加入服务器的IPv6地址，然后重启NSClient++服务</p>
 <p>方法2、在Windows的命令行界面下，进入安装目录，输入：</p>
-<div class="codehilite"><pre><span class="n">nscp</span> <span class="n">settings</span> <span class="o">--</span><span class="n">generate</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">defaults</span> <span class="o">--</span><span class="n">advanced</span>
+<div class="highlight"><pre><span class="n">nscp</span> <span class="n">settings</span> <span class="o">--</span><span class="n">generate</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">defaults</span> <span class="o">--</span><span class="n">advanced</span>
 </pre></div>
 
 
@@ -231,47 +231,47 @@
 <h4>5、配置Nagios</h4>
 <p>在服务器上定义相应的监控项目即可实现对Windows主机的监控。</p>
 <p>示例：</p>
-<div class="codehilite"><pre><span class="c">#############Windows Nsclient############</span>
+<div class="highlight"><pre><span class="cp">#############Windows Nsclient############</span>
 <span class="n">define</span> <span class="n">service</span><span class="p">{</span>
         <span class="n">use</span>                     <span class="n">generic</span><span class="o">-</span><span class="n">service</span>
         <span class="n">hostgroup_name</span>          <span class="n">windows</span><span class="o">-</span><span class="n">servers</span>
         <span class="n">service_description</span>     <span class="n">Uptime</span>
-        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">UPTIME</span>   <span class="o">--&gt;</span> 系统运行时间
+        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">UPTIME</span>   <span class="o">--&gt;</span> <span class="err">系统运行时间</span>
 <span class="p">}</span>
 
 <span class="n">define</span> <span class="n">service</span><span class="p">{</span>
         <span class="n">use</span>                     <span class="n">generic</span><span class="o">-</span><span class="n">service</span>
         <span class="n">hostgroup_name</span>          <span class="n">windows</span><span class="o">-</span><span class="n">servers</span>
         <span class="n">service_description</span>     <span class="n">CPU</span> <span class="n">Load</span>
-        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">CPULOAD</span><span class="o">!-</span><span class="n">l</span> 5<span class="p">,</span>80<span class="p">,</span>90 <span class="o">--&gt;</span> 系统运行负载
+        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">CPULOAD</span><span class="o">!-</span><span class="n">l</span> <span class="mi">5</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">90</span> <span class="o">--&gt;</span> <span class="err">系统运行负载</span>
 <span class="p">}</span>
 
 <span class="n">define</span> <span class="n">service</span><span class="p">{</span>
         <span class="n">use</span>                     <span class="n">generic</span><span class="o">-</span><span class="n">service</span>
         <span class="n">hostgroup_name</span>          <span class="n">windows</span><span class="o">-</span><span class="n">servers</span>
         <span class="n">service_description</span>     <span class="n">Memory</span> <span class="n">Usage</span>
-        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">MEMUSE</span><span class="o">!-</span><span class="n">w</span> 90 <span class="o">-</span><span class="n">c</span> 95  <span class="o">--&gt;</span>  系统内存占用量
+        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">MEMUSE</span><span class="o">!-</span><span class="n">w</span> <span class="mi">90</span> <span class="o">-</span><span class="n">c</span> <span class="mi">95</span>  <span class="o">--&gt;</span>  <span class="err">系统内存占用量</span>
 <span class="p">}</span>
 
 <span class="n">define</span> <span class="n">service</span><span class="p">{</span>
         <span class="n">use</span>                     <span class="n">generic</span><span class="o">-</span><span class="n">service</span>
         <span class="n">hostgroup_name</span>          <span class="n">windows</span><span class="o">-</span><span class="n">servers</span>
-        <span class="n">service_description</span>     <span class="n">C</span><span class="p">:</span><span class="o">\</span> <span class="n">Drive</span> <span class="n">Space</span>
-        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">USEDDISKSPACE</span><span class="o">!-</span><span class="n">l</span> <span class="n">c</span> <span class="o">-</span><span class="n">w</span> 80 <span class="o">-</span><span class="n">c</span> 90 <span class="o">--&gt;</span>系统<span class="n">C</span>盘磁盘空间
+        <span class="n">service_description</span>     <span class="n">C</span><span class="o">:</span><span class="err">\</span> <span class="n">Drive</span> <span class="n">Space</span>
+        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">USEDDISKSPACE</span><span class="o">!-</span><span class="n">l</span> <span class="n">c</span> <span class="o">-</span><span class="n">w</span> <span class="mi">80</span> <span class="o">-</span><span class="n">c</span> <span class="mi">90</span> <span class="o">--&gt;</span><span class="err">系统</span><span class="n">C</span><span class="err">盘磁盘空间</span>
 <span class="p">}</span>
 
 <span class="n">define</span> <span class="n">service</span><span class="p">{</span>
         <span class="n">use</span>                     <span class="n">generic</span><span class="o">-</span><span class="n">service</span>
         <span class="n">hostgroup_name</span>          <span class="n">windows</span><span class="o">-</span><span class="n">servers</span>
-        <span class="n">service_description</span>     <span class="n">D</span><span class="p">:</span><span class="o">\</span> <span class="n">Drive</span> <span class="n">Space</span>
-        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">USEDDISKSPACE</span><span class="o">!-</span><span class="n">l</span> <span class="n">d</span> <span class="o">-</span><span class="n">w</span> 80 <span class="o">-</span><span class="n">c</span> 90  <span class="o">--&gt;</span>系统<span class="n">D</span>盘磁盘空间
-｝
+        <span class="n">service_description</span>     <span class="n">D</span><span class="o">:</span><span class="err">\</span> <span class="n">Drive</span> <span class="n">Space</span>
+        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">USEDDISKSPACE</span><span class="o">!-</span><span class="n">l</span> <span class="n">d</span> <span class="o">-</span><span class="n">w</span> <span class="mi">80</span> <span class="o">-</span><span class="n">c</span> <span class="mi">90</span>  <span class="o">--&gt;</span><span class="err">系统</span><span class="n">D</span><span class="err">盘磁盘空间</span>
+<span class="err">｝</span>
 
 <span class="n">define</span> <span class="n">service</span><span class="p">{</span>
         <span class="n">use</span>                     <span class="n">generic</span><span class="o">-</span><span class="n">service</span>
-        <span class="n">host_name</span>               192<span class="p">.</span>168<span class="p">.</span>185<span class="p">.</span>4
+        <span class="n">host_name</span>               <span class="mf">192.168.185.4</span>
         <span class="n">service_description</span>     <span class="n">MMLogOrder</span>
-        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">PROCSTATE</span><span class="o">!-</span><span class="n">d</span> <span class="n">SHOWALL</span> <span class="o">-</span><span class="n">l</span> <span class="n">MakeMM</span><span class="p">.</span><span class="n">exe</span>  <span class="o">--&gt;</span>系统管理器中<span class="n">MakeMM</span><span class="p">.</span><span class="n">exe</span>进程存活性
+        <span class="n">check_command</span>           <span class="n">check_nt</span><span class="o">!</span><span class="n">PROCSTATE</span><span class="o">!-</span><span class="n">d</span> <span class="n">SHOWALL</span> <span class="o">-</span><span class="n">l</span> <span class="n">MakeMM</span><span class="p">.</span><span class="n">exe</span>  <span class="o">--&gt;</span><span class="err">系统管理器中</span><span class="n">MakeMM</span><span class="p">.</span><span class="n">exe</span><span class="err">进程存活性</span>
 <span class="p">}</span>
 </pre></div>
     </div><!-- /.entry-content -->
@@ -295,153 +295,153 @@
                         <h2>Tags</h2>
                         <ul>
                         <li>
-    <a href="../../../../tag/Pelican.html">
-       Pelican
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/吞吐量.html">
-       吞吐量
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Linux.html">
-       Linux
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/use-Redis-to-Accelerate-WordPress.html">
-       use-Redis-to-Accelerate-WordPress
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/CentOS.html">
-       CentOS
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/mesh.html">
-       mesh
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/分区.html">
-       分区
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Git.html">
-       Git
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/PNP.html">
-       PNP
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Mysql.html">
-       Mysql
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/OpenWRT.html">
-       OpenWRT
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/web.html">
-       web
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/WordPress.html">
-       WordPress
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Python.html">
-       Python
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/scp.html">
-       scp
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Google Reader.html">
-       Google Reader
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/MESH.html">
-       MESH
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/git.html">
-       git
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Nagios.html">
-       Nagios
-    </a>
-</li>
-<li>
-    <a href="../../../../tag/Loosky.html">
+    <a href="http://loosky.com/tag/Loosky.html">
        Loosky
     </a>
 </li>
 <li>
-    <a href="../../../../tag/ROBIN.html">
-       ROBIN
+    <a href="http://loosky.com/tag/open-mesh.html">
+       open-mesh
     </a>
 </li>
 <li>
-    <a href="../../../../tag/github.html">
-       github
+    <a href="http://loosky.com/tag/Nginx.html">
+       Nginx
     </a>
 </li>
 <li>
-    <a href="../../../../tag/网络.html">
-       网络
+    <a href="http://loosky.com/tag/Google Reader.html">
+       Google Reader
     </a>
 </li>
 <li>
-    <a href="../../../../tag/Tiny Tiny RSS.html">
-       Tiny Tiny RSS
+    <a href="http://loosky.com/tag/web.html">
+       web
     </a>
 </li>
 <li>
-    <a href="../../../../tag/WMN.html">
+    <a href="http://loosky.com/tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PHP.html">
+       PHP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WMN.html">
        WMN
     </a>
 </li>
 <li>
-    <a href="../../../../tag/参考文献.html">
-       参考文献
+    <a href="http://loosky.com/tag/Nagios.html">
+       Nagios
     </a>
 </li>
 <li>
-    <a href="../../../../tag/SQL.html">
-       SQL
+    <a href="http://loosky.com/tag/Python.html">
+       Python
     </a>
 </li>
 <li>
-    <a href="../../../../tag/Google.html">
-       Google
+    <a href="http://loosky.com/tag/scp.html">
+       scp
     </a>
 </li>
 <li>
-    <a href="../../../../tag/.html">
+    <a href="http://loosky.com/tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Apache.html">
+       Apache
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/.html">
        
     </a>
 </li>
 <li>
-    <a href="../../../../tag/open-mesh.html">
-       open-mesh
+    <a href="http://loosky.com/tag/CutyCapt.html">
+       CutyCapt
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/TCPDF.html">
+       TCPDF
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/参考文献.html">
+       参考文献
     </a>
 </li>
                   

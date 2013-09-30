@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>长微博生成（html to image）原理</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="http://loosky.com/theme/css/main.css" type="text/css" />
+                
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie.css"/>
+                <script src="http://loosky.com/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie6.css"/><![endif]-->
+       <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
+</head>
+
+<body id="index" class="home">
+<a href="http://loosky.net">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://loosky.com/theme/images/forkme_right_red.png" alt="To Loosky.net" />
+</a>
+        <header id="banner" class="body">
+                <h1><a href="http://loosky.com">Loosky's Blog </a></h1>
+                <nav><ul>
+                                                    <li ><a href="http://loosky.com/category/Blog.html">Blog</a></li>
+                                    <li ><a href="http://loosky.com/category/Research.html">Research</a></li>
+                                    <li class="active"><a href="http://loosky.com/category/Technology.html">Technology</a></li>
+                                <li><a href="http://loosky.com/archives.html">Archives</a></li>
+                                                    <li><a href="http://loosky.com/pages/about.html">About</a></li>
+                                    <li><a href="http://loosky.com/pages/search.html">Search</a></li>
+                                                </ul></nav>
+        </header><!-- /#banner -->
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="Technology/2013/10/01/changweibo.html" rel="bookmark"
+           title="Permalink to 长微博生成（html to image）原理">长微博生成（html to image）原理</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2013-10-01T00:00:00">
+                Tue 01 October 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="http://loosky.com/author/loosky.html">Loosky</a>
+        </address>
+        <p>In <a href="http://loosky.com/category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="http://loosky.com/tag/Apache.html">Apache</a><a href="http://loosky.com/tag/CutyCapt.html">CutyCapt</a><a href="http://loosky.com/tag/Linux.html">Linux</a><a href="http://loosky.com/tag/Nginx.html">Nginx</a><a href="http://loosky.com/tag/PHP.html">PHP</a><a href="http://loosky.com/tag/TCPDF.html">TCPDF</a></p></footer><!-- /.post-info -->      <p>在平时工作中有一些需求，简单而言就是需要将一些内容生成图片。简单的内容通过PhotoShop处理还行，但是类似于带表格等的内容，每次都通过PhotoShop进行处理太浪费时间。网上有很多类似于长微博等的生成工具，生成简单的图片还行，但是要使用富文本生成图片，则多需要money，于是便自己研究了一下基于PHP的实现。</p>
+<p>首先展示一下<strong>演示效果</strong>：<a href="http://loosky.cn/">http://loosky.cn/</a></p>
+<h3>需求及原理</h3>
+<p>基于PHP，将html内容生成图片（PNG，JPEG等）</p>
+<h3>实现方法</h3>
+<h4>1. 直接通过图形函数生成</h4>
+<p>可以直接使用PHP中自带的<a href="http://php.net/manual/zh/book.image.php">GD库</a>或<a href="http://php.net/manual/zh/book.imagick.php">imagick</a>，将文字内容转换成为图片。这在处理纯文字内容的时候是很给力的，但是对于富文本内容来说却很吃力了，很难处理好。目前开源的有<a href="https://code.google.com/p/yenohblog/downloads/detail?name=painty.zip&amp;can=2&amp;q=">painty</a>等，可以支持p、img等几个简单的html标签。</p>
+<h4>2. html-&gt;pdf-&gt;png</h4>
+<p>该方式即首先将html内容生成pdf文档，再将pdf文档转换成为图片。</p>
+<p><strong>html to pdf</strong>：目前较为成熟的方案包括<a href="http://loosky.net/archives/1963.html">tcpdf</a>，<a href="http://html2pdf.fr/en/default">HTML2PDF</a>等，其实HTML2PDF也是使用的tcpdf的内核;</p>
+<p><strong>pdf to png</strong>：可以通过<a href="http://php.net/manual/zh/book.imagick.php">imagick php</a>扩展。</p>
+<p>目前基于该种方式的开源代码有<a href="http://buffernow.com/html-to-image-php-script/">html to image</a>，其原理如下图所示。</p>
+<p><img alt="html to image示意图" src="http://loosky.net/Upload/2013/09/html-to-image-php-script.png" /></p>
+<p>核心代码为（摘自：<a href="http://buffernow.com/html-to-image-php-script/">http://buffernow.com/html-to-image-php-script/</a>）：</p>
+<div class="highlight"><pre>    <span class="c1">//获取某个URL地址的内容</span>
+    <span class="n">echo</span> <span class="nf">file_get_contents</span><span class="p">(</span><span class="err">&#39;</span><span class="n">http</span><span class="o">://</span><span class="n">loosky</span><span class="p">.</span><span class="n">net</span><span class="o">/</span><span class="err">&#39;</span><span class="p">);</span>
+
+    <span class="c1">//将内容转换成pdf文档</span>
+    <span class="err">$</span><span class="n">html2pdf</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HTML2PDF</span><span class="p">(</span><span class="sc">&#39;P&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">A4</span><span class="err">&#39;</span><span class="p">);</span>
+    <span class="err">$</span><span class="n">html2pdf</span><span class="o">-&gt;</span><span class="n">writeHTML</span><span class="p">(</span><span class="err">$</span><span class="n">html_content</span><span class="p">);</span>
+    <span class="err">$</span><span class="n">file</span> <span class="o">=</span> <span class="err">$</span><span class="n">html2pdf</span><span class="o">-&gt;</span><span class="n">Output</span><span class="p">(</span><span class="err">&#39;</span><span class="n">temp</span><span class="p">.</span><span class="n">pdf</span><span class="sc">&#39;,&#39;</span><span class="n">F</span><span class="err">&#39;</span><span class="p">);</span>
+
+    <span class="c1">//将pdf文档转换成图片</span>
+    <span class="err">$</span><span class="n">im</span> <span class="o">=</span> <span class="n">new</span> <span class="n">imagick</span><span class="p">(</span><span class="err">&#39;</span><span class="n">temp</span><span class="p">.</span><span class="n">pdf</span><span class="err">&#39;</span><span class="p">);</span>
+    <span class="err">$</span><span class="n">im</span><span class="o">-&gt;</span><span class="n">setImageFormat</span><span class="p">(</span> <span class="s">&quot;jpg&quot;</span> <span class="p">);</span>
+    <span class="err">$</span><span class="n">img_name</span> <span class="o">=</span> <span class="n">time</span><span class="p">().</span><span class="err">&#39;</span><span class="p">.</span><span class="n">jpg</span><span class="err">&#39;</span><span class="p">;</span>
+    <span class="err">$</span><span class="n">im</span><span class="o">-&gt;</span><span class="n">setSize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">600</span><span class="p">);</span>
+    <span class="err">$</span><span class="n">im</span><span class="o">-&gt;</span><span class="n">writeImage</span><span class="p">(</span><span class="err">$</span><span class="n">img_name</span><span class="p">);</span>
+    <span class="err">$</span><span class="n">im</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+    <span class="err">$</span><span class="n">im</span><span class="o">-&gt;</span><span class="n">destroy</span><span class="p">();</span>
+</pre></div>
+
+
+<p>这里使用了HTML2PDF的代码，其实个人建议使用tcpdf的，毕竟tcpdf的版本更新，功能更为强大。经过实际测试，tcpdf对中文、html格式等的支持更好，相对而言，HTML2PDF有点惨不忍睹，较长的中文会出现无法自动换行等基本错误。</p>
+<p>但同时，这种方法存在一个较大的缺陷，当插入了图片等媒体后，经常会出现一页内无法放进去需要重新在另外一页进行排版的问题，从而生成的图片就会有较大的空白区域；同时每页的内容如果没有完全排满的话，生成的图片同样存在较大的空白区域，十分不美观。</p>
+<p>因此，并不推荐这种方式。</p>
+<h4>3. 通过截图</h4>
+<p>该种方式类似于采用浏览器的截图功能，直接将某个URL地址的内容进行截图。相对前面两种方式而言：第一，对于富文本的html内容渲染更为方便、简单，直接生成html代码即可；第二，内容排版更为合理，不会出现pdf文档中存在的空白区域等问题；第三，对于中文的支持更为友好。</p>
+<p>目前主要的开源项目包括：</p>
+<p><strong><a href="http://khtml2png.sourceforge.net/">khtml2png</a></strong>：基于Linux平台，可以将html转成图片格式，有如下要求：</p>
+<div class="highlight"><pre><span class="n">g</span><span class="o">++</span>
+<span class="n">KDE</span> <span class="mf">3.</span><span class="n">x</span>
+<span class="n">kdelibs</span> <span class="k">for</span> <span class="n">KDE</span> <span class="mf">3.</span><span class="n">x</span> <span class="p">(</span><span class="n">kdelibs4</span><span class="o">-</span><span class="n">dev</span><span class="p">)</span>
+<span class="n">zlib</span> <span class="p">(</span><span class="n">zlib1g</span><span class="o">-</span><span class="n">dev</span><span class="p">)</span>
+<span class="n">cmake</span>
+</pre></div>
+
+
+<p>对于服务器而言，尤其是资源比较吃紧的VPS而言，安装一个KED有点花销太大。</p>
+<p><strong><a href="http://cutycapt.sourceforge.net/">CutyCapt</a></strong>及其兄弟版本<strong><a href="http://iecapt.sourceforge.net/">IECapt</a></strong>：其中CutyCapt是基于Linux、Windows平台，IECapt基于Windows平台，支持svg,ps,pdf,itext,html,rtree,png,jpeg,mng,tiff,gif,bmp,ppm,xbm,xpm等多种格式，使用均较为简单，直接使用如下命令。</p>
+<p><strong>注意：CutyCapt的可执行命令在Windows平台和Linux平台下的大小写不太一致。</strong></p>
+<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">CutyCapt</span> <span class="o">--</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.example.org --out=example.png</span>
+
+<span class="n">IECapt</span> <span class="o">--</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.example.org/ --out=localfile.png</span>
+</pre></div>
+
+
+<p>它的部署要求是：</p>
+<div class="highlight"><pre><span class="n">CutyCapt</span> <span class="n">depends</span> <span class="n">on</span> <span class="n">Qt</span> <span class="mf">4.4.0</span><span class="o">+</span><span class="p">.</span>
+</pre></div>
+
+
+<p>但是它比khtml2png好的一点是它可以不用装X server，可以用Xvfb这种轻量级的东西，然后可以这样使用：</p>
+<div class="highlight"><pre><span class="n">xvfb</span><span class="o">-</span><span class="n">run</span> <span class="o">--</span><span class="n">server</span><span class="o">-</span><span class="n">args</span><span class="o">=</span><span class="s">&quot;-screen 0, 1024x768x24&quot;</span> <span class="p">.</span><span class="o">/</span><span class="n">CutyCapt</span> <span class="o">--</span><span class="n">url</span><span class="o">=</span><span class="p">...</span> <span class="o">--</span><span class="n">out</span><span class="o">=</span><span class="p">...</span>
+</pre></div>
+
+
+<p>通过对各种实现方式进行实际的对比，本人倾向于采用CutyCapt的方式。</p>
+<h3>具体实现过程</h3>
+<p>1、如<a href="http://loosky.cn/">http://loosky.cn/</a>首页所示，通过嵌入富文本编辑器，提供富文本编辑功能，同时可以提供对作者信息、版权标记、图片大小格式等的定制。</p>
+<p>2、将提交的内容进行过滤，并生成htm/html文档，通过CSS对生成的文档内容进行格式渲染。</p>
+<p>3、通过PHP执行CutyCapt命令，对生成的网页文件进行截图。</p>
+<blockquote>
+<p>到这一步已经完全可以实现html内容生成图片的功能了，但CutyCapt生成的图片相对而言会比较大，因此还可以进一步进行优化。</p>
+</blockquote>
+<p>4、通过imagick对生成的图片进行优化</p>
+<p>imagick具有强大的图片处理功能，可以优化CutyCapt生成的图片的质量及大小，同时还可以方便地进行加水印等操作。</p>
+<h3>开发经验分享</h3>
+<p>在实际开发过程中碰到了各种问题，进行一些分享。</p>
+<h4>1、操作系统选择</h4>
+<p>CutyCapt及imagick都有Linux和Windows的版本，在Windows下面的开发、运行不存在较大的问题，按照正常步骤进行安装配置即可。</p>
+<p>在Linux平台下，CutyCapt的安装教程可参考<a href="http://www.cszhi.com/20130305/cutycapt.html">http://www.cszhi.com/20130305/cutycapt.html</a>：</p>
+<p><strong>centos下安装cutycapt：</strong></p>
+<p>（1）安装qt47</p>
+<p>增加qt47的源</p>
+<div class="highlight"><pre><span class="n">vim</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">yum</span><span class="p">.</span><span class="n">repos</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">atrpms</span><span class="p">.</span><span class="n">repo</span>
+
+<span class="c1">//加入如下内容</span>
+<span class="p">[</span><span class="n">atrpms</span><span class="p">]</span>
+<span class="n">name</span><span class="o">=</span><span class="n">CentOS</span> <span class="err">$</span><span class="n">releasever</span> <span class="err">–</span> <span class="err">$</span><span class="n">basearch</span> <span class="err">–</span> <span class="n">ATrpms</span>
+<span class="n">baseurl</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//dl.atrpms.net/el$releasever-$basearch/atrpms/stable</span>
+<span class="n">gpgkey</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//ATrpms.net/RPM-GPG-KEY.atrpms</span>
+<span class="n">gpgcheck</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">enabled</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="p">[</span><span class="n">atrpms</span><span class="o">-</span><span class="n">testing</span><span class="p">]</span>
+<span class="n">name</span><span class="o">=</span><span class="n">CentOS</span> <span class="err">$</span><span class="n">releasever</span> <span class="err">–</span> <span class="err">$</span><span class="n">basearch</span> <span class="o">-</span> <span class="n">ATrpms</span> <span class="n">testing</span>
+<span class="n">baseurl</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//dl.atrpms.net/el$releasever-$basearch/atrpms/testing</span>
+<span class="n">gpgkey</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//ATrpms.net/RPM-GPG-KEY.atrpms</span>
+<span class="n">gpgcheck</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">enabled</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="c1">//进行安装</span>
+<span class="n">yum</span> <span class="n">update</span>
+<span class="n">yum</span> <span class="n">install</span> <span class="n">qt47</span>
+<span class="n">yum</span> <span class="n">install</span> <span class="n">qt47</span><span class="o">-</span><span class="n">devel</span>
+<span class="n">yum</span> <span class="n">install</span> <span class="n">qt47</span><span class="o">-</span><span class="n">webkit</span>
+<span class="n">yum</span> <span class="n">install</span> <span class="n">qt47</span><span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">devel</span>
+</pre></div>
+
+
+<p>2、安装cutycapt</p>
+<div class="highlight"><pre><span class="n">yum</span> <span class="n">install</span> <span class="n">svn</span>
+<span class="n">svn</span> <span class="n">co</span> <span class="n">https</span><span class="o">:</span><span class="c1">//cutycapt.svn.sourceforge.net/svnroot/cutycapt</span>
+<span class="n">mv</span> <span class="n">cutycapt</span><span class="o">/</span><span class="n">CutyCapt</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">cutycapt</span>
+<span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">cutycapt</span>
+<span class="n">qmake</span>
+<span class="n">qmake</span><span class="o">-</span><span class="n">qt47</span>
+</pre></div>
+
+
+<p>3、安装xvfb</p>
+<div class="highlight"><pre><span class="n">yum</span> <span class="n">install</span> <span class="n">Xvfb</span>
+</pre></div>
+
+
+<p>4、测试cutycapt截图</p>
+<div class="highlight"><pre><span class="n">xvfb</span><span class="o">-</span><span class="n">run</span> <span class="o">--</span><span class="n">server</span><span class="o">-</span><span class="n">args</span><span class="o">=</span><span class="s">&quot;-screen 0, 1024x768x24&quot;</span> <span class="n">CutyCapt</span> <span class="o">--</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.baidu.com --out=baidu.png</span>
+</pre></div>
+
+
+<p>5、将xvfb置入后台运行</p>
+<div class="highlight"><pre><span class="n">Xvfb</span> <span class="o">-</span><span class="n">fp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">fonts</span> <span class="o">:</span><span class="mi">0</span> <span class="o">-</span><span class="n">screen</span> <span class="mi">0</span> <span class="mi">1024</span><span class="n">x768x24</span> <span class="o">&amp;</span>
+<span class="n">DISPLAY</span><span class="o">=:</span><span class="mi">0</span> <span class="p">.</span><span class="o">/</span><span class="n">CutyCapt</span> <span class="o">--</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.baidu.com --out=baidu.png</span>
+</pre></div>
+
+
+<p><strong>ubuntu下安装cutycapt</strong></p>
+<p>1、两条命令搞定</p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">cutycapt</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">xvfb</span>
+</pre></div>
+
+
+<p>2、测试截图</p>
+<div class="highlight"><pre><span class="n">xvfb</span><span class="o">-</span><span class="n">run</span> <span class="o">--</span><span class="n">server</span><span class="o">-</span><span class="n">args</span><span class="o">=</span><span class="s">&quot;-screen 0, 1024x768x24&quot;</span> <span class="n">CutyCapt</span> <span class="o">--</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.baidu.com --out=baidu.png</span>
+</pre></div>
+
+
+<p>中文乱码问题：</p>
+<p>将windows下的中文字体上传至/usr/share/fonts目录，执行下命令fc-cache即可。</p>
+<p>在这里，作者想说的是，尽量选择Ubuntu吧，安装方便；更重要的是，CentOS下面会出现各种问题，如<strong>CutyCapt: cannot connect to X server :99</strong>等，会让你非常郁闷，我甚至安装了新的包含Gnome、KDE桌面环境的操作系统仍无法解决，而在Ubuntu下面几乎不存在任何问题。</p>
+<h4>2、Web服务器的选择</h4>
+<p>因为截图功能涉及到PHP需要执行操作系统的CutyCapt命令，可以通过system()或者exec()函数。</p>
+<p>作者分别使用了apache和Nginx两种Web服务器，在Nginx下会出现执行调用CutyCapt的PHP脚本无法运行的情况，会遇到比较麻烦的权限问题，<a href="http://alfred-long.iteye.com/blog/1578904">http://alfred-long.iteye.com/blog/1578904</a>中提供了一种解决方案，但作者没有测试成功。使用apache服务器则是一路畅通，不存在这个问题。</p>
+<p>因此，作者建议选择<strong>Ubuntu+apache</strong>的组合，千万不要选择<strong>CentOS+Nginx</strong>，需要解决的麻烦问题太多，从而也容易造成一些不安全的因素。</p>
+<p>安装代码如下：</p>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">apache2</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">php5</span> <span class="n">libapache2</span><span class="o">-</span><span class="n">mod</span><span class="o">-</span><span class="n">php5</span>
+</pre></div>
+
+
+<h4>3、Ubuntu中安装imagick</h4>
+<div class="highlight"><pre><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">php5</span><span class="o">-</span><span class="n">dev</span> <span class="n">php5</span><span class="o">-</span><span class="n">cli</span> <span class="n">php</span><span class="o">-</span><span class="n">pear</span>   <span class="c1">//安装支持环境</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">imagemagick</span>   <span class="c1">//有可能不是最新版本，需要通过源代码安装最新版本</span>
+
+<span class="c1">//源代码方式安装http://www.imagemagick.org/script/download.php</span>
+<span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span> 
+<span class="n">wget</span> <span class="n">ftp</span><span class="o">:</span><span class="c1">//ftp.kddlabs.co.jp/graphics/ImageMagick/ImageMagick-6.8.7-0.tar.gz</span>
+<span class="n">tar</span> <span class="n">xzvf</span> <span class="n">ImageMagick</span><span class="o">-</span><span class="mf">6.8.7</span><span class="o">-</span><span class="mf">0.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">ImageMagick</span><span class="o">-</span><span class="mf">6.8.7</span><span class="o">-</span><span class="mi">0</span><span class="o">/</span>
+<span class="p">.</span><span class="o">/</span><span class="n">configure</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">install</span>
+
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">graphicsmagick</span><span class="o">-</span><span class="n">libmagick</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">compat</span>
+<span class="n">pecl</span> <span class="n">install</span> <span class="n">imagick</span>
+
+<span class="n">echo</span> <span class="n">extension</span><span class="o">=</span><span class="n">imagick</span><span class="p">.</span><span class="n">so</span> <span class="o">&gt;&gt;/</span><span class="n">etc</span><span class="o">/</span><span class="n">php5</span><span class="o">/</span><span class="n">conf</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">imagick</span><span class="p">.</span><span class="n">ini</span>
+
+<span class="n">service</span> <span class="n">apache2</span> <span class="n">restart</span>
+</pre></div>
+
+
+<p><strong>常见错误：</strong></p>
+<p>在运行pecl install imagick 时有以下出错提示：</p>
+<div class="highlight"><pre><span class="n">checking</span> <span class="k">if</span> <span class="n">ImageMagick</span> <span class="n">version</span> <span class="n">is</span> <span class="n">at</span> <span class="n">least</span> <span class="mf">6.2.4</span><span class="p">...</span> <span class="n">configure</span><span class="o">:</span> <span class="n">error</span><span class="o">:</span> <span class="n">no</span><span class="p">.</span> <span class="n">You</span> <span class="n">need</span> <span class="n">at</span> <span class="n">least</span> <span class="n">Imagemagick</span> <span class="n">version</span> <span class="mf">6.2.4</span> <span class="n">to</span> <span class="n">use</span> <span class="n">Imagick</span><span class="p">.</span>
+<span class="nl">ERROR:</span> <span class="err">`</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pear</span><span class="o">/</span><span class="n">temp</span><span class="o">/</span><span class="n">imagick</span><span class="o">/</span><span class="n">configure</span> <span class="o">--</span><span class="n">with</span><span class="o">-</span><span class="n">imagick</span><span class="o">=</span><span class="n">hjw</span><span class="err">&#39;</span> <span class="n">failed</span>
+</pre></div>
+
+
+<p>根据提示是没有安装Imagemagick或者Imagemagick版本不够，可以通过源代码的方式安装最新版本的Imagemagick。</p>
+<h4>4、Linux平台下的字体渲染</h4>
+<p>可以将Windows平台下的雅黑、宋体、开题、黑体等常用中文字体安装到Ubuntu系统中，避免出现截图中的字体不好看的情况，同时也满足对富文本编辑中支持的字体进行渲染。</p>
+    </div><!-- /.entry-content -->
+        <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "Technology/2013/10/01/changweibo.html";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://looskyblog.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+    
+  </article>
+</section>
+        <section id="extras" class="body">
+        <div class="tags">
+                        <h2>Tags</h2>
+                        <ul>
+                        <li>
+    <a href="http://loosky.com/tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Nginx.html">
+       Nginx
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Google Reader.html">
+       Google Reader
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/web.html">
+       web
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PHP.html">
+       PHP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/git.html">
+       git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Nagios.html">
+       Nagios
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Apache.html">
+       Apache
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/吞吐量.html">
+       吞吐量
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/CutyCapt.html">
+       CutyCapt
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/TCPDF.html">
+       TCPDF
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/参考文献.html">
+       参考文献
+    </a>
+</li>
+                  
+                        </ul>
+        </div><!-- /.tags -->
+                        <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                                                    <li><a href="http://loosky.net/">Loosky</a></li>
+                                                    <li><a href="http://www.worldhello.net/">worldhello</a></li>
+                                                    <li><a href="http://wowubuntu.com/">Wow! Ubuntu</a></li>
+                                                    <li><a href="http://wowubuntu.com/markdown/index.html">Markdown Manual</a></li>
+                                                    <li><a href="http://www.yangzhiping.com/">Yang Zhiping</a></li>
+                                                    <li><a href="http://yihui.name/">Yihui Xie</a></li>
+                                                    <li><a href="http://blog.liuts.com/">Liu Tiansi</a></li>
+                                                    <li><a href="http://www.dbanotes.net/">DBA Notes</a></li>
+                                                    <li><a href="http://blog.s135.com/">Zhang Yan</a></li>
+                                                </ul>
+                </div><!-- /.blogroll -->
+                        
+                          <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://loosky.com/" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+                                                    <li><a href="https://github.com/loosky">GitHub</a></li>
+                                                    <li><a href="http://weibo.com/loosky">Weibo</a></li>
+                                                    <li><a href="http://www.douban.com/people/loosky/">Douban</a></li>
+                                                </ul>
+                </div><!-- /.social -->
+                </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a> and Theme by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'looskyblog';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<script type='text/javascript' src='http://loosky.com/theme/loosky.js?ver=20121127'></script>
+</body>
+</html>

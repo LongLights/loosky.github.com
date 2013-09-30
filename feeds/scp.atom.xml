@@ -9,12 +9,12 @@
 &lt;/ol&gt;
 &lt;p&gt;复制文件：&lt;/p&gt;
 &lt;p&gt;（1）将本地文件拷贝到远程&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; 文件名 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;远程路径
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="err"&gt;文件名&lt;/span&gt; &lt;span class="err"&gt;用户名@计算机&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="err"&gt;或者计算机名称&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;远程路径&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;（2）从远程将文件拷回本地&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;文件名 本地路径
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="err"&gt;用户名@计算机&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="err"&gt;或者计算机名称&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;文件名&lt;/span&gt; &lt;span class="err"&gt;本地路径&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -22,10 +22,10 @@
 &lt;li&gt;复制目录：&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;（1）将本地目录拷贝到远程&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; 目录名 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;远程路径
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="err"&gt;目录名&lt;/span&gt; &lt;span class="err"&gt;用户名@计算机&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="err"&gt;或者计算机名称&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;远程路径&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;（2）从远程将目录拷回本地&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; 用户名&lt;span class="p"&gt;@&lt;/span&gt;计算机&lt;span class="n"&gt;IP&lt;/span&gt;或者计算机名称&lt;span class="p"&gt;:&lt;/span&gt;目录名 本地路径
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="err"&gt;用户名@计算机&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="err"&gt;或者计算机名称&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;目录名&lt;/span&gt; &lt;span class="err"&gt;本地路径&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="scp"></category></entry></feed>
