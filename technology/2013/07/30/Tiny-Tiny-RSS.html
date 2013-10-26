@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Tiny Tiny RSS–Google Reader的替代</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="http://loosky.com/theme/css/main.css" type="text/css" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie.css"/>
+                <script src="http://loosky.com/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie6.css"/><![endif]-->
+       <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
+</head>
+
+<body id="index" class="home">
+<a href="http://loosky.net">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://loosky.com/theme/images/forkme_right_red.png" alt="To Loosky.net" />
+</a>
+        <header id="banner" class="body">
+                <h1><a href="http://loosky.com">Loosky's Blog </a></h1>
+                <nav><ul>
+                    <li ><a href="http://loosky.com/category/Blog.html">Blog</a></li>
+                    <li ><a href="http://loosky.com/category/Research.html">Research</a></li>
+                    <li class="active"><a href="http://loosky.com/category/Technology.html">Technology</a></li>
+                <li><a href="http://loosky.com/archives.html">Archives</a></li>
+                    <li><a href="http://loosky.com/pages/about.html">About</a></li>
+                    <li><a href="http://loosky.com/pages/search.html">Search</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="technology/2013/07/30/Tiny-Tiny-RSS.html" rel="bookmark"
+           title="Permalink to Tiny Tiny RSS–Google Reader的替代">Tiny Tiny RSS–Google Reader的替代</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-07-30T00:00:00">
+                Tue 30 July 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://loosky.com/author/loosky.html">Loosky</a>
+        </address>
+<p>In <a href="http://loosky.com/category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="http://loosky.com/tag/Google.html">Google</a><a href="http://loosky.com/tag/Google Reader.html">Google Reader</a><a href="http://loosky.com/tag/PHP.html">PHP</a><a href="http://loosky.com/tag/RSS.html">RSS</a><a href="http://loosky.com/tag/Tiny Tiny RSS.html">Tiny Tiny RSS</a></p></footer><!-- /.post-info -->      <p>Google Reader是一款<a href="http://xbeta.info/google-reader.htm">无可替代的伟大产品</a>，但实实在在地跟我们<a href="http://loosky.net/archives/2789.html">告别了</a>。一直以来习惯于通过订阅RSS来浏览文章，说实在话并不喜欢通过微博或者微信来浏览，信息量太大，而真正有用的东西又不多，极容易被淹没，不容易沉淀。</p>
+<p>Google Reader关闭后，一直用着<a href="https://theoldreader.com/">the Old Reader</a>，其使用习惯和界面均比较接近于Google Reader。但比较痛苦的地方在于速度和稳定性均不是很好，经常长时间不能访问，难以忍受。于是便想自己搭建一个平台，先尝试了<a href="https://github.com/samuelclay/NewsBlur">NewsBlur</a>，基于Django的，步骤相当繁琐。刚好碰到小众软件介绍了<a href="http://www.appinn.com/tiny-tiny-rss/">Tiny Tiny RSS</a>，基于PHP+MySQL/PostgreSQL，安装起来也很方便。于是便安装了一个试试，发现挺不错的。</p>
+<p>Tiny Tiny RSS 是使用 <a href="http://www.simplepie.org/">SimplePie</a> 作为 RSS 抓取引擎的，抓取回来的文章数据需要保存在 MySQL/PostgreSQL 数据库里，抓取数据的时候，需要消耗一定的流量，所以，如果你的订阅源多的话，搭建类似的站点的确是一个消耗存储空间、带宽的活。</p>
+<h3>一、优点</h3>
+<p>项目主页： <a href="http://tt-rss.org/redmine/">http://tt-rss.org/</a>，其优点如下：</p>
+<ol>
+<li>feed状况检查：可以检查订阅的feeds是否失效</li>
+<li>支持各种主题，包括模仿Google Reeder、feedly界面的主题</li>
+<li>有适合移动设备的皮肤/插件</li>
+<li>支持插件，其中精品插件包括ff_feedcleaner（feed内容过滤）、af_feedmod（制作全文阅读feed）、oneclickpocket（一键发送到pocket）、fever（模拟fever api，支持更多客户端）等</li>
+<li>支持多种平台的客户端，包括Andriod、WP、iOS等</li>
+<li>可以灵活地设置更新频率，第一时间获得订阅更新</li>
+<li>支持导入OPML</li>
+<li>可以收藏</li>
+<li>有中文版本，但不完全</li>
+<li>filter功能：类似gmail的filter。从标题，内容，时间等等中匹配关键词，然后可以选择是打分还是加tag，加label，加星，标记已读，删除条目等，filter可以是作用于所有feed或者指定feed。可以是匹配关键词，或者是剔除关键词。</li>
+<li>条目中的图片可以选择是显示还是隐藏。</li>
+<li>邮件digest。把每天的未读条目作为digest发送到指定邮箱。而且可以选择发送了的条目自动标记为已读。发送时间也可以指定。</li>
+<li>基于sphinx的全文搜索</li>
+<li>...</li>
+</ol>
+<h3>二、安装要求</h3>
+<p>要求其实挺简单的，见<a href="http://tt-rss.org/redmine/projects/tt-rss/wiki#Requirements">官方wiki</a>。</p>
+<div class="highlight"><pre><span class="mf">1.</span> <span class="n">PHP</span><span class="err">版本必须高于</span><span class="mf">5.3</span><span class="err">；</span>
+<span class="mf">2.</span> <span class="err">可选</span><span class="n">PostgreSQL</span> <span class="err">或</span> <span class="n">MySQL</span><span class="err">数据库，其中</span><span class="n">MySQL</span><span class="err">数据库必须支持</span><span class="n">InnoDB</span><span class="p">.</span>
+</pre></div>
+
+
+<h3>三、安装步骤</h3>
+<p>具体安装步骤可参考<a href="http://tt-rss.org/redmine/projects/tt-rss/wiki/InstallationNotes">Installation Notes</a></p>
+<ol>
+<li>
+<p>在按照要求配置好服务器环境后，<a href="https://github.com/gothfox/Tiny-Tiny-RSS/archive/1.9.tar.gz">下载安装包</a> （目前最新版本为1.9，Jul 21, 2013）并解压。</p>
+<div class="highlight"><pre><span class="c"># tar zxfv Tiny-Tiny-RSS-1.x.x.tar.gz</span>
+<span class="c"># mv Tiny-Tiny-RSS-1.x.x tt-rss</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>输入<a href="http://your.site.com/tt-rss/install/">http://your.site.com/tt-rss/install/</a>，并执行安装步骤，填写相应的数据库等信息。
+<img alt="安装步骤" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-install.png" /></p>
+</li>
+<li>
+<p>安装完成后，输入网址 <a href="http://your.site.com/tt-rss/">http://your.site.com/tt-rss/</a> 访问系统，系统后台已经部分汉化。默认管理员用户为：</p>
+<div class="highlight"><pre><span class="n">username</span><span class="o">:</span> <span class="n">admin</span><span class="o">,</span> <span class="n">password</span><span class="o">:</span> <span class="n">password</span>
+</pre></div>
+
+
+</li>
+</ol>
+<p><img alt="系统登录" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-login.png" /></p>
+<p>登陆后即可手动添加RSS地址或者直接导入OPML文件了。</p>
+<p><img alt="导入OPML文件" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-importrss.png" /></p>
+<h3>四、优化配置</h3>
+<h4>1. 配置订阅条目自动更新</h4>
+<p>详细操作说明见<a href="http://tt-rss.org/redmine/projects/tt-rss/wiki/UpdatingFeeds">官方wiki</a>，可以采用三种方式，本站使用的是第二种，即通过crontab来定时更新feeds。</p>
+<p><strong>这里需要注意的是更新脚本文件<code>update.php</code>或<code>update_daemon2.php</code>不能由root用户来执行，可以通过apache或者Nginx的运行用户来执行，如apache或者www等。</strong></p>
+<p>当我们以<code>root</code>用户直接执行命令时，会出现如下错误：</p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">localhost</span> <span class="o">~</span><span class="p">]</span><span class="err">#</span> <span class="n">php</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wwwroot</span><span class="o">/</span><span class="err">具体路径</span><span class="o">/</span><span class="n">update</span><span class="p">.</span><span class="n">php</span> 
+<span class="n">Tiny</span> <span class="n">Tiny</span> <span class="n">RSS</span> <span class="n">was</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">start</span> <span class="n">properly</span><span class="p">.</span> <span class="n">This</span> <span class="n">usually</span> <span class="n">means</span> <span class="n">a</span> <span class="n">misconfiguration</span> <span class="n">or</span> <span class="n">an</span> <span class="n">incomplete</span> <span class="n">upgrade</span><span class="p">.</span>
+<span class="n">Please</span> <span class="n">fix</span> <span class="n">errors</span> <span class="n">indicated</span> <span class="n">by</span> <span class="n">the</span> <span class="n">following</span> <span class="n">messages</span><span class="o">:</span>
+
+ <span class="o">*</span> <span class="n">Please</span> <span class="n">don</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">run</span> <span class="n">this</span> <span class="n">script</span> <span class="n">as</span> <span class="n">root</span><span class="p">.</span>
+
+<span class="n">You</span> <span class="n">might</span> <span class="n">want</span> <span class="n">to</span> <span class="n">check</span> <span class="n">tt</span><span class="o">-</span><span class="n">rss</span> <span class="n">wiki</span> <span class="n">or</span> <span class="n">the</span> <span class="n">forums</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+<span class="n">Please</span> <span class="n">search</span> <span class="n">the</span> <span class="n">forums</span> <span class="n">before</span> <span class="n">creating</span> <span class="n">new</span> <span class="n">topic</span> <span class="k">for</span> <span class="n">your</span> <span class="n">question</span><span class="p">.</span>
+</pre></div>
+
+
+<p>即提示不能以root用户运行脚本，否则订阅条目不能自动更新。因此，可以通过给普通用户如<code>www</code>添加crontab运行脚本：</p>
+<div class="highlight"><pre><span class="c">#crontab -u www -e</span>
+</pre></div>
+
+
+<p>添加如下内容：</p>
+<div class="highlight"><pre><span class="err">*/</span><span class="mi">30</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">php</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wwwroot</span><span class="o">/</span><span class="err">具体路径</span><span class="o">/</span><span class="n">update</span><span class="p">.</span><span class="n">php</span> <span class="o">--</span><span class="n">feeds</span> <span class="o">--</span><span class="n">quiet</span>
+</pre></div>
+
+
+<p>同时在后台可以设置feeds的更新时间。</p>
+<p><img alt="设置更新时间" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-update.png" /></p>
+<p><strong>说明：</strong></p>
+<ol>
+<li>必须用普通用户来运行更新脚本；</li>
+<li>更新时间这里设置为每30分钟更新一次，具体可调；</li>
+<li>若你的系统中php的路径不是<code>/usr/bin/php</code>,需要修改之，同时也注意修改<code>config.php</code>中的内容；</li>
+<li>修改<code>/home/wwwroot/具体路径/update.php</code>为你的具体路径。</li>
+</ol>
+<h4>2. 安装皮肤</h4>
+<p>Tiny Tiny RSS<a href="http://tt-rss.org/forum/viewtopic.php?f=22&amp;t=1679">安装皮肤</a>挺简单的，将CSS文件放入themes目录下，并在管理员后台进行选择就可以了，当然也可以通过自定义CSS的方式。</p>
+<p><img alt="定义皮肤" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-theme.png" /></p>
+<p>推荐一款仿Google Reader的皮肤： <a href="https://github.com/naeramarth7/clean-greader">clean-greader</a>，更多的可在<a href="http://tt-rss.org/forum/viewforum.php?f=22">官方论坛</a>中寻找。</p>
+<p><img alt="clean-greader" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss.png" /></p>
+<h4>3. 安装插件</h4>
+<p>系统后台自带了很多系统插件以及第三方插件，我们只需要启用就好，当然也可以去论坛<a href="http://tt-rss.org/forum/viewforum.php?f=22">寻找插件</a>。</p>
+<p><img alt="" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-plugins.png" /></p>
+<p>付上大多数插件的说明，所有插件一般有三种，在文章右下角生成响应图标的、在设置标签生成设置页面的、其他无图标无设置的插件[<a href="https://wjchen.me/index.php/ttrss-1.html">参考</a>]</p>
+<ul>
+<li>af_unburn:解决feedburner等rss链接跳转。</li>
+<li>bookmarklets:在设置-信息源生成bookmarklets标签。</li>
+<li>embed_original:图标插件，点击图标会显示文章原始内容，而不是rss。</li>
+<li>fever:模拟fever api，在设置-Fver Emulation，设置好密码，可以和tt-rss的登录密码不同，然后就能支持fever的客户端比如reeder、Mr. Reader。</li>
+<li>ff_feedcleaner:feed广告过滤，在设置标签生成FeecCleaner标签，过滤规则要用正则表达式，比较复杂。</li>
+<li>googlereaderkeys:模拟google reader快捷键，如J、K等。</li>
+<li>import_export:在设置-信息源，导入导出配置。</li>
+<li>mail:图标插件，点击通过邮件分享。</li>
+<li>mark_button:文章右下角能够快速将文章标记为已读未读。</li>
+<li>mobilize:图标插件，点击显示readability简化的页面。</li>
+<li>note:图标插件。</li>
+<li>nsfw:根据标签隐藏文章内容。</li>
+<li>share:图标插件，点击生成唯一的url方便分享。</li>
+<li>swap_jk:添加j、k快捷键，类似vim。</li>
+</ul>
+<h4>4. 移动端支持</h4>
+<p>要支持移动端，既可以通过手机、平板电脑等设备进行访问，必须先开启系统支持，即在管理后台偏好设置里面勾选“Enable API”。</p>
+<p><img alt="Enable API" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-enableapi.png" /></p>
+<p><a href="http://tt-rss.org/redmine/projects/tt-rss-android/wiki">官方开发</a>的Andriod客户端：<a href="https://play.google.com/store/apps/details?id=org.fox.ttrss&amp;feature=search_result">Tiny Tiny RSS</a></p>
+<p>同时也推荐一下Nils Braden 开发的 <a href="https://play.google.com/store/apps/details?id=org.ttrssreader&amp;feature=related_apps#?t=W251bGwsMSwxLDEwOSwib3JnLnR0cnNzcmVhZGVyIl0.">TTRSS-Reader</a> 这个 Android 手机客户端，这个客户端提供针对Tiny Tiny RSS的手机离线阅读功能，还可以离线缓存图片。</p>
+<p><img alt="移动客户端" src="http://loosky.net/Upload/2013/07/tiny-tiny-rss-client.png" /></p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "technology/2013/07/30/Tiny-Tiny-RSS.html";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://looskyblog.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        <div class="tags">
+                        <h2>Tags</h2>
+                        <ul>
+<li>
+    <a href="http://loosky.com/tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Google.html">
+       Google
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/RSS.html">
+       RSS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Nagios.html">
+       Nagios
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/网络.html">
+       网络
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PHP.html">
+       PHP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/web.html">
+       web
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WebBench.html">
+       WebBench
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Tiny Tiny RSS.html">
+       Tiny Tiny RSS
+    </a>
+</li>
+                  
+                        </ul>
+        </div><!-- /.tags -->
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://loosky.net/">Loosky</a></li>
+                            <li><a href="http://www.worldhello.net/">worldhello</a></li>
+                            <li><a href="http://wowubuntu.com/">Wow! Ubuntu</a></li>
+                            <li><a href="http://wowubuntu.com/markdown/index.html">Markdown Manual</a></li>
+                            <li><a href="http://www.yangzhiping.com/">Yang Zhiping</a></li>
+                            <li><a href="http://yihui.name/">Yihui Xie</a></li>
+                            <li><a href="http://blog.liuts.com/">Liu Tiansi</a></li>
+                            <li><a href="http://www.dbanotes.net/">DBA Notes</a></li>
+                            <li><a href="http://blog.s135.com/">Zhang Yan</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://loosky.com/" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/loosky">GitHub</a></li>
+                            <li><a href="http://weibo.com/loosky">Weibo</a></li>
+                            <li><a href="http://www.douban.com/people/loosky/">Douban</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a> and Theme by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'looskyblog';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<script type='text/javascript' src='http://loosky.com/theme/loosky.js?ver=20121127'></script>
+</body>
+</html>

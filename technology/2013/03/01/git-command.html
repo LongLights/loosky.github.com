@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Git常用命令</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="http://loosky.com/theme/css/main.css" type="text/css" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie.css"/>
+                <script src="http://loosky.com/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie6.css"/><![endif]-->
+       <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
+</head>
+
+<body id="index" class="home">
+<a href="http://loosky.net">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://loosky.com/theme/images/forkme_right_red.png" alt="To Loosky.net" />
+</a>
+        <header id="banner" class="body">
+                <h1><a href="http://loosky.com">Loosky's Blog </a></h1>
+                <nav><ul>
+                    <li ><a href="http://loosky.com/category/Blog.html">Blog</a></li>
+                    <li ><a href="http://loosky.com/category/Research.html">Research</a></li>
+                    <li class="active"><a href="http://loosky.com/category/Technology.html">Technology</a></li>
+                <li><a href="http://loosky.com/archives.html">Archives</a></li>
+                    <li><a href="http://loosky.com/pages/about.html">About</a></li>
+                    <li><a href="http://loosky.com/pages/search.html">Search</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="technology/2013/03/01/git-command.html" rel="bookmark"
+           title="Permalink to Git常用命令">Git常用命令</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-03-01T00:00:00">
+                Fri 01 March 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://loosky.com/author/loosky.html">Loosky</a>
+        </address>
+<p>In <a href="http://loosky.com/category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="http://loosky.com/tag/Git.html">Git</a></p></footer><!-- /.post-info -->      <h2>Git配置</h2>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span> <span class="s">&quot;robbin&quot;</span>   
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="p">.</span><span class="n">email</span> <span class="s">&quot;fankai@gmail.com&quot;</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">color</span><span class="p">.</span><span class="n">ui</span> <span class="nb">true</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">co</span> <span class="n">checkout</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">ci</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">st</span> <span class="n">status</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">alias</span><span class="p">.</span><span class="n">br</span> <span class="n">branch</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">core</span><span class="p">.</span><span class="n">editor</span> <span class="s">&quot;mate -w&quot;</span>
+</pre></div>
+
+
+<p><code>用户的git配置文件~/.gitconfig</code></p>
+<h2>Git常用命令</h2>
+<h3>查看、添加、提交、删除、找回，重置修改文件</h3>
+<div class="highlight"><pre><span class="nx">git</span> <span class="nx">help</span> <span class="o">&lt;</span><span class="nb">command</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="err">显示</span><span class="nb">command</span><span class="err">的</span><span class="nx">help</span>
+<span class="nx">git</span> <span class="nx">show</span>            <span class="err">#</span> <span class="err">显示某次提交的内容</span>
+<span class="nx">git</span> <span class="nx">show</span> <span class="nv">$id</span>
+
+<span class="nx">git</span> <span class="nx">co</span>  <span class="o">--</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>   <span class="err">#</span> <span class="err">抛弃工作区修改</span>
+<span class="nx">git</span> <span class="nx">co</span>  <span class="nx">.</span>           <span class="err">#</span> <span class="err">抛弃工作区修改</span>
+
+<span class="nx">git</span> <span class="nb">add</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>      <span class="err">#</span> <span class="err">将工作文件修改提交到本地暂存区</span>
+<span class="nx">git</span> <span class="nb">add</span> <span class="nx">.</span>           <span class="err">#</span> <span class="err">将所有修改过的工作文件提交暂存区</span>
+
+<span class="nx">git</span> <span class="nx">rm</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>       <span class="err">#</span> <span class="err">从版本库中删除文件</span>
+<span class="nx">git</span> <span class="nx">rm</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span> <span class="o">--</span><span class="nx">cached</span>  <span class="err">#</span> <span class="err">从版本库中删除文件，但不删除文件</span>
+
+<span class="nx">git</span> <span class="nb">reset</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>    <span class="err">#</span> <span class="err">从暂存区恢复到工作文件</span>
+<span class="nx">git</span> <span class="nb">reset</span> <span class="o">--</span> <span class="nx">.</span>      <span class="err">#</span> <span class="err">从暂存区恢复到工作文件</span>
+<span class="nx">git</span> <span class="nb">reset</span> <span class="o">--</span><span class="nx">hard</span>    <span class="err">#</span> <span class="err">恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改</span>
+
+<span class="nx">git</span> <span class="nx">ci</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>
+<span class="nx">git</span> <span class="nx">ci</span> <span class="nx">.</span>
+<span class="nx">git</span> <span class="nx">ci</span> <span class="na">-a</span>           <span class="err">#</span> <span class="err">将</span><span class="nx">git</span> <span class="nb">add</span><span class="p">,</span> <span class="nx">git</span> <span class="nx">rm</span><span class="err">和</span><span class="nx">git</span> <span class="nx">ci</span><span class="err">等操作都合并在一起做</span>
+<span class="nx">git</span> <span class="nx">ci</span> <span class="na">-am</span> <span class="s2">&quot;some comments&quot;</span>
+<span class="nx">git</span> <span class="nx">ci</span> <span class="o">--</span><span class="nx">amend</span>      <span class="err">#</span> <span class="err">修改最后一次提交记录</span>
+
+<span class="nx">git</span> <span class="nx">revert</span> <span class="o">&lt;</span><span class="nv">$id</span><span class="o">&gt;</span>    <span class="err">#</span> <span class="err">恢复某次提交的状态，恢复动作本身也创建了一次提交对象</span>
+<span class="nx">git</span> <span class="nx">revert</span> <span class="nb">HEAD</span>     <span class="err">#</span> <span class="err">恢复最后一次提交的状态</span>
+</pre></div>
+
+
+<h3>查看文件diff</h3>
+<div class="highlight"><pre><span class="nx">git</span> <span class="nx">diff</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>     <span class="err">#</span> <span class="err">比较当前文件和暂存区文件差异</span>
+<span class="nx">git</span> <span class="nx">diff</span>
+<span class="nx">git</span> <span class="nx">diff</span> <span class="o">&lt;</span><span class="nv">$id1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nv">$id2</span><span class="o">&gt;</span>   <span class="err">#</span> <span class="err">比较两次提交之间的差异</span>
+<span class="nx">git</span> <span class="nx">diff</span> <span class="o">&lt;</span><span class="nx">branch1</span><span class="o">&gt;</span><span class="nx">..</span><span class="o">&lt;</span><span class="nx">branch2</span><span class="o">&gt;</span> <span class="err">#</span> <span class="err">在两个分支之间比较</span> 
+<span class="nx">git</span> <span class="nx">diff</span> <span class="o">--</span><span class="nx">staged</span>   <span class="err">#</span> <span class="err">比较暂存区和版本库差异</span>
+<span class="nx">git</span> <span class="nx">diff</span> <span class="o">--</span><span class="nx">cached</span>   <span class="err">#</span> <span class="err">比较暂存区和版本库差异</span>
+<span class="nx">git</span> <span class="nx">diff</span> <span class="o">--</span><span class="nb">stat</span>     <span class="err">#</span> <span class="err">仅仅比较统计信息</span>
+</pre></div>
+
+
+<h3>查看提交记录</h3>
+<div class="highlight"><pre><span class="nx">git</span> <span class="k">log</span>
+<span class="nx">git</span> <span class="k">log</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>      <span class="err">#</span> <span class="err">查看该文件每次提交记录</span>
+<span class="nx">git</span> <span class="k">log</span> <span class="na">-p</span> <span class="o">&lt;</span><span class="nb">file</span><span class="o">&gt;</span>   <span class="err">#</span> <span class="err">查看每次详细修改内容的</span><span class="nx">diff</span>
+<span class="nx">git</span> <span class="k">log</span> <span class="na">-p</span> <span class="o">-</span><span class="mi">2</span>       <span class="err">#</span> <span class="err">查看最近两次详细修改内容的</span><span class="nx">diff</span>
+</pre></div>
+
+
+<h3>tig</h3>
+<p>Mac上可以使用tig代替diff和log，brew install tig</p>
+<h2>Git 本地分支管理</h2>
+<h3>查看、切换、创建和删除分支</h3>
+<div class="highlight"><pre><span class="nx">git</span> <span class="nx">br</span> <span class="na">-r</span>           <span class="err">#</span> <span class="err">查看远程分支</span>
+<span class="nx">git</span> <span class="nx">br</span> <span class="o">&lt;</span><span class="nx">new_branch</span><span class="o">&gt;</span> <span class="err">#</span> <span class="err">创建新的分支</span>
+<span class="nx">git</span> <span class="nx">br</span> <span class="na">-v</span>           <span class="err">#</span> <span class="err">查看各个分支最后提交信息</span>
+<span class="nx">git</span> <span class="nx">br</span> <span class="o">--</span><span class="nx">merged</span>     <span class="err">#</span> <span class="err">查看已经被合并到当前分支的分支</span>
+<span class="nx">git</span> <span class="nx">br</span> <span class="o">--</span><span class="nx">no</span><span class="na">-merged</span>  <span class="err">#</span> <span class="err">查看尚未被合并到当前分支的分支</span>
+
+<span class="nx">git</span> <span class="nx">co</span> <span class="o">&lt;</span><span class="nx">branch</span><span class="o">&gt;</span>     <span class="err">#</span> <span class="err">切换到某个分支</span>
+<span class="nx">git</span> <span class="nx">co</span> <span class="na">-b</span> <span class="o">&lt;</span><span class="nx">new_branch</span><span class="o">&gt;</span> <span class="err">#</span> <span class="err">创建新的分支，并且切换过去</span>
+<span class="nx">git</span> <span class="nx">co</span> <span class="na">-b</span> <span class="o">&lt;</span><span class="nx">new_branch</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nx">branch</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="err">基于</span><span class="nx">branch</span><span class="err">创建新的</span><span class="nx">new_branch</span>
+
+<span class="nx">git</span> <span class="nx">co</span> <span class="nv">$id</span>          <span class="err">#</span> <span class="err">把某次历史提交记录</span><span class="nx">checkout</span><span class="err">出来，但无分支信息，切换到其他分支会自动删除</span>
+<span class="nx">git</span> <span class="nx">co</span> <span class="nv">$id</span> <span class="na">-b</span> <span class="o">&lt;</span><span class="nx">new_branch</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="err">把某次历史提交记录</span><span class="nx">checkout</span><span class="err">出来，创建成一个分支</span>
+
+<span class="nx">git</span> <span class="nx">br</span> <span class="na">-d</span> <span class="o">&lt;</span><span class="nx">branch</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="err">删除某个分支</span>
+<span class="nx">git</span> <span class="nx">br</span> <span class="na">-D</span> <span class="o">&lt;</span><span class="nx">branch</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="err">强制删除某个分支</span> <span class="p">(</span><span class="err">未被合并的分支被删除的时候需要强制</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>分支合并和rebase</h3>
+<div class="highlight"><pre><span class="nx">git</span> <span class="nb">merge</span> <span class="o">&lt;</span><span class="nx">branch</span><span class="o">&gt;</span>               <span class="err">#</span> <span class="err">将</span><span class="nx">branch</span><span class="err">分支合并到当前分支</span>
+<span class="nx">git</span> <span class="nb">merge</span> <span class="nx">origin</span><span class="p">/</span><span class="nx">master</span> <span class="o">--</span><span class="nx">no</span><span class="na">-ff</span>  <span class="err">#</span> <span class="err">不要</span><span class="nx">Fast</span><span class="na">-Foward</span><span class="err">合并，这样可以生成</span><span class="nb">merge</span><span class="err">提交</span>
+
+<span class="nx">git</span> <span class="nx">rebase</span> <span class="nx">master</span> <span class="o">&lt;</span><span class="nx">branch</span><span class="o">&gt;</span>       <span class="err">#</span> <span class="err">将</span><span class="nx">master</span> <span class="nx">rebase</span><span class="err">到</span><span class="nx">branch</span><span class="err">，相当于：</span>
+<span class="nx">git</span> <span class="nx">co</span> <span class="o">&lt;</span><span class="nx">branch</span><span class="o">&gt;</span> <span class="o">&amp;&amp;</span> <span class="nx">git</span> <span class="nx">rebase</span> <span class="nx">master</span> <span class="o">&amp;&amp;</span> <span class="nx">git</span> <span class="nx">co</span> <span class="nx">master</span> <span class="o">&amp;&amp;</span> <span class="nx">git</span> <span class="nb">merge</span> <span class="o">&lt;</span><span class="nx">branch</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<h2>Git补丁管理(方便在多台机器上开发同步时用)</h2>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">diff</span> <span class="o">&gt;</span> <span class="p">..</span><span class="o">/</span><span class="n">sync</span><span class="p">.</span><span class="n">patch</span>         <span class="err">#</span> <span class="err">生成补丁</span>
+<span class="n">git</span> <span class="n">apply</span> <span class="p">..</span><span class="o">/</span><span class="n">sync</span><span class="p">.</span><span class="n">patch</span>          <span class="err">#</span> <span class="err">打补丁</span>
+<span class="n">git</span> <span class="n">apply</span> <span class="o">--</span><span class="n">check</span> <span class="p">..</span><span class="o">/</span><span class="n">sync</span><span class="p">.</span><span class="n">patch</span>  <span class="err">#</span> <span class="err">测试补丁能否成功</span>
+</pre></div>
+
+
+<h2>Git暂存管理</h2>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">stash</span>                        <span class="err">#</span> <span class="err">暂存</span>
+<span class="n">git</span> <span class="n">stash</span> <span class="n">list</span>                   <span class="err">#</span> <span class="err">列所有</span><span class="n">stash</span>
+<span class="n">git</span> <span class="n">stash</span> <span class="n">apply</span>                  <span class="err">#</span> <span class="err">恢复暂存的内容</span>
+<span class="n">git</span> <span class="n">stash</span> <span class="n">drop</span>                   <span class="err">#</span> <span class="err">删除暂存区</span>
+</pre></div>
+
+
+<h2>Git远程分支管理</h2>
+<div class="highlight"><pre><span class="nx">git</span> <span class="nx">pull</span>                         <span class="err">#</span> <span class="err">抓取远程仓库所有分支更新并合并到本地</span>
+<span class="nx">git</span> <span class="nx">pull</span> <span class="o">--</span><span class="nx">no</span><span class="na">-ff</span>                 <span class="err">#</span> <span class="err">抓取远程仓库所有分支更新并合并到本地，不要快进合并</span>
+<span class="nx">git</span> <span class="nx">fetch</span> <span class="nx">origin</span>                 <span class="err">#</span> <span class="err">抓取远程仓库更新</span>
+<span class="nx">git</span> <span class="nb">merge</span> <span class="nx">origin</span><span class="p">/</span><span class="nx">master</span>          <span class="err">#</span> <span class="err">将远程主分支合并到本地当前分支</span>
+<span class="nx">git</span> <span class="nx">co</span> <span class="o">--</span><span class="nx">track</span> <span class="nx">origin</span><span class="p">/</span><span class="nx">branch</span>     <span class="err">#</span> <span class="err">跟踪某个远程分支创建相应的本地分支</span>
+<span class="nx">git</span> <span class="nx">co</span> <span class="na">-b</span> <span class="o">&lt;</span><span class="nx">local_branch</span><span class="o">&gt;</span> <span class="nx">origin</span><span class="o">/&lt;</span><span class="nx">remote_branch</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="err">基于远程分支创建本地分支，功能同上</span>
+
+<span class="nx">git</span> <span class="nb">push</span>                         <span class="err">#</span> <span class="nb">push</span><span class="err">所有分支</span>
+<span class="nx">git</span> <span class="nb">push</span> <span class="nx">origin</span> <span class="nx">master</span>           <span class="err">#</span> <span class="err">将本地主分支推到远程主分支</span>
+<span class="nx">git</span> <span class="nb">push</span> <span class="na">-u</span> <span class="nx">origin</span> <span class="nx">master</span>        <span class="err">#</span> <span class="err">将本地主分支推到远程</span><span class="p">(</span><span class="err">如无远程主分支则创建，用于初始化远程仓库</span><span class="p">)</span>
+<span class="nx">git</span> <span class="nb">push</span> <span class="nx">origin</span> <span class="o">&lt;</span><span class="nx">local_branch</span><span class="o">&gt;</span>   <span class="err">#</span> <span class="err">创建远程分支，</span> <span class="nx">origin</span><span class="err">是远程仓库名</span>
+<span class="nx">git</span> <span class="nb">push</span> <span class="nx">origin</span> <span class="o">&lt;</span><span class="nx">local_branch</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="nx">remote_branch</span><span class="o">&gt;</span>  <span class="err">#</span> <span class="err">创建远程分支</span>
+<span class="nx">git</span> <span class="nb">push</span> <span class="nx">origin</span> <span class="p">:</span><span class="o">&lt;</span><span class="nx">remote_branch</span><span class="o">&gt;</span>  <span class="err">#先删除本地分支</span><span class="p">(</span><span class="nx">git</span> <span class="nx">br</span> <span class="na">-d</span> <span class="o">&lt;</span><span class="nx">branch</span><span class="o">&gt;</span><span class="p">)</span><span class="err">，然后再</span><span class="nb">push</span><span class="err">删除远程分支</span>
+</pre></div>
+
+
+<h2>Git远程仓库管理</h2>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">remote</span> <span class="o">-</span><span class="n">v</span>                    <span class="err">#</span> <span class="err">查看远程服务器地址和仓库名称</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">show</span> <span class="n">origin</span>           <span class="err">#</span> <span class="err">查看远程服务器仓库状态</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="o">:</span><span class="n">robbin</span><span class="o">/</span><span class="n">robbin_site</span><span class="p">.</span><span class="n">git</span>         <span class="err">#</span> <span class="err">添加远程仓库地址</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">set</span><span class="o">-</span><span class="n">url</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="n">robbin</span><span class="o">/</span><span class="n">robbin_site</span><span class="p">.</span><span class="n">gi</span>
+</pre></div>
+
+
+<h3>创建远程仓库</h3>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">bare</span> <span class="n">robbin_site</span> <span class="n">robbin_site</span><span class="p">.</span><span class="n">git</span>  <span class="err">#</span> <span class="err">用带版本的项目创建纯版本仓库</span>
+<span class="n">scp</span> <span class="o">-</span><span class="n">r</span> <span class="n">my_project</span><span class="p">.</span><span class="n">git</span> <span class="n">git</span><span class="err">@</span><span class="n">git</span><span class="p">.</span><span class="n">csdn</span><span class="p">.</span><span class="n">net</span><span class="o">:~</span>      <span class="err">#</span> <span class="err">将纯仓库上传到服务器上</span>
+
+<span class="n">mkdir</span> <span class="n">robbin_site</span><span class="p">.</span><span class="n">git</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">robbin_site</span><span class="p">.</span><span class="n">git</span> <span class="o">&amp;&amp;</span> <span class="n">git</span> <span class="o">--</span><span class="n">bare</span> <span class="n">init</span> <span class="err">#</span> <span class="err">在服务器创建纯仓库</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="n">robbin</span><span class="o">/</span><span class="n">robbin_site</span><span class="p">.</span><span class="n">git</span>    <span class="err">#</span> <span class="err">设置远程仓库地址</span>
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>                                      <span class="err">#</span> <span class="err">客户端首次提交</span>
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">develop</span>  <span class="err">#</span> <span class="err">首次将本地</span><span class="n">develop</span><span class="err">分支提交到远程</span><span class="n">develop</span><span class="err">分支，并且</span><span class="n">track</span>
+
+<span class="n">git</span> <span class="n">remote</span> <span class="n">set</span><span class="o">-</span><span class="n">head</span> <span class="n">origin</span> <span class="n">master</span>   <span class="err">#</span> <span class="err">设置远程仓库的</span><span class="n">HEAD</span><span class="err">指向</span><span class="n">master</span><span class="err">分支</span>
+</pre></div>
+
+
+<p>也可以命令设置跟踪远程库和本地库</p>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">branch</span> <span class="o">--</span><span class="n">set</span><span class="o">-</span><span class="n">upstream</span> <span class="n">master</span> <span class="n">origin</span><span class="o">/</span><span class="n">master</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">--</span><span class="n">set</span><span class="o">-</span><span class="n">upstream</span> <span class="n">develop</span> <span class="n">origin</span><span class="o">/</span><span class="n">develop</span>
+</pre></div>
+
+
+<p><a href="http://robbinfan.com/blog/34/git-common-command">原文链接</a></p>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "technology/2013/03/01/git-command.html";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://looskyblog.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        <div class="tags">
+                        <h2>Tags</h2>
+                        <ul>
+<li>
+    <a href="http://loosky.com/tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Google.html">
+       Google
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/RSS.html">
+       RSS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Nagios.html">
+       Nagios
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/网络.html">
+       网络
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PHP.html">
+       PHP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/web.html">
+       web
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WebBench.html">
+       WebBench
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Tiny Tiny RSS.html">
+       Tiny Tiny RSS
+    </a>
+</li>
+                  
+                        </ul>
+        </div><!-- /.tags -->
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://loosky.net/">Loosky</a></li>
+                            <li><a href="http://www.worldhello.net/">worldhello</a></li>
+                            <li><a href="http://wowubuntu.com/">Wow! Ubuntu</a></li>
+                            <li><a href="http://wowubuntu.com/markdown/index.html">Markdown Manual</a></li>
+                            <li><a href="http://www.yangzhiping.com/">Yang Zhiping</a></li>
+                            <li><a href="http://yihui.name/">Yihui Xie</a></li>
+                            <li><a href="http://blog.liuts.com/">Liu Tiansi</a></li>
+                            <li><a href="http://www.dbanotes.net/">DBA Notes</a></li>
+                            <li><a href="http://blog.s135.com/">Zhang Yan</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://loosky.com/" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/loosky">GitHub</a></li>
+                            <li><a href="http://weibo.com/loosky">Weibo</a></li>
+                            <li><a href="http://www.douban.com/people/loosky/">Douban</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a> and Theme by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'looskyblog';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<script type='text/javascript' src='http://loosky.com/theme/loosky.js?ver=20121127'></script>
+</body>
+</html>

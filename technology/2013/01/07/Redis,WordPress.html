@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>使用Redis来加速WordPress</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="http://loosky.com/theme/css/main.css" type="text/css" />
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie.css"/>
+                <script src="http://loosky.com/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="http://loosky.com/css/ie6.css"/><![endif]-->
+       <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.min.js'></script>
+</head>
+
+<body id="index" class="home">
+<a href="http://loosky.net">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://loosky.com/theme/images/forkme_right_red.png" alt="To Loosky.net" />
+</a>
+        <header id="banner" class="body">
+                <h1><a href="http://loosky.com">Loosky's Blog </a></h1>
+                <nav><ul>
+                    <li ><a href="http://loosky.com/category/Blog.html">Blog</a></li>
+                    <li ><a href="http://loosky.com/category/Research.html">Research</a></li>
+                    <li class="active"><a href="http://loosky.com/category/Technology.html">Technology</a></li>
+                <li><a href="http://loosky.com/archives.html">Archives</a></li>
+                    <li><a href="http://loosky.com/pages/about.html">About</a></li>
+                    <li><a href="http://loosky.com/pages/search.html">Search</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="technology/2013/01/07/Redis,WordPress.html" rel="bookmark"
+           title="Permalink to 使用Redis来加速WordPress">使用Redis来加速WordPress</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-01-07T00:00:00">
+                Mon 07 January 2013
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://loosky.com/author/loosky.html">Loosky</a>
+        </address>
+<p>In <a href="http://loosky.com/category/Technology.html">Technology</a>. </p>
+<p>tags: <a href="http://loosky.com/tag/use-Redis-to-Accelerate-WordPress.html">use-Redis-to-Accelerate-WordPress</a></p></footer><!-- /.post-info -->      <h2>1、安装 Redis</h2>
+<p>官方网站：<a href="http://redis.io/download">http://redis.io/download</a></p>
+<div class="highlight"><pre><span class="c"># cd /usr/local/src</span>
+<span class="c"># wget http://redis.googlecode.com/files/redis-2.6.7.tar.gz</span>
+<span class="c"># tar xzf redis-2.6.7.tar.gz</span>
+<span class="c"># cd redis-2.6.7</span>
+<span class="c"># make</span>
+</pre></div>
+
+
+<p>安装完成后，启动Redis</p>
+<div class="highlight"><pre><span class="c">#/usr/local/src/redis-2.6.7/src/redis-server</span>
+</pre></div>
+
+
+<p>也可以将Redis加入开机自启动</p>
+<div class="highlight"><pre><span class="c">#vi /etc/rc.d/rc.local</span>
+</pre></div>
+
+
+<p>加入</p>
+<div class="highlight"><pre><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="mf">2.6.7</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">server</span>
+</pre></div>
+
+
+<h2>2、使用 Predis 作为 Redis 的 PHP 客户端</h2>
+<p>你需要一个客户端开发包以便 PHP 可以连接到 Redis 服务上。这里我们推荐 [Predis(https://github.com/nrk/predis/)，上传 <a href="http://uploads.staticjw.com/ji/jim/predis.php">predis.php</a> 到 WordPress 的根目录。</p>
+<blockquote>
+<p>注意：Predis需要PHP的版本&gt;5.3。</p>
+</blockquote>
+<p>问题：在系统的PHP版本升级到5.3.X以上时，会出现WordPress的主题不能显示和编辑的情况，这主要是由于PHP中禁用了部分存在危险的PHP函数，与上述情况相关的函数是scandir</p>
+<p>解决方案：</p>
+<p>1、编辑PHP配置文件：</p>
+<div class="highlight"><pre><span class="n">vi</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">php</span><span class="p">.</span><span class="n">ini</span>
+</pre></div>
+
+
+<p>寻找disable_functions字符串，将后面的scandir删除</p>
+<p>2、重启PHP生效</p>
+<div class="highlight"><pre><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">php</span><span class="o">-</span><span class="n">fpm</span> <span class="n">restart</span>
+</pre></div>
+
+
+<h3>3、前端缓存的 PHP 脚本</h3>
+<p>1.在 WordPress的根目录创建新文件 index-with-redis.php，<a href="https://gist.github.com/3053250">下载地址</a></p>
+<p>2.修改文件中的变量进行自定义</p>
+<p>3.如果使用Apache，需在 .htaccess 中将所有出现 index.php 的地方改为 index-with-redis.php ；如果使用的是 Nginx，则将WordPress中的index.php重命名，并将index-with-redis.php 重命名为index.php。需要注意的是在每次升级后需要重新进行上述操作。</p>
+<p>同时，需要在 Nginx 配置文件中单独对 /wp-admin/ 指定一下 index.php 文件. 类似如下:</p>
+<div class="highlight"><pre><span class="n">location</span> <span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span> <span class="p">{</span>
+    <span class="n">index</span>  <span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>参考文献：</p>
+<ol>
+<li>
+<p><a href="http://dbanotes.net/sitelog/movable-type-2-wordpress.html">http://dbanotes.net/sitelog/movable-type-2-wordpress.html</a></p>
+</li>
+<li>
+<p><a href="http://www.jimwestergren.com/wordpress-with-redis-as-a-frontend-cache/">How to load WordPress in a few milliseconds using Redis</a></p>
+</li>
+<li>
+<p><a href="http://timyang.net/data/redis-misunderstanding/">Redis几个认识误区</a></p>
+</li>
+</ol>
+    </div><!-- /.entry-content -->
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "technology/2013/01/07/Redis,WordPress.html";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://looskyblog.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        <div class="tags">
+                        <h2>Tags</h2>
+                        <ul>
+<li>
+    <a href="http://loosky.com/tag/挂载.html">
+       挂载
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Google.html">
+       Google
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/RSS.html">
+       RSS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Nagios.html">
+       Nagios
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/open-mesh.html">
+       open-mesh
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Git.html">
+       Git
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/网络.html">
+       网络
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/OpenWRT.html">
+       OpenWRT
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/CentOS.html">
+       CentOS
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/use-Redis-to-Accelerate-WordPress.html">
+       use-Redis-to-Accelerate-WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Pelican.html">
+       Pelican
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WMN.html">
+       WMN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WordPress.html">
+       WordPress
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PNP.html">
+       PNP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/MESH.html">
+       MESH
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Linux.html">
+       Linux
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Markdown.html">
+       Markdown
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Python.html">
+       Python
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/scp.html">
+       scp
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/分区.html">
+       分区
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/.html">
+       
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/SQL.html">
+       SQL
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/ROBIN.html">
+       ROBIN
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Mysql.html">
+       Mysql
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/github.html">
+       github
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/PHP.html">
+       PHP
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/web.html">
+       web
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Loosky.html">
+       Loosky
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/WebBench.html">
+       WebBench
+    </a>
+</li>
+<li>
+    <a href="http://loosky.com/tag/Tiny Tiny RSS.html">
+       Tiny Tiny RSS
+    </a>
+</li>
+                  
+                        </ul>
+        </div><!-- /.tags -->
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://loosky.net/">Loosky</a></li>
+                            <li><a href="http://www.worldhello.net/">worldhello</a></li>
+                            <li><a href="http://wowubuntu.com/">Wow! Ubuntu</a></li>
+                            <li><a href="http://wowubuntu.com/markdown/index.html">Markdown Manual</a></li>
+                            <li><a href="http://www.yangzhiping.com/">Yang Zhiping</a></li>
+                            <li><a href="http://yihui.name/">Yihui Xie</a></li>
+                            <li><a href="http://blog.liuts.com/">Liu Tiansi</a></li>
+                            <li><a href="http://www.dbanotes.net/">DBA Notes</a></li>
+                            <li><a href="http://blog.s135.com/">Zhang Yan</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://loosky.com/" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/loosky">GitHub</a></li>
+                            <li><a href="http://weibo.com/loosky">Weibo</a></li>
+                            <li><a href="http://www.douban.com/people/loosky/">Douban</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a> and Theme by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'looskyblog';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<script type='text/javascript' src='http://loosky.com/theme/loosky.js?ver=20121127'></script>
+</body>
+</html>
